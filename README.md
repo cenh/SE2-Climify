@@ -1,5 +1,7 @@
 # VMs
 
+Information about the VMs
+
 ## Jenkins server
 Domain: se2-jenkins03.compute.dtu.dk
 
