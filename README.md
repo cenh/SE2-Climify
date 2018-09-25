@@ -24,4 +24,6 @@ Mock user: john - password: testpassword
 
 Mock admin: admin - password: totallysecurepassword
 
-Mysql - user: root - password: totallysecurepassword
+Mysql user: root - password: totallysecurepassword
+
+Jenkins: admin - password: totallysecurepassword
