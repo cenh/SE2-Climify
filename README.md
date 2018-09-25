@@ -18,6 +18,8 @@ IP: 130.225.69.76
 
 Webapp: http://130.225.69.76/SE2-Climify/skoleklima/index.php
 
+Jenkins: http://130.225.69.76:8080/
+
 Mock user: john - password: testpassword
 
 Mock admin: admin - password: totallysecurepassword
