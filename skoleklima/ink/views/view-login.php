@@ -4,7 +4,7 @@
 	<div class="login-con">
 		<div class="login-from">
 			<h1>Log ind</h1>
-            <button id="my_button" onclick="my_function()">
+            <button id="my_button">
                 my button
             </button>
 			<span>

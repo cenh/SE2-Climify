@@ -768,6 +768,6 @@ function requestNewUserSetup() {
 
 }
 
-function my_function() {
+$("#my_button").click(function () {
     console.log('hello');
-}
+})
