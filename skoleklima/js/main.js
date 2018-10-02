@@ -767,6 +767,7 @@ function requestNewUserSetup() {
 
 
 }
-$("#my_button").click(function () {
+
+function my_function() {
     console.log('hello');
-})
+}
