@@ -2,10 +2,6 @@
 	require_once "meta.php";
 ?>
 
-<!--try-->
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
