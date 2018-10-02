@@ -4,6 +4,9 @@
 	<span>
 		<h3>Sensors</h3>
 		<p>An overview of installed sensors.</p>
+        <button>
+            my new button
+        </button>
 	</span>
 	<span>
 		<span>
