@@ -4,9 +4,6 @@
 	<span>
 		<h3>Sensors</h3>
 		<p>An overview of installed sensors.</p>
-        <button>
-            my new button
-        </button>
 	</span>
 	<span>
 		<span>
@@ -222,6 +219,7 @@
 					</div>
 					<span>
 						<button class="btn-show-view-map-info">Show info</button>
+                        <button class="btn-show-view-map-info">My button</button>
 						<a href="#/logbog">
 							<button class="btn-go-to-communnication menu-link" data-go-to="communication">Go to the logbook</button>
 						</a>
