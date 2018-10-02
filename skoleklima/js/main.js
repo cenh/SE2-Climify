@@ -7,23 +7,23 @@ siteOnline = false;
 //Source for DATALIST - https://www.raymondcamden.com/2012/06/14/example-of-a-dynamic-html5-datalist-control/
 //Source for municipality API - https://dawa.aws.dk/dok/api/kommune#s%C3%B8gning
 
-$(document).ready(function () {
+$(document).ready(function() {
 
-    $("#search").on("input", function (e) {
+    $("#search").on("input", function(e) {
         var val = $(this).val();
-        if (val === "") return;
+        if(val === "") return;
         //You could use this to limit results
         //if(val.length < 3) return;
 
 
-        $.get("https://dawa.aws.dk/kommuner/autocomplete?q=" + val, {term: val}, function (data) {
+        $.get("https://dawa.aws.dk/kommuner/autocomplete?q=" + val,{term:val}, function(data) {
 
             var dataList = $("#searchResults");
             dataList.empty();
 
-            if (data.length) {
+            if(data.length) {
 
-                for (var i = 0, len = data.length; i < len; i++) {
+                for(var i=0, len=data.length; i<len; i++) {
                     var opt = $("<option></option>").attr("value", data[i].kommune.navn);
                     dataList.append(opt);
 
@@ -112,11 +112,11 @@ if (siteOnline) {
 }
 // Test if browser is Internet Explorer
 msieversion();
-
 function msieversion() {
     var ua = window.navigator.userAgent;
     var msie = ua.indexOf("MSIE ");
-    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))
+    {
         browserIsIE = true;
     }
     else  // If another browser, return 0
@@ -127,7 +127,7 @@ function msieversion() {
 }
 
 // Test if user is logind (cookie saved)
-if (currentUserID == "") {
+if ( currentUserID == "" ) {
     $.removeCookie("username");
     $.removeCookie("password");
     startPage = "login";
@@ -135,20 +135,19 @@ if (currentUserID == "") {
 } else {
     startPage = "dashboard";
     requestAutoLoginSystem();
-}
-;
+};
 
 
 // Login
-$(".login-input").click(function () {
+$(".login-input").click(function(){
     if ($(this).hasClass("wrong-login")) {
         $(".login-input").removeClass("wrong-login");
         $(".txt-wrong-login").css("visibility", "hidden");
     }
 });
 
-$("#btn-system-login").click(function () {
-    if (browserIsIE == true) {
+$("#btn-system-login").click(function(){
+    if ( browserIsIE == true ) {
         unsupportedBrowser();
     } else {
         validateLoginType();
@@ -156,8 +155,8 @@ $("#btn-system-login").click(function () {
 });
 
 // Tricker #createAdminButton on press enter when password-field is selected
-$(".login-from :input").keyup(function (event) {
-    if (event.keyCode == 13) {
+$(".login-from :input").keyup(function(event){
+    if(event.keyCode == 13){
         if ($(".login-input").hasClass("wrong-login")) {
             $(".login-input").removeClass("wrong-login");
             $(".txt-wrong-login").css("visibility", "hidden");
@@ -167,17 +166,17 @@ $(".login-from :input").keyup(function (event) {
 });
 
 // Log Out
-$("#btn-sign-out, .mobile-sign-out").click(function () {
+$("#btn-sign-out, .mobile-sign-out").click(function(){
     signOut();
 });
 
 // Auto Log out 
 function setAutoLogout() {
-    if (icMeterSystemAccessTokenExperes < systemAutoReload) {
+    if ( icMeterSystemAccessTokenExperes < systemAutoReload ) {
         systemAutoReload = icMeterSystemAccessTokenExperes;
     }
     var timeToReload = systemAutoReload + "999"// MS 
-    setTimeout(function () {
+    setTimeout(function(){
         location.reload();
     }, timeToReload);
 }
@@ -188,37 +187,35 @@ function setAutoLogout() {
 
 // Load loginpage
 function loadLoginPage() {
-    $('<img/>').attr('src', 'img/load/loading-animation.gif').on('load', function () {
+    $('<img/>').attr('src', 'img/load/loading-animation.gif').on('load', function() {
         $("#loadCower").fadeIn("slow").css("display", "flex").addClass("flex");
-        setTimeout(function () {
-            $('<img/>').attr('src', 'img/login/login_bg.jpg').on('load', function () {
+        setTimeout(function(){
+            $('<img/>').attr('src', 'img/login/login_bg.jpg').on('load', function() {
                 $("#loadCower").fadeOut();
                 showView(startPage);
                 if (window.matchMedia('(min-width: 800px)').matches) {
-                    $(".img-con").animate({left: '-35vw'}, 1000, "swing");
+                    $(".img-con").animate({ left: '-35vw' }, 1000, "swing");
                     $(".login-con").animate({right: '0px'}, 1000, "swing");
                 }
             });
-            if (currentUserID !== "") {
+            if ( currentUserID !== "") {
                 dealyDone();
-            }
-            ;
+            };
         }, loadDealy)
     });
 };
 
 // Auto-login 
-function loadAutoLogin() {
+function loadAutoLogin (){
 
     $("#loadCower").fadeIn("slow").css("display", "flex").addClass("flex");
-    setTimeout(function () {
-        $("#loadCower").fadeOut("slow", function () {
+    setTimeout(function(){
+        $("#loadCower").fadeOut("slow", function(){
             showView(startPage);
         });
-        if (currentUserID !== "") {
+        if ( currentUserID !== "") {
             dealyDone();
-        }
-        ;
+        };
     }, loadDealy)
 
 
@@ -227,7 +224,7 @@ function loadAutoLogin() {
 // Hide / Show Views
 
 function showView(view) {
-    loadPage = ".view-" + view;
+    loadPage = ".view-"+view;
     $(".view").css("display", "none").removeClass("flex");
     $(".element").css("display", "none").removeClass("flex");
     $(loadPage).css("display", "flex").addClass("flex");
@@ -235,42 +232,42 @@ function showView(view) {
 };
 
 function hideView(view) {
-    loadPage = ".view-" + view;
+    loadPage = ".view-"+view;
     $(loadPage).css("display", "none").removeClass("flex");
 };
 
 // Login
 
-function validateLoginType() {
-    if ($("#inp-login-name").val() !== "" && $("#inp-login-pass").val() !== "") {
+function validateLoginType () {
+    if ( $("#inp-login-name").val() !== "" && $("#inp-login-pass").val() !== "" ) {
         requestLoginSystem();
     } else {
         wrongLogin();
     }
 }
 
-if (browserIsIE == false) {
+if ( browserIsIE == false ) {
 
-    function requestLoginSystem() {
+    function requestLoginSystem(){
 
         var typedUserName = $("#inp-login-name").val();
         var typedPassword = $("#inp-login-pass").val();
         // Store link to api and phase userinput
-        var sUrl = "api/api-encrypt.php?fAY2YfpdKvR=" + sender_first + "&encrypt=" + typedPassword;
+        var sUrl = "api/api-encrypt.php?fAY2YfpdKvR="+sender_first+"&encrypt="+typedPassword;
 
-        $.get(sUrl, function (sData) {
+        $.get( sUrl , function( sData ){
             var jData = JSON.parse(sData);
-            if (jData.status == "ok") {
+            if( jData.status == "ok" ){
                 var passEncrypt = jData.encrypt;
                 // Store link to api and phase userinput
-                var sUrl = "api/api-user-login.php?fAY2YfpdKvR=" + sender_first + "&username=" + typedUserName + "&password=" + passEncrypt;
+                var sUrl = "api/api-user-login.php?fAY2YfpdKvR="+sender_first+"&username="+typedUserName+"&password="+passEncrypt;
                 // Do AJAX and pahse
-                $.get(sUrl, function (sData) {
+                $.get( sUrl , function( sData ){
 
 
-                    if (jData.status == "ok") {
-                        $.cookie("username", typedUserName, {expires: 10});
-                        $.cookie("password", passEncrypt, {expires: 10});
+                    if( jData.status == "ok" ){
+                        $.cookie("username", typedUserName, { expires : 10 });
+                        $.cookie("password", passEncrypt, { expires : 10 });
                         correctLogin();
                     } else {
                         wrongLogin();
@@ -282,27 +279,27 @@ if (browserIsIE == false) {
         });
     }
 
-    function correctLogin() {
+    function correctLogin(){
         $(".login-input").val("");
         if (window.matchMedia('(min-width: 800px)').matches) {
             $(".img-con").animate({left: '-100vw'}, 1000, "swing");
-            $(".login-con").animate({right: '-40vw'}, 1000, "swing", function () {
+            $(".login-con").animate({right: '-40vw'}, 1000, "swing", function(){
                 location.reload();
             });
         } else {
             location.reload();
         }
     }
-} else if (browserIsIE == true) {
+} else if ( browserIsIE == true ) {
     if (currentUserID !== "") {
         signOut();
     }
-    setTimeout(function () {
+    setTimeout(function(){
         unsupportedBrowser();
     }, 4000);
 }
 
-function wrongLogin() {
+function wrongLogin(){
     $(".login-input").addClass("wrong-login");
     $(".txt-wrong-login").css("visibility", "visible");
     $(".login-input").val("");
@@ -314,13 +311,13 @@ function unsupportedBrowser() {
 
 // Log out
 
-function signOut() {
+function signOut(){
     // Store link to api in variable
     var sUrl = "api/api-clear-all-sessions.php";
     // Do AJAX and phase link to api
-    $.get(sUrl, function (sData) {
+    $.get( sUrl , function( sData ){
         var jData = JSON.parse(sData);
-        if (jData.status == "signOut") {
+        if( jData.status == "signOut" ){
             $.removeCookie("username");
             $.removeCookie("password");
             location.reload();
@@ -329,18 +326,21 @@ function signOut() {
 }
 
 
+
+
+
 function tokeErrorLogOutUsers() {
-    if (currentUserRole !== "1") {
+    if ( currentUserRole !== "1") {
         signOut();
     }
 };
 
 function placeAccessToken() {
-    if (currentUserRole == "1") {
+    if ( currentUserRole == "1") {
         $(".current-access-token p").append(icMeterSystemAccessToken);
         var e = icMeterSystemAccessTokenExperes;
-        setInterval(function () {
-            e--;
+        setInterval(function(){
+            e --;
             $("#token-expiry-time").text(e);
         }, 1000)
     }
@@ -348,21 +348,21 @@ function placeAccessToken() {
 
 // Request Auto-login
 
-function requestAutoLoginSystem() {
+function requestAutoLoginSystem(){
     var cookieUserName = $.cookie("username");
     var cookiePassword = $.cookie("password");
 
     // Store link to api and phase userinput
-    var sUrl = "api/api-user-login.php?fAY2YfpdKvR=" + sender_first + "&username=" + cookieUserName + "&password=" + cookiePassword;
+    var sUrl = "api/api-user-login.php?fAY2YfpdKvR="+sender_first+"&username="+cookieUserName+"&password="+cookiePassword;
 
-    $.get(sUrl, function (sData) {
+    $.get( sUrl , function( sData ){
         var jData = JSON.parse(sData);
-        if (jData.status == "approve") {
+        if( jData.status == "approve" ){
 
             showSchool = jData.school;
             loadAutoLogin();
         }
-        else {
+        else{
             signOut();
         }
     });
@@ -370,8 +370,8 @@ function requestAutoLoginSystem() {
 
 // Request new user signup 
 
-$("#link-request-new-profile").click(function () {
-    $(".img-con").animate({left: '0'}, 500, "swing");
+$("#link-request-new-profile").click(function() {
+    $(".img-con").animate({ left: '0' }, 500, "swing");
     $(".img-con").addClass("blur");
     setTimeout(() => {
         $(".view-signup").css("display", "flex").hide().fadeIn();
@@ -390,7 +390,7 @@ function closeSetupProfile() {
     $(".view-signup").fadeOut();
     $(".img-con").addClass("none-blur");
     setTimeout(() => {
-        $(".img-con").animate({left: '-35vw'}, 500, "swing");
+        $(".img-con").animate({ left: '-35vw' }, 500, "swing");
     }, 1000);
     setTimeout(() => {
         $(".img-con").removeClass("blur");
@@ -402,15 +402,15 @@ $(document).on("focus", ".inp-signup", function () {
     $(this).removeClass("wrong-login");
 });
 
-$("#btn-send-profile-request").click(function () {
+$("#btn-send-profile-request").click(function(){
 
     //Check if the muncipality is on the list of valid ones:
 
     var mun = $("#search").val();
 
-    $.get("https://dawa.aws.dk/kommuner/autocomplete?q=" + mun, {term: mun}, function (data) {
+    $.get("https://dawa.aws.dk/kommuner/autocomplete?q=" + mun,{term:mun}, function(data) {
 
-        if (data.length == 0) {
+        if(data.length==0){
             alert("Vælg venligst en kommune fra listen.");
         }
         else return;
@@ -432,6 +432,7 @@ $("#btn-send-profile-request").click(function () {
         city: false,
         recaptcha: false
     }
+
 
 
     var inpUserName = $("#inp-signup-company-username");
@@ -548,7 +549,7 @@ $("#btn-send-profile-request").click(function () {
         profileRequestVal.street &&
         profileRequestVal.zip &&
         profileRequestVal.city &&
-        profileRequestVal.recaptcha) {
+        profileRequestVal.recaptcha ) {
         requestNewCompanySetup();
     }
 });
@@ -612,8 +613,8 @@ function requestNewCompanySetup() {
 
 // Request new limited user signup 
 
-$("#link-request-new-limited-profile").click(function () {
-    $(".img-con").animate({left: '0'}, 500, "swing");
+$("#link-request-new-limited-profile").click(function() {
+    $(".img-con").animate({ left: '0' }, 500, "swing");
     $(".img-con").addClass("blur");
     setTimeout(() => {
         $(".view-limited-signup").css("display", "flex").hide().fadeIn();
@@ -634,7 +635,7 @@ function closeSetupLimitedProfile() {
     $(".view-limited-signup").fadeOut();
     $(".img-con").addClass("none-blur");
     setTimeout(() => {
-        $(".img-con").animate({left: '-35vw'}, 500, "swing");
+        $(".img-con").animate({ left: '-35vw' }, 500, "swing");
     }, 1000);
     setTimeout(() => {
         $(".img-con").removeClass("blur");
@@ -646,7 +647,7 @@ $(document).on("focus", ".inp-signup", function () {
     $(this).removeClass("wrong-login");
 });
 
-$("#btn-send-limited-profile-request").click(function () {
+$("#btn-send-limited-profile-request").click(function(){
 
     var profileRequestVal = {
         nameFirst: false,
@@ -664,6 +665,7 @@ $("#btn-send-limited-profile-request").click(function () {
     var inpUname = $("#inp-signup-user-name");
     var inpAdmin = $("#inp-signup-administrator");
     var inpPword = $("#inp-signup-password");
+
 
 
     if (inpNameFirst.val().length < 2) {
@@ -708,6 +710,7 @@ $("#btn-send-limited-profile-request").click(function () {
         inpAdmin.removeClass('wrong-login');
         profileRequestVal.admin = true;
     }
+
 
 
     if (profileRequestVal.nameFirst &&
@@ -768,6 +771,3 @@ function requestNewUserSetup() {
 
 }
 
-$("#my_button").click(function () {
-    console.log('hello');
-})

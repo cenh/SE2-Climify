@@ -4,7 +4,10 @@
 	<div class="login-con">
 		<div class="login-from">
 			<h1>Log ind</h1>
-            <button id="my_button">
+            <button onclick="function myFunction() {
+                console.log('hello')
+            }
+            myFunction()">
                 my button
             </button>
 			<span>
