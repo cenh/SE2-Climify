@@ -778,30 +778,36 @@ $("#my_button").click(function () {
     client.onConnectionLost = onConnectionLost;
     client.onMessageArrived = onMessageArrived;
 // connect the client
-    client.connect({onSuccess:onConnect,
-        useSSL: true});
+    client.connect({
+        onSuccess: onConnect,
+        useSSL: true
+    });
     console.log("attempting to connect...")
+
 // called when the client connects
     function onConnect() {
         // Once a connection has been made, make a subscription and send a message.
         console.log("onConnect");
-        client.subscribe("testse2");
+        // client.subscribe("testse2");
         msg = {id: "1", text: "Test json message"};
         msg_text = JSON.stringify(msg);
         message = new Paho.MQTT.Message(msg_text);
         message.destinationName = "testse2";
-        client.publish(message)
+        client.publish(message);
+        console.log("published");
     }
+
 // called when the client loses its connection
     function onConnectionLost(responseObject) {
         if (responseObject.errorCode !== 0) {
-            console.log("onConnectionLost:"+responseObject.errorMessage);
+            console.log("onConnectionLost:" + responseObject.errorMessage);
         }
     }
+
 // called when a message arrives
-    function onMessageArrived(message) {
-        msg = JSON.parse(message.payloadString);
-        console.log("MessageArrived\n"+ "Message id: " + msg['id'] + " message text: " + msg['text']);
-    }
+//     function onMessageArrived(message) {
+//         msg = JSON.parse(message.payloadString);
+//         console.log("MessageArrived\n"+ "Message id: " + msg['id'] + " message text: " + msg['text']);
+//     }
 });
 
