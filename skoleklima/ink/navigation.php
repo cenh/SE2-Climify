@@ -53,11 +53,17 @@
 					</a>
 				</li>
 				<li class="menu-link menu-link-system-settings" data-go-to="system-settings"></i>
-					<a href="#/settings">
-						<i class="menu-link-ico nav-icon fa fa-cog" aria-hidden="true"></i>
-						<p class="menu-link-text">Settings</p>
-					</a>
-				</li>
+                <a href="#/settings">
+                    <i class="menu-link-ico nav-icon fa fa-cog" aria-hidden="true"></i>
+                    <p class="menu-link-text">Settings</p>
+                </a>
+                </li>
+                <li class="menu-link menu-link-system-settings" data-go-to="system-settings"></i>
+                    <a href="#/roomX">
+                        <i class="menu-link-ico nav-icon fa fa-cog" aria-hidden="true"></i>
+                        <p class="menu-link-text">Settings</p>
+                    </a>
+                </li>
 				<hr>
 				<li class="menu-link menu-link-learning" data-go-to="learning"></i>
 					<a>
