@@ -61,7 +61,7 @@
                 <li class="menu-link menu-link-system-settings" data-go-to="system-settings"></i>
                     <a href="#/roomX">
                         <i class="menu-link-ico nav-icon fa fa-cog" aria-hidden="true"></i>
-                        <p class="menu-link-text">Settings</p>
+                        <p class="menu-link-text">Room X</p>
                     </a>
                 </li>
 				<hr>
