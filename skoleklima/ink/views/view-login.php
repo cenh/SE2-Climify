@@ -1,6 +1,4 @@
 <!-- Login -->
-
-<script src="skoleklima/lib/paho.javascript-1.0.3/paho-mqtt.js"/>
 <div class="view view-login">
 	<div class="img-con"></div>
 	<div class="login-con">
