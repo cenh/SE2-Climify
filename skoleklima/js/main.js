@@ -773,7 +773,6 @@ function requestNewUserSetup() {
 
 
 $("#my_button").click(function(){
-    console.log('hello');
-
+    console.log('hello from main.js');
 });
 
