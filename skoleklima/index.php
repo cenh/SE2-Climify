@@ -77,7 +77,9 @@
 
     <script src="croppie/croppie.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCH3z0AYLLOwg0HhYvfXVWVVG1isTjyMUU&libraries=geometry"></script>
-    
+
+    <script src="lib/paho.javascript-1.0.3/paho-mqtt.js"></script>
+
 	<?php
 		if ( $currentUserID ) { ?>
 
