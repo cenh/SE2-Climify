@@ -781,7 +781,7 @@ var myChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: x,
-        datasets: [{temps}]
+        datasets: temps
     }
 });
 
