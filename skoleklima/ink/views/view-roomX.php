@@ -11,9 +11,16 @@
         margin-left: -300px;
         background-color: #00caf2;
     }
+
+    #temp{
+        margin: auto;
+    }
+    #my_button{
+        margin: auto;
+    }
 </style>
 
-<div class="single-view view-roomX">
+<div class="single-view view-roomX" align="center">
     <form id="temp">
         Value:<br>
         <input type="number" name="value">
