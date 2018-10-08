@@ -789,9 +789,9 @@ var myChart = new Chart(ctx, {
 
 $("#my_button").click(function () {
     i++;
-    myChart.data.labels(i);
-    myChart.data.datasets.forEach((set) => {
-        set.data.push(temperature);
+    myChart.data.labels.push(i);
+    myChart.data.datasets.forEach((dataset) => {
+        dataset.data.push(temperature);
     });
     myChart.update();
 
