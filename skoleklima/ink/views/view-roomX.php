@@ -1,32 +1,26 @@
 <style>
     .view-roomX{
-        width: 100%;
         height: 100%;
-        padding: 0;
-        margin: 0;
-        position: relative;
-        background-color: #00caf2;
-    }
-
-    .roomx-layout{
-        margin: 0;
-        position: absolute;
         width: 100%;
-        height: 50%;
-        border: #9933ff;
+    }
+    .wide-row{
+        height: 200px;
+        width: 100%;
+        border-color: #00caf2;
     }
 </style>
 
-<div class="single-view view-roomX" align="center">
-    <div class="roomx-layout">
+<div class="single-view view-roomX" ali>
+    <div class="wide-row">
         <form id="temp">
             Value:<br>
             <input type="number" name="value">
         </form>
     </div>
-    <div class="roomx-layout">
+    <div class="wide-row">
         <button id="my_button">
             my button
         </button>
     </div>
+
 </div>
