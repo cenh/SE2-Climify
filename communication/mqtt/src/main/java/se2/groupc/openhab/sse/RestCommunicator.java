@@ -19,8 +19,8 @@ public class RestCommunicator {
 	private String restBaseUrl = "http://localhost:8080/rest/";
 	private OkHttpClient client = new OkHttpClient();
 
-	public void sendCommandToItem(String item, Command command) {
-		String commandUrl = restBaseUrl + "items/" + item;
+	public void sendCommandToItem(Command command) {
+		String commandUrl = restBaseUrl + "items/" + command.getName();
 		System.out.println(commandUrl);
 
 		Headers headers = Utilities.getHeaders(HeaderType.JSON, HeaderType.TEXTPLAIN);

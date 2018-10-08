@@ -5,7 +5,6 @@
   <groupId>se2.groupc</groupId>
   <artifactId>mqtt</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
 
   <name>mqtt</name>
   <url>http://maven.apache.org</url>
@@ -58,6 +57,13 @@
   <artifactId>dsl-json-java8</artifactId>
   <version>1.8.2</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/com.dslplatform/dsl-json-processor -->
+<dependency>
+    <groupId>com.dslplatform</groupId>
+    <artifactId>dsl-json-processor</artifactId>
+    <version>1.8.2</version>
+</dependency>
+
 
   </dependencies>
 </project>

@@ -25,7 +25,7 @@ public class MessageHandler extends BaseHandler implements Runnable {
 		if (topic.startsWith(Topic.COMMAND.getTopic())) {
 			try {
 				System.out.println("Inside topic " + topic); 
-				Event.Command command = dslJson.deserialize(Event.Command.class, message.getPayload(), message.getPayload().length);
+				Command command = dslJson.deserialize(Command.class, message.getPayload(), message.getPayload().length);
 				rest.sendCommandToItem(command);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
