@@ -1,34 +1,29 @@
-<style>
-    .view-roomX{
-        height: 100%;
-        width: 100%;
-    }
-    .wide-row{
-        height: 300px;
-        width: 100%;
-        border-color: #00caf2;
-        position: relative;
-    }
-    .my-center{
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-</style>
 
-<div class="single-view view-roomX" ali>
-    <div class="wide-row">
-        <form id="temp" class="my-center">
-            Value:<br>
-            <input type="number" name="value">
-        </form>
+<div class="single-view view-roomX">
+
+    <div class="roomX-top">
+        <span>
+            <h3>Release 1</h3>
+            <p>View and set temperature for sensor on this page</p>
+        </span>
     </div>
-    <div class="wide-row">
-        <button id="my_button" class="my-center">
-            my button
-        </button>
+
+    <div class="roomx-view">
+        <div class="temperature">
+            <!-- TODO: -->
+            <span><h4>The current temperature is: </h4></span>
+        </div>
+        <div class="roomx-set">
+           <span>
+                <form id="temp" class="my-center">
+                    Set temperature:
+                    <input type="number" name="value">
+                </form>
+               <button id="my_button">
+                    my button
+                </button>
+           </span>
+        </div>
     </div>
 
 </div>
