@@ -1,14 +1,10 @@
 package se2.groupc.openhab.sse;
 
-import com.dslplatform.json.DslJson;
-import com.dslplatform.json.JsonWriter;
-import com.dslplatform.json.runtime.Settings;
 import com.launchdarkly.eventsource.MessageEvent;
 
-public class ServerSentEventHandler implements BaseEventHandler {
-	
-	DslJson<Object> dslJson = new DslJson<>(Settings.withRuntime().allowArrayFormat(true).includeServiceLoader());
-	JsonWriter writer = dslJson.newWriter();
+import se2.groupc.mqtt.BaseHandler;
+
+public class ServerSentEventHandler extends BaseHandler implements BaseEventHandler {
 	
 	@Override
 	public void onMessage(String event, MessageEvent messageEvent) throws Exception {

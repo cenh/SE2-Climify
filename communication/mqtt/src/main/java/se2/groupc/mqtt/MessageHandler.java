@@ -1,8 +1,13 @@
 package se2.groupc.mqtt;
 
+import java.io.IOException;
+
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-public class MessageHandler implements Runnable {
+import se2.groupc.openhab.sse.Command;
+import se2.groupc.openhab.sse.Event;
+
+public class MessageHandler extends BaseHandler implements Runnable {
 
 	private String topic;
 	private MqttMessage message;
@@ -16,6 +21,17 @@ public class MessageHandler implements Runnable {
 	public void run() {
 		//Processing the message
 		System.out.println("Message: " + message + "on topic: " + topic + " has been processed.");
+		
+		if (topic.startsWith(Topic.COMMAND.getTopic())) {
+			try {
+				System.out.println("Inside topic " + topic); 
+				Event.Command command = dslJson.deserialize(Event.Command.class, message.getPayload(), message.getPayload().length);
+				rest.sendCommandToItem(command);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
