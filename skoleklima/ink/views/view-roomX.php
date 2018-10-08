@@ -7,6 +7,9 @@
         position: fixed;
         top: 50%;
         left: 50%;
+        margin-top: -200px;
+        margin-left: -300px;
+        background-color: #00caf2;
     }
 </style>
 
