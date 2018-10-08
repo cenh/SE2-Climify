@@ -8,7 +8,7 @@
         </span>
     </div>
 
-    <div class="roomx-view">
+    <div class="view-roomX-data-box">
         <div class="temperature">
             <!-- TODO: -->
             <span><h4>The current temperature is: </h4></span>
