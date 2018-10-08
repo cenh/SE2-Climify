@@ -773,7 +773,7 @@ $("#my_button").click(function () {
     //var value = $("#temp").attr('value');
     var x = document.getElementById("temp");
     var text = x.elements[0].value;
-    console.log(2 + text);
+    console.log(2 + Number(text));
     // Create a client instance
     client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
     client.startTrace();
