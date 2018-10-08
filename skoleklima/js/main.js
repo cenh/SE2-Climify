@@ -770,7 +770,8 @@ function requestNewUserSetup() {
 
 
 $("#my_button").click(function () {
-    console.log('hello from main.js');
+    var value = $("#value").attr('value');
+    console.log(value);
     // Create a client instance
     client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
     client.startTrace();
