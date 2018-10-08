@@ -4,7 +4,7 @@
         width: 100%;
     }
     .wide-row{
-        height: 400px;
+        height: 300px;
         width: 100%;
         border-color: #00caf2;
         position: relative;
@@ -26,7 +26,7 @@
         </form>
     </div>
     <div class="wide-row">
-        <button id="my_button">
+        <button id="my_button" class="my-center">
             my button
         </button>
     </div>
