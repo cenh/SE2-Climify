@@ -7,13 +7,13 @@
             <p>View and set temperature for sensor on this page</p>
         </span>
     </div>
-
+    <hr>
     <div class="view-roomX-data-box">
         <div class="temperature">
             <!-- TODO: -->
             <span><h4>The current temperature is: </h4></span>
         </div>
-        <div class="roomx-set">
+        <div class="view-roomX-data-box">
            <span>
                 <form id="temp" class="my-center">
                     Set temperature:
