@@ -7,8 +7,8 @@ public class ServerSentEventControllerTest {
 		sseController.start();
 		
 		RestCommunicator rest = new RestCommunicator();
-		rest.sendCommandToItem("TestSwitch", new Command("OFF"));
-		
+		rest.sendCommandToItem(new Command("OFF", "TestSwitch"));
+		rest.sendCommandToItem(new Command("10.0f", "TestThermostat"));
 		while(true) {
 			try {
 				Thread.sleep(1000);

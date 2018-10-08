@@ -1,16 +1,11 @@
 package se2.groupc.mqtt;
 
-public class ClimifyMqttController extends AsyncMqttController {
+import org.eclipse.paho.client.mqttv3.MqttException;
 
-	@Override
-	public void connectComplete(boolean reconnect, String serverURI) {
-		super.connectComplete(reconnect, serverURI);;
-		
-		// We subscribe to topics even when reconnecting as there could be edge-cases where topics are not persisted in a non-clean session
-		subscribeToTopics();
-	}
+public class ClimifyMqttController extends AsyncMqttController {
 	
-	private void subscribeToTopics() {
-		//super.subscribe(topic, qos);
+	@Override
+	protected void subscribeToTopics() throws MqttException {
+		super.subscribe(Topic.SENSORDATA.getTopic(), 2);
 	}
 }

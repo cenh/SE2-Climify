@@ -38,8 +38,11 @@ public class AsyncMqttController implements MqttCallbackExtended {
 	private ExecutorService threadPool;
 
 	public AsyncMqttController() {
+		port = 1883;
+		broker = "iot.eclipse.org"; // se2-webapp03.compute.dtu.dk
+		protocol = "tcp";
 		numberOfThreads = 4;
-		brokerUrl = "tcp://iot.eclipse.org:1883";//"tcp://se2-webapp03.compute.dtu.dk:1883";
+		brokerUrl = protocol + "://" + broker + ":" + port;
 		clientId = MqttAsyncClient.generateClientId();
 		cleanSession = false;
 		automaticReconnect = true;
@@ -95,6 +98,14 @@ public class AsyncMqttController implements MqttCallbackExtended {
 		System.out.println("Connection established at: " + serverURI);
 		// We subscribe to topics even when reconnecting as there could be edge-cases where topics are not persisted in a non-clean session
 		testData();
+		// We subscribe to topics even when reconnecting as there could be edge-cases where topics are not persisted in a non-clean session
+				try {
+					subscribeToTopics();
+				} catch (MqttException e) {
+					System.out.println("Failed to subscribe to topics.");
+					//TODO Maybe create a timer and retry subscribing soon.
+					e.printStackTrace();
+				}
 	}
 
 
@@ -132,10 +143,22 @@ public class AsyncMqttController implements MqttCallbackExtended {
 		threadPool.execute(new PublishMessageTask(client, message, topic, messageListener));
 	}
 	
+	/**
+	 * 
+	 * @param topic the topic to subscribe to, which can include wildcards.
+	 * @param qos the maximum quality of service at which to subscribe. Messages published at a lower quality of service will be received at the published QoS. Messages published at a higher quality of service will be received using the QoS specified on the subscribe.
+	 * @throws MqttException
+	 */
 	protected void subscribe(String topic, int qos) throws MqttException {
 		client.subscribe(topic, qos);
 	}
 	
+	/**
+	 * Override this to configure the topics to initially subscribe to.
+	 * @throws MqttException
+	 */
+	protected void subscribeToTopics() throws MqttException { 
+	}
 	
 	private void testData() {
 		try {
