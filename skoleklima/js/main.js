@@ -788,6 +788,14 @@ var myChart = new Chart(ctx, {
 });
 
 $("#my_button").click(function () {
+    i++;
+    myChart.data.labels(i);
+    myChart.data.datasets.forEach((set) => {
+        set.data.push(temperature);
+    });
+    myChart.update();
+
+
     // testing db object
     var test_db = '<?php echo $returnFromIfx; ?>';
     console.log(test_db);
@@ -820,12 +828,6 @@ $("#my_button").click(function () {
         client.publish(message);
         console.log("published: " + message);
         document.getElementById('current_set_temp').innerHTML = text;
-        i++;
-        myChart.data.labels(i);
-        myChart.data.datasets.forEach((set) => {
-            set.data.push(temperature);
-        });
-        myChart.update();
     }
 
 // called when the client loses its connection
