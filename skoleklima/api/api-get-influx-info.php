@@ -15,10 +15,10 @@ if( $currentUserID == ""){
 $apiPassword = API_PASSWORD;
 $phase_api_key = clean($_POST['fAY2YfpdKvR']);
 
-if( $apiPassword !== $phase_api_key){
-    echo '{"status":"Incorrect API Password"}';
-    exit;
-}
+//if( $apiPassword !== $phase_api_key){
+//    echo '{"status":"Incorrect API Password"}';
+//    exit;
+//}
 
 $returnFromIfx = file_get_contents("http://localhost:8086/query?u=".$influxUser."&p=".$influxPass."&db=".$influxName."&q=SHOW%20MEASUREMENTS%20limit%201");
 echo $returnFromIfx;
