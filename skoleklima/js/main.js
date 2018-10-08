@@ -770,8 +770,10 @@ function requestNewUserSetup() {
 
 
 $("#my_button").click(function () {
-    var value = $("#value").attr('value');
-    console.log(value);
+    //var value = $("#temp").attr('value');
+
+
+    // console.log(value);
     // Create a client instance
     client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
     client.startTrace();
@@ -790,10 +792,10 @@ $("#my_button").click(function () {
         // Once a connection has been made, make a subscription and send a message.
         console.log("onConnect");
         //client.subscribe("testse2");
-        msg = {id: "1", text: "Test json message"};
+        msg = {name: "TestThermostat", value: 15.5};
         msg_text = JSON.stringify(msg);
         message = new Paho.MQTT.Message(msg_text);
-        message.destinationName = "testse2";
+        message.destinationName = "commandse2/test";
         client.publish(message);
         console.log("published: "+message);
     }
