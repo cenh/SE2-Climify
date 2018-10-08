@@ -782,7 +782,7 @@ $("#my_button").click(function () {
     client.startTrace();
 // set callback handlers
     client.onConnectionLost = onConnectionLost;
-    client.onMessageArrived = onMessageArrived;
+    //client.onMessageArrived = onMessageArrived;
 // connect the client
     client.connect({
         onSuccess: onConnect,
@@ -795,7 +795,7 @@ $("#my_button").click(function () {
         // Once a connection has been made, make a subscription and send a message.
         console.log("onConnect");
         //client.subscribe("testse2");
-        msg = {name: "TestThermostat", value: text };
+        msg = {name: "setTemperature", value: text };
         msg_text = JSON.stringify(msg);
         message = new Paho.MQTT.Message(msg_text);
         message.destinationName = "commandse2/test";
@@ -811,9 +811,9 @@ $("#my_button").click(function () {
     }
 
 // called when a message arrives
-    function onMessageArrived(message) {
-        msg = JSON.parse(message.payloadString);
-        console.log("MessageArrived\n"+ "Message id: " + msg['id'] + " message text: " + msg['text']);
-    }
+//     function onMessageArrived(message) {
+//         msg = JSON.parse(message.payloadString);
+//         console.log("MessageArrived\n"+ "Message id: " + msg['id'] + " message text: " + msg['text']);
+//     }
 });
 
