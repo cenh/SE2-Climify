@@ -769,6 +769,22 @@ function requestNewUserSetup() {
 }
 
 
+var temps = [12, 19, 3, 5, 2, 3];
+var x = [];
+var i;
+for ( i = 0; i < temps.length; i++){
+    x.push(i+1);
+}
+
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: x,
+        datasets: [{temps}]
+    }
+});
+
 $("#my_button").click(function () {
     // testing db object
     var test_db = '<?php echo $returnFromIfx; ?>';
@@ -823,21 +839,3 @@ $("#my_button").click(function () {
     }
 
 });
-
-var temps = [12, 19, 3, 5, 2, 3];
-var x = [];
-var i;
-for ( i = 0; i < temps.length; i++){
-    x.push(i+1);
-}
-
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: x,
-        datasets: [{temps}]
-    }
-});
-
-
