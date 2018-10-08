@@ -1,26 +1,36 @@
 <style>
     .view-roomX{
-        width: 600px;
-        height: 400px;
+        width: 100%;
+        height: 100%;
         padding: 0;
         margin: 0;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        margin-top: -200px;
-        margin-left: -300px;
+        position: relative;
         background-color: #00caf2;
     }
 
     #temp{
-        margin: auto;
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
     }
     #my_button{
-        margin: auto;
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
     }
 </style>
 
 <div class="single-view view-roomX" align="center">
+    <div>
+
+    </div>
+    <div>
+
+    </div>
     <form id="temp">
         Value:<br>
         <input type="number" name="value">
