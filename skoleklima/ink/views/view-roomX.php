@@ -13,7 +13,7 @@
             <!-- TODO: -->
             <span><h4>The current temperature is: </h4></span>
         </div>
-        <div class="view-roomX-data-box" style="border:1px solid black">
+        <div class="view-roomX-data-box" style="border:1px solid #92b2c7; padding:10px">
            <span>
                 <form id="temp" class="my-center">
                     Set temperature:
