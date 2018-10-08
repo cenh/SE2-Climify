@@ -788,6 +788,10 @@ var myChart = new Chart(ctx, {
 });
 
 $("#my_button").click(function () {
+    var x = document.getElementById("temp");
+    var text = x.elements[0].value;
+    var temperature = Number(text);
+
     i++;
     myChart.data.labels.push(i);
     myChart.data.datasets.forEach((dataset) => {
@@ -796,13 +800,6 @@ $("#my_button").click(function () {
     myChart.update();
 
 
-    // testing db object
-    var test_db = '<?php echo $returnFromIfx; ?>';
-    console.log(test_db);
-    //var value = $("#temp").attr('value');
-    var x = document.getElementById("temp");
-    var text = x.elements[0].value;
-    var temperature = Number(text);
     // Create a client instance
     client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
     client.startTrace();
