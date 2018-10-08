@@ -1,5 +1,5 @@
 
-<div class="single-view view-permissions">
+<div>
     <button id="my_button">
         my button
     </button>
