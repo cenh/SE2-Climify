@@ -36,7 +36,7 @@
 		<input type="hidden" id="txt-current-user-school-name" value="<?php echo $currentUserSchoolAllowedName ?>" readonly>
 		<input type="hidden" id="txt-current-perm-logbook" value="<?php echo $currentPermLogbook ?>" readonly>
 		<input type="hidden" id="7wpk6dQLcKKTPy4" value="<?php echo $api_key ?>" readonly>
-		<input type="hidden" id="7wpk6dQLcKKTPy4" value="<?php echo $ç√_key ?>" readonly>
+		<input type="hidden" id="7wpk6dQLcKKTPy4" value="<?php echo $ç_key ?>" readonly>
 		<input type="hidden" id="8wpk6diLcKKdPyq" value="<?php echo SIGNIN_TOKEN ?>" readonly>
 	</div>
 
