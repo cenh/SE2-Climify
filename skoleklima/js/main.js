@@ -139,6 +139,8 @@ if (currentUserID == "") {
     requestAutoLoginSystem();
 };
 
+var temps = [12, 19, 3, 5, 2, 3];
+
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -146,7 +148,7 @@ var myChart = new Chart(ctx, {
         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: temps,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -840,6 +842,7 @@ $("#my_button").click(function () {
         client.publish(message);
         console.log("published: "+message);
         document.getElementById('current_set_temp').innerHTML = text;
+        temps.push(temperature);
     }
 
 // called when the client loses its connection
