@@ -772,6 +772,7 @@ function requestNewUserSetup() {
 $("#my_button").click(function () {
     // testing db object
     var test_db = '<?php echo $returnFromIfx; ?>';
+    console.log(test_db);
     //var value = $("#temp").attr('value');
     var x = document.getElementById("temp");
     var text = x.elements[0].value;
