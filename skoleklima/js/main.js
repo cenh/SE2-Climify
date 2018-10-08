@@ -802,7 +802,10 @@ $("#my_button").click(function () {
         client.publish(message);
         console.log("published: "+message);
         document.getElementById('current_set_temp').innerHTML = text;
-        temps.push(temperature);
+        myChart.data.labels((temps.length+1));
+        myChart.data.datasets.forEach( (set) => {
+            set.data.push(temperature);
+        });
         console.log(temps);
     }
 
@@ -822,11 +825,19 @@ $("#my_button").click(function () {
 });
 
 var temps = [12, 19, 3, 5, 2, 3];
+var x = [];
+var i;
+for ( i = 0; i < temps.length; i++){
+    x.push(i+1);
+}
 
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'line',
-    data: temps
+    data: {
+        labels: x,
+        datasets: [{temps}]
+    }
 });
 
 
