@@ -801,6 +801,7 @@ $("#my_button").click(function () {
         message.destinationName = "commandse2/test";
         client.publish(message);
         console.log("published: "+message);
+        document.getElementById('current_set_temp').innerHTML = text;
     }
 
 // called when the client loses its connection

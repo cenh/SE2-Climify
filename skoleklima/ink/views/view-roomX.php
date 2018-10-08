@@ -11,7 +11,10 @@
     <div class="view-roomX-data-box">
         <div class="temperature">
             <!-- TODO: -->
-            <span><h4>The current temperature is: </h4></span>
+            <span>
+                <h4>The current temperature is:</h4>
+                <label id="current_set_temp"></label>
+            </span>
         </div>
         <div class="view-roomX-data-box" style="border:1px solid #92b2c7; padding:15px">
            <span>
