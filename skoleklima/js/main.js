@@ -821,10 +821,12 @@ $("#my_button").click(function () {
         client.publish(message);
         console.log("published: " + message);
         document.getElementById('current_set_temp').innerHTML = text;
+        console.log(myChart.data.datasets[0].length);
         myChart.data.labels((temps.length + 1));
         myChart.data.datasets.forEach((set) => {
             set.data.push(temperature);
         });
+        myChart.update();
         console.log(temps);
     }
 
