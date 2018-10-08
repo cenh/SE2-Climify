@@ -25,7 +25,7 @@ define('DB_NAME_INFLUX', 'scadb');
 //define('DB_PASSWORD', 'XXX-PASSWORD-XXX');
 
 /** MySQL hostname XXX */
-define('DB_HOST_INFLUX', localhost');
+define('DB_HOST_INFLUX', 'localhost');
 
 define('DB_PORT_INFLUX', '8086');
 
