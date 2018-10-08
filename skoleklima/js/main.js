@@ -137,7 +137,8 @@ if (currentUserID == "") {
 } else {
     startPage = "dashboard";
     requestAutoLoginSystem();
-};
+}
+;
 
 // Login
 $(".login-input").click(function () {
@@ -772,16 +773,18 @@ function requestNewUserSetup() {
 var temps = [12, 19, 3, 5, 2, 3];
 var x = [];
 var i;
-for ( i = 0; i < temps.length; i++){
-    x.push(i+1);
+for (i = 0; i < temps.length; i++) {
+    x.push(i + 1);
 }
 
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: x,
-        datasets: temps
+        datasets: [{
+            data: temps
+        }],
+        labels: x
     }
 });
 
@@ -811,15 +814,15 @@ $("#my_button").click(function () {
         // Once a connection has been made, make a subscription and send a message.
         console.log("onConnect");
         //client.subscribe("testse2");
-        msg = {name: "setTemperature", value: text };
+        msg = {name: "setTemperature", value: text};
         msg_text = JSON.stringify(msg);
         message = new Paho.MQTT.Message(msg_text);
         message.destinationName = "commandse2/test";
         client.publish(message);
-        console.log("published: "+message);
+        console.log("published: " + message);
         document.getElementById('current_set_temp').innerHTML = text;
-        myChart.data.labels((temps.length+1));
-        myChart.data.datasets.forEach( (set) => {
+        myChart.data.labels((temps.length + 1));
+        myChart.data.datasets.forEach((set) => {
             set.data.push(temperature);
         });
         console.log(temps);
@@ -835,7 +838,7 @@ $("#my_button").click(function () {
 // called when a message arrives
     function onMessageArrived(message) {
         msg = JSON.parse(message.payloadString);
-        console.log("MessageArrived\n"+ "Message id: " + msg['id'] + " message text: " + msg['text']);
+        console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
     }
 
 });
