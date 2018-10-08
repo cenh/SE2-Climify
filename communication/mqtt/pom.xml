@@ -4,7 +4,7 @@
 
   <groupId>se2.groupc</groupId>
   <artifactId>mqtt</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1</version>
 
   <name>mqtt</name>
   <url>http://maven.apache.org</url>

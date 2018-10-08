@@ -5,11 +5,11 @@
   <parent>
     <groupId>se2.groupc</groupId>
     <artifactId>mqtt</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1</version>
   </parent>
   <groupId>se2.groupc</groupId>
   <artifactId>Climify</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1</version>
   <name>Climify</name>
   <url>http://maven.apache.org</url>
   <properties>
@@ -19,7 +19,7 @@
   <dependency>
   	<groupId>se2.groupc</groupId>
   	<artifactId>MqttLib</artifactId>
-  	<version>0.0.1-SNAPSHOT</version>
+  	<version>0.1</version>
   </dependency>
     <dependency>
       <groupId>junit</groupId>
