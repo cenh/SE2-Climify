@@ -7,6 +7,11 @@
             <p>View and set temperature for sensor on this page</p>
         </span>
     </div>
+  <!-- TODO: view data -->
+  <div class="view-roomx-data-box">
+      <canvas id="myChart" width="400" height="400"></canvas>
+      
+  </div>
     <hr>
     <div class="view-roomX-data-box">
         <div class="temperature">
