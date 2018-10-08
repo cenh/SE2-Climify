@@ -776,7 +776,7 @@ $("#my_button").click(function () {
     client.startTrace();
 // set callback handlers
     client.onConnectionLost = onConnectionLost;
-    // client.onMessageArrived = onMessageArrived;
+    client.onMessageArrived = onMessageArrived;
 // connect the client
     client.connect({
         onSuccess: onConnect,
