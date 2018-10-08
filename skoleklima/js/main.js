@@ -773,7 +773,7 @@ $("#my_button").click(function () {
     //var value = $("#temp").attr('value');
     var x = document.getElementById("temp");
     var text = x.elements[0].value;
-    console.log(text);
+    console.log(2 + text);
     // Create a client instance
     client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
     client.startTrace();
@@ -785,7 +785,7 @@ $("#my_button").click(function () {
         onSuccess: onConnect,
         useSSL: true
     });
-    console.log("attempting to connect...")
+    console.log("attempting to connect...");
 
 // called when the client connects
     function onConnect() {
