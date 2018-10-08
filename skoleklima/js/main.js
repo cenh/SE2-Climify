@@ -770,10 +770,9 @@ function requestNewUserSetup() {
 }
 
 
-var temps = [12, 19, 3, 5, 2, 3];
 var x = [];
 var i;
-for (i = 0; i < temps.length; i++) {
+for (i = 0; i < 6; i++) {
     x.push(i + 1);
 }
 
@@ -782,7 +781,7 @@ var myChart = new Chart(ctx, {
     type: 'line',
     data: {
         datasets: [{
-            data: temps
+            data: [12, 19, 3, 5, 2, 3]
         }],
         labels: x
     }
@@ -821,13 +820,12 @@ $("#my_button").click(function () {
         client.publish(message);
         console.log("published: " + message);
         document.getElementById('current_set_temp').innerHTML = text;
-        console.log(myChart.data.datasets[0].length);
-        myChart.data.labels((temps.length + 1));
+        i++;
+        myChart.data.labels(i);
         myChart.data.datasets.forEach((set) => {
             set.data.push(temperature);
         });
         myChart.update();
-        console.log(temps);
     }
 
 // called when the client loses its connection
