@@ -11,8 +11,8 @@ import com.dslplatform.json.MapConverter;
 import com.dslplatform.json.StringConverter;
 
 
-@CompiledJson(onUnknown = CompiledJson.Behavior.IGNORE) //Ignore unknown properties. Set to fail if you want to throw an exception
-public class Event {
+
+public abstract class Event {
 	
 	/**
 	 * The json returned from OpenHAB while listening to events has a payload parameter with an unusual structure.
