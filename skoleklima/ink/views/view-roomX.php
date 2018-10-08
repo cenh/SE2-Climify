@@ -2,10 +2,18 @@
     .view-roomX{
         width: 100%;
         height: 100%;
-        padding: 0;
-        margin: 0;
+        padding: 0px;
+        margin: 0px;
         position: relative;
         background-color: #00caf2;
+    }
+
+    .roomx-layout{
+        margin: 0px;
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        border: #9933ff;
     }
 
     #temp{
@@ -25,17 +33,15 @@
 </style>
 
 <div class="single-view view-roomX" align="center">
-    <div>
-
+    <div class="roomx-layout">
+        <form id="temp">
+            Value:<br>
+            <input type="number" name="value">
+        </form>
     </div>
-    <div>
-
+    <div class="roomx-layout">
+        <button id="my_button">
+            my button
+        </button>
     </div>
-    <form id="temp">
-        Value:<br>
-        <input type="number" name="value">
-    </form>
-    <button id="my_button">
-        my button
-    </button>
 </div>
