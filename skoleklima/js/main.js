@@ -840,8 +840,8 @@ $("#my_button").click(function () {
     var text = x.elements[0].value;
     var temperature = Number(text);
 
-    i++;
-    myChart.data.labels.push(i);
+    //i++;
+    myChart.data.labels.push(generateDate());
     myChart.data.datasets.forEach((dataset) => {
         dataset.data.push(temperature);
     });
