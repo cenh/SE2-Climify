@@ -820,7 +820,7 @@ var myChart = new Chart(ctx, {
                 time: {
                     format: timeFormat,
                     // round: 'day'
-                    tooltipFormat: 'll HH:mm'
+                    tooltipFormat: 'll HH:mm:ss'
                 },
                 scaleLabel: {
                     display: true,
