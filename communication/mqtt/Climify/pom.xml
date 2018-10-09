@@ -7,6 +7,34 @@
     <artifactId>mqtt</artifactId>
     <version>0.1</version>
   </parent>
+  <build>
+  <plugins>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-assembly-plugin</artifactId>
+    <executions>
+        <execution>
+            <phase>package</phase>
+            <goals>
+                <goal>single</goal>
+            </goals>
+            <configuration>
+                <archive>
+                <manifest>
+                    <mainClass>
+                        org.Climify.Climify
+                    </mainClass>
+                </manifest>
+                </archive>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+  </plugins>
+</build>
   <groupId>se2.groupc</groupId>
   <artifactId>Climify</artifactId>
   <version>0.1</version>

@@ -25,11 +25,11 @@ public class InfluxCommunicator {
 		Point point = Point.measurement(measurement.name)
 				.time(fdate(measurement.time), TimeUnit.MILLISECONDS)
 				.addField("value", measurement.value).build();
-		influxDB.write("openhabdb", "defaultPolicy", point);
+		influxDB.write("scadb", "defaultPolicy", point);
 	}
 
 	public void connect() {
-		influxDB = InfluxDBFactory.connect(URL.influxDB, "test", "test");
+		influxDB = InfluxDBFactory.connect(URL.influxDB, "admin", "groupc");
 	}
 
 	public void close() {

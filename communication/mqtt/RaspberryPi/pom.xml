@@ -37,7 +37,7 @@
 </build>
   <groupId>se2.groupc</groupId>
   <artifactId>RaspberryPi</artifactId>
-  <name>RaspberryPi</name>
+  <name>RaspberryPi</name>  
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
