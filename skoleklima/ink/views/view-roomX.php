@@ -16,13 +16,13 @@
         <div class="information-box">
             <h3>Information Panel</h3>
             <div class="view-roomX-data-box">
-                <i class="menu-link-ico nav-icon fa fa-thermometer-quarter"></i>
+                <i class="fa fa-thermometer-half" aria-hidden="true"></i>
             </div>
             <div class="view-roomX-data-box">
-                <i class="menu-link-ico nav-icon fa fa-cloud"></i>
+                <i class="fa fa-cloud" aria-hidden="true"></i>
             </div>
             <div class="view-roomX-data-box">
-                <i class="menu-link-ico nav-icon fas fa-volume-off"></i>
+                <i class="fa fa-volume-down" aria-hidden="true"></i>
             </div>
         </div>
     </div>
