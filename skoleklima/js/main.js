@@ -785,7 +785,7 @@ function generateDate(){
     var YYYY = today.getFullYear();
     var hh = today.getHours();
     var mm = today.getMinutes();
-
+    var ss = today.getSeconds();
     if(DD<10) {
         DD = '0'+DD
     }
@@ -793,14 +793,14 @@ function generateDate(){
         MM = '0'+MM
     }
 
-    today = DD + '/' + MM + '/' + YYYY + '/' + hh+':'+mm;
+    today = DD + '/' + MM + '/' + YYYY + '/' + hh+':'+mm+':'+ss;
     return today;
 
 }
 
 //var x = ['09/10/2018  00:00', '05/10/2018  00:00:', '06/10/2018  00:00','07/10/2018  00:00','08/10/2018  00:00', '09/10/2018  00:00'];
 var x = [];
-var timeFormat = 'DD/MM/YYYY  HH::mm';
+var timeFormat = 'DD/MM/YYYY  HH::mm:ss';
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'line',

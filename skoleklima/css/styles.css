@@ -191,7 +191,7 @@ canvas {
 }
 .temperature-graph-box {
   border:1px solid #92b2c7;
-  width: calc(100% - 350px);
+  width: calc(100% - 370px);
   padding: 15px;
   overflow: hidden;
 }
@@ -199,6 +199,7 @@ canvas {
   border: 1px solid #92b2c7;
   width: 330px;
   padding: 15px;
+  overflow: hidden;
 }
 
 hr {
