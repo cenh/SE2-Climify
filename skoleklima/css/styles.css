@@ -193,6 +193,7 @@ canvas {
 .temperature-graph-box {
   border:1px solid #92b2c7;
   width: calc(100% - 370px);
+  float:left;
   padding: 15px;
 }
 .information-box {
