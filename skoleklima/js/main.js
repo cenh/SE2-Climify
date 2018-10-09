@@ -797,7 +797,7 @@ function generateDate(){
     return today;
 
 }
-var x = ['04/10/2018  00:00', '05/09/2018  00:00:', '06/10/2018  00:00','07/10/2018  00:00','08/10/2018  00:00', '09/10/2018  00:00'];
+var x = ['04/10/2018  00:00', '05/10/2018  00:00:', '06/10/2018  00:00','07/10/2018  00:00','08/10/2018  00:00', '09/10/2018  00:00'];
 var timeFormat = 'DD/MM/YYYY  HH::mm';
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
