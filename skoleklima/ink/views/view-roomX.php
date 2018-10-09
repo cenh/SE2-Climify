@@ -9,20 +9,24 @@
     </div>
     <hr>
     <!-- TODO: view data -->
-    <div style="width:55%; display:inline">
-      <canvas id="myChart"></canvas>
+    <div class="data-display-box">
+        <div class="temperature-graph-box">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="information-box">
+            <div class="view-roomX-data-box">
+                <span>test</span>
+            </div>
+            <div class="view-roomX-data-box">
+                <span>test</span>
+            </div>
+            <div class="view-roomX-data-box">
+                <span>test</span>
+            </div>
+        </div>
     </div>
-    <div style="width:auto%; display: inline;">
-        <div class="view-roomX-data-box">
-            <span>test</span>
-        </div>
-        <div class="view-roomX-data-box">
-            <span>test</span>
-        </div>
-        <div class="view-roomX-data-box">
-            <span>test</span>
-        </div>
-    </div>
+
+
         <div class="view-roomX-data-box">
             <div class="temperature">
                 <!-- TODO: -->
