@@ -9,7 +9,7 @@
     </div>
     <hr>
     <!-- TODO: view data -->
-  <div class="view-roomx-data-box" style="width:600px; height:500px;">
+  <div style="width:75%;">
       <canvas id="myChart"></canvas>
   </div>
     <div class="view-roomX-data-box">
