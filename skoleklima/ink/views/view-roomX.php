@@ -14,14 +14,15 @@
             <canvas id="myChart"></canvas>
         </div>
         <div class="information-box">
+            <h3>Information Panel</h3>
             <div class="view-roomX-data-box">
-                <i class="fas fa-thermometer-quarter"></i>
+                <i class="menu-link-ico nav-icon fas fa-thermometer-quarter"></i>
             </div>
             <div class="view-roomX-data-box">
-                <i class="fas fa-cloud"></i>
+                <i class="menu-link-ico nav-icon fas fa-cloud"></i>
             </div>
             <div class="view-roomX-data-box">
-                <i class="fas fa-volume-off"></i>
+                <i class="menu-link-ico nav-icon fas fa-volume-off"></i>
             </div>
         </div>
     </div>
