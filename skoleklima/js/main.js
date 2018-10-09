@@ -806,6 +806,7 @@ var myChart = new Chart(ctx, {
     type: 'line',
     data: {
         datasets: [{
+            label: "Set temperature",
             data: []//[12, 19, 3, 5, 2, 3]
         }],
         labels: x

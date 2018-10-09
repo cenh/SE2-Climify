@@ -9,18 +9,29 @@
     </div>
     <hr>
     <!-- TODO: view data -->
-  <div style="width:75%;">
+    <div style="width:55%; display:inline">
       <canvas id="myChart"></canvas>
-  </div>
-    <div class="view-roomX-data-box">
-        <div class="temperature">
-            <!-- TODO: -->
-            <span>
-                <h4>
-                    The current temperature is: <label id="current_set_temp"></label>
-                </h4>
-            </span>
+    </div>
+    <div style="width:auto%; display: inline;">
+        <div class="view-roomX-data-box">
+            <span>test</span>
         </div>
+        <div class="view-roomX-data-box">
+            <span>test</span>
+        </div>
+        <div class="view-roomX-data-box">
+            <span>test</span>
+        </div>
+    </div>
+        <div class="view-roomX-data-box">
+            <div class="temperature">
+                <!-- TODO: -->
+                <span>
+                    <h4>
+                        The current temperature is: <label id="current_set_temp"></label>
+                    </h4>
+                </span>
+            </div>
         <div class="view-roomX-data-box" style="border:1px solid #92b2c7; padding:15px">
            <span>
                 <form id="temp" class="my-center">
