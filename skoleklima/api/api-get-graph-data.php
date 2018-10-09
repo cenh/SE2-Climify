@@ -87,7 +87,7 @@ else{
 
 $result = $conn->query("SELECT SensorID FROM SensorInstance WHERE LocationID='$LocationID'"); 
 
-echo $result;
+error_log($result);
 $row_cnt = $result->num_rows;
 
 if ($row_cnt==0) {
