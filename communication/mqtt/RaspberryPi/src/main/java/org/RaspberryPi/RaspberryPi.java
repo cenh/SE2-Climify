@@ -8,7 +8,7 @@ public class RaspberryPi
 		RaspberryPiMqttController controller = new RaspberryPiMqttController();
 		controller.start();
 		
-		ServerSentEventController sseController = new ServerSentEventController();
+		ServerSentEventController sseController = new ServerSentEventController(controller);
 		sseController.start();
 	}
 }

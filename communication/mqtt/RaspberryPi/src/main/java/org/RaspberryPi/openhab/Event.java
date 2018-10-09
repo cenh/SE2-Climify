@@ -3,7 +3,6 @@ package org.RaspberryPi.openhab;
 import java.io.IOException;
 import java.util.Map;
 
-import com.dslplatform.json.CompiledJson;
 import com.dslplatform.json.JsonObject;
 import com.dslplatform.json.JsonReader;
 import com.dslplatform.json.JsonWriter;
@@ -30,6 +29,23 @@ public abstract class Event {
 			this.topic = topic;
 			this.payload = payload;
 			this.type = type;
+		}
+		
+		public String getName() {
+			//Need to figure out if the topic is always "smarthome/items/<Name>" on a item event.
+			//For now assume this is the case
+			String name = null;
+			if (topic.startsWith("smarthome/items/")) {
+				String subString = topic.substring(16);
+				for (int i = 0; i < subString.length(); i++) {
+					if (subString.charAt(i) == '/') {
+						name = subString.substring(0, i);
+						break;
+					}
+				}
+			}
+			
+			return name;
 		}
 
 		@Override

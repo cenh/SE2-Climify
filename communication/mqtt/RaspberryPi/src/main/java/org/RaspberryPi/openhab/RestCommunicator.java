@@ -1,4 +1,4 @@
-package org.MqttLib.mqtt;
+package org.RaspberryPi.openhab;
 
 import java.io.IOException;
 
@@ -48,4 +48,24 @@ public class RestCommunicator {
 			e.printStackTrace();
 		}
 	}
+	
+	public void sendSensorsToServer(){
+        String commandUrl = restBaseUrl + "items/" + "?recursive=false&fields=name%2C%20category";
+        Headers headers = Utilities.getHeaders(HeaderType.JSON);
+
+        Request request = new Request.Builder()
+            .url(commandUrl)
+            .headers(headers)
+            .get()
+            .build();
+
+        try {
+            Response response = client.newCall(request).execute();
+            System.out.println(response.body().string());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }

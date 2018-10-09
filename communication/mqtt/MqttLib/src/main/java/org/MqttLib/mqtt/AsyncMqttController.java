@@ -37,7 +37,7 @@ public class AsyncMqttController implements MqttCallbackExtended {
 	private MqttAsyncClient client;
 	private MqttClientPersistence persistence;
 	private MqttConnectOptions connectOptions;
-	
+
 	private ExecutorService threadPool;
 
 	public AsyncMqttController() {
@@ -50,7 +50,7 @@ public class AsyncMqttController implements MqttCallbackExtended {
 		cleanSession = false;
 		automaticReconnect = true;
 		persistence = new MemoryPersistence();
-		
+
 		threadPool = Executors.newFixedThreadPool(numberOfThreads);
 		connectOptions = new MqttConnectOptions();
 		connectOptions.setAutomaticReconnect(automaticReconnect);
@@ -100,22 +100,20 @@ public class AsyncMqttController implements MqttCallbackExtended {
 	public void connectComplete(boolean reconnect, String serverURI) {
 		System.out.println("Connection established at: " + serverURI);
 		// We subscribe to topics even when reconnecting as there could be edge-cases where topics are not persisted in a non-clean session
-		testData();
-		// We subscribe to topics even when reconnecting as there could be edge-cases where topics are not persisted in a non-clean session
-				try {
-					subscribeToTopics();
-				} catch (MqttException e) {
-					System.out.println("Failed to subscribe to topics.");
-					//TODO Maybe create a timer and retry subscribing soon.
-					e.printStackTrace();
-				}
+		try {
+			subscribeToTopics();
+		} catch (MqttException e) {
+			System.out.println("Failed to subscribe to topics.");
+			//TODO Maybe create a timer and retry subscribing soon.
+			e.printStackTrace();
+		}
 	}
 
 
 	@Override
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		System.out.println("Message arrived with topic: " + topic + " and message: " + message.toString());
-		threadPool.execute(new MessageHandler(topic, message));
+		threadPool.execute(getMessageHandler(topic, message));
 	}
 
 
@@ -125,27 +123,27 @@ public class AsyncMqttController implements MqttCallbackExtended {
 		System.out.println("Message delivered with id: " + token.getMessageId());
 	}
 
-	
+
 	protected void publish(String topic, int qos, byte[] payload) throws MqttPersistenceException, MqttException {
 		MqttMessage message = new MqttMessage(payload);
 		message.setQos(qos);
-		
+
 		IMqttActionListener messageListener = new IMqttActionListener() {
-			
+
 			@Override
 			public void onSuccess(IMqttToken asyncActionToken) {
 				System.out.println("success message " + asyncActionToken.getMessageId());
 			}
-			
+
 			@Override
 			public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
 				System.out.println("failure message " + asyncActionToken.getMessageId() + " cause: " + exception.getMessage());
 			}
 		};
-		
+
 		threadPool.execute(new PublishMessageTask(client, message, topic, messageListener));
 	}
-	
+
 	/**
 	 * 
 	 * @param topic the topic to subscribe to, which can include wildcards.
@@ -155,29 +153,22 @@ public class AsyncMqttController implements MqttCallbackExtended {
 	protected void subscribe(String topic, int qos) throws MqttException {
 		client.subscribe(topic, qos);
 	}
-	
+
 	/**
 	 * Override this to configure the topics to initially subscribe to.
 	 * @throws MqttException
 	 */
 	protected void subscribeToTopics() throws MqttException { 
 	}
-	
-	private void testData() {
-		try {
-			//subscribe("testse2", 2);
-			
-			subscribe("niclastest", 2);
-			publish("niclastest", 2, "Testingstuff".getBytes());
-			publish("niclastest", 1, "Testingstuff1".getBytes());
-			publish("niclastest", 0, "Testingstuff2".getBytes());
-		} catch (MqttPersistenceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MqttException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+	/**
+	 * Override this if you want to return your own MessageHandler.
+	 * @param topic The topic the message arrived on.
+	 * @param message An MQTT message holds the application payload and options specifying how the message is to be delivered The message includes a "payload" (the body of the message) represented as a byte[].
+	 * @return MessageHandler
+	 */
+	protected MessageHandler getMessageHandler(String topic, MqttMessage message) {
+		return new MessageHandler(topic, message);		
 	}
 
 }

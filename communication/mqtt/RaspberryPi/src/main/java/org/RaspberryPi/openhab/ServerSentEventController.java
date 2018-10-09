@@ -4,20 +4,27 @@ import java.net.URI;
 
 import org.MqttLib.openhab.HeaderType;
 import org.MqttLib.openhab.Utilities;
+import org.RaspberryPi.ServerSentEventCallback;
 
-import com.launchdarkly.eventsource.EventHandler;
 import com.launchdarkly.eventsource.EventSource;
 
 import okhttp3.Headers;
 
 public class ServerSentEventController {
 	
+	ServerSentEventCallback callback;
+	
 	public ServerSentEventController() {
 		
 	}
 	
+	public ServerSentEventController(ServerSentEventCallback callback) {
+		this.callback = callback;
+	}
+	
 	public void start() {
-		EventHandler eventHandler = new ServerSentEventHandler();
+		ServerSentEventHandler eventHandler = new ServerSentEventHandler();
+		eventHandler.setCallback(callback);
 		URI url = URI.create("http://localhost:8080/rest/events");
 		EventSource.Builder builder = new EventSource.Builder(eventHandler, url);
 
