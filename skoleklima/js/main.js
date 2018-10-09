@@ -768,14 +768,37 @@ function requestNewUserSetup() {
 
 
 }
+//
+// CHART stuff
+//
 
+// old labels, we use date now
+// var x = [];
+// var i;
+// for (i = 0; i < 6; i++) {
+//     x.push(i + 1);
+// }
+function generateDate(){
+    var today = new Date();
+    var DD = today.getDate();
+    var MM = today.getMonth()+1; //January is 0!
+    var YYYY = today.getFullYear();
+    var hh = today.getHours();
+    var mm = today.getMinutes();
 
-var x = [];
-var i;
-for (i = 0; i < 6; i++) {
-    x.push(i + 1);
+    if(DD<10) {
+        DD = '0'+DD
+    }
+    if(MM<10) {
+        MM = '0'+MM
+    }
+
+    today = DD + '/' + MM + '/' + YYYY + '/' + hh+':'+mm;
+    return today;
+
 }
-
+var x = ['19/09/2018  00:00', '20/09/2018  00:00:', '02/10/2018  00:00','03/10/2018  00:00','04/10/2018  00:00', '05/10/2018  00:00'];
+var timeFormat = 'DD/MM/YYYY  HH::mm';
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'line',
@@ -784,7 +807,32 @@ var myChart = new Chart(ctx, {
             data: [12, 19, 3, 5, 2, 3]
         }],
         labels: x
+    },
+    options: {
+        responsive: true,
+        title: "Set temperature chart",
+        scales: {
+            xAxes: [{
+                type: 'time',
+                time: {
+                    format: timeFormat,
+                    // round: 'day'
+                    tooltipFormat: 'll HH:mm'
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Date'
+                }
+            }],
+            yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'value'
+                }
+            }]
+        }
     }
+    
 });
 
 $("#my_button").click(function () {

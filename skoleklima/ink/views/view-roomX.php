@@ -10,7 +10,7 @@
     <hr>
     <!-- TODO: view data -->
   <div class="view-roomx-data-box" style="width:600px; height:500px;">
-      <canvas id="myChart" style="width:100%; height: 100%;"></canvas>
+      <canvas id="myChart"></canvas>
   </div>
     <div class="view-roomX-data-box">
         <div class="temperature">
