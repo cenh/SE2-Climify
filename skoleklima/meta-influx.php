@@ -25,7 +25,7 @@ define('DB_USER_INFLUX', 'admin');
 define('DB_PASSWORD_INFLUX', 'groupc');
 
 /** MySQL hostname XXX */
-define('DB_HOST_INFLUX', localhost');
+define('DB_HOST_INFLUX', 'localhost');
 
 define('DB_PORT_INFLUX', '8086');
 
