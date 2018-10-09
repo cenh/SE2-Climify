@@ -187,13 +187,13 @@ canvas {
   -ms-user-select: none;
 }
 .data-display-box {
+  overflow:hidden;
 
 }
 .temperature-graph-box {
   border:1px solid #92b2c7;
   width: calc(100% - 370px);
   padding: 15px;
-  overflow: hidden;
 }
 .information-box {
   border: 1px solid #92b2c7;
