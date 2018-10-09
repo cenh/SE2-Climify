@@ -48,10 +48,10 @@ if( $apiPassword !== $phase_api_key){
 }
 
 
-$conn = new mysql($servername,$username, $password, $databasename);
+$conn = new mysqli($servername,$username, $password, $databasename);
 
 if($conn->connect_error){
-    die("Connectio error:" . $conn->connct_error);
+    die("Connectio error:" . $conn->connect_error);
     exit;
 }
 
