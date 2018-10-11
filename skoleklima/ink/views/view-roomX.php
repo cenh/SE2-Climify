@@ -1,6 +1,3 @@
-<?php
-    require_once "../../api/api-get-influx-info.php";
-?>
 
 <div class="single-view view-roomX">
 
