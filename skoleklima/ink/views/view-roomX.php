@@ -34,13 +34,13 @@
             <div class="view-roomX-data-box">
                 <span>
                     <i class="menu-link-ico nav-icon fa fa-thermometer-half" aria-hidden="true"></i>
-                    <h4 style="float:left; padding-top:10px; padding-right:60px" id="temp_cur"></h4>
+                    <h4 style="float:right; padding-top:10px; padding-right:60px" id="temp_cur"></h4>
                 </span>
             </div>
             <div class="view-roomX-data-box">
                 <span>
                     <i class="menu-link-ico nav-icon fa fa-tint"></i>
-                    <h4 style="float:left; padding-top:10px; padding-right:60px" id="humi_cur"></h4>
+                    <h4 style="float:right; padding-top:10px; padding-right:60px" id="humi_cur"></h4>
                 </span>
             </div>
             <div class="view-roomX-data-box">
