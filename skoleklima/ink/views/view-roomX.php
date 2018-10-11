@@ -4,7 +4,8 @@
     <?php
     $returnFromIfx = file_get_contents("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery");
     $returnFromIfx = json_encode($returnFromIfx, true);
-
+    $temperature = file_get_contents(   "http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readOutdoorTemperature");
+    $temperature = json_encode($temperature, true)
     ?>
     <div class="roomX-top">
         <span>
@@ -72,6 +73,6 @@
     var obj = <?php echo $returnFromIfx; ?>;
     var json_batt = JSON.parse(obj)
     // get the latest battery reading
-    battery_level = (json_obj.results[0].series[0].values.slice(-1)[0])[1]
-
+    var latest = json_batt.results[0].series[0].values.slice(-1)[0];
+    document.getElementById("bat_lvl").innerHTML = latest;
 </script>

@@ -8,7 +8,8 @@ siteOnline = false;
 //Source for municipality API - https://dawa.aws.dk/dok/api/kommune#s%C3%B8gning
 
 $(document).ready(function () {
-    loadRoomDetails();
+    //TODO:
+    //loadRoomDetails();
 
     $("#search").on("input", function (e) {
         var val = $(this).val();
@@ -838,8 +839,7 @@ var myChart = new Chart(ctx, {
             }]
         }
     }
-    //?u=admin&p=groupc%db=scadb&q=SHOW%20SERIES
-    ///query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery
+
 });
 $("#button2").click(function(){
     // $.get("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery", function (data) {
@@ -849,6 +849,7 @@ $("#button2").click(function(){
     // });
 
 });
+//TODO:
 function loadRoomDetails(){
     $.ajax({
         type: "GET",
