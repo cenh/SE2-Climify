@@ -90,13 +90,14 @@ $result = $conn->query("SELECT SensorID FROM SensorInstance WHERE LocationID='$L
 while($row = mysqli_fetch_assoc($result)){
     error_log($row['SensorID'],0);
 }
+
 $row_cnt = $result->num_rows;
 
-// if ($row_cnt==0) {
-//    echo '{"status":"nodata"}';
-//     exit; 
+if ($row_cnt==0) {
+   echo '{"status":"nodata"}';
+    exit; 
 
-// }
+}
 
 $sensors=[];
 
@@ -129,7 +130,7 @@ $sensorData = json_encode( $sensors , JSON_UNESCAPED_UNICODE );
 
 
 if (count($sensors[0][0])==0){
-    echo '{"status":"nodata"}';
+    echo '{"status":"no sensors retrived"}';
     exit; 
 }
 
