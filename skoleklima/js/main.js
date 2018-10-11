@@ -856,4 +856,5 @@ $("#button2").click(function(){
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
-  }
+    console.log("Done");
+  });
