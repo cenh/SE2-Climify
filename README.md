@@ -29,7 +29,9 @@ Mock admin: admin - password: totallysecurepassword
 Mysql user: root - password: totallysecurepassword
 
 Jenkins: admin - password: totallysecurepassword
-##Release 1
+
+## Release 1
+
 The first release seeks to fulfill the user stories specified in the report. 
 
 Currently, the first release can be accessed at http://se2-webapp03.compute.dtu.dk/playground/skoleklima/
