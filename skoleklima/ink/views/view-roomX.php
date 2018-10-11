@@ -13,7 +13,7 @@
     <div class="roomX-top">
         <span>
             <h3>Release 1</h3>
-            <p>View and set temperature for sensor on this page</p>
+            <p>On this page you can view details about room X and set a temperature for the thermostat.</p>
         </span>
     </div>
     <hr>
