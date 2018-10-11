@@ -43,4 +43,8 @@ The graph used is not grafana, nor is it connected to influxdb yet, it is a char
 
 To get data from the influxdb we make http API calls to the 8086 port on the local machine, and process the response with javascript on the clientside. 
 
-  
+An example: 
+
+```php
+
+```
