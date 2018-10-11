@@ -841,12 +841,21 @@ var myChart = new Chart(ctx, {
     ///query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery
 });
 $("#button2").click(function(){
-    $.get("http://localhost:8086/ping", function (data) {
-        console.log(data);
-        console.log("Logged")
-
+    // $.get("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery", function (data) {
+    //     console.log(data);
+    //     console.log("Logged")
+    //
+    // });
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery",
+        dataType: "text"
+    }).done(function (res) {
+        console.log(res)
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
-   
+
     console.log("Done");
 });
 
