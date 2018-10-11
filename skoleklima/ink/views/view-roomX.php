@@ -5,10 +5,10 @@
     $returnFromIfx = file_get_contents("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery");
     $returnFromIfx = json_encode($returnFromIfx, true);
     $temperature = file_get_contents(   "http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readOutdoorTemperature");
-    $temperature = json_encode($temperature, true)
+    $temperature = json_encode($temperature, true);
 
-    $humidity = file_get_contents("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readHumidity")
-
+    $humidity = file_get_contents("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readHumidity");
+    $humidity = json_encode($humidity,true);
     ?>
     <div class="roomX-top">
         <span>
