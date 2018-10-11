@@ -86,15 +86,15 @@
     var json_batt = JSON.parse(obj);
     // get the latest battery reading
     var latest = json_batt.results[0].series[0].values.slice(-1)[0];
-    document.getElementById("bat_lvl").innerHTML = latest[1].substring(0,6)+ "%";
+    document.getElementById("bat_lvl").innerHTML = latest[1].substring(0,4)+ "%";
     var t_obj = <?php echo $temperature; ?>;
     var json_t = JSON.parse(t_obj);
     var t_latest = json_t.results[0].series[0].values.slice(-1)[0];
-    document.getElementById("temp_cur").innerHTML = t_latest[1].substring(0,6);
+    document.getElementById("temp_cur").innerHTML = t_latest[1].substring(0,4)+ "C";
 
     var h_obj = <?php echo $humidity; ?>;
     var json_h = JSON.parse(h_obj);
     var h_latest = json_h.results[0].series[0].values.slice(-1)[0];
-    document.getElementById("humi_cur").innerHTML = h_latest[1].substring(0,6);
+    document.getElementById("humi_cur").innerHTML = h_latest[1].substring(0,4);
 
 </script>
