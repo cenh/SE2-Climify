@@ -838,11 +838,16 @@ var myChart = new Chart(ctx, {
     
 });
 
+
+
 $("#my_button").click(function () {
     var x = document.getElementById("temp");
     var text = x.elements[0].value;
     var temperature = Number(text);
+    $.get('130.225.69.76:8086/query?u=admin&p=groupc&q=SHOW%20SERIES',function (data) {
+        console.log(data)
 
+    });
     //i++;
     myChart.data.labels.push(generateDate());
     myChart.data.datasets.forEach((dataset) => {
