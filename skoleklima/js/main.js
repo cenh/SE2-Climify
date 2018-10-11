@@ -837,18 +837,21 @@ var myChart = new Chart(ctx, {
     }
     
 });
+$("#button2").click(function(){
 
+    $.get('130.225.69.76:8086/query?u=admin&p=groupc&q=SHOW%20SERIES',function (data, status) {
+        alert("Status  " + status);
+        console.log("Data " +data)
+
+    });
+});
 
 
 $("#my_button").click(function () {
     var x = document.getElementById("temp");
     var text = x.elements[0].value;
     var temperature = Number(text);
-    $.get('130.225.69.76:8086/query?u=admin&p=groupc&q=SHOW%20SERIES',function (data, status) {
-        alert("Status  " + status);
-        console.log("Data " +data)
 
-    });
     //i++;
     myChart.data.labels.push(generateDate());
     myChart.data.datasets.forEach((dataset) => {

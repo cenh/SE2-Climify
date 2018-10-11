@@ -8,6 +8,11 @@
         </span>
     </div>
     <hr>
+    <div class="button-float">
+        <button id="button2">
+            REFRESHDATA
+        </button>
+    </div>
     <!-- TODO: view data -->
     <div class="data-display-box">
         <div class="temperature-graph-box">
