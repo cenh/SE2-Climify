@@ -36,7 +36,7 @@ $(document).ready(function () {
     });
 
 
-    //START get Weather location from jsonfile 
+    //START get Weather location from jsonfile
     var weatherApiId = "229e3ade24a07a661eb7f3f802d21280";
     var countrys = [];
     var thisCityCode;
@@ -174,12 +174,12 @@ $("#btn-sign-out, .mobile-sign-out").click(function () {
     signOut();
 });
 
-// Auto Log out 
+// Auto Log out
 function setAutoLogout() {
     if (icMeterSystemAccessTokenExperes < systemAutoReload) {
         systemAutoReload = icMeterSystemAccessTokenExperes;
     }
-    var timeToReload = systemAutoReload + "999"// MS 
+    var timeToReload = systemAutoReload + "999"// MS
     setTimeout(function () {
         location.reload();
     }, timeToReload);
@@ -210,7 +210,7 @@ function loadLoginPage() {
     });
 };
 
-// Auto-login 
+// Auto-login
 function loadAutoLogin() {
 
     $("#loadCower").fadeIn("slow").css("display", "flex").addClass("flex");
@@ -371,7 +371,7 @@ function requestAutoLoginSystem() {
     });
 };
 
-// Request new user signup 
+// Request new user signup
 
 $("#link-request-new-profile").click(function () {
     $(".img-con").animate({left: '0'}, 500, "swing");
@@ -613,7 +613,7 @@ function requestNewCompanySetup() {
     });
 }
 
-// Request new limited user signup 
+// Request new limited user signup
 
 $("#link-request-new-limited-profile").click(function () {
     $(".img-con").animate({left: '0'}, 500, "swing");
@@ -848,7 +848,7 @@ $("#button2").click(function(){
     // });
     $.ajax({
         type: "GET",
-        url: "http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery",
+        url: "http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT+value+FROM+%22readBattery%22",
         dataType: "text"
     }).done(function (res) {
         console.log(res)
