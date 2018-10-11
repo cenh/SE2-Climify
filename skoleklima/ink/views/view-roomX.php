@@ -36,6 +36,9 @@
             <div class="view-roomX-data-box">
                 <i class="menu-link-ico nav-icon fa fa-volume-down" aria-hidden="true"></i>
             </div>
+            <div class="view-roomX-data-box">
+                <i class="menu-link-ico nav-icon fas fa-battery-half"></i><h4 id="bat_lvl"></h4>
+            </div>
         </div>
     </div>
 
@@ -67,5 +70,8 @@
 </div>
 <script>
     var obj = <?php echo $returnFromIfx; ?>;
-    var json_obj = JSON.parse(obj)
+    var json_batt = JSON.parse(obj)
+    // get the latest battery reading
+    battery_level = (json_obj.results[0].series[0].values.slice(-1)[0])[1]
+
 </script>

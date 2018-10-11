@@ -8,6 +8,7 @@ siteOnline = false;
 //Source for municipality API - https://dawa.aws.dk/dok/api/kommune#s%C3%B8gning
 
 $(document).ready(function () {
+    loadRoomDetails();
 
     $("#search").on("input", function (e) {
         var val = $(this).val();
@@ -846,19 +847,33 @@ $("#button2").click(function(){
     //     console.log("Logged")
     //
     // });
+
+});
+function loadRoomDetails(){
     $.ajax({
         type: "GET",
         url: "http://130.225.69.76/playground/skoleklima/api/api-get-sensor-info.php",
         dataType: "json",
         data: {sensor: 'readBattery'}
     }).done(function (res) {
+        var battery_level = (res.results[0].series[0].values.slice(-1)[0])[1];
+        document.getElementById("bat_lvl").innerHTML = res;
+        console.log(battery_level)
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        alert("AJAX call failed: " + textStatus + ", " + errorThrown);
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "http://130.225.69.76/playground/skoleklima/api/api-get-current-temperature.php",
+        dataType: "json",
+    }).done(function (res) {
         console.log(res)
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
-    console.log("Done");
-});
 
+}
 
 $("#my_button").click(function () {
     var x = document.getElementById("temp");
