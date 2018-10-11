@@ -848,7 +848,7 @@ $("#button2").click(function(){
     // });
     $.ajax({
         type: "GET",
-        url: "http://130.225.69.76/influxdb/skoleklima/api/api-get-sensor.info.php",
+        url: "http://130.225.69.76/influxdb/skoleklima/api/api-get-sensor-info.php",
         dataType: "json",
         data: {sensor: 'readBattery'}
     }).done(function (res) {
