@@ -840,10 +840,17 @@ var myChart = new Chart(ctx, {
     
 });
 $("#button2").click(function(){
-    xhttp.open("GET", "http://130.225.69.76:8086/query?u=admin&p=groupc%db=scadb&q=SHOW%20SERIES", true);
-    alert(xhttp.send());
+    xhttp.open('GET', 'http://localhost:8086/query?u=admin&p=groupc%db=scadb&q=SHOW%20SERIES', true);
+    xhttp.onload = function () {
+        if (xhttp.readyState === xhttp.DONE) {
+            if (xhttp.status === 200) {
+                console.log(xhttp.response);
+                console.log(xhttp.responseText);
+            }
+        }
+    };
+    xhttp.send('JSON');
     console.log("Done");
-
 });
 
 
