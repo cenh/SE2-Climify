@@ -838,13 +838,15 @@ var myChart = new Chart(ctx, {
         }
     }
     //?u=admin&p=groupc%db=scadb&q=SHOW%20SERIES
+    ///query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery
 });
 $("#button2").click(function(){
-    $.get("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery", function (data) {
+    $.get("http://localhost:8086/ping", function (data) {
         console.log(data);
-        console.log("Logged");
-        
+        console.log("Logged")
+
     });
+   
     console.log("Done");
 });
 
