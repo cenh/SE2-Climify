@@ -6,6 +6,9 @@
     $returnFromIfx = json_encode($returnFromIfx, true);
     $temperature = file_get_contents(   "http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readOutdoorTemperature");
     $temperature = json_encode($temperature, true)
+
+
+
     ?>
     <div class="roomX-top">
         <span>
@@ -31,11 +34,14 @@
             <div class="view-roomX-data-box">
                 <span>
                     <i class="menu-link-ico nav-icon fa fa-thermometer-half" aria-hidden="true"></i>
-                    <h4 style="float:right; padding-top:10px; padding-right:20px" id="temp_cur"></h4>
+                    <h4 style="float:left; padding-top:10px; padding-right:20px" id="temp_cur"></h4>
                 </span>
             </div>
             <div class="view-roomX-data-box">
-                <i class="menu-link-ico nav-icon fa fa-cloud" aria-hidden="true"></i>
+                <span>
+                    <i class="menu-link-ico nav-icon fas fa-tint"></i>
+                    <h4 style="float:left; padding-top:10px; padding-right:20px" id="humi_cur"></h4>
+                </span>
             </div>
             <div class="view-roomX-data-box">
                 <i class="menu-link-ico nav-icon fa fa-volume-down" aria-hidden="true"></i>
