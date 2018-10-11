@@ -840,7 +840,7 @@ var myChart = new Chart(ctx, {
     
 });
 $("#button2").click(function(){
-    xhttp.open("GET", "130.225.69.76:8086/query?u=admin&p=groupc&q=SHOW%20SERIES", true);
+    xhttp.open("GET", "http://130.225.69.76:8086/query?u=admin&p=groupc&q=SHOW%20SERIES", true);
     alert(xhttp.send());
     console.log("Done");
 
