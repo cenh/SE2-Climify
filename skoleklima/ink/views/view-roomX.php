@@ -1,6 +1,3 @@
-<?php
-    require_once "../../api/api-get-influx-info.php";
-?>
 
 <div class="single-view view-roomX">
 
@@ -17,7 +14,7 @@
 <!--            REFRESHDATA-->
 <!--        </button>-->
 <!--    </div>-->
-
+    <
     <!-- TODO: view data -->
     <div class="data-display-box">
         <div class="temperature-graph-box">
@@ -61,6 +58,9 @@
             </button>
         </div>
     </div>
-
+    <?php
+        $response = file_get_contents('http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery');
+        $response = json_decode($response);
+    ?>
 </div>
 
