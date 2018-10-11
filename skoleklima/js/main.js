@@ -79,7 +79,7 @@ $(document).ready(function () {
 // Variables
 
 
-var xhttp = XMLHttpRequest();
+var xhttp = new XMLHttpRequest();
 var reE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 var startPage = "";
 var systemAutoReload = "21600"; // Seconds - 21600 = 6 houres
