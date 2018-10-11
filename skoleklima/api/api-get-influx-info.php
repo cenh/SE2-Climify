@@ -6,10 +6,10 @@
 
 require_once "../meta.php";
 
-if( $currentUserID == ""){
-    echo '{"status":"No current user"}';
-    exit;
-}
+//if($currentUserID == ""){
+//    echo '{"status":"No current user"}';
+//    exit;
+//}
 
 // Validate API key
 $apiPassword = API_PASSWORD;
@@ -20,7 +20,7 @@ $phase_api_key = clean($_POST['fAY2YfpdKvR']);
 //    exit;
 //}
 
-$returnFromIfx = file_get_contents("http://localhost:8086/query?u=".$influxUser."&p=".$influxPass."&db=scadb&q=SELECT%20value%20FROM%20mem");
+$returnFromIfx = file_get_contents("http://localhost:8086/query?u=".$influxUser."&p=".$influxPass."&db=".$influxName."&q=SELECT%20value%20FROM%20readBattery");
 echo $returnFromIfx;
 
 $returnFromIfx = json_decode($returnFromIfx, true);
