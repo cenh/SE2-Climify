@@ -38,7 +38,7 @@
                 <i class="menu-link-ico nav-icon fa fa-volume-down" aria-hidden="true"></i>
             </div>
             <div class="view-roomX-data-box">
-                <i class="menu-link-ico nav-icon fas fa-battery-half"></i><h4 id="bat_lvl"></h4>
+                <i class="menu-link-ico nav-icon fa fa-battery-half"></i><p id="bat_lvl"></p>
             </div>
         </div>
     </div>
@@ -74,5 +74,5 @@
     var json_batt = JSON.parse(obj)
     // get the latest battery reading
     var latest = json_batt.results[0].series[0].values.slice(-1)[0];
-    document.getElementById("bat_lvl").innerHTML = latest;
+    document.getElementById("bat_lvl").innerHTML = latest[1];
 </script>
