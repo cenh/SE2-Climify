@@ -71,13 +71,9 @@ $(document).ready(function () {
         });
     });
     // END get Weather location from jsonfile
-<<<<<<< HEAD
-})
-=======
 
 
 });
->>>>>>> 5f4f5eb66cfea1faabd1e52ef997e760f7f84d12
 
 
 // Variables
@@ -124,12 +120,7 @@ msieversion();
 function msieversion() {
     var ua = window.navigator.userAgent;
     var msie = ua.indexOf("MSIE ");
-<<<<<<< HEAD
-    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))
-    {
-=======
     if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
->>>>>>> 5f4f5eb66cfea1faabd1e52ef997e760f7f84d12
         browserIsIE = true;
     }
     else  // If another browser, return 0
@@ -189,11 +180,7 @@ function setAutoLogout() {
         systemAutoReload = icMeterSystemAccessTokenExperes;
     }
     var timeToReload = systemAutoReload + "999"// MS
-<<<<<<< HEAD
-    setTimeout(function(){
-=======
     setTimeout(function () {
->>>>>>> 5f4f5eb66cfea1faabd1e52ef997e760f7f84d12
         location.reload();
     }, timeToReload);
 }
@@ -204,17 +191,10 @@ function setAutoLogout() {
 
 // Load loginpage
 function loadLoginPage() {
-<<<<<<< HEAD
-    $('<img/>').attr('src', 'img/load/loading-animation.gif').on('load', function() {
-        $("#loadCower").fadeIn("slow").css("display", "flex").addClass("flex");
-        setTimeout(function(){
-            $('<img/>').attr('src', 'img/login/login_bg.jpg').on('load', function() {
-=======
     $('<img/>').attr('src', 'img/load/loading-animation.gif').on('load', function () {
         $("#loadCower").fadeIn("slow").css("display", "flex").addClass("flex");
         setTimeout(function () {
             $('<img/>').attr('src', 'img/login/login_bg.jpg').on('load', function () {
->>>>>>> 5f4f5eb66cfea1faabd1e52ef997e760f7f84d12
                 $("#loadCower").fadeOut();
                 showView(startPage);
                 if (window.matchMedia('(min-width: 800px)').matches) {
@@ -231,22 +211,14 @@ function loadLoginPage() {
 };
 
 // Auto-login
-<<<<<<< HEAD
-function loadAutoLogin (){
-=======
 function loadAutoLogin() {
->>>>>>> 5f4f5eb66cfea1faabd1e52ef997e760f7f84d12
 
     $("#loadCower").fadeIn("slow").css("display", "flex").addClass("flex");
     setTimeout(function () {
         $("#loadCower").fadeOut("slow", function () {
             showView(startPage);
         });
-<<<<<<< HEAD
-        if ( currentUserID !== "") {
-=======
         if (currentUserID !== "") {
->>>>>>> 5f4f5eb66cfea1faabd1e52ef997e760f7f84d12
             dealyDone();
         }
         ;
@@ -282,26 +254,16 @@ function validateLoginType() {
 
 if (browserIsIE == false) {
 
-<<<<<<< HEAD
-    function requestLoginSystem(){
-=======
     function requestLoginSystem() {
->>>>>>> 5f4f5eb66cfea1faabd1e52ef997e760f7f84d12
 
         var typedUserName = $("#inp-login-name").val();
         var typedPassword = $("#inp-login-pass").val();
         // Store link to api and phase userinput
         var sUrl = "api/api-encrypt.php?fAY2YfpdKvR=" + sender_first + "&encrypt=" + typedPassword;
 
-<<<<<<< HEAD
-        $.get( sUrl , function( sData ){
-            var jData = JSON.parse(sData);
-            if( jData.status == "ok" ){
-=======
         $.get(sUrl, function (sData) {
             var jData = JSON.parse(sData);
             if (jData.status == "ok") {
->>>>>>> 5f4f5eb66cfea1faabd1e52ef997e760f7f84d12
                 var passEncrypt = jData.encrypt;
                 // Store link to api and phase userinput
                 var sUrl = "api/api-user-login.php?fAY2YfpdKvR=" + sender_first + "&username=" + typedUserName + "&password=" + passEncrypt;
@@ -309,15 +271,9 @@ if (browserIsIE == false) {
                 $.get(sUrl, function (sData) {
 
 
-<<<<<<< HEAD
-                    if( jData.status == "ok" ){
-                        $.cookie("username", typedUserName, { expires : 10 });
-                        $.cookie("password", passEncrypt, { expires : 10 });
-=======
                     if (jData.status == "ok") {
                         $.cookie("username", typedUserName, {expires: 10});
                         $.cookie("password", passEncrypt, {expires: 10});
->>>>>>> 5f4f5eb66cfea1faabd1e52ef997e760f7f84d12
                         correctLogin();
                     } else {
                         wrongLogin();
@@ -365,15 +321,9 @@ function signOut() {
     // Store link to api in variable
     var sUrl = "api/api-clear-all-sessions.php";
     // Do AJAX and phase link to api
-<<<<<<< HEAD
-    $.get( sUrl , function( sData ){
-        var jData = JSON.parse(sData);
-        if( jData.status == "signOut" ){
-=======
     $.get(sUrl, function (sData) {
         var jData = JSON.parse(sData);
         if (jData.status == "signOut") {
->>>>>>> 5f4f5eb66cfea1faabd1e52ef997e760f7f84d12
             $.removeCookie("username");
             $.removeCookie("password");
             location.reload();
@@ -401,26 +351,16 @@ function placeAccessToken() {
 
 // Request Auto-login
 
-<<<<<<< HEAD
-function requestAutoLoginSystem(){
-=======
 function requestAutoLoginSystem() {
->>>>>>> 5f4f5eb66cfea1faabd1e52ef997e760f7f84d12
     var cookieUserName = $.cookie("username");
     var cookiePassword = $.cookie("password");
 
     // Store link to api and phase userinput
     var sUrl = "api/api-user-login.php?fAY2YfpdKvR=" + sender_first + "&username=" + cookieUserName + "&password=" + cookiePassword;
 
-<<<<<<< HEAD
-    $.get( sUrl , function( sData ){
-        var jData = JSON.parse(sData);
-        if( jData.status == "approve" ){
-=======
     $.get(sUrl, function (sData) {
         var jData = JSON.parse(sData);
         if (jData.status == "approve") {
->>>>>>> 5f4f5eb66cfea1faabd1e52ef997e760f7f84d12
 
             showSchool = jData.school;
             loadAutoLogin();
@@ -773,7 +713,6 @@ $("#btn-send-limited-profile-request").click(function () {
     }
 
 
-
     if (profileRequestVal.nameFirst &&
         profileRequestVal.nameLast &&
         profileRequestVal.email &&
@@ -909,7 +848,7 @@ $("#button2").click(function(){
     // });
     $.ajax({
         type: "GET",
-        url: "http://130.225.69.76/influxdb/skoleklima/api/api-get-sensor.info.php",
+        url: "http://130.225.69.76/influxdb/skoleklima/api/get-sensor.info.php",
         dataType: "json",
         data: {sensor: 'readBattery'}
     }).done(function (res) {
