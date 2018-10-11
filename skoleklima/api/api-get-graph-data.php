@@ -92,11 +92,11 @@ while($row = mysqli_fetch_assoc($result)){
 }
 $row_cnt = $result->num_rows;
 
-if ($row_cnt==0) {
-   echo '{"status":"nodata"}';
-    exit; 
+// if ($row_cnt==0) {
+//    echo '{"status":"nodata"}';
+//     exit; 
 
-}
+// }
 
 $sensors=[];
 
