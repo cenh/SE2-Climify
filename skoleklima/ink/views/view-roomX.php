@@ -17,11 +17,7 @@
 <!--            REFRESHDATA-->
 <!--        </button>-->
 <!--    </div>-->
-    <div>
-        <?php
-            echo $returnFromIfx
-        ?>
-    </div>
+
     <!-- TODO: view data -->
     <div class="data-display-box">
         <div class="temperature-graph-box">

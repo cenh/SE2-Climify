@@ -20,7 +20,7 @@ if( $apiPassword !== $phase_api_key){
     exit;
 } 
 
-$returnFromIfx = file_get_contents("http://193.200.45.37:8086/query?u=".$influxUser."&p=".$influxPass."&db=".$influxName."&q=SHOW%20MEASUREMENTS%20limit%201");
+$returnFromIfx = file_get_contents("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery");
 
 $returnFromIfx = json_decode($returnFromIfx, true);
 
