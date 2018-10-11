@@ -848,14 +848,14 @@ $("#button2").click(function(){
     // });
     $.ajax({
         type: "GET",
-        url: "http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT+value+FROM+%22readBattery%22",
-        dataType: "text"
+        url: "http://130.225.69.76/influxdb/skoleklima/api/api-get-sensor-info.php",
+        dataType: "json",
+        data: {sensor: 'readBattery'}
     }).done(function (res) {
         console.log(res)
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
-
     console.log("Done");
 });
 
