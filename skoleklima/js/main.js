@@ -33,10 +33,10 @@ $(document).ready(function() {
 
             }
         }, "json");
-    }); 
+    });
 
 
-    //START get Weather location from jsonfile 
+    //START get Weather location from jsonfile
     var weatherApiId = "229e3ade24a07a661eb7f3f802d21280";
     var countrys = [];
     var thisCityCode;
@@ -56,7 +56,7 @@ $(document).ready(function() {
         $.each(data, function (key, val) {
             if ($.inArray(val["country"], countrys) == -1 && val["country"] != "") {
                 countrys.push(val["country"]);
-                var contryCode = val["country"];				
+                var contryCode = val["country"];
                 for (var i = 0; i < jContrylist.length; i++) {
                     if (jContrylist[i].code == contryCode) {
                         contryCode = jContrylist[i].name;
@@ -70,7 +70,7 @@ $(document).ready(function() {
             }
         });
     });
-    // END get Weather location from jsonfile 
+    // END get Weather location from jsonfile
 })
 
 
@@ -115,7 +115,7 @@ msieversion();
 function msieversion() {
     var ua = window.navigator.userAgent;
     var msie = ua.indexOf("MSIE ");
-    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) 
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))
     {
         browserIsIE = true;
     }
@@ -160,8 +160,8 @@ $(".login-from :input").keyup(function(event){
         if ($(".login-input").hasClass("wrong-login")) {
             $(".login-input").removeClass("wrong-login");
             $(".txt-wrong-login").css("visibility", "hidden");
-        } 
-        $("#btn-system-login").click();  
+        }
+        $("#btn-system-login").click();
     }
 });
 
@@ -170,12 +170,12 @@ $("#btn-sign-out, .mobile-sign-out").click(function(){
     signOut();
 });
 
-// Auto Log out 
+// Auto Log out
 function setAutoLogout() {
     if ( icMeterSystemAccessTokenExperes < systemAutoReload ) {
         systemAutoReload = icMeterSystemAccessTokenExperes;
-    } 
-    var timeToReload = systemAutoReload + "999"// MS 
+    }
+    var timeToReload = systemAutoReload + "999"// MS
     setTimeout(function(){
         location.reload();
     }, timeToReload);
@@ -188,7 +188,7 @@ function setAutoLogout() {
 // Load loginpage
 function loadLoginPage() {
     $('<img/>').attr('src', 'img/load/loading-animation.gif').on('load', function() {
-        $("#loadCower").fadeIn("slow").css("display", "flex").addClass("flex"); 
+        $("#loadCower").fadeIn("slow").css("display", "flex").addClass("flex");
         setTimeout(function(){
             $('<img/>').attr('src', 'img/login/login_bg.jpg').on('load', function() {
                 $("#loadCower").fadeOut();
@@ -205,14 +205,14 @@ function loadLoginPage() {
     });
 };
 
-// Auto-login 
+// Auto-login
 function loadAutoLogin (){
 
     $("#loadCower").fadeIn("slow").css("display", "flex").addClass("flex");
     setTimeout(function(){
         $("#loadCower").fadeOut("slow", function(){
             showView(startPage);
-        });  
+        });
         if ( currentUserID !== "") {
             dealyDone();
         };
@@ -248,15 +248,15 @@ function validateLoginType () {
 
 if ( browserIsIE == false ) {
 
-    function requestLoginSystem(){	
+    function requestLoginSystem(){
 
         var typedUserName = $("#inp-login-name").val();
-        var typedPassword = $("#inp-login-pass").val();	
+        var typedPassword = $("#inp-login-pass").val();
         // Store link to api and phase userinput
         var sUrl = "api/api-encrypt.php?fAY2YfpdKvR="+sender_first+"&encrypt="+typedPassword;
 
         $.get( sUrl , function( sData ){
-            var jData = JSON.parse(sData); 
+            var jData = JSON.parse(sData);
             if( jData.status == "ok" ){
                 var passEncrypt = jData.encrypt;
                 // Store link to api and phase userinput
@@ -268,7 +268,7 @@ if ( browserIsIE == false ) {
                     if( jData.status == "ok" ){
                         $.cookie("username", typedUserName, { expires : 10 });
                         $.cookie("password", passEncrypt, { expires : 10 });
-                        correctLogin();	
+                        correctLogin();
                     } else {
                         wrongLogin();
                     }
@@ -276,7 +276,7 @@ if ( browserIsIE == false ) {
             } else {
                 wrongLogin();
             }
-        });	
+        });
     }
 
     function correctLogin(){
@@ -316,13 +316,13 @@ function signOut(){
     var sUrl = "api/api-clear-all-sessions.php";
     // Do AJAX and phase link to api
     $.get( sUrl , function( sData ){
-        var jData = JSON.parse(sData); 
+        var jData = JSON.parse(sData);
         if( jData.status == "signOut" ){
             $.removeCookie("username");
             $.removeCookie("password");
-            location.reload();	
+            location.reload();
         }
-    });	
+    });
 }
 
 
@@ -348,15 +348,15 @@ function placeAccessToken() {
 
 // Request Auto-login
 
-function requestAutoLoginSystem(){	
+function requestAutoLoginSystem(){
     var cookieUserName = $.cookie("username");
-    var cookiePassword = $.cookie("password");		
+    var cookiePassword = $.cookie("password");
 
     // Store link to api and phase userinput
     var sUrl = "api/api-user-login.php?fAY2YfpdKvR="+sender_first+"&username="+cookieUserName+"&password="+cookiePassword;
 
     $.get( sUrl , function( sData ){
-        var jData = JSON.parse(sData); 
+        var jData = JSON.parse(sData);
         if( jData.status == "approve" ){
 
             showSchool = jData.school;
@@ -368,7 +368,7 @@ function requestAutoLoginSystem(){
     });
 };
 
-// Request new user signup 
+// Request new user signup
 
 $("#link-request-new-profile").click(function() {
     $(".img-con").animate({ left: '0' }, 500, "swing");
@@ -412,7 +412,7 @@ $("#btn-send-profile-request").click(function(){
 
         if(data.length==0){
             alert("Vælg venligst en kommune fra listen.");
-        } 
+        }
         else return;
 
     }, "json");
@@ -430,7 +430,7 @@ $("#btn-send-profile-request").click(function(){
         street: false,
         zip: false,
         city: false,
-        recaptcha: false 
+        recaptcha: false
     }
 
 
@@ -541,14 +541,14 @@ $("#btn-send-profile-request").click(function(){
         $(".g-recaptcha").css("outline", "none");
         profileRequestVal.recaptcha = true;
     }
-    if (profileRequestVal.compName && 
-        profileRequestVal.nameFirst && 
-        profileRequestVal.nameLast && 
-        profileRequestVal.email && 
-        profileRequestVal.phone && 
-        profileRequestVal.street && 
-        profileRequestVal.zip && 
-        profileRequestVal.city && 
+    if (profileRequestVal.compName &&
+        profileRequestVal.nameFirst &&
+        profileRequestVal.nameLast &&
+        profileRequestVal.email &&
+        profileRequestVal.phone &&
+        profileRequestVal.street &&
+        profileRequestVal.zip &&
+        profileRequestVal.city &&
         profileRequestVal.recaptcha ) {
         requestNewCompanySetup();
     }
@@ -611,7 +611,7 @@ function requestNewCompanySetup() {
     });
 }
 
-// Request new limited user signup 
+// Request new limited user signup
 
 $("#link-request-new-limited-profile").click(function() {
     $(".img-con").animate({ left: '0' }, 500, "swing");
@@ -713,10 +713,10 @@ $("#btn-send-limited-profile-request").click(function(){
 
 
 
-    if (profileRequestVal.nameFirst && 
-        profileRequestVal.nameLast && 
-        profileRequestVal.email && 
-        profileRequestVal.uname && 
+    if (profileRequestVal.nameFirst &&
+        profileRequestVal.nameLast &&
+        profileRequestVal.email &&
+        profileRequestVal.uname &&
         profileRequestVal.pword &&
         profileRequestVal.admin) {
         requestNewUserSetup();
@@ -770,4 +770,90 @@ function requestNewUserSetup() {
 
 
 }
+//
+// CHART stuff
+//
 
+// old labels, we use date now
+// var x = [];
+// var i;
+// for (i = 0; i < 6; i++) {
+//     x.push(i + 1);
+// }
+function generateDate(){
+    var today = new Date();
+    var DD = today.getDate();
+    var MM = today.getMonth()+1; //January is 0!
+    var YYYY = today.getFullYear();
+    var hh = today.getHours();
+    var mm = today.getMinutes();
+    var ss = today.getSeconds();
+    if(DD<10) {
+        DD = '0'+DD
+    }
+    if(MM<10) {
+        MM = '0'+MM
+    }
+
+    today = DD + '/' + MM + '/' + YYYY + '/' + hh+':'+mm+':'+ss;
+    return today;
+
+}
+
+//var x = ['09/10/2018  00:00', '05/10/2018  00:00:', '06/10/2018  00:00','07/10/2018  00:00','08/10/2018  00:00', '09/10/2018  00:00'];
+var x = [];
+var timeFormat = 'DD/MM/YYYY  HH::mm:ss';
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        datasets: [{
+            label: "Set temperature",
+            data: []//[12, 19, 3, 5, 2, 3]
+        }],
+        labels: x
+    },
+    options: {
+        responsive: true,
+        title: "Set temperature chart",
+        scales: {
+            xAxes: [{
+                type: 'time',
+                time: {
+                    format: timeFormat,
+                    // round: 'day'
+                    tooltipFormat: 'll HH:mm:ss'
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Date'
+                }
+            }],
+            yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'value'
+                }
+            }]
+        }
+    }
+    //?u=admin&p=groupc%db=scadb&q=SHOW%20SERIES
+    ///query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery
+});
+$("#button2").click(function(){
+    // $.get("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery", function (data) {
+    //     console.log(data);
+    //     console.log("Logged")
+    //
+    // });
+    $.ajax({
+        type: "GET",
+        url: "http://130.225.69.76/influxdb/skoleklima/api/get-sensor.info.php",
+        dataType: "json",
+        data: {sensor: 'readBattery'}
+    }).done(function (res) {
+        console.log(res)
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        alert("AJAX call failed: " + textStatus + ", " + errorThrown);
+    });
+g
