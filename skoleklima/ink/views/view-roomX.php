@@ -43,7 +43,7 @@
             <div class="view-roomX-data-box">
                 <span>
                     <i class="menu-link-ico nav-icon fa fa-battery-half"></i>
-                    <p style="float:right; padding-top:10px; padding-right:20px" id="bat_lvl"></p>
+                    <h4 style="float:right; padding-top:10px; padding-right:20%" id="bat_lvl"></h4>
                 </span>
             </div>
         </div>
@@ -84,6 +84,6 @@
     var t_obj = <?php echo $temperature; ?>;
     var json_t = JSON.parse(t_obj);
     var t_latest = json_t.results[0].series[0].values.slice(-1)[0];
-    document.getElementById("temp_cur").innerHTML = t_latest[1]+ "C";
+    document.getElementById("temp_cur").innerHTML = t_latest[1];
 
 </script>
