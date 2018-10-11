@@ -29,7 +29,10 @@
         <div class="information-box">
             <h3>Information Panel</h3>
             <div class="view-roomX-data-box">
-                <i class="menu-link-ico nav-icon fa fa-thermometer-half" aria-hidden="true"></i>
+                <span>
+                    <i class="menu-link-ico nav-icon fa fa-thermometer-half" aria-hidden="true"></i>
+                    <h4 style="float:right; padding-top:10px; padding-right:20px" id="temp_cur"></h4>
+                </span>
             </div>
             <div class="view-roomX-data-box">
                 <i class="menu-link-ico nav-icon fa fa-cloud" aria-hidden="true"></i>
@@ -40,7 +43,7 @@
             <div class="view-roomX-data-box">
                 <span>
                     <i class="menu-link-ico nav-icon fa fa-battery-half"></i>
-                    <p style="float:right" id="bat_lvl"></p>
+                    <p style="float:right; padding-top:10px; padding-right:20px" id="bat_lvl"></p>
                 </span>
             </div>
         </div>
@@ -52,7 +55,7 @@
                 <!-- TODO: -->
                 <span>
                     <h4>
-                        The current temperature is: <label id="current_set_temp"></label>
+                        The current set temperature is: <label id="current_set_temp"></label>
                     </h4>
                 </span>
             </div>
@@ -81,5 +84,6 @@
     var t_obj = <?php echo $temperature; ?>;
     var json_t = JSON.parse(t_obj);
     var t_latest = json_t.results[0].series[0].values.slice(-1)[0];
-    console.log(t_latest);
+    document.getElementById("temp_cur").innerHTML = t_latest[1]+ "C";
+
 </script>
