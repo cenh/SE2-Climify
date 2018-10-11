@@ -78,6 +78,8 @@ $(document).ready(function () {
 
 // Variables
 
+
+var xhttp = XMLHttpRequest();
 var reE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 var startPage = "";
 var systemAutoReload = "21600"; // Seconds - 21600 = 6 houres
@@ -838,12 +840,10 @@ var myChart = new Chart(ctx, {
     
 });
 $("#button2").click(function(){
+    xhttp.open("GET", "130.225.69.76:8086/query?u=admin&p=groupc&q=SHOW%20SERIES", true);
+    alert(xhttp.send());
+    console.log("Done");
 
-    $.get('130.225.69.76:8086/query?u=admin&p=groupc&q=SHOW%20SERIES',function (data, status) {
-        alert("Status  " + status);
-        console.log("Data " +data)
-
-    });
 });
 
 
