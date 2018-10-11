@@ -40,7 +40,7 @@
             <div class="view-roomX-data-box">
                 <span>
                     <i class="menu-link-ico nav-icon fa fa-battery-half"></i>
-                    <p id="bat_lvl"></p>
+                    <p style="float:right" id="bat_lvl"></p>
                 </span>
             </div>
         </div>
@@ -74,8 +74,12 @@
 </div>
 <script>
     var obj = <?php echo $returnFromIfx; ?>;
-    var json_batt = JSON.parse(obj)
+    var json_batt = JSON.parse(obj);
     // get the latest battery reading
     var latest = json_batt.results[0].series[0].values.slice(-1)[0];
     document.getElementById("bat_lvl").innerHTML = latest[1]+ "%";
+    var t_obj = <?php echo $temperature; ?>;
+    var json_t = JSON.parse(t_obj);
+    var t_latest = json_t.results[0].series[0].values.slice(-1)[0];
+    console.log(t_latest);
 </script>
