@@ -92,7 +92,7 @@
     var t_latest = json_t.results[0].series[0].values.slice(-1)[0];
     document.getElementById("temp_cur").innerHTML = t_latest[1];
 
-    var h_obj = <?pho echo $humidity; ?>;
+    var h_obj = <?php echo $humidity; ?>;
     var json_h = JSON.parse(h_obj);
     var h_latest = json_h.results[0].series[0].values.slice(-1)[0];
     document.getElementById("humi_cur").innerHTML = h_latest[1];
