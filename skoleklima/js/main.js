@@ -840,7 +840,7 @@ var myChart = new Chart(ctx, {
     //?u=admin&p=groupc%db=scadb&q=SHOW%20SERIES
 });
 $("#button2").click(function(){
-    xhttp.open('GET', 'http://localhost:8086/query', true);
+    xhttp.open('GET', 'http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery' , true);
     xhttp.onload = function () {
         if (xhttp.readyState === xhttp.DONE) {
             if (xhttp.status === 200) {
