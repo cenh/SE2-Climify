@@ -6,17 +6,17 @@
 
 require_once "../meta.php";
 
-if( $currentUserID == ""){
-    echo '{"status":"error"}';
-    exit;
-} 
+//if($currentUserID == ""){
+//    echo '{"status":"No current user"}';
+//    exit;
+//}
 
 // Validate API key
 $apiPassword = API_PASSWORD;
 $phase_api_key = clean($_POST['fAY2YfpdKvR']);
 
 //if( $apiPassword !== $phase_api_key){
-//    echo '{"status":"error"}';
+//    echo '{"status":"Incorrect API Password"}';
 //    exit;
 //}
 
@@ -27,10 +27,12 @@ echo $returnFromIfx;
 print_r($returnFromIfx);
 
 
+echo $returnFromIfx;
+
 if ($returnFromIfx[results][0][series][0][name] != "measurements") {
-    echo '{"status":"error"}';
+    echo '{"status":"Unable to retrieve from InfluxDB"}';
     exit;
-} 
+}
 
 echo '{"status":"ok"}';
 
