@@ -24,6 +24,7 @@ $returnFromIfx = file_get_contents("http://localhost:8086/query?u=admin&p=groupc
 
 $returnFromIfx = json_decode($returnFromIfx, true);
 echo $returnFromIfx;
+print_r($returnFromIfx);
 
 
 if ($returnFromIfx[results][0][series][0][name] != "measurements") {
