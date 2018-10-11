@@ -67,5 +67,5 @@
 </div>
 <script>
     var obj = <?php echo $returnFromIfx; ?>;
-    console.log(obj[0])
+    var json_obj = JSON.parse(obj)
 </script>
