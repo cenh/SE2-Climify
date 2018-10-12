@@ -89,6 +89,7 @@
     document.getElementById("bat_lvl").innerHTML = latest[1].substring(0,4)+ "%";
     var t_obj = <?php echo $temperature; ?>;
     var json_t = JSON.parse(t_obj);
+    console.log(json_t);
     var t_latest = json_t.results[0].series[0].values.slice(-1)[0];
     document.getElementById("temp_cur").innerHTML = t_latest[1].substring(0,4)+ "C";
 

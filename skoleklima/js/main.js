@@ -791,10 +791,10 @@ function generateDate(){
     var mm = today.getMinutes();
     var ss = today.getSeconds();
     if(DD<10) {
-        DD = '0'+DD
+        DD = '0'+DD;
     }
     if(MM<10) {
-        MM = '0'+MM
+        MM = '0'+MM;
     }
 
     today = DD + '/' + MM + '/' + YYYY + '/' + hh+':'+mm+':'+ss;
@@ -859,7 +859,7 @@ function loadRoomDetails(){
     }).done(function (res) {
         var battery_level = (res.results[0].series[0].values.slice(-1)[0])[1];
         document.getElementById("bat_lvl").innerHTML = res;
-        console.log(battery_level)
+        console.log(battery_level);
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
@@ -869,7 +869,7 @@ function loadRoomDetails(){
         url: "http://130.225.69.76/playground/skoleklima/api/api-get-current-temperature.php",
         dataType: "json",
     }).done(function (res) {
-        console.log(res)
+        console.log(res);
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
