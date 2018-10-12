@@ -64,16 +64,18 @@
         </div>
 
         <div class="view-roomX-data-box" style="border:1px solid #92b2c7; padding:15px">
+            <div style="float: left">
            <span>
                 <form id="temp" class="my-center">
                     Set temperature:
                     <input type="number" name="value">
                 </form>
            </span>
+            </div>
             <div class="view-roomX-data-box" style="float: right">
                             <span>
                                 <i class="menu-link-ico nav-icon fa fa-battery-half"></i>
-                                <h4 style="float:right; padding-top:10px; padding-right:70%" id="bat_lvl"></h4>
+                                <h4 style="float:right; padding-right:70%" id="bat_lvl"></h4>
                             </span>
             </div>
         </div>
