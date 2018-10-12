@@ -11,9 +11,9 @@ $serverport_influx = DB_PORT_INFLUX;
 $dbname_influx = DB_NAME_INFLUX;
 $dbuser_influx = DB_USER_INFLUX;
 $dbpass_influx = DB_PASSWORD_INFLUX;
-echo 'test';
+error_log('test', 0);
 $database = InfluxDB\Client::fromDSN(sprintf('influxdb://%s:%s@%s:%s/%s',$dbuser_influx, $dbpass_influx, $servername_influx, $serverport_influx, $dbname_influx));
-echo 'testx';
+error_log('testx', 0);
 require_once "../meta.php";
 
 if( $currentUserID == ""){
@@ -38,14 +38,14 @@ if( $apiPassword !== $phase_api_key){
 	exit;
 }
 
-echo 'test1';
+error_log('test1', 0);
 $conn = new mysqli($servername,$username, $password, $databasename);
 
 if($conn->connect_error){
     die("Connection error:" . $conn->connect_error);
     exit;
 }
-echo 'test2';
+error_log('test2', 0);
 $sql = " SELECT * FROM Location NATURAL JOIN Map NATURAL JOIN Institution WHERE LocationID = '$LocationID' ";
 
 $result = $conn->query($sql);
@@ -70,7 +70,7 @@ else{
         exit;
     }
 }
-echo 'test3';
+error_log('test3', 0);
 $result = $conn->query("SELECT SensorID FROM SensorInstance WHERE LocationID='$LocationID'");
 
 $row_cnt = $result->num_rows;
@@ -85,9 +85,9 @@ $sensors=[];
 
 $from = "'" . $from . "'";
 $to = "'" . $to . "'";
-echo 'test4';
+error_log('test4', 0);
 while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
-  echo 'test5';
+  error_log('test5', 0);
   //echo $result;
     //LAST() -> newest entry
   $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"');
