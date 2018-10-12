@@ -516,6 +516,7 @@ function getGraphData(){
                 dataNoisePeak[i]=jData[0][i].NoisePeak;
                 //dataTemperature[i]=jData[0][i].Temperature;
                 dataTemperature[i]=jData[0][i].value;
+                console.log(dataTemperature);
                 var time = jData[0][i].time
 
                 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
