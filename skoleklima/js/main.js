@@ -881,12 +881,13 @@ $("#my_button").click(function () {
     var text = x.elements[0].value;
     var temperature = Number(text);
 
-    //i++;
-    myChart.data.labels.push(generateDate());
-    myChart.data.datasets.forEach((dataset) => {
-        dataset.data.push(temperature);
-    });
-    myChart.update();
+    // //i++;
+    // myChart.data.labels.push(generateDate());
+    // myChart.data.datasets.forEach((dataset) => {
+    //     dataset.data.push(temperature);
+    // });
+    // myChart.update();
+    document.getElementById('current_set_temp').innerHTML = text;
 
 
     // Create a client instance
@@ -912,7 +913,6 @@ $("#my_button").click(function () {
         message = new Paho.MQTT.Message(msg_text);
         message.destinationName = "commandse2/test";
         client.publish(message);
-        document.getElementById('current_set_temp').innerHTML = text;
     }
 
 // called when the client loses its connection
