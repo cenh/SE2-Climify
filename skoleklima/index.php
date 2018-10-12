@@ -36,7 +36,7 @@
 		<input type="hidden" id="txt-current-user-school-name" value="<?php echo $currentUserSchoolAllowedName ?>" readonly>
 		<input type="hidden" id="txt-current-perm-logbook" value="<?php echo $currentPermLogbook ?>" readonly>
 		<input type="hidden" id="7wpk6dQLcKKTPy4" value="<?php echo $api_key ?>" readonly>
-		<input type="hidden" id="7wpk6dQLcKKTPy4" value="<?php echo $ç√_key ?>" readonly>
+		<input type="hidden" id="7wpk6dQLcKKTPy4" value="<?php echo $ç_key ?>" readonly>
 		<input type="hidden" id="8wpk6diLcKKdPyq" value="<?php echo SIGNIN_TOKEN ?>" readonly>
 	</div>
 
@@ -62,7 +62,8 @@
 		}
 
 	?>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
@@ -77,7 +78,9 @@
 
     <script src="croppie/croppie.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCH3z0AYLLOwg0HhYvfXVWVVG1isTjyMUU&libraries=geometry"></script>
-    
+
+    <script src="lib/paho.javascript-1.0.3/paho-mqtt.js"></script>
+
 	<?php
 		if ( $currentUserID ) { ?>
 

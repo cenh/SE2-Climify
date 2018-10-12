@@ -18,7 +18,7 @@ $(".view-dashboard").click(function () {
 $(".menu-link").click(function () {
     var goToWindow = $(this).attr("data-go-to");
     ga('set', 'page', '/' + getHumanURL(goToWindow) + '/');
-    ga('send', 'pageview');    
+    ga('send', 'pageview');
     if (goToWindow != "learning") {
         if (goToWindow != null || goToWindow != undefined) {
             hideSingleView();
@@ -80,7 +80,7 @@ function getHumanURL(nav) {
 if (siteOnline) {
     // Routing
 
-    ; (function ($) {
+    ;(function ($) {
         var app = $.sammy(function () {
             this.notFound = function () {
                 hideSingleView();
@@ -122,6 +122,7 @@ if (siteOnline) {
         });
     })(jQuery);
 }
+
 //}
 
 function hideSingleView() {
