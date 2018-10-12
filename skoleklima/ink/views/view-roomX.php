@@ -32,13 +32,13 @@
             <div class="view-roomX-data-box">
                 <span>
                     <i class="menu-link-ico nav-icon fa fa-thermometer-half" aria-hidden="true"></i>
-                    <h4 style=" padding-top:10px;" id="temp_cur"></h4>
+                    <h4 style=" padding-top:10px; float: right; padding-right: 91%" id="temp_cur"></h4>
                 </span>
             </div>
             <div class="view-roomX-data-box">
                 <span>
                     <i class="menu-link-ico nav-icon fa fa-tint"></i>
-                    <h4 style="padding-top:10px" id="humi_cur"></h4>
+                    <h4 style="padding-top:10px; float: right; padding-right: 91%" id="humi_cur"></h4>
                 </span>
             </div>
             <!--            <div class="view-roomX-data-box">-->
