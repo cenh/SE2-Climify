@@ -19,13 +19,13 @@ $company_Website = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[
 define('DB_NAME_INFLUX', 'scadb');
 
 /** MySQL database username */
-//define('DB_USER', 'system');
+define('DB_USER_INFLUX', 'admin');
 
 /** MySQL database password XXX */
-//define('DB_PASSWORD', 'XXX-PASSWORD-XXX');
+define('DB_PASSWORD_INFLUX', 'groupc');
 
 /** MySQL hostname XXX */
-define('DB_HOST_INFLUX', localhost');
+define('DB_HOST_INFLUX', 'localhost');
 
 define('DB_PORT_INFLUX', '8086');
 

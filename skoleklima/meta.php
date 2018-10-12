@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // ** Conpany meta info ** //
 $software_Name = "Climate monitoring";
