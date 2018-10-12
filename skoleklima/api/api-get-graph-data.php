@@ -87,7 +87,6 @@ $from = "'" . $from . "'";
 $to = "'" . $to . "'";
 
 while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
-  echo 'I am here';
   echo $result;
     //LAST() -> newest entry
   $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"');
@@ -96,7 +95,6 @@ while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
   echo $currentPoints;
   array_push($sensors,$currentPoints);
 }
-echo 'Done';
 $sensorData = json_encode( $sensors , JSON_UNESCAPED_UNICODE );
 
 if (count($sensors[0][0])==0){
