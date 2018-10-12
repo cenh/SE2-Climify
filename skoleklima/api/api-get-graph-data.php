@@ -107,22 +107,13 @@ $to = "'" . $to . "'";
 
 
 while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
-
-
-
+  echo $result;
     //LAST() -> newest entry
-   $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"');
-
-
-
-
-    $currentPoints = $currentSensorRow ->getPoints();
-
-
-    array_push($sensors,$currentPoints);
-
-
-
+  $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"');
+  echo $currentSensorRow;
+  $currentPoints = $currentSensorRow ->getPoints();
+  echo $currentPoints;
+  array_push($sensors,$currentPoints);
 }
 
 $sensorData = json_encode( $sensors , JSON_UNESCAPED_UNICODE );
