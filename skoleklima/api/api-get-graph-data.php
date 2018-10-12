@@ -17,7 +17,7 @@ $database = InfluxDB\Client::fromDSN(sprintf('influxdb://%s:%s@%s:%s/%s',$dbuser
 require_once "../meta.php";
 
 if( $currentUserID == ""){
-      echo '{"status":"error"}';
+      echo '{"status":"no user"}';
     exit;
 }
 
@@ -34,7 +34,7 @@ $password = DB_PASSWORD;
 $databasename = DB_NAME;
 
 if( $apiPassword !== $phase_api_key){
-  	echo '{"status":"error"}';
+  	echo '{"status":"no api key"}';
 	exit;
 }
 
@@ -42,7 +42,7 @@ if( $apiPassword !== $phase_api_key){
 $conn = new mysqli($servername,$username, $password, $databasename);
 
 if($conn->connect_error){
-    die("Connectio error:" . $conn->connect_error);
+    die("Connection error:" . $conn->connect_error);
     exit;
 }
 
@@ -59,14 +59,14 @@ $MunIDForLocation = $row["MunID"];
 
 if ($currentUserRole == 1){
     if ($MunIDForLocation!=$currentUserCompanyID){
-        echo '{"status":"error"}';
+        echo '{"status":"no company"}';
         exit;
     }
 
 }
 else{
     if ($InstIDForLocation != $InstID){
-        echo '{"status":"error"}';
+        echo '{"status":"no instituion"}';
         exit;
     }
 }
@@ -87,12 +87,12 @@ $from = "'" . $from . "'";
 $to = "'" . $to . "'";
 
 while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
-  echo $result;
+  //echo $result;
     //LAST() -> newest entry
   $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"');
-  echo $currentSensorRow;
+  //echo $currentSensorRow;
   $currentPoints = $currentSensorRow ->getPoints();
-  echo $currentPoints;
+  //echo $currentPoints;
   array_push($sensors,$currentPoints);
 }
 $sensorData = json_encode( $sensors , JSON_UNESCAPED_UNICODE );
