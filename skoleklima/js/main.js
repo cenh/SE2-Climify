@@ -877,6 +877,7 @@ function loadRoomDetails(){
 }
 
 $("#my_button").click(function () {
+    console.log("Button Pressed");
     var x = document.getElementById("temp");
     var text = x.elements[0].value;
     var temperature = Number(text);
