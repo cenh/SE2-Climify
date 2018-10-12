@@ -4,9 +4,7 @@
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
 
-
 require_once "../meta-influx.php";
-
 
 $servername_influx = DB_HOST_INFLUX;
 $serverport_influx = DB_PORT_INFLUX;
@@ -16,16 +14,12 @@ $dbpass_influx = DB_PASSWORD_INFLUX;
 
 $database = InfluxDB\Client::fromDSN(sprintf('influxdb://%s:%s@%s:%s/%s',$dbuser_influx, $dbpass_influx, $servername_influx, $serverport_influx, $dbname_influx));
 
-
 require_once "../meta.php";
-
-
 
 if( $currentUserID == ""){
       echo '{"status":"error"}';
     exit;
-  }
-
+}
 
 // Validate API key
 $apiPassword = API_PASSWORD;
@@ -34,13 +28,10 @@ $LocationID = intval($_POST['LocationID']);
 $from = clean($_POST['from']);
 $to = clean($_POST['to']);
 
-
-
 $servername = DB_HOST;
 $username = DB_USER;
 $password = DB_PASSWORD;
 $databasename = DB_NAME;
-
 
 if( $apiPassword !== $phase_api_key){
   	echo '{"status":"error"}';
@@ -62,13 +53,9 @@ if(!$result) {
     die("Error: " . $conn->error);
 }
 
-
 $row = $result->fetch_assoc();
 $InstIDForLocation = $row["InstID"];
 $MunIDForLocation = $row["MunID"];
-
-
-
 
 if ($currentUserRole == 1){
     if ($MunIDForLocation!=$currentUserCompanyID){
@@ -77,7 +64,6 @@ if ($currentUserRole == 1){
     }
 
 }
-
 else{
     if ($InstIDForLocation != $InstID){
         echo '{"status":"error"}';
@@ -101,12 +87,11 @@ if ($row_cnt==0) {
 
 $sensors=[];
 
-
 $from = "'" . $from . "'";
 $to = "'" . $to . "'";
 
-
 while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
+  echo 'I am here';
   echo $result;
     //LAST() -> newest entry
   $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"');
@@ -115,10 +100,8 @@ while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
   echo $currentPoints;
   array_push($sensors,$currentPoints);
 }
-
+echo 'Done';
 $sensorData = json_encode( $sensors , JSON_UNESCAPED_UNICODE );
-
-
 
 if (count($sensors[0][0])==0){
     echo '{"status":"no sensors retrived"}';
@@ -130,8 +113,5 @@ else{
 }
 
 $conn->close();
-
 $database->close();
-
-
 ?>
