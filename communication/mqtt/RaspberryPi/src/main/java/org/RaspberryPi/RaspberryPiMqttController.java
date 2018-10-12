@@ -18,7 +18,7 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 	
 	@Override
 	protected MessageHandler getMessageHandler(String topic, MqttMessage message) {
-		return super.getMessageHandler(topic, message);
+		return new RaspberryPiMessageHandler(topic, message);
 	}
 	
 	@Override
@@ -27,7 +27,6 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 		
 		RestCommunicator rest = new RestCommunicator();
 		rest.sendSensorsToServer();
-		rest.sendCommandToItem(new Command("15.0", "TestThermostat"));
 	}
 
 	@Override
