@@ -1,7 +1,7 @@
 # SE2-Climify:
 
 ## Releases
-Tag for release #1: https://github.com/cenh/SE2-Climify/tree/1
+Tag for release #1: https://github.com/cenh/SE2-Climify/tree/R1
 
 ## communication/mqtt
 Contains Java code for communication between Virtual Machine and Raspberry Pi.
