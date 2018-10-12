@@ -73,10 +73,6 @@ else{
 
 $result = $conn->query("SELECT SensorID FROM SensorInstance WHERE LocationID='$LocationID'");
 
-while($row = mysqli_fetch_assoc($result)){
-    error_log($row['SensorID'],0);
-}
-
 $row_cnt = $result->num_rows;
 
 if ($row_cnt==0) {
