@@ -29,6 +29,8 @@ print_r($returnFromIfx);
 
 echo $returnFromIfx;
 
+echo $returnFromIfx;
+
 if ($returnFromIfx[results][0][series][0][name] != "measurements") {
     echo '{"status":"Unable to retrieve from InfluxDB"}';
     exit;
