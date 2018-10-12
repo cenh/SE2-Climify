@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    <div class="view-roomX-data-box" style="display:flex">
+    <div class="view-roomX-data-box">
         <div class="temperature">
             <!-- TODO: -->
             <span>
@@ -63,7 +63,7 @@
                 </span>
         </div>
 
-        <div class="view-roomX-data-box" style="border:1px solid #92b2c7; padding:15px">
+        <div class="view-roomX-data-box" style="border:1px solid #92b2c7; display:flex;">
             <div style="">
            <span>
                 <form id="temp" class="my-center">
