@@ -515,8 +515,7 @@ function getGraphData(){
                 dataNoiseAvg[i]=jData[0][i].NoiseAvg;
                 dataNoisePeak[i]=jData[0][i].NoisePeak;
                 //dataTemperature[i]=jData[0][i].Temperature;
-                dataTemperature[i]=jData[0][i].value;
-                console.log(dataTemperature);
+                dataTemperature[i]=parseFloat(jData[0][i].value);
                 var time = jData[0][i].time
 
                 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -535,41 +534,24 @@ function getGraphData(){
 
                 date = time.substring(8,10);
 
-
-
                 dataDates[i]= date + ". " + month + " " + h + ":" + m;
                 dataCO2[i]=jData[0][i].CO2;
-
-
-
-
             }
-
 
             enableDataSettings = true;
             $('.canvas-settings').attr('disabled', false);
             $('#chart-fill').attr('disabled', false);
             $('#chart-select-type').attr('disabled', false);
 
-
             howToDraw();
-
 
             downloadDataDisable = false;
             $("#btn-download-graph-data").removeClass("button-disabled");
 
             chart1TryUpdateData = 0;
-
-
-
-
-
-
         }
 
         else {
-
-
             $('#canvas1').remove();
             $('.chartjs-hidden-iframe').remove();
 
@@ -911,8 +893,6 @@ function drawGraphSingle() {
                 labels: dataDates,
                 datasets: [
                     {
-
-
                         label: "Temperature (°C)",
                         fill: graph.chartFill,
                         backgroundColor: graph.dataSetColer2.temperature,
