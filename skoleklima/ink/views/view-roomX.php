@@ -63,7 +63,7 @@
                 </span>
         </div>
 
-        <div class="view-roomX-data-box" style="border:1px solid #92b2c7; display:flex;">
+        <div class="view-roomX-data-box" style="border:1px solid #92b2c7; padding:15px; display:flex; justify-content: space-between;">
             <div style="">
            <span>
                 <form id="temp" class="my-center">
@@ -74,8 +74,8 @@
             </div>
             <div class="view-roomX-data-box" style="line-height: 30px;">
                              <span>
-                                <i class="menu-link-ico nav-icon fa fa-battery-half" style="margin:0;"></i>
-                                <h4 style="" id="bat_lvl"></h4>
+                                <i class="menu-link-ico nav-icon fa fa-battery-half" style="margin:0; float: right;"></i>
+                                <h4 style="float: right;" id="bat_lvl"></h4>
                             </span>
             </div>
         </div>
