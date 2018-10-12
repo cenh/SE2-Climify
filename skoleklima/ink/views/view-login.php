@@ -4,6 +4,9 @@
 	<div class="login-con">
 		<div class="login-from">
 			<h1>Log ind</h1>
+<!--            <button id="my_button">-->
+<!--                my button-->
+<!--            </button>-->
 			<span>
 				<input id="inp-login-name" class="login-input" type="text" name="" placeholder="Brugernavn">
 				<input id="inp-login-pass" class="login-input" type="password" name="" placeholder="Adgagnskode">
