@@ -1,5 +1,7 @@
 # SE2-Climify:
 
+## Releases
+Tag for release #1: https://github.com/cenh/SE2-Climify/tree/1
 
 ## communication/mqtt
 Contains Java code for communication between Virtual Machine and Raspberry Pi.
@@ -26,8 +28,8 @@ Contains code from previous projects, used for mobile application
 ## sensor_app
 Contains code from previous projects, used for mobile application
 
-
 ## skoleklima
+Code changed: api/api-get-sensor-info.php, js/main.js, js/charts.js, index.php, meta.php, influx-meta.php, api/api-get-graph-data.php, ink/views/view-roomX.php
 Contains the the Skoleklima system running on the Virtual Machine.
 
 
