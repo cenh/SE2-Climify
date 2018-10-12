@@ -198,9 +198,8 @@ canvas {
 }
 .information-box {
   border: 1px solid #92b2c7;
-  width: 330px;
+  width: 100%;
   padding: 15px;
-  float:right;
   overflow: hidden;
 }
 

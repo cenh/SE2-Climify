@@ -1,14 +1,12 @@
-
-
 <div class="single-view view-roomX">
     <?php
     $returnFromIfx = file_get_contents("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery");
     $returnFromIfx = json_encode($returnFromIfx, true);
-    $temperature = file_get_contents(   "http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readOutdoorTemperature");
+    $temperature = file_get_contents("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readOutdoorTemperature");
     $temperature = json_encode($temperature, true);
 
     $humidity = file_get_contents("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readHumidity");
-    $humidity = json_encode($humidity,true);
+    $humidity = json_encode($humidity, true);
     ?>
     <div class="roomX-top">
         <span>
@@ -18,60 +16,68 @@
     </div>
     <hr>
 
-<!--    <div class="button-float">-->
-<!--        <button id="button2">-->
-<!--            REFRESHDATA-->
-<!--        </button>-->
-<!--    </div>-->
+    <!--    <div class="button-float">-->
+    <!--        <button id="button2">-->
+    <!--            REFRESHDATA-->
+    <!--        </button>-->
+    <!--    </div>-->
 
     <!-- TODO: view data -->
     <div class="data-display-box">
-        <div class="temperature-graph-box">
-            <canvas id="myChart"></canvas>
-        </div>
+        <!--        <div class="temperature-graph-box">-->
+        <!--            <canvas id="myChart"></canvas>-->
+        <!--        </div>-->
         <div class="information-box">
             <h3>Information Panel</h3>
-            <div class="view-roomX-data-box">
+            <div class="view-roomX-data-box" style="display: flex; flex-direction: row; line-height: 30px; margin: 10px 0;">
                 <span>
-                    <i class="menu-link-ico nav-icon fa fa-thermometer-half" aria-hidden="true"></i>
-                    <h4 style="float:right; padding-top:10px; padding-right:70%" id="temp_cur"></h4>
+                    <i class="menu-link-ico nav-icon fa fa-thermometer-half" style="margin:0 10px 0 0;" aria-hidden="true"></i>
+                    <h4 style="float: right;" id="temp_cur"></h4>
                 </span>
             </div>
-            <div class="view-roomX-data-box">
+            <div class="view-roomX-data-box" style="display: flex; flex-direction: row; line-height: 30px; margin: 10px 0;">
                 <span>
-                    <i class="menu-link-ico nav-icon fa fa-tint"></i>
-                    <h4 style="float:right; padding-top:10px; padding-right:70%" id="humi_cur"></h4>
+                    <i class="menu-link-ico nav-icon fa fa-tint" style="margin:0 10px 0 0;"></i>
+                    <h4 style="float: right;" id="humi_cur"></h4>
                 </span>
             </div>
-            <div class="view-roomX-data-box">
-                <i class="menu-link-ico nav-icon fa fa-volume-down" aria-hidden="true"></i>
-            </div>
-            <div class="view-roomX-data-box">
-                <span>
-                    <i class="menu-link-ico nav-icon fa fa-battery-half"></i>
-                    <h4 style="float:right; padding-top:10px; padding-right:70%" id="bat_lvl"></h4>
-                </span>
-            </div>
+            <!--            <div class="view-roomX-data-box">-->
+            <!--                <i class="menu-link-ico nav-icon fa fa-volume-down" aria-hidden="true"></i>-->
+            <!--            </div>-->
+            <!--            <div class="view-roomX-data-box">-->
+            <!--                <span>-->
+            <!--                    <i class="menu-link-ico nav-icon fa fa-battery-half"></i>-->
+            <!--                    <h4 style="float:right; padding-top:10px; padding-right:70%" id="bat_lvl"></h4>-->
+            <!--                </span>-->
+            <!--            </div>-->
         </div>
     </div>
 
-
-        <div class="view-roomX-data-box">
-            <div class="temperature">
-                <!-- TODO: -->
-                <span>
+    <div class="view-roomX-data-box">
+        <div class="temperature">
+            <!-- TODO: -->
+            <span>
                     <h4>
                         The current set temperature is: <label id="current_set_temp"></label>
                     </h4>
                 </span>
-            </div>
-        <div class="view-roomX-data-box" style="border:1px solid #92b2c7; padding:15px">
+        </div>
+
+        <div class="view-roomX-data-box" style="border:1px solid #92b2c7; padding:15px; display:flex; justify-content: space-between;">
+            <div style="">
            <span>
                 <form id="temp" class="my-center">
                     Set temperature:
                     <input type="number" name="value">
                 </form>
            </span>
+            </div>
+            <div class="view-roomX-data-box" style="line-height: 30px;">
+                             <span>
+                                <i class="menu-link-ico nav-icon fa fa-battery-half" style="margin:0; float: right;"></i>
+                                <h4 style="float: right; padding-right: 5px;" id="bat_lvl"></h4>
+                            </span>
+            </div>
         </div>
         <div class="button-float" style="float:right; padding:10px">
             <button id="my_button">
@@ -82,49 +88,19 @@
 
 </div>
 <script>
-
-    var googleDate = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})\.(\d{3})([+-]\d{2}):(\d{2})$/;
-
-    function date_conversion(d) {
-        var m = googleDate.exec(d);
-        var year   = +m[1];
-        var month  = +m[2];
-        var day    = +m[3];
-        var hour   = +m[4];
-        var minute = +m[5];
-        var second = +m[6];
-        var msec   = +m[7];
-        var tzHour = +m[8];
-        var tzMin  = +m[9];
-        var tzOffset = new Date().getTimezoneOffset() + tzHour * 60 + tzMin;
-
-        var newDate = new Date(year, month - 1, day, hour, minute - tzOffset, second, msec).toLocaleString();
-        console.log(newDate);
-        return newDate;
-    }
-
     var obj = <?php echo $returnFromIfx; ?>;
     var json_batt = JSON.parse(obj);
     // get the latest battery reading
     var latest = json_batt.results[0].series[0].values.slice(-1)[0];
-    document.getElementById("bat_lvl").innerHTML = latest[1].substring(0,4)+ "%";
+    document.getElementById("bat_lvl").innerHTML = latest[1].substring(0, 4) + "%";
     var t_obj = <?php echo $temperature; ?>;
     var json_t = JSON.parse(t_obj);
-
-
-    var temp_array = json_t.results[0].series[0].values;
-    for (var a = 0; a<temp_array.length; a++ ){
-        console.log(temp_array[a][0]);
-    }
-
-
     var t_latest = json_t.results[0].series[0].values.slice(-1)[0];
-    console.log(t_latest);
-    document.getElementById("temp_cur").innerHTML = t_latest[1].substring(0,4)+ "C";
+    document.getElementById("temp_cur").innerHTML = t_latest[1].substring(0, 4) + "C";
 
     var h_obj = <?php echo $humidity; ?>;
     var json_h = JSON.parse(h_obj);
     var h_latest = json_h.results[0].series[0].values.slice(-1)[0];
-    document.getElementById("humi_cur").innerHTML = h_latest[1].substring(0,4);
+    document.getElementById("humi_cur").innerHTML = h_latest[1].substring(0, 4);
 
 </script>
