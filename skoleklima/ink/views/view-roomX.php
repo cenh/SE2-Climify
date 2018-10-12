@@ -75,7 +75,7 @@
             <div class="view-roomX-data-box" style="line-height: 30px;">
                              <span>
                                 <i class="menu-link-ico nav-icon fa fa-battery-half" style="margin:0; float: right;"></i>
-                                <h4 style="float: right;" id="bat_lvl"></h4>
+                                <h4 style="float: right; padding-right: 5px;" id="bat_lvl"></h4>
                             </span>
             </div>
         </div>
