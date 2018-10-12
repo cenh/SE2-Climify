@@ -82,6 +82,7 @@
 
 </div>
 <script>
+    loadRoomDetails();
     var obj = <?php echo $returnFromIfx; ?>;
     var json_batt = JSON.parse(obj);
     // get the latest battery reading
