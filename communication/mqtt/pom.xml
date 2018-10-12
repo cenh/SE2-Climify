@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>se2.groupc</groupId>
+  <artifactId>mqtt</artifactId>
+  <version>0.1</version>
+
+  <name>mqtt</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+  </properties>
+
+	<repositories>
+    	<repository>
+       	 <id>Eclipse Paho Repo</id>
+       	 <url>https://repo.eclipse.org/content/repositories/paho-releases/</url>
+    	</repository>
+	</repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.eclipse.paho</groupId>
+        <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+        <version>1.2.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.launchdarkly/okhttp-eventsource -->
+   <dependency>
+       <groupId>com.launchdarkly</groupId>
+       <artifactId>okhttp-eventsource</artifactId>
+       <version>1.8.0</version>
+   </dependency>
+   <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>1.7.25</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-simple</artifactId>
+    <version>1.7.25</version>
+</dependency>
+<dependency>
+  <groupId>com.dslplatform</groupId>
+  <artifactId>dsl-json-java8</artifactId>
+  <version>1.8.2</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.dslplatform/dsl-json-processor -->
+<dependency>
+    <groupId>com.dslplatform</groupId>
+    <artifactId>dsl-json-processor</artifactId>
+    <version>1.8.2</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.influxdb/influxdb-java -->
+<dependency>
+    <groupId>org.influxdb</groupId>
+    <artifactId>influxdb-java</artifactId>
+    <version>2.13</version>
+</dependency>
+
+
+  </dependencies>
+  <packaging>pom</packaging>
+  <modules>
+    <module>Climify
+	</module>
+    <module>RaspberryPi</module>
+    <module>MqttLib</module>
+  </modules>
+</project>
