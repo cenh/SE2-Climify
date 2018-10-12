@@ -25,7 +25,7 @@ if( $currentUserID == ""){
       echo '{"status":"error"}';
     exit;
   }
-  
+
 
 // Validate API key
 $apiPassword = API_PASSWORD;
@@ -55,7 +55,7 @@ if($conn->connect_error){
     exit;
 }
 
-$sql = " SELECT * FROM Location NATURAL JOIN Map NATURAL JOIN Institution WHERE LocationID = '$LocationID' ";  
+$sql = " SELECT * FROM Location NATURAL JOIN Map NATURAL JOIN Institution WHERE LocationID = '$LocationID' ";
 
 $result = $conn->query($sql);
 if(!$result) {
@@ -85,7 +85,7 @@ else{
     }
 }
 
-$result = $conn->query("SELECT SensorID FROM SensorInstance WHERE LocationID='$LocationID'"); 
+$result = $conn->query("SELECT SensorID FROM SensorInstance WHERE LocationID='$LocationID'");
 
 while($row = mysqli_fetch_assoc($result)){
     error_log($row['SensorID'],0);
@@ -95,7 +95,7 @@ $row_cnt = $result->num_rows;
 
 if ($row_cnt==0) {
    echo '{"status":"nodata"}';
-    exit; 
+    exit;
 
 }
 
@@ -111,7 +111,7 @@ while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
 
 
     //LAST() -> newest entry
-   $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"' . 'WHERE time >=' . $from . ' AND time <=' . $to . '');
+   $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"');
 
 
 
@@ -120,8 +120,8 @@ while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
 
 
     array_push($sensors,$currentPoints);
-  
-   
+
+
 
 }
 
@@ -131,7 +131,7 @@ $sensorData = json_encode( $sensors , JSON_UNESCAPED_UNICODE );
 
 if (count($sensors[0][0])==0){
     echo '{"status":"no sensors retrived"}';
-    exit; 
+    exit;
 }
 
 else{

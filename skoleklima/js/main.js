@@ -850,7 +850,7 @@ $("#button2").click(function(){
         type: "GET",
         url: "http://130.225.69.76/influxdb/skoleklima/api/api-get-sensor-info.php",
         dataType: "json",
-        data: {sensor: 'readOutdoorTemperature, readBattery'}
+        data: {sensor: 'readOutdoorTemperature'}
     }).done(function (res) {
         console.log(res)
     }).fail(function (jqXHR, textStatus, errorThrown) {
