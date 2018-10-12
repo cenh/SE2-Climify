@@ -11,9 +11,9 @@ $serverport_influx = DB_PORT_INFLUX;
 $dbname_influx = DB_NAME_INFLUX;
 $dbuser_influx = DB_USER_INFLUX;
 $dbpass_influx = DB_PASSWORD_INFLUX;
-
+echo 'test';
 $database = InfluxDB\Client::fromDSN(sprintf('influxdb://%s:%s@%s:%s/%s',$dbuser_influx, $dbpass_influx, $servername_influx, $serverport_influx, $dbname_influx));
-
+echo 'testx';
 require_once "../meta.php";
 
 if( $currentUserID == ""){
