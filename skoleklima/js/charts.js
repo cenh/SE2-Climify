@@ -479,8 +479,6 @@ function getGraphData(){
         to: endDateReplacement + "T23:59:59Z"
 
     }, function (sData) {
-
-
         var jData = JSON.parse(sData);
         console.log(jData);
         if (jData.status!="nodata"){

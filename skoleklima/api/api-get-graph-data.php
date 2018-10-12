@@ -38,14 +38,14 @@ if( $apiPassword !== $phase_api_key){
 	exit;
 }
 
-
+echo 'test1';
 $conn = new mysqli($servername,$username, $password, $databasename);
 
 if($conn->connect_error){
     die("Connection error:" . $conn->connect_error);
     exit;
 }
-
+echo 'test2';
 $sql = " SELECT * FROM Location NATURAL JOIN Map NATURAL JOIN Institution WHERE LocationID = '$LocationID' ";
 
 $result = $conn->query($sql);
@@ -70,7 +70,7 @@ else{
         exit;
     }
 }
-
+echo 'test3';
 $result = $conn->query("SELECT SensorID FROM SensorInstance WHERE LocationID='$LocationID'");
 
 $row_cnt = $result->num_rows;
@@ -85,8 +85,9 @@ $sensors=[];
 
 $from = "'" . $from . "'";
 $to = "'" . $to . "'";
-
+echo 'test4';
 while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
+  echo 'test5';
   //echo $result;
     //LAST() -> newest entry
   $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"');
