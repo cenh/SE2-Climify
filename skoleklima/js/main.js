@@ -782,7 +782,7 @@ function requestNewUserSetup() {
 // for (i = 0; i < 6; i++) {
 //     x.push(i + 1);
 // }
-/*function generateDate(){
+function generateDate(){
     var today = new Date();
     var DD = today.getDate();
     var MM = today.getMonth()+1; //January is 0!
@@ -791,68 +791,64 @@ function requestNewUserSetup() {
     var mm = today.getMinutes();
     var ss = today.getSeconds();
     if(DD<10) {
-        DD = '0'+DD;
+        DD = '0'+DD
     }
     if(MM<10) {
-        MM = '0'+MM;
+        MM = '0'+MM
     }
 
     today = DD + '/' + MM + '/' + YYYY + '/' + hh+':'+mm+':'+ss;
     return today;
 
-}*/
-
-
-
-
+}
 
 //var x = ['09/10/2018  00:00', '05/10/2018  00:00:', '06/10/2018  00:00','07/10/2018  00:00','08/10/2018  00:00', '09/10/2018  00:00'];
-var x = [];
-var timeFormat = 'DD/MM/YYYY  HH::mm:ss';
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        datasets: [{
-            label: "Set temperature",
-            data: []//[12, 19, 3, 5, 2, 3]
-        }],
-        labels: x
-    },
-    options: {
-        responsive: true,
-        title: "Set temperature chart",
-        scales: {
-            xAxes: [{
-                type: 'time',
-                time: {
-                    format: timeFormat,
-                    // round: 'day'
-                    tooltipFormat: 'll HH:mm:ss'
-                },
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Date'
-                }
-            }],
-            yAxes: [{
-                scaleLabel: {
-                    display: true,
-                    labelString: 'value'
-                }
-            }]
-        }
-    }
-
-});
-$("#button2").click(function(){
-    // $.get("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery", function (data) {
-    //     console.log(data);
-    //     console.log("Logged")
-    //
-    // });
-
-});
+// var x = [];
+// var timeFormat = 'DD/MM/YYYY  HH::mm:ss';
+// var ctx = document.getElementById("myChart");
+// var myChart = new Chart(ctx, {
+//     type: 'line',
+//     data: {
+//         datasets: [{
+//             label: "Set temperature",
+//             data: []//[12, 19, 3, 5, 2, 3]
+//         }],
+//         labels: x
+//     },
+//     options: {
+//         responsive: true,
+//         title: "Set temperature chart",
+//         scales: {
+//             xAxes: [{
+//                 type: 'time',
+//                 time: {
+//                     format: timeFormat,
+//                     // round: 'day'
+//                     tooltipFormat: 'll HH:mm:ss'
+//                 },
+//                 scaleLabel: {
+//                     display: true,
+//                     labelString: 'Date'
+//                 }
+//             }],
+//             yAxes: [{
+//                 scaleLabel: {
+//                     display: true,
+//                     labelString: 'value'
+//                 }
+//             }]
+//         }
+//     }
+//
+// });
+// $("#button2").click(function(){
+//     // $.get("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery", function (data) {
+//     //     console.log(data);
+//     //     console.log("Logged")
+//     //
+//     // });
+//
+// });
 //TODO:
 function loadRoomDetails(){
     $.ajax({
@@ -863,7 +859,7 @@ function loadRoomDetails(){
     }).done(function (res) {
         var battery_level = (res.results[0].series[0].values.slice(-1)[0])[1];
         document.getElementById("bat_lvl").innerHTML = res;
-        console.log(battery_level);
+        console.log(battery_level)
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
@@ -873,7 +869,7 @@ function loadRoomDetails(){
         url: "http://130.225.69.76/playground/skoleklima/api/api-get-current-temperature.php",
         dataType: "json",
     }).done(function (res) {
-        console.log(res);
+        console.log(res)
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
@@ -881,16 +877,18 @@ function loadRoomDetails(){
 }
 
 $("#my_button").click(function () {
+    console.log("Button Pressed");
     var x = document.getElementById("temp");
     var text = x.elements[0].value;
     var temperature = Number(text);
 
-    //i++;
-    myChart.data.labels.push(generateDate());
-    myChart.data.datasets.forEach((dataset) => {
-        dataset.data.push(temperature);
-    });
-    myChart.update();
+    // //i++;
+    // myChart.data.labels.push(generateDate());
+    // myChart.data.datasets.forEach((dataset) => {
+    //     dataset.data.push(temperature);
+    // });
+    // myChart.update();
+    document.getElementById('current_set_temp').innerHTML = text;
 
 
     // Create a client instance
@@ -916,7 +914,6 @@ $("#my_button").click(function () {
         message = new Paho.MQTT.Message(msg_text);
         message.destinationName = "commandse2/test";
         client.publish(message);
-        document.getElementById('current_set_temp').innerHTML = text;
     }
 
 // called when the client loses its connection
