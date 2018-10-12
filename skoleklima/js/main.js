@@ -803,52 +803,52 @@ function generateDate(){
 }
 
 //var x = ['09/10/2018  00:00', '05/10/2018  00:00:', '06/10/2018  00:00','07/10/2018  00:00','08/10/2018  00:00', '09/10/2018  00:00'];
-var x = [];
-var timeFormat = 'DD/MM/YYYY  HH::mm:ss';
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        datasets: [{
-            label: "Set temperature",
-            data: []//[12, 19, 3, 5, 2, 3]
-        }],
-        labels: x
-    },
-    options: {
-        responsive: true,
-        title: "Set temperature chart",
-        scales: {
-            xAxes: [{
-                type: 'time',
-                time: {
-                    format: timeFormat,
-                    // round: 'day'
-                    tooltipFormat: 'll HH:mm:ss'
-                },
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Date'
-                }
-            }],
-            yAxes: [{
-                scaleLabel: {
-                    display: true,
-                    labelString: 'value'
-                }
-            }]
-        }
-    }
-
-});
-$("#button2").click(function(){
-    // $.get("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery", function (data) {
-    //     console.log(data);
-    //     console.log("Logged")
-    //
-    // });
-
-});
+// var x = [];
+// var timeFormat = 'DD/MM/YYYY  HH::mm:ss';
+// var ctx = document.getElementById("myChart");
+// var myChart = new Chart(ctx, {
+//     type: 'line',
+//     data: {
+//         datasets: [{
+//             label: "Set temperature",
+//             data: []//[12, 19, 3, 5, 2, 3]
+//         }],
+//         labels: x
+//     },
+//     options: {
+//         responsive: true,
+//         title: "Set temperature chart",
+//         scales: {
+//             xAxes: [{
+//                 type: 'time',
+//                 time: {
+//                     format: timeFormat,
+//                     // round: 'day'
+//                     tooltipFormat: 'll HH:mm:ss'
+//                 },
+//                 scaleLabel: {
+//                     display: true,
+//                     labelString: 'Date'
+//                 }
+//             }],
+//             yAxes: [{
+//                 scaleLabel: {
+//                     display: true,
+//                     labelString: 'value'
+//                 }
+//             }]
+//         }
+//     }
+//
+// });
+// $("#button2").click(function(){
+//     // $.get("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery", function (data) {
+//     //     console.log(data);
+//     //     console.log("Logged")
+//     //
+//     // });
+//
+// });
 //TODO:
 function loadRoomDetails(){
     $.ajax({
