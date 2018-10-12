@@ -114,7 +114,7 @@
 
     var temp_array = json_t.results[0].series[0].values;
     for (var a = 0; a<temp_array.length; a++ ){
-        date_conversion(temp_array[a][0]);
+        console.log(temp_array[a][0]);
     }
 
 
