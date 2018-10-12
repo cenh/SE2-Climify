@@ -31,11 +31,11 @@
             <h3>Information Panel</h3>
             <div class="view-roomX-data-box" style="display: flex; flex-direction: row; line-height: 30px; margin: 10px 0;">
                 <span>
-                    <i class="menu-link-ico nav-icon fa fa-thermometer-half" aria-hidden="true"></i>
-                    <h4 style=" padding-top:10px; float: right; padding-right: 91%" id="temp_cur"></h4>
+                    <i class="menu-link-ico nav-icon fa fa-thermometer-half" style="margin:0 10px 0 0;" aria-hidden="true"></i>
+                    <h4 style="float: right;" id="temp_cur"></h4>
                 </span>
             </div>
-            <div class="view-roomX-data-box">
+            <div class="view-roomX-data-box" style="display: flex; flex-direction: row; line-height: 30px; margin: 10px 0;">
                 <span>
                     <i class="menu-link-ico nav-icon fa fa-tint" style="margin:0 10px 0 0;"></i>
                     <h4 style="float: right;" id="humi_cur"></h4>
