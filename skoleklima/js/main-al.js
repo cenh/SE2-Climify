@@ -50,22 +50,14 @@ firstChange = true;
 isStart = 1;
 
 $(document).ready(function () {
-
     if (currentUserRole == 1 || currentUserRole == 15) {
-
         showSchool = "";
-
         findInstsFromInput();
-
-
         //List buildings associated with users
         getBuildingList();
         //Creates other user text
         removeunactivated();
-
     } else {
-
-
         showSchool = currentUserSchoolName;
         showSchoolID = currentUserSchool;
 
@@ -78,37 +70,25 @@ $(document).ready(function () {
         graphSelectMap = $(".chart-select-map");
         graphSelectLocation = $(".chart-select-location");
 
-
         //Create list of maps
         createMapList();
-
-
         loadMessages();
-
 
         //Hide option of writing news if not build man. og project man.
         $(".list-communication-type").hide();
 
-
         //if ( currentUserRole == "1" || currentUserRole == "15" || currentUserRole == "2" || currentUserRole == "3" || currentUserRole == "4" ) {
         if (currentUserRole != 1) {
             loadMaps();
-
-
         }
-
 
         if (currentUserRole == 2) {
             listAllPermissions();
         }
-
-
     }
-
 
     //dateRangePicker1();
     //dateRangePicker2();
-
 
     if (showSchool == "") {
         $("#create-message-from-user").addClass("button-disabled");
@@ -117,26 +97,17 @@ $(document).ready(function () {
     }
 })
 
-
 function findInstsFromInput() {
-
     $("#buildingResults").empty();
-
-
     $.get("api/api-get-schools-names.php", function (sData) {
-
         var jData = JSON.parse(sData);
-
         muns = [];
         $.each(jData, function (key, valueObj) {
             if (valueObj !== null && valueObj !== "") {
                 //we need MunID and MunName for possible creation of new building within the Municipality UPDATE: No longer the case - might be of use anyways tho
                 //var jsonValue = JSON.stringify({"InstName":valueObj.InstName,"MunID":valueObj.MunID,"MunName":valueObj.MunName});
                 $(".list-schools-other-users").append('<option id="' + valueObj.InstID + '" value=' + valueObj.InstName + '>' + valueObj.InstName + '</option>');
-
-
                 $("#buildingResults").append('<option id="' + valueObj.InstID + '" value="' + valueObj.InstName + '"></option>');
-
             }
         });
     });
@@ -147,8 +118,6 @@ function removeunactivated() {
 }
 
 $("#inp-building-name").on("input", function (e) {
-
-
     saveBuildingButton = true;
     deleteBuildingButton = false;
     //$("#btn-save-building").text("Save").removeClass("button-disabled");
@@ -156,7 +125,6 @@ $("#inp-building-name").on("input", function (e) {
     $("#btn-delete-building").addClass("button-disabled");
     $("#btn-update-building").addClass("button-disabled");
     $(".building-detail-h4").text("Choose institution");
-
 
     var val = $(this).val();
     if (val === "") {
@@ -166,17 +134,12 @@ $("#inp-building-name").on("input", function (e) {
     //You could use this to limit results
     //if(val.length < 3) return;
 
-
     dataList = $("#buildingResults");
     var options = document.getElementById("buildingResults").options;
 
     for (var i = 0; i < options.length; i++) {
-
-
         if ((options[i].value).localeCompare(val) == 0) {
             itMatches = options[i].id;
-
-
             saveBuildingButton = false;
             deleteBuildingButton = true;
             $("#btn-save-building").addClass("button-disabled");
@@ -185,7 +148,6 @@ $("#inp-building-name").on("input", function (e) {
 
             $("#btn-delete-building").attr('class', " ");
             $("#btn-update-building").attr('class', " ");
-
         }
     }
 });
@@ -194,14 +156,12 @@ $("#inp-building-name").on("input", function (e) {
 
 function setOtherUsersText() {
     //Alerts user if there are limited users they need to activate.
-
     if (currentUserRole == 2 || currentUserRole == 3) {
         //check how many unactivated limited users have requested
         var sUrl = "api/api-get-user-activate.php?fAY2YfpdKvR=" + sender + "&userID=" + currentUserID;
 
         $.get(sUrl, function (sData) {
             var jData = JSON.parse(sData);
-
             if (jData.length != 0) {
                 var otherUserString = "Other users (" + jData.length + ")";
                 document.getElementById("menu-link-text-other-users").innerHTML = otherUserString;
@@ -214,7 +174,6 @@ function setOtherUsersText() {
         resetOtherUserText();
         hasUnactivatedUsers = false;
     }
-
 }
 
 function resetOtherUserText() {
@@ -222,7 +181,6 @@ function resetOtherUserText() {
     document.getElementById("menu-link-text-other-users").style.color = '#000000';
     removeunactivated();
 }
-
 
 var reP = (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}$/);
 
@@ -355,10 +313,8 @@ if (window.matchMedia('(max-width: 800px)').matches) {
     });
 }
 
-
 // Administate locations / buildings
 if (currentUserRole == "1") {
-
     // Test influx connection
     var sUrl = "api/api-get-influx-info.php"
     $.post(sUrl, {
@@ -398,7 +354,6 @@ if (currentUserRole == "1") {
         }
     });
 
-
     // List buildings associated with user
 
     function getBuildingList() {
@@ -409,7 +364,6 @@ if (currentUserRole == "1") {
         }, function (sData) {
             var jData = JSON.parse(sData);
             $("#building-list-wapper").empty();
-
 
             var temp = '<div class="building-single" data-building-list-id="{{buildingID}}"\
     		data-building-list-name="{{buildingName}}"\
@@ -428,7 +382,6 @@ if (currentUserRole == "1") {
             }
         });
     }
-
 
     var showBuildigDetail = false;
     var saveBuildingButton = false;
@@ -480,11 +433,8 @@ if (currentUserRole == "1") {
 
     // Save/Update building
     $(document).on("click", "#btn-update-building", function () {
-
-
         var thisBuildingId = itMatches;
         if (thisBuildingId) {
-
             var sUrl = "api/api-update-building.php";
             $.post(sUrl, {
                 fAY2YfpdKvR: sender,
@@ -512,15 +462,10 @@ if (currentUserRole == "1") {
                     }, 2000);
                 }
             });
-
-
         }
-
     });
 
     $(document).on("click", "#btn-save-building", function () {
-
-
         var sUrl = "api/api-create-building.php";
         $.post(sUrl, {
             fAY2YfpdKvR: sender,
@@ -548,12 +493,9 @@ if (currentUserRole == "1") {
                 }, 2000);
             }
         });
-
-
     });
 
     // Delete building
-
     $(document).on("click", "#btn-delete-building", function () {
         var selectedBuildingID = itMatches;
         if (deleteBuildingButton) {
@@ -575,7 +517,6 @@ if (currentUserRole == "1") {
     });
 
     function requestDeleBuilding(buildingID) {
-
         var sUrl = "api/api-delete-building.php"
         $.post(sUrl, {
             fAY2YfpdKvR: sender,
@@ -591,10 +532,8 @@ if (currentUserRole == "1") {
                 findInstsFromInput(); //update institutions
             }
         });
-
     }
 }
-
 
 $("#inp-set-system-user, #inp-set-system-pass").click(function () {
     $("#inp-set-system-user, #inp-set-system-pass").removeClass("wrong-login");
@@ -629,30 +568,21 @@ $(document).on("click", ".ico-hide-show-own-user-pass", function () {
     }
 });
 
-
 $(document).on('change', '.chart-select-map', function () {
-
-
     //One should be able to compare locations at this point
     $("#btn-get-compare-data").removeClass("button-disabled");
     disableCompareBtn = false;
-
-
     MapID = $(this).find('option:selected').attr('value');
-
     createLocationList(MapID);
-
 
     if (firstChange == false) {
         graphSelectLocation.find('option').not(':first').remove();
         $("#compare-devices-list").empty();
         //first = true; //so next chosen map standLoc won't be removed
     }
-
     else {
         firstChange = false;
     }
-
 
     if ($(this).attr('id') != "mapLogbook") {
         showWarningNoSchoolGraph2();
@@ -660,9 +590,7 @@ $(document).on('change', '.chart-select-map', function () {
         clearCompareGraph();
     }
 
-
 });
-
 
 $(document).on('change', '.chart-select-location', function () {
     //Now you can write messages!
@@ -670,13 +598,11 @@ $(document).on('change', '.chart-select-location', function () {
 
     showSchoolStatus();
 
-
     if ($(this).attr('id') != "comuSelect") {
         showWarningNoSchool();
         getGraphData();
     }
 });
-
 
 // Others users
 /*
@@ -684,7 +610,6 @@ $('#schoolOptions').val('trigger');
 $('#schoolOptions').trigger('change'); //trigger change
 */
 $(document).on('change', '.list-schools-other-users', function () { //hereyo
-
 
     if (firstChange == false) {
         $(".chart-select-map").find('option').not(':first').remove();
@@ -694,7 +619,6 @@ $(document).on('change', '.list-schools-other-users', function () { //hereyo
 
     showSchool = $(this).find('option:selected').attr('value');
     showSchoolID = $(this).find('option:selected').attr('id');
-
 
     if (showSchool == "") {
         $(".map-settings-show-info-live-start, .map-settings-show-info-live").addClass("mapLiveInfo");
@@ -742,72 +666,47 @@ $(document).on('change', '.list-schools-other-users', function () { //hereyo
         //getDataShowMap();
     }, 1000);
 
-
     //select1 = $(".chart-select-floor-plan");
     graphSelectMap = $(".chart-select-map");
     //select = $(".chart-select-floor-plan");
     graphSelectLocation = $(".chart-select-location");
 
-
     //Create list of maps
     createMapList();
-
-
     listAllUsers();
     //getAllSchoolUsers();
-
 });
 
-
 function createMapList() {
-
     var sUrl = "api/api-get-nonICMeter-Maps.php?fAY2YfpdKvR=" + sender + "&userrole=" + currentUserRole + "&InstID=" + showSchoolID;
     // Do AJAX and pahse
     $.get(sUrl, function (sData) {
-
         var jData = JSON.parse(sData);
         var i = 0;
 
         while (i < jData.length) {
-
             MapID = jData[i].MapID;
             MapName = jData[i].MapName;
-
             if (document.getElementById("map" + MapID) == null) {
                 //If Map option has NOT been created:
-
-
                 mapGroup = $('<option id="map' + MapID + '" value="' + MapID + '">' + MapName + '</option>');
-
-
             }
             graphSelectMap.append(mapGroup);
             i++;
         } //While ends
-
-
         graphSelectMap.val('stand');
-
     });
-
-
 }
 
-
 function createLocationList(MapID) {
-
     var sUrl = "api/api-get-nonICMeter-Area-Location.php?fAY2YfpdKvR=" + sender + "&userrole=" + currentUserRole + "&MapID=" + MapID;
 
     // Do AJAX and pahse
     $.get(sUrl, function (sData) {
-
         var jData = JSON.parse(sData);
-
         var i = 0;
-
         while (i < jData.length) {
             //Each Map name is unique so we try to categorize after map name
-
             MapID = jData[i].MapID;
             AreaID = jData[i].AreaID;
             MapName = jData[i].MapName;
@@ -821,28 +720,17 @@ function createLocationList(MapID) {
                 areaGroup = $('<optgroup label="' + AreaName + '" value="' + AreaName + '" id="area' + AreaID + '"></optgroup>');
                 locationGroup = $('<option id="' + LocationID + '" value="' + LocationName + '">' + LocationName + '</option>');
                 areaGroup.append(locationGroup);
-
-
             }
-
             else {
-
                 //If Area option has been created:
                 $("#area" + AreaID).append('<option id="' + LocationID + '" value="' + LocationName + '">' + LocationName + '</option>');
-
-
             }
 
             locationGroup = $('<option id="' + LocationID + '" value="' + LocationName + '">' + LocationName + '</option>');
 
             graphSelectLocation.append(locationGroup);
-
-
             i++;
-
             graphSelectLocation.val("locStand");
-
-
             //To compare Locations at a map (in graphs)
 
             $("#compare-devices-list").append(
@@ -851,13 +739,9 @@ function createLocationList(MapID) {
                 '<label for="check' + LocationID + '"></label>' +
                 '<p>' + LocationName + '</p>' +
                 '</span>');
-
-
         } //While ends
-
     }); //GET ends
 }
-
 
 $(document).on('change', '.chart-select-device', function () {
     var val = $(".chart-select-device").val();
@@ -956,7 +840,6 @@ $(document).on("change", ".school-user input, .school-user select", function () 
     $(this).siblings().find(".icon-save-user").show();
 });
 
-
 // Show save permission icon
 $(document).on("change", ".permission input ", function () {
     $(this).css("border", "solid 1px #92b2c7");
@@ -1020,7 +903,6 @@ $(document).on("click", ".icon-delete-admin", function () {
     $(".cancel").html("Cancel");
 });
 
-
 // Update Permission
 $(document).on("click", ".icon-save-permission", function () {
     thisClick = $(this);
@@ -1045,9 +927,7 @@ $(document).on("click", ".icon-save-user", function () {
 });
 
 // Admin user buttons
-
 $(".other-admin-edit, .list-other-admin-users-create").hide();
-
 $('#btn-toggle-create-admin').click(function () {
     $(".other-admin-edit").slideToggle();
     $(".list-other-admin-users-create").slideUp();
@@ -1089,7 +969,6 @@ $('#icn-close-data-map-info').click(function () {
     showInfoDivecesMap = false;
 });
 
-
 $(".btn-show-view-map-info").click(function () {
     if (showInfoDivecesMap == false) {
         $("html, body").animate({
@@ -1117,7 +996,6 @@ $(document).on("change", ".ic-meter-device input", function () {
     $(this).siblings().find(".icon-save-device-alias").css("visibility", "visible");
 });
 
-
 // Update school user
 $(document).on("click", ".icon-save-device-alias", function () {
     thisClick = $(this);
@@ -1130,7 +1008,6 @@ $(document).on("click", ".icon-save-device-alias", function () {
 });
 
 // Charts
-
 $(document).on('change', '#chart-select-type', function () {
     if (graph.chartType == "bar") {
         $(".chart-fill").show();
@@ -1170,7 +1047,6 @@ if (window.matchMedia('(min-width: 800px)').matches) {
 }
 
 // Download data from chart
-
 $(document).on("click", "#btn-download-graph-data", function () {
     if (!downloadDataDisable) {
         fnExcelReport();
@@ -1250,7 +1126,6 @@ function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHum
     $('#exportDataHolder').append(TableMarkUp);
 }
 
-
 function fnExcelReport() {
     var ListOfDataDates = dataDates;
     var ListOfDataTemperature = dataTemperature;
@@ -1318,7 +1193,6 @@ $('#icn-close-view-data-info').click(function () {
 /**********************************/
 //		Functions
 /**********************************/
-
 function showMenu() {
     $("#side-navigation").animate({left: '0px'}, 500, "swing");
     $(".dashboard").animate({left: '200px'}, 500, "swing");
@@ -1348,7 +1222,6 @@ function showHideMenu() {
         hideMenu();
     }
 }
-
 
 function showChangePassword() {
     if (showChangeOwnPass == false) {
@@ -1489,9 +1362,7 @@ function requestUpdateOwnUser() {
                 }
             }
         });
-
     }
-
 };
 
 function requestCreateOtherUser() {
@@ -1551,12 +1422,8 @@ function requestCreateOtherUser() {
 
     function sendOtherUserCreateRequest() {
         var sUrl = "api/api-create-user.php?fAY2YfpdKvR=" + sender + "&currentUserName=" + currentUserName + "&firstName=" + createFirstName + "&lastName=" + createLastName + "&userName=" + createUserName + "&email=" + createEmail + "&role=" + createRole + "&school=" + showSchoolID;
-
         $.get(sUrl, function (Data) {
-
             var jData = JSON.parse(Data);
-
-
             if (jData.status == "ok") {
                 swal({
                     title: "",
@@ -1581,20 +1448,14 @@ function requestCreateOtherUser() {
                 });
                 $("#inp-other-user-username").val("");
             } else {
-
-
                 swal({
                     title: "",
                     text: 'The profile was not created',
                     type: "error"
                 });
                 resetCreateOtherUser();
-
             }
-
-
         });
-
     }
 }
 
@@ -1687,11 +1548,7 @@ function requestCreateOtherAdmin() {
                 });
                 $("#inp-other-admin-username").val("");
             } else {
-
-
             }
-
-
         });
     }
 }
@@ -1699,17 +1556,11 @@ function requestCreateOtherAdmin() {
 function listAllPermissions() {
     getAllPermissions();
     $(".permissions-list-school-info").text("Check the boxes to allow different user roles to do different actions");
-
-
 }
-
 
 // List all locations and their coordinates
 function getAllLocationsFromSchool() {
-
-
     var sUrl = "api/api-get-locations.php";
-
 
     $.ajax({
         url: sUrl,
@@ -1777,7 +1628,6 @@ function getAllLocationsFromSchool() {
             sDeviceTemplate1 = sDeviceTemplate1.replace("{{1boxName}}", jData[i].LocationName);
             sDeviceTemplate1 = sDeviceTemplate1.replace("{{1alias}}", jData[i].LocationName);
 
-
             if (currentUserRole == 1 || currentUserRole == 2) {		//changed to integers instead of strings
                 $("#devices-list-content-wrapper").append(sDeviceTemplate1);
             }
@@ -1797,7 +1647,6 @@ function getAllLocationsFromSchool() {
             sDeviceTemplate2 = sDeviceTemplate2.replace("{{2boxFor}}", jData[i].LocationID);
             sDeviceTemplate2 = sDeviceTemplate2.replace("{{2value}}", jData[i].SensorID);
             sDeviceTemplate2 = sDeviceTemplate2.replace("{{2checkColor}}", randomColor);
-
 
             if (boxAlias == "") {
                 if ($.cookie("set-device") == boxQR) {
@@ -1821,14 +1670,9 @@ function getAllLocationsFromSchool() {
             }
             $("#compare-devices-list").append(sDeviceTemplate2);
         }
-
-
     });
     $(".view-devices-list-device-info").text("All locations at " + showSchool);
-
-
 }
-
 
 // Retrive live sensor data units
 function getLiveUnit(locID) {
@@ -1852,7 +1696,6 @@ function getLiveUnit(locID) {
     });
 }
 
-
 // Retrieve live sensor data
 // from all sensors assigned to a location
 function getLiveDataForEachLocation(locID, index) {
@@ -1864,7 +1707,6 @@ function getLiveDataForEachLocation(locID, index) {
         //type: 'post',
         async: false,
         success: function (sData) {
-
             //alert("getLiveData success");
             //alert("sData from getsensoronschool: "+sData);
             //alert(sData);
@@ -1873,7 +1715,6 @@ function getLiveDataForEachLocation(locID, index) {
             if (jData.status == "error") {
                 swal("", "Something went wrong. Try again later", "error");
             } else {
-
                 //Update sensor lists
                 dates = [];
                 var temperatureSum = 0;
@@ -1963,14 +1804,9 @@ function getLiveDataForEachLocation(locID, index) {
     });
 }
 
-
 // Update Device Alias
-
 function updateLocationName(locID, locName) {
-
-
     var sUrl = "api/api-update-nonICMeter-alias.php?LocationID=" + locID + "&LocationName=" + locName;
-
 
     $.get(sUrl, function (sData) {
         var jData = JSON.parse(sData);
@@ -1980,24 +1816,18 @@ function updateLocationName(locID, locName) {
             $(thisClick).css("visibility", "hidden");
             $(".chart-select-device option[value=" + boxQR + "]").remove();
             $("#canvas-settings-2-" + boxQR).parent().remove();
-
             $(".chart-select-location").find('option').not(':first').remove();
-
-
             MapID = graphSelectMap.find('option:selected').attr('value');
-
             createLocationList(MapID);
         }
         else {
             swal("", "Something went wrong try again later!", "error");
         }
     });
-
 }
 
 //List all permissions
 function getAllPermissions() {
-
     var sUrl = "api/api-get-permissions.php?\
 	fAY2YfpdKvR=" + sender + "&\
 	school=" + showSchoolID;
@@ -2016,7 +1846,6 @@ function getAllPermissions() {
 		</span>\
 		</div>\
 		';
-
         $("#permissions-list-content-wrapper").empty();
         // Loop through users
         for (var i = 0; i < jData.length; i++) {
@@ -2059,10 +1888,8 @@ function getAllPermissions() {
     });
 }
 
-
 // Update permissions
 function updatePermission(thisClick, permID, permRole2, permRole3, permRole4) {
-
     if (permID != null) {
         var sUrl = "api/api-update-permission.php?\
 		fAY2YfpdKvR=" + sender + "&\
@@ -2085,9 +1912,7 @@ function updatePermission(thisClick, permID, permRole2, permRole3, permRole4) {
     }
 }
 
-
 // List all users
-
 //List all permissions
 function getAllPermissions() {
 
@@ -2096,7 +1921,6 @@ function getAllPermissions() {
 	school=" + showSchoolID;
 
     $.getJSON(sUrl, function (jData) {
-
 
         var perm = '<div class="permission">\
 		<div id="list-permission-id" value={{value}} class="tooltip">{{permissionname}}\
@@ -2154,10 +1978,8 @@ function getAllPermissions() {
     });
 }
 
-
 // Update permissions
 function updatePermission(thisClick, permID, permRole2, permRole3, permRole4) {
-
     if (permID != null) {
         var sUrl = "api/api-update-permission.php?\
 		fAY2YfpdKvR=" + sender + "&\
@@ -2180,12 +2002,9 @@ function updatePermission(thisClick, permID, permRole2, permRole3, permRole4) {
     }
 }
 
-
 // List all users
-
 function getAllSchoolUsers() {
     if (currentUserRole == "1" || currentUserRole == "2" || currentUserRole == "3") {
-
         var sUrl = "api/api-get-users-from-school.php?\
 		fAY2YfpdKvR=" + sender + "&\
 		school=" + showSchoolID;
@@ -2265,9 +2084,7 @@ $(document).on("click", ".school-user input", function () {
 });
 
 function getSearchSchoolUsers() {
-
     var searchInput = $("#inp-search-user").val();
-
     // Store link to api
     var sUrl = "api/api-get-users-from-search.php?\
     fAY2YfpdKvR=" + sender + "&\
@@ -2275,7 +2092,6 @@ function getSearchSchoolUsers() {
 
     // Do AJAX and phase url
     $.getJSON(sUrl, function (jData) {
-
         // Content in this variable is what gets append to div #userList
         var sUser = '<div class="school-user">\
         <input type="text" class="list-user-username" value="{{username}}" readonly>\
@@ -2318,10 +2134,8 @@ function getSearchSchoolUsers() {
     });
 }
 
-
 // Update school user
 function updateSchoolUser(thisClick, username, firsname, lastname, email, password, role) {
-
     // Set up variables for validation
     var validateInput = {
         username: false,
@@ -2367,7 +2181,6 @@ function updateSchoolUser(thisClick, username, firsname, lastname, email, passwo
     }
 
     if (validateInput.firstName == true && validateInput.lastName == true && validateInput.email == true && validateInput.password == true) {
-
         var sUrl = "api/api-update-other-user.php?\
     	fAY2YfpdKvR=" + sender + "&\
     	current-username=" + currentUserName + "&\
@@ -2394,7 +2207,6 @@ function updateSchoolUser(thisClick, username, firsname, lastname, email, passwo
         });
     }
 }
-
 
 function listAllUsers() {
     getAllSchoolUsers();
@@ -2472,16 +2284,12 @@ function deleteAdminUser(username) {
 
 function getAllUnactivatedStudents() {
     if (showSchoolID != 0) {
-
         if (currentUserRole == "1" || currentUserRole == "2" || currentUserRole == "3") {
-
             var sUrl = "api/api-get-unactivated-users-for-user.php?\
 			fAY2YfpdKvR=" + sender + "&\
 			userID=" + currentUserID;
 
-
             $.getJSON(sUrl, function (jData) {
-
                 var sUser = '<div class="unactivated-school-user">\
 				<input type="text" class="list-user-username" value="{{username}}" readonly>\
 				<input type="text" class="list-user-first-name" value="{{firstname}}" readonly>\
@@ -2508,19 +2316,14 @@ function getAllUnactivatedStudents() {
 
                             $("#unactivated-users-list-content-wrapper").append(sUserTemplate);
                         }
-
                     }
                 }
             });
         }
-
     }
-
 }
 
-
 // List admin users
-
 function listAdminUsers() {
     var sUrl = "api/api-get-users-admin.php?\
 	fAY2YfpdKvR=" + sender + "&\
@@ -2528,7 +2331,6 @@ function listAdminUsers() {
 
     // Do AJAX and phase url
     $.getJSON(sUrl, function (jData) {
-
         // Content in this variable is what gets append to div #userList
         var sUser = '<div class="admin-user">\
         <input type="hidden" class="list-admin-username" value="{{username}}" readonly>\
@@ -2596,7 +2398,6 @@ function hexToRgbA(hex) {
 /**********************************/
 //		Maps
 /**********************************/
-
 var showUplodeMap = false;
 $(document).on("click", ".btn-show-upload-new-map", function () {
     if (disableMapUp == false) {
@@ -2661,6 +2462,7 @@ if (currentUserRole == "1" || currentUserRole == "2") {
             $("#inp-map-name").addClass("wrong-login");
         }
     });
+
     $(document).on("change", "#upload-map-file", function () {
         var reader = new FileReader();
         $(".crop-img-admin").show();
@@ -2673,7 +2475,6 @@ if (currentUserRole == "1" || currentUserRole == "2") {
         reader.readAsDataURL(this.files[0]);
     });
 
-
     $(document).on("click", "#close-cropper", function () {
         resetUpload();
     });
@@ -2681,11 +2482,9 @@ if (currentUserRole == "1" || currentUserRole == "2") {
     // Toggle between bullet points
     $(document).on("click", "#btn-progress-previous", function () {
         if ($('#andet').attr("class") == "header-progress-item done") {
-
             // Change bullet color
             $('#andet').removeClass();
             $('#andet').addClass("header-progress-item todo");
-
             // Go back to setting first
             $('#map-cropped-canvas-coord2').hide();
             $('#btn-progress-next').text("Next");
@@ -2701,7 +2500,6 @@ if (currentUserRole == "1" || currentUserRole == "2") {
             $('#guide').html("Select a point on the floorplan. <br> Select the corresponding point on Google Maps.");
 
         } else if ($('#første').attr("class") == "header-progress-item done") {
-
             // Change bullet color
             $('#første').removeClass();
             $('#første').addClass("header-progress-item todo");
@@ -2724,7 +2522,6 @@ if (currentUserRole == "1" || currentUserRole == "2") {
 
     // Toggle between bullet points
     $(document).on("click", "#btn-progress-next", function () {
-
         if ($('#første').attr("class") == "header-progress-item todo") {
             // Change bullet color
             $('#første').removeClass();
@@ -2775,7 +2572,6 @@ if (currentUserRole == "1" || currentUserRole == "2") {
             $('#guide').html("Select a second point on the floorplan, preferably far away from the first point. <br> Select the corresponding point on Google Maps.");
 
         } else if ($('#andet').attr("class") == "header-progress-item done" && marker2Set) {
-
             // TODO: calculations
             calcDistance();
             calcRotation();
@@ -2789,19 +2585,13 @@ if (currentUserRole == "1" || currentUserRole == "2") {
 
             // Reset values
             resetUpload();
-
-
         }
-
     });
-
 
     // Make cropped image clickable
     // to get coordinates
     $(".map-cropped-canvas").on("click", function (event) {
-
         var imgOffset = $("#map-cropped").offset();
-
         // Save coords temporarily
         // to calculate ratio later on
         x = parseInt(event.pageX - imgOffset.left);
@@ -2830,10 +2620,7 @@ if (currentUserRole == "1" || currentUserRole == "2") {
         ctx.beginPath();
         ctx.arc(x, y, markerSize, 0, Math.PI * 2, true);
         ctx.fill();
-
-
     });
-
 }
 
 function resetUpload() {
@@ -2870,7 +2657,6 @@ function resetUpload() {
     $('#map-cropped-canvas-coord2').hide();
     dotColor = redColor;
 
-
     $('.button-container').hide();
     $('.google-map-container').hide();
 
@@ -2880,7 +2666,6 @@ function resetUpload() {
     $('#btn-progress-previous').hide();
 
     $('#guide').html("Drag and zoom on the floorplan for desired crop");
-
 }
 
 function createMap() {
@@ -2908,20 +2693,16 @@ function createMap() {
 
     geocoder = new google.maps.Geocoder();
 
-
     // Center map at institution name
     geocodeAddress(geocoder, map, showSchool);
 
     $('#submit').on('click', function () {
         geocodeAddress(geocoder, map, "");
     });
-
-
 }
 
 function geocodeAddress(geocoder, resultsMap, defaultAddress) {
     var address = "";
-
     if (defaultAddress != "") {
         // Center map to current institution
         address = defaultAddress;
@@ -2971,21 +2752,17 @@ function calcDistance() {
     var lat = markerPos.lat();
     var lng = markerPos.lng();
 
-
     coord1GoogleMaps = marker1.position;
     coord2GoogleMaps = marker2.position;
 
-
     // Do calculations
     gmDist = google.maps.geometry.spherical.computeDistanceBetween(coord1GoogleMaps, coord2GoogleMaps);
-
 
     var a = Math.abs(coord2Floorplan.x - coord1Floorplan.x);
     var b = Math.abs(coord2Floorplan.y - coord1Floorplan.y);
     var c = Math.sqrt(a * a + b * b);
 
     scale = c / gmDist;
-
 }
 
 function calcRotation() {
@@ -2996,14 +2773,12 @@ function calcRotation() {
         rotGM += 360;
     }
 
-
     var rotFP = calcRotationFloorPlan(coord1Floorplan, coord2Floorplan);
 
     rotDifference = rotGM - rotFP;
     if (rotDifference < 0) {
         rotDifference += 360;
     }
-
 }
 
 function calcRotationFloorPlan(point1, point2) {
@@ -3012,7 +2787,6 @@ function calcRotationFloorPlan(point1, point2) {
     if (point1.x > point2.x) {
         rotFP = Math.atan((point2.y - point1.y) / (point2.x - point1.x)) - 1 / 2 * Math.PI;
     }
-
     else {
         rotFP = Math.atan((point2.y - point1.y) / (point2.x - point1.x)) - 3 / 2 * Math.PI;
     }
@@ -3020,11 +2794,8 @@ function calcRotationFloorPlan(point1, point2) {
     if (rotFP < 0) {
         rotFP += 2 * Math.PI;
     }
-
     rotFP *= 180 / Math.PI;
-
     return rotFP;
-
 }
 
 function calcOrigo() {
@@ -3043,18 +2814,13 @@ function calcOrigo() {
     var distance = Math.sqrt(coord1Floorplan.x * coord1Floorplan.x + coord1Floorplan.y * coord1Floorplan.y) / scale;
     //var distance = 87.19;
 
-
     var R = 6371 * 1000; // Earth Radius in Km
 
     origoLat = Math.asin(Math.sin(Math.PI / 180 * lat) * Math.cos(distance / R) + Math.cos(Math.PI / 180 * lat) * Math.sin(distance / R) * Math.cos(Math.PI / 180 * bearing));
     origoLng = Math.PI / 180 * lng + Math.atan2(Math.sin(Math.PI / 180 * bearing) * Math.sin(distance / R) * Math.cos(Math.PI / 180 * lat), Math.cos(distance / R) - Math.sin(Math.PI / 180 * lat) * Math.sin(origoLat));
-
-
 }
 
 function postOrigoData(mapID) {
-
-
     $.ajax({
         type: "POST",
         url: "api/api-post-origo-data.php",
@@ -3101,7 +2867,6 @@ function dataURItoBlob(dataURI) {
 }
 
 function uploadMapBlob(blob) {
-
     var url = (window.URL || window.webkitURL).createObjectURL(blob);
     var mapTitle = $("#inp-map-name").val();
     var APIurl = "api/api-upload-map.php?role=" + currentUserRole + "&title=" + mapTitle + "&school=" + showSchool + "&fAY2YfpdKvR=" + sender;
@@ -3136,12 +2901,10 @@ function uploadMapBlob(blob) {
 
 // TODO:
 function deleteMap(id) {
-
     var sUrl = "api/api-delete-map.php?fAY2YfpdKvR=" + sender + "&school=" + showSchoolID + "&role=" + currentUserRole + "&id=" + id;
     $.get(sUrl, function (sData) {
         var jData = JSON.parse(sData);
         if (jData.status == "ok") {
-
             /*
             swal({
                     title: "",//TODOMAP
@@ -3149,35 +2912,29 @@ function deleteMap(id) {
                     type: "error"
                 });
                 */
-
         }
         if (jData.status == "error") {
         }
     });
 }
 
-
 var mapAvailable = true;
 
 function loadMaps() {
     if (showSchool !== "") {
-
         if (typeof showSchoolID == 'undefined') {
             showSchoolID = showSchool;
         }
         var listWithSchools = document.getElementsByClassName("list-schools-other-users").length;
 
-
         var sUrl = "api/api-get-maps.php?fAY2YfpdKvR=" + sender + "&school=" + showSchoolID;
         $.get(sUrl, function (sData) {
-
             var jData = JSON.parse(sData);  //We have an array of json !
             $(".map-selection").empty();
             // Content in this variable is what gets append to div #userList
             var sTemp = '<option value="{{MapName}}" data-map-id="{{MapID}}" data-map-url="{{FileName}}" {{selected}}>{{MapName}}</option>';
             // Loop through users
             if (jData.length !== 0) {
-
                 $(".map-info-no-map").hide();
                 $(".map-frame").show();
                 $(".btn-delete-selected-map").removeClass("button-disabled");
@@ -3322,8 +3079,6 @@ function deleteMap() {
 function placeDeviceOnMap() {
     $(".device-frame").empty();
     currentICMetersOnMap.qr = [];
-
-
     /*
 	var sUrl = "api/api-get-ic-meters-position.php?fAY2YfpdKvR="+sender+"&school="+showSchool+"&mapid="+mapID;
 	$.getJSON( sUrl , function( jData ){
@@ -3354,7 +3109,6 @@ function placeDeviceOnMap() {
         boxQR = sensorIDs[i];
         xAxes = sensorXAxis[i];
         yAxes = sensorYAxis[i];
-
 
         var template = sDevice; // Phase jData to variable by order
         template = template.replace("{{qr}}", boxQR);
@@ -3398,7 +3152,6 @@ function placeDeviceOnMap() {
             template = template.replace("{{nameShow}}", boxAlias);
         }
         $(".device-frame").append(template);
-
         //	}	//end if
     } // end loop
 
@@ -3420,12 +3173,9 @@ function placeDeviceOnMap() {
     //});
 }
 
-
 function placeLocationOnMap() {
     $(".device-frame").empty();
     currentLocationsOnMap.qr = [];
-
-
     var sDevice = '<div data-ic-meter-qp="{{qr}}" data-ic-meter-name="{{name}}" class="ic-meter-ico ic-meter-status-0" style="left:{{leftVal}}%;top:{{topVal}}%;">\
 	<div class="ic-meter-ico-meta {{metaClass}} {{metaClassEdit}}">\
 	<div class="ic-meter-ico-meta-name-wrapper">\
@@ -3452,7 +3202,6 @@ function placeLocationOnMap() {
         boxQR = locationIDs[i];
         xAxes = locationXAxis[i];
         yAxes = locationYAxis[i];
-
 
         //What is dis:	//if ( jData[i].userName !== currentUserName ) {
         var template = sDevice; // Phase jData to variable by order
@@ -3497,7 +3246,6 @@ function placeLocationOnMap() {
             template = template.replace("{{nameShow}}", boxAlias);
         }
         $(".device-frame").append(template);
-
         //	}	//end if
     } // end loop
 
@@ -3639,18 +3387,12 @@ function updateDevicePosition(device, top, left) {
     //TODO: Device x and y
     //TOP LEFT = X, Y ???
 
-
     var qr = $(device).attr("data-ic-meter-qp");
     MapID = $(".map-selection option:selected").attr("data-map-id");
     var sUrl = "api/api-update-nonICMeter-placement.php?SensorID=" + qr + "&x=" + left + "&y=" + top;
     $.get(sUrl, function (sData) {
-
     });
-
-
     //var sDevice = '<div data-ic-meter-qp="{{qr}}" data-ic-meter-name="{{name}}" class="ic-meter-ico ic-meter-status-0" style="left:{{leftVal}}%;top:{{topVal}}%;">\
-
-
 }
 
 function updataFreeDeviceList() {
@@ -3687,9 +3429,7 @@ function updataFreeDeviceList() {
         $("#place-devices-list").append(template);
     }
     //	}).done(function(){
-
     //});
-
 }
 
 $(document).on("click", ".icon-add-device-to-map", function () {
@@ -4001,7 +3741,6 @@ function liveStreemOnOff() {
         $(".ico-map-auto-play-start").addClass("graySlider");
         $("input[type=range]").addClass("hideRange");
     }
-
 }
 
 setUpDatePickerMap();
@@ -4028,7 +3767,6 @@ function setUpDatePickerMap() {
             $(".ico-map-auto-play-start").addClass("graySlider");
             $(".map-info-date-time").show();
             getDataShowMap();
-
         });
 }
 
@@ -4093,9 +3831,7 @@ function getDataShowMap() {
 }
 
 function startGetLiveDataForMap() {
-
     //TODO - lav til influx - BRUG IKKE API MEN LISTE ALLEREDE LAVET
-
     clearInterval(mapPlayInterval);
     $(".ico-map-auto-play-stop").hide();
     $(".ico-map-auto-play-start").show();
@@ -4118,11 +3854,7 @@ function startGetLiveDataForMap() {
         var runCounter = 0;
 
         for (i = 0; i < locationIDs.length; i++) {
-
-
             thisQr = locationIDs[i];
-
-
             var phaseTemperature = temperature[i];
             var phaseHumidity = humidity[i];
             var phaseCo2 = co2[i];
@@ -4151,7 +3883,6 @@ function startGetLiveDataForMap() {
                     }, 1000);
                 }
             }
-
         }
     }
 
@@ -4161,8 +3892,6 @@ function startGetLiveDataForMap() {
         $(".map-settings-show-info-live").addClass("mapLiveInfo");
         start(true);
     }, 300000);
-
-
 }
 
 function mapShowDataFetchDone() {
@@ -4180,8 +3909,6 @@ function endGetLiveDataForMap() {
 }
 
 function drawDataMapLive(qr, tem, hum, co2, noiA) {
-
-
     var colors = {
         white: "#ffffff",
         yellow: "#e8b72c",
@@ -4343,8 +4070,6 @@ function startGetDateDataForMap() {
     var endTime = 23 + hourDiff + ":55:00";
     var runCounter = 0;
     var dateDataLenght = 0;
-
-
 }
 
 function mapShowDataFetchDateDone() {
@@ -4493,7 +4218,7 @@ function drawDataMapDate(val) {
                     ;
                 } else if (noiA > 69) {
                     thisDevice.find(".device-val-wrapper p:eq(3)").css("color", "#ff4242");
-                    if (warningLevel < 3) {
+                    if (waningLevel < 3) {
                         warningLevel = 3;
                     }
                     ;
@@ -4620,9 +4345,7 @@ function liveUpdateMapDay() {
         mapShowDataLiveColor = [];
     }
 
-
     var qr = currentLocationsOnMap.qr;
-
 
     var startTime = 00 + hourDiff + ":00:00";
     var endTime = 23 + hourDiff + ":55:00";
@@ -4683,7 +4406,6 @@ function liveUpdateMapDay() {
 }
 
 // Communication
-
 $(document).on("click", ".btn-go-to-communnication", function () {
     //loadMessages();
     setTimeout(() => {
@@ -4721,7 +4443,6 @@ $(document).on("click", "#btn-write-message-communication", function () {
     }
 });
 
-
 $(document).on('change', '.list-communication-type', function () {
     var messageType = $(".list-communication-type").val();
     var messageSub = $(".list-communication-subjects").val();
@@ -4742,8 +4463,6 @@ $(document).on('change', '.list-communication-type', function () {
         $(".chart-select-map").show();
         $(".chart-select-location").show();
     }
-
-
 });
 
 if (window.matchMedia('(max-width: 800px)').matches) {
@@ -4795,7 +4514,6 @@ $(document).on("click", "#create-message-from-user", function () {
         } else {
             var type = 1;
         }
-
         var messageType = $(".list-communication-type").val();
         var messageSub = $(".list-communication-subjects").val();
         var qrVal = $(".chart-select-device-communication").val();
@@ -4839,11 +4557,8 @@ $(document).on("click", "#create-message-from-user", function () {
         }
 
         if (val.body == true && val.type == true && val.sub == true) {
-
-
             LocationID = $("#comuSelect").find('option:selected').attr('id');
             LocationName = $("#comuSelect").find('option:selected').attr('value');
-
             var sUrl = "api/api-create-message.php";
 
             $.post(sUrl, {
@@ -4922,8 +4637,6 @@ $(document).on("click", "#create-message-from-user", function () {
                 var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
                 return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
             }
-
-
         }
     }
 });
@@ -4944,20 +4657,14 @@ function loadMessages() {
 
 function loadMessagesUser(start) {
     var type = "1";
-
-
     var sUrl = "api/api-get-messages.php?fAY2YfpdKvR=" + sender + "&school=" + showSchoolID + "&type=" + type + "&start=" + start;
-
 
     if (start == 0) {
         $(".user-communication-wrapper").empty();
     }
 
-
     $.get(sUrl, function (sData) {
         var jData = JSON.parse(sData);
-
-
         var con = '<div class="communication-user-wrapper">\
 		{{trash}}\
 		<input type="hidden" class"message-from-user-messageID" name="" value="{{messageID}}"disabled>\
@@ -4972,7 +4679,6 @@ function loadMessagesUser(start) {
         $("#devices-list-content-wrapper").empty();
         for (var i = 0; i < jData.length; i++) {
             var conTemplate = con;
-
             var ic_meter_name = "";
             if (jData[i].alias) {
                 ic_meter_name = jData[i].alias;
@@ -4989,13 +4695,11 @@ function loadMessagesUser(start) {
             conTemplate = conTemplate.replace("{{title}}", (jData[i].LocationName).bold() + " - " + jData[i].MsgTitle);
             conTemplate = conTemplate.replace("{{body}}", jData[i].MsgData);
 
-
             if (jData[i].icMeter) {
                 conTemplate = conTemplate.replace("{{icMeter}}", "(" + jData[i].LocationID + ")");
             } else {
                 conTemplate = conTemplate.replace("{{icMeter}}", "");
             }
-
 
             conTemplate = conTemplate.replace("{{time}}", jData[i].MsgDate);
             $(".user-communication-wrapper").append(conTemplate);
@@ -5043,7 +4747,6 @@ function clearMessages() {
     startNumberMessageUser = 0;
     $(".user-communication-wrapper, .oficial-communication-inner-wrapper").empty();
 }
-
 
 $(document).on("click", ".load-more-message-user", function () {
     if (showSchool !== "") {
@@ -5094,7 +4797,6 @@ function deleteMessage(messageID, element) {
 }
 
 // System info
-
 $(document).on("click", ".system-about-link", function () {
     var temp = '<div class="system-info-wrapper">\
 	<p>' + softwareName + ' is under development in the Smart City Accelerator (SCA) project, financed by EUs program interreg, who supports projects inbetween regions. In SCA swedish and danish municipalities has united with universities to find solutions for their problems. DTU Compute, and DTU Byg, works with Høje Taastrup municipality to improve the indoor climate and energyusage in the municipalitys buildings, which has led to ' + softwareName + ', which is now used on mulitple schools.</p>\
