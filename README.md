@@ -29,16 +29,16 @@ Contains code from previous projects, used for mobile application
 Contains code from previous projects, used for mobile application
 
 ## skoleklima
-Contains the the Skoleklima system running on the Virtual Machine.
-Code changed: 
-api/api-get-sensor-info.php - API to retrive data from a given sensor
-js/main.js - MQTT message sending mechanism added
-js/charts.js - Slight modifications
-index.php - Added js scripts
-meta.php - Configured it to work with our mysql database
-influx-meta.php - Configured it to work with our influx database 
-api/api-get-graph-data.php - Bug fixes and modififications required for it to work with our system
-ink/views/view-roomX.php - New File with Room X page
+Contains the the Skoleklima system running on the Virtual Machine.  
+Code changed:  
+api/api-get-sensor-info.php - API to retrive data from a given sensor  
+js/main.js - MQTT message sending mechanism added  
+js/charts.js - Slight modifications  
+index.php - Added js scripts  
+meta.php - Configured it to work with our mysql database  
+influx-meta.php - Configured it to work with our influx database   
+api/api-get-graph-data.php - Bug fixes and modififications required for it to work with our system  
+ink/views/view-roomX.php - New File with Room X page  
 
 
 
