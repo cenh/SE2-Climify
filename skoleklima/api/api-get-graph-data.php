@@ -84,7 +84,7 @@ $from = "'" . $from . "'";
 $to = "'" . $to . "'";
 while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
     //LAST() -> newest entry
-  $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"');
+  $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"' . 'WHERE time >=' . $from . ' AND time <=' . $to . '');
   $currentPoints = $currentSensorRow ->getPoints();
   array_push($sensors,$currentPoints);
 }
