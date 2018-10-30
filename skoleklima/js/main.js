@@ -901,5 +901,5 @@ $("#my_button").click(function() {
 });
 
 $(document).ready(function() {
-    $('#example').DataTable();
+    $('#table_id').DataTable();
 } );
