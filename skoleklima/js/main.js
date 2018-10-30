@@ -901,6 +901,11 @@ $("#my_button").click(function() {
 });
 
 $(document).ready(function() {
-    $('#table_id').DataTable();
+    $('#table_id1').DataTable();
+    console.log("hiiiii");
+} );
+
+$(document).ready(function() {
+    $('#table_id2').DataTable();
     console.log("hiiiii");
 } );
