@@ -21,10 +21,13 @@
 	</div>
 	<hr>
 
+    <div style="width: 50%; height: 50%; float: left;"> SENSOR </div>
+    <div style="width: 50%; height: 50%; float: right;"> ACTUATOR </div>
+
     <div style="width: 50%; height: 50%; border: 1px solid #dddddd;
     text-align: left;
     padding: 8px; float:left;">
-        <div> SENSOR </div>
+<!--        <div> SENSOR </div>-->
         <table id="table_id1" class="display">
             <thead>
             <tr>
@@ -47,7 +50,7 @@
     <div style="width: 50%; height: 50%; border: 1px solid #dddddd;
     text-align: left;
     padding: 8px; float:right;">
-        <div> ACTUATOR </div>
+<!--        <div> ACTUATOR </div>-->
         <table id="table_id2" class="display">
             <thead>
             <tr>
