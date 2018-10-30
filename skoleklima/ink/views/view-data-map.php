@@ -21,7 +21,7 @@
 	</div>
 	<hr>
 
-    <script type="text/javascript">
+    <script>
         function refreshTable() {
             console.log("refreshed");
         }
