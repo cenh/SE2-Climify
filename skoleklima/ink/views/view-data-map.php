@@ -21,7 +21,11 @@
 	</div>
 	<hr>
 
-    <script type="text/javascript"> refreshTable(); </script>
+    <script type="text/javascript">
+        function refreshTable() {
+            console.log("refreshed");
+        }
+    </script>
     <div>
         <button id="mybutton"> mybutton!! </button>
     </div>
