@@ -79,14 +79,16 @@ if ($row_cnt==0) {
 }
 
 $sensors=[];
-
-// $from = "'" . $from . "'";
-// $to = "'" . $to . "'";
+$multi = 10**9;
+$from = strtotime($from) * $multi;
+$to = strtotime($to) * $multi;
+$from = "'" . $from . "'";
+$to = "'" . $to . "'";
 // $f = new DateTime($from);
 // $t = new DateTime($to);
-error_log(strtotime($form),0);
-error_log(strtotime($to),0);
-$multi = 10**9;
+// error_log(strtotime($from),0);
+// error_log(strtotime($to),0);
+
 while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
     //LAST() -> newest entry
   $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"' . 'WHERE time >=' . $from . ' AND time <=' . $to . '');
