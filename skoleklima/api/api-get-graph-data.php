@@ -86,12 +86,11 @@ $from = "'" . $from . "'";
 $to = "'" . $to . "'";
 // $f = new DateTime($from);
 //$t = new DateTime($to);
-error_log(strtotime($from),0);
-error_log(strtotime($to),0);
+error_log($from,0);
+error_log($to,0);
 
 while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
     //LAST() -> newest entry
-    error_log($currentSensorIDArray["SensorID"] ,0);
   $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"' . 'WHERE time >=' . $from . ' AND time <=' . $to . '');
   $currentPoints = $currentSensorRow ->getPoints();
   array_push($sensors,$currentPoints);
