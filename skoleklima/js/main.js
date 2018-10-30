@@ -901,8 +901,13 @@ $("#my_button").click(function() {
 });
 
 $(document).ready(function() {
-    $('#table_id1').DataTable();
-    $('#table_id2').DataTable();
+    $('#table_id1').DataTable({
+        stateSave: true
+    });
+
+    $('#table_id2').DataTable({
+        stateSave: true
+    });
     refreshTable();
 } );
 
