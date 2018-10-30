@@ -914,3 +914,7 @@ $("#mybutton").click(function() {
     var table2 = $('#table_id2').DataTable();
     table2.row.add(['Jacob', 'Awesome person']).draw();
 });
+
+function refreshTable(){
+    console.log("refreshed");
+}
