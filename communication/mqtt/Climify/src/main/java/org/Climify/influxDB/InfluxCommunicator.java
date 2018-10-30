@@ -24,7 +24,8 @@ public class InfluxCommunicator {
 	public void saveMeasurement(SensorMeasurement measurement) {
 		Point point = Point.measurement(measurement.name)
 				.time(fdate(measurement.time), TimeUnit.MILLISECONDS)
-				.addField("value", measurement.value).build();
+				.addField("value", measurement.value)
+				.addField("type", measurement.type).build();
 		influxDB.write("scadb", "defaultPolicy", point);
 	}
 
