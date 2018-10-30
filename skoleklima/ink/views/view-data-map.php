@@ -21,8 +21,8 @@
 	</div>
 	<hr>
 
-    <div style="width: 50%; height: 50%; float: left;"> SENSOR </div>
-    <div style="width: 50%; height: 50%; float: right;"> ACTUATOR </div>
+    <div style="width: 50%; height: 50%; float: left; text-align: center; font-weight: bold"> SENSOR </div>
+    <div style="width: 50%; height: 50%; float: right; text-align: center; font-weight: bold"> ACTUATOR </div>
 
     <div style="width: 50%; height: 50%; border: 1px solid #dddddd;
     text-align: left;
