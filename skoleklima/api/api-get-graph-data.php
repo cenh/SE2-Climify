@@ -80,12 +80,12 @@ if ($row_cnt==0) {
 
 $sensors=[];
 
-$from = "'" . $from . "'";
-$to = "'" . $to . "'";
-$f = new DateTime($from);
-$t = new DateTime($to);
-error_log($f->format('U'),0);
-error_log($t->format('U'),0);
+// $from = "'" . $from . "'";
+// $to = "'" . $to . "'";
+// $f = new DateTime($from);
+// $t = new DateTime($to);
+error_log(strtotime($form),0);
+error_log(strtotime($to),0);
 $multi = 10**9;
 while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
     //LAST() -> newest entry
