@@ -911,8 +911,8 @@ $(document).ready(function() {
 $("#mybutton").click(function() {
     console.log("hiiiii");
     var table = $('#table_id1').DataTable();
-    table.row.add({
-        "Name": "Christy",
-        "Type": "Awesome person"
-    }).draw();
+    table.row.add(['Christy', 'Awesome person']
+        // "Name": "Christy",
+        //"Type": "Awesome person"
+    ).draw();
 });
