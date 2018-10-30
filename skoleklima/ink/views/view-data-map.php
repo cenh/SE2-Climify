@@ -1,8 +1,11 @@
 <!-- System data map -->
 <div class="single-view view-data-map">
+
+    <div> hi </div>
+
 	<div class="view-data-top">
 	<span>
-		<h3>Sensors</h3>
+		<h3>Sensors hihi</h3>
 		<p>An overview of installed sensors.</p>
 	</span>
 	<span>
