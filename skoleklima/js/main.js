@@ -916,5 +916,5 @@ $("#mybutton").click(function() {
 });
 
 function refreshTable(){
-
+  console.log("hello");
 }

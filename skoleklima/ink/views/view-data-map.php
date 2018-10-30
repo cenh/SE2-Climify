@@ -22,9 +22,6 @@
 	<hr>
 
     <script onload="refreshTable()">
-        // function refreshTable() {
-        //     console.log("refreshed");
-        // }
 
     <div>
         <button id="mybutton"> mybutton!! </button>
