@@ -82,8 +82,8 @@ $sensors=[];
 
 $from = "'" . $from . "'";
 $to = "'" . $to . "'";
-error_log($from,0);
-error_log($to,0);
+error_log(new DateTime($from),0);
+error_log(new DateTime($to),0);
 while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
     //LAST() -> newest entry
   $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"' . 'WHERE time >=' . $from . ' AND time <=' . $to . '');
