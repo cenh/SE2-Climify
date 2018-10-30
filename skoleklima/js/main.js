@@ -909,10 +909,8 @@ $(document).ready(function() {
 } );
 
 $("#mybutton").click(function() {
-    console.log("hiiiii");
-    var table = $('#table_id1').DataTable();
-    table.row.add(['Christy', 'Awesome person']
-        // "Name": "Christy",
-        //"Type": "Awesome person"
-    ).draw();
+    var table1 = $('#table_id1').DataTable();
+    table1.row.add(['Christy', 'Awesome person']).draw();
+    var table2 = $('#table_id2').DataTable();
+    table2.row.add(['Jacob', 'Awesome person']).draw();
 });
