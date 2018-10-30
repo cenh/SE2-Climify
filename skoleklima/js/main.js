@@ -916,8 +916,8 @@ function refreshTable(){
       //HERE FETCH DATA FROM DB
 
         var table1 = $('#table_id1').DataTable();
-        table1.row.add(['Jacob', 'Awesome person']).draw();
+        table1.row.add(['Jacob', 'Awesome person']);
         var table2 = $('#table_id2').DataTable();
-        table2.row.add(['Christy', 'Awesome person']).draw();
+        table2.row.add(['Christy', 'Awesome person']);
       }, 1000);
 }
