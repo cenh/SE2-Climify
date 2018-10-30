@@ -1,11 +1,8 @@
 <!-- System data map -->
 <div class="single-view view-data-map">
-
-    <div> hi </div>
-
 	<div class="view-data-top">
 	<span>
-		<h3>Sensors hihi</h3>
+		<h3>Sensors</h3>
 		<p>An overview of installed sensors.</p>
 	</span>
 	<span>
@@ -23,7 +20,11 @@
 	</span>
 	</div>
 	<hr>
-	<div class="data-map-info-wrapper">
+
+    <div> hi </div>
+
+    <hr>
+    <div class="data-map-info-wrapper">
 		<i id="icn-close-data-map-info" class="link fa fa-times" aria-hidden="true"></i>
 		<h4>Sensor information</h4>
 		<div class="info-map-wrapper">
