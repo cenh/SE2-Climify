@@ -24,6 +24,7 @@
     <div style="width: 50%; height: 50%; border: 1px solid #dddddd;
     text-align: left;
     padding: 8px; float:left;">
+        <div> SENSOR </div>
         <table id="table_id1" class="display">
             <thead>
             <tr>
@@ -46,6 +47,7 @@
     <div style="width: 50%; height: 50%; border: 1px solid #dddddd;
     text-align: left;
     padding: 8px; float:right;">
+        <div> ACTUATOR </div>
         <table id="table_id2" class="display">
             <thead>
             <tr>
