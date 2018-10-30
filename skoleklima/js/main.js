@@ -902,6 +902,7 @@ $("#my_button").click(function() {
 
 $(document).ready(function() {
     $('#table_id1').DataTable();
+    refreshTable();
 } );
 
 $(document).ready(function() {

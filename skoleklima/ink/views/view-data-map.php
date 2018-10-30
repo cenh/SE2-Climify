@@ -20,8 +20,7 @@
 	</span>
 	</div>
 	<hr>
-
-<!--    <script onload="refreshTable()">-->
+    
 
     <div>
         <button id="mybutton"> mybutton!! </button>
