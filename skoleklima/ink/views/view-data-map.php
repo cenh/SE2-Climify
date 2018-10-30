@@ -21,7 +21,9 @@
 	</div>
 	<hr>
 
-    <div style="width: 50%; height: 50%; background-color: green; float:left;">
+    <div style="width: 50%; height: 50%; border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px; float:left;">
         <table id="table_id1" class="display">
             <thead>
             <tr>
@@ -41,7 +43,9 @@
             </tbody>
         </table>
     </div>
-    <div style="width: 50%; height: 50%; background-color: blue; float:right;">
+    <div style="width: 50%; height: 50%; border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px; float:right;">
         <table id="table_id2" class="display">
             <thead>
             <tr>
