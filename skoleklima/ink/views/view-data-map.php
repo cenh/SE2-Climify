@@ -21,7 +21,7 @@
 	</div>
 	<hr>
 
-    <script onload="refreshTable()">
+<!--    <script onload="refreshTable()">-->
 
     <div>
         <button id="mybutton"> mybutton!! </button>
