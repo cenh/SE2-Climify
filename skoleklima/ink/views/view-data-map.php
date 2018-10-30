@@ -21,6 +21,8 @@
 	</div>
 	<hr>
 
+    <button id="mybutton"> mybutton!! </button>
+
     <div style="width: 50%; height: 50%; float: left; text-align: center;
          font-weight: bold; font-size: 150%;"> Sensor </div>
     <div style="width: 50%; height: 50%; float: right; text-align: center;
@@ -33,8 +35,8 @@
         <table id="table_id1" class="display">
             <thead>
             <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
+                <th>Name</th>
+                <th>Type</th>
             </tr>
             </thead>
             <tbody>
@@ -56,8 +58,8 @@
         <table id="table_id2" class="display">
             <thead>
             <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
+                <th>Name</th>
+                <th>Type</th>
             </tr>
             </thead>
             <tbody>
