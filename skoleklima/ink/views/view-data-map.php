@@ -21,7 +21,9 @@
 	</div>
 	<hr>
 
-    <button id="mybutton"> mybutton!! </button>
+    <div>
+        <button id="mybutton"> mybutton!! </button>
+    </div>
 
     <div style="width: 50%; height: 50%; float: left; text-align: center;
          font-weight: bold; font-size: 150%;"> Sensor </div>
