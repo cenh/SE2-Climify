@@ -22,9 +22,9 @@
 	<hr>
 
     <div style="width: 50%; height: 50%; float: left; text-align: center;
-         font-weight: bold; font-size: 200%;"> SENSOR </div>
+         font-weight: bold; font-size: 150%;"> Sensor </div>
     <div style="width: 50%; height: 50%; float: right; text-align: center;
-         font-weight: bold; font-size: 200%;"> ACTUATOR </div>
+         font-weight: bold; font-size: 150%;"> Actuator </div>
 
     <div style="width: 50%; height: 50%; border: 1px solid #dddddd;
     text-align: left;
