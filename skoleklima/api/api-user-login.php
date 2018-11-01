@@ -24,7 +24,7 @@ $databasename = DB_NAME;
 $phaseUsername = clean(strtolower($_GET['username']));
 $phasePassword = clean($_GET['password']);
 $phasePasswordRex=(string)preg_replace("/ /", "+", $phasePassword);
-//$phasePasswordDecrypt = decrypt($phasePasswordRex, ENCRYPTION_KEY);
+$phasePasswordDecrypt = decrypt($phasePasswordRex, ENCRYPTION_KEY);
 $currentTime = date("d-m-Y, H:i");
 $phaseUsername = clean($phaseUsername);
 $phasePasswordDecrypt = clean($phasePasswordDecrypt);
@@ -88,10 +88,10 @@ if ($RoleName == 1 || $RoleName == 15) {
 
 
 $sPasswordDBDecrypted = decrypt($UserPassword, ENCRYPTION_KEY);
-error_log("Password" . $UserPassword, 0);
-error_log("Password Decrypted: " . $sPasswordDBDecrypted, 0);
-error_log("Phase Password: " . $phasePassword, 0);
-error_log("Phase Password Decrypt:" . $phasePasswordDecrypt, 0);
+error_log("Password: " . $UserPassword, 0); //Actual DB Password
+error_log("Password Decrypted: " . $sPasswordDBDecrypted, 0); // Nothing
+error_log("Phase Password: " . $phasePassword, 0); // Encrypted pass
+error_log("Phase Password Decrypt: " . $phasePasswordDecrypt, 0); // Nothing
 if ($sPasswordDBDecrypted === $phasePasswordDecrypt) {
     if ($Blocked == 1) {
         // Store user-info from variables in sessions
