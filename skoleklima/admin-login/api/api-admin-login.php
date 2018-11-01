@@ -65,11 +65,9 @@ if ($result->num_rows==1){
 
 $stmt->close();
 
-error_log("Password: " . $phasePassword, 0);
-error_log("Password (salted): " . $phasePassword . $pepper, 0);
 error_log("DBUserPass: " . $DBUserPass, 0);
 error_log("Encrypted: " . encrypt($phasePassword, ENCRYPTION_KEY), 0);
-if (password_verify ($phasePassword . $pepper , $DBUserPass)) {
+if ($DBUserPass === encrypt($phasePassword, ENCRYPTION_KEY)) {
     if ($DBUserUserBlocked == 1 ) {
         session_start();
         $_SESSION['adminAccess'] = true;

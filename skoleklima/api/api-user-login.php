@@ -86,7 +86,6 @@ if ($RoleName == 1 || $RoleName == 15) {
     }
 }
 
-
 $sPasswordDBDecrypted = decrypt($UserPassword, ENCRYPTION_KEY);
 if ($sPasswordDBDecrypted === $phasePasswordDecrypt) {
     if ($Blocked == 1) {
