@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 //************************************************
 //	Admin login
@@ -14,15 +14,9 @@ if( $phaseSessionToken != $adminSessionToken ){
     exit;
 }
 
-
-
 $phaseUsername=clean($_POST["username"]);
-
 $phasePassword=clean($_POST["password"]);
 $phasePasswordRex=(string)preg_replace("/ /","+",$phasePassword);
-
-
-
 
 $myResponse = "error";
 
@@ -35,18 +29,6 @@ if ( $phasePassword == "" ) {
     echo '{"status":"error"}';
     exit;
 }
-
-
-//$secret="6LcTlEQUAAAAANwum0cvt_k_aaK6n9-Gsaqz44Oq";
-//$response=$_POST["captcha"];
-
-//$verify=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$response}");
-//$captcha_success=json_decode($verify);
-//if ($captcha_success->success==false) {
-//    echo '{"status":"error"}'; 
-//    exit;
-//}
-
 
 $servername = DB_HOST;
 $username = DB_USER;
@@ -64,7 +46,7 @@ $stmt = $conn->prepare("SELECT UserID,UserPassword,Blocked FROM DTUManager WHERE
 
 $stmt->bind_param("s", $phaseUsername);
 
-if (!$stmt->execute()) { 
+if (!$stmt->execute()) {
     echo '{"status":"errorexc"}';
     $conn->close();
     exit;
@@ -83,23 +65,22 @@ if ($result->num_rows==1){
 
 $stmt->close();
 
-error_log("test", 0);
-error_log($phasePassword, 0);
-error_log($DBUserPass, 0);
-	if($phasePassword === $DBUserPass) { // TODO: Fix this
-//    if (password_verify ( $phasePassword . $pepper , $DBUserPass )) {
-	error_log("test1", 0);
+error_log("Password: " . $phasePassword, 0);
+error_log("Password (salted): " . $phasePassword . $pepper, 0);
+error_log("DBUserPass: " . $DBUserPass, 0);
+//	if($phasePassword === $DBUserPass) { // TODO: Fix this
+if (password_verify ($phasePassword . $pepper , $DBUserPass)) {
     if ($DBUserUserBlocked == 1 ) {
-        session_start();		
+        session_start();
         $_SESSION['adminAccess'] = true;
         $_SESSION['session-time-admin'] = time();
-        
+
         $stmt = $conn->prepare("UPDATE Person SET LastLogin = ? WHERE UserID = ?");
 
         $stmt->bind_param("si", date("Y-m-d, H:i"), $DBUserID);
 
-        if ($stmt->execute()) { 
-            session_start();		
+        if ($stmt->execute()) {
+            session_start();
             $_SESSION['adminAccess'] = true;
             $_SESSION['session-time-admin'] = time();
             echo '{"status":"ok"}';
@@ -117,7 +98,7 @@ error_log($DBUserPass, 0);
     } else {
         echo '{"status":"errornotverif"}';
         $conn->close();
-        exit; 
+        exit;
     }
 } else {
     echo '{"status":"errornorow"}';

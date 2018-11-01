@@ -88,10 +88,6 @@ if ($RoleName == 1 || $RoleName == 15) {
 
 
 $sPasswordDBDecrypted = decrypt($UserPassword, ENCRYPTION_KEY);
-error_log("Password: " . $UserPassword, 0); //Actual DB Password
-error_log("Password Decrypted: " . $sPasswordDBDecrypted, 0); // Nothing
-error_log("Phase Password: " . $phasePassword, 0); // Encrypted pass
-error_log("Phase Password Decrypt: " . $phasePasswordDecrypt, 0); // Nothing
 if ($sPasswordDBDecrypted === $phasePasswordDecrypt) {
     if ($Blocked == 1) {
         // Store user-info from variables in sessions
