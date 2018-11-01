@@ -919,11 +919,6 @@ function refreshTable() {
     setInterval(function () {
         //HERE FETCH DATA FROM DB
 
-        $.ajax({
-            url: "api/api-get-sensor-info.php"
-        }).done(function(data) {
-            console.log(data);
-        });
 
         var table1 = $('#table_id1').DataTable();
         table1.row.add(['Jacob', 'Awesome person']).draw(false);
