@@ -292,7 +292,7 @@ function dateRangePicker1() {
             fetchingDataGraph = true;
             disableGraphSettingsSelections();
         }
-        howToDraw();
+
     }
 
     $('#reportrange1').daterangepicker({
