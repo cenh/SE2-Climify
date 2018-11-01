@@ -68,6 +68,7 @@ $stmt->close();
 error_log("Password: " . $phasePassword, 0);
 error_log("Password (salted): " . $phasePassword . $pepper, 0);
 error_log("DBUserPass: " . $DBUserPass, 0);
+error_log("Encrypted: " . encrypt($phasePassword, ENCRYPTION_KEY), 0);
 if (password_verify ($phasePassword . $pepper , $DBUserPass)) {
     if ($DBUserUserBlocked == 1 ) {
         session_start();
