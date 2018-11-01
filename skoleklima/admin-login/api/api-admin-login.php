@@ -77,9 +77,10 @@ $stmt->close();
 $sPasswordDBDecrypted = decrypt($DBUserPass, ENCRYPTION_KEY);
 error_log("DBUserName: " . $DBUserID, 0);
 error_log("DBUserPass: " . $DBUserPass, 0);
-error_log("Pass: " . $phasePasswordDecrypt, 0);
+error_log("Pass: " . $phasePassword, 0);
+error_log("Pass: " . encrypt($phasePassword, ENCRYPTION_KEY), 0);
 error_log("DBPass: " . $sPasswordDBDecrypted, 0);
-if ($sPasswordDBDecrypted === $phasePasswordDecrypt) {
+if ($sPasswordDBDecrypted === $DBUserPass) {
     if ($DBUserUserBlocked == 1 ) {
         session_start();
         $_SESSION['adminAccess'] = true;
