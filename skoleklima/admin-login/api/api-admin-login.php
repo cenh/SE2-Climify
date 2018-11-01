@@ -13,8 +13,9 @@ if( $phaseSessionToken != $adminSessionToken ){
     echo '{"status":"errortoken"}';
     exit;
 }
-$phaseUsername = clean(strtolower($_GET['username']));
-$phasePassword = clean($_GET['password']);
+
+$phaseUsername = clean(strtolower($_POST['username']));
+$phasePassword = clean($_POST['password']);
 $phasePasswordRex=(string)preg_replace("/ /", "+", $phasePassword);
 $phasePasswordDecrypt = decrypt($phasePasswordRex, ENCRYPTION_KEY);
 $currentTime = date("d-m-Y, H:i");
