@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 //************************************************
 //	Create Companye Users
@@ -39,6 +39,7 @@ if( strlen($phaseUsername) < 4 || strlen($phaseUsername) > 8 || preg_match('/\s/
 $rand_pass_num = array("A","B","C","D","E","F","G","H","I","J");
 $rand_pass_sym = array("!","@");
 $setUserPass = bin2hex(openssl_random_pseudo_bytes(3)).$rand_pass_sym[array_rand($rand_pass_sym)].$rand_pass_num[array_rand($rand_pass_num)];
+error_log("Encrypted: " . encrypt("totallysecurepassword", ENCRYPTION_KEY_USERS), 0);
 $encryptedPass = encrypt($setUserPass, ENCRYPTION_KEY_USERS);
 
 $servername = DB_HOST;
@@ -54,7 +55,7 @@ if ($conn->connect_error) {
 
 $stmt = $conn->prepare("SELECT * FROM Person WHERE UserName = ?");
 $stmt->bind_param("s", $phaseUsername);
-if (!$stmt->execute()) { 
+if (!$stmt->execute()) {
     echo '{"status":"error"}';
     $stmt->close();
     $conn->close();
@@ -65,24 +66,24 @@ if (!$stmt->execute()) {
 
 
 $result = $stmt->get_result();
-if ($result->num_rows!=0){	
+if ($result->num_rows!=0){
     echo '{"status":"error", "message": "userOcupied"}';
     $conn->close();
     exit;
-} 
+}
 /*
 $stmt = $conn->prepare("INSERT INTO icm_users_system (userName, userPassword, role, eMail, firstName, lastName, schoolAllowed, userBlocked) values (?,?,?,?,?,?,?,?)");
 $stmt->bind_param("ssssssss", $phaseUsername, $encryptedPass, $setUserRole, $phaseUserEmail, $phaseUserFirstName, $phaseUserLastName, $setUserSchool, $setUserBlock);
-if ($stmt->execute()) { 
-    $sql = "SELECT MAX(userID) AS this_id FROM icm_users_system"; 
+if ($stmt->execute()) {
+    $sql = "SELECT MAX(userID) AS this_id FROM icm_users_system";
     $result = mysqli_query($conn, $sql) or die("Error in Selecting " . mysqli_error($conn));
-    if ($result->num_rows==1){ 
+    if ($result->num_rows==1){
         while($row = $result->fetch_assoc()) {
             $userId = $row["this_id"];
         }
     }
     $stmt->close();
-    
+
     */
 
     $nul=0;
@@ -91,10 +92,10 @@ if ($stmt->execute()) {
     $Blocked=1;
 
 
-    
+
     $stmt = $conn->prepare("INSERT INTO Person VALUES (?,?,?,?,?,?,?,?,?)");
     $stmt->bind_param("issssisis",$nul,$phaseUsername,$phaseUserFirstName,$phaseUserLastName,$phaseUserEmail,$RoleName,$encryptedPass,$Blocked,$null);
-    if ($stmt->execute()) { 
+    if ($stmt->execute()) {
         echo '{"status":"ok","userID":"'.$userId.'", "pass":"'.$setUserPass.'"}';
         $UserID = $conn->insert_id;
     } else {
