@@ -953,7 +953,7 @@ function startCompareCharset() {
   $("#gettingCompareDataWait").show();
   clearCompareGraph();
   getCompareCharsetData();
-  disableGraphSettingsSelections();
+  //disableGraphSettingsSelections();
 }
 
 function getCompareCharsetData() {
