@@ -13,10 +13,13 @@ if( $phaseSessionToken != $adminSessionToken ){
     echo '{"status":"errortoken"}';
     exit;
 }
-
-$phaseUsername=clean($_POST["username"]);
-$phasePassword=clean($_POST["password"]);
-$phasePasswordRex=(string)preg_replace("/ /","+",$phasePassword);
+$phaseUsername = clean(strtolower($_GET['username']));
+$phasePassword = clean($_GET['password']);
+$phasePasswordRex=(string)preg_replace("/ /", "+", $phasePassword);
+$phasePasswordDecrypt = decrypt($phasePasswordRex, ENCRYPTION_KEY);
+$currentTime = date("d-m-Y, H:i");
+$phaseUsername = clean($phaseUsername);
+$phasePasswordDecrypt = clean($phasePasswordDecrypt);
 
 $myResponse = "error";
 
@@ -65,9 +68,10 @@ if ($result->num_rows==1){
 
 $stmt->close();
 
-error_log("DBUserPass: " . $DBUserPass, 0);
-error_log("Encrypted: " . encrypt($phasePassword, ENCRYPTION_KEY), 0);
-if ($DBUserPass === encrypt($phasePassword, ENCRYPTION_KEY)) {
+$sPasswordDBDecrypted = decrypt($DBUserPass, ENCRYPTION_KEY);
+error_log("Pass: " . $phasePasswordDecrypt, 0);
+error_log("DBPass: " . $sPasswordDBDecrypted, 0);
+if ($sPasswordDBDecrypted === $phasePasswordDecrypt) {
     if ($DBUserUserBlocked == 1 ) {
         session_start();
         $_SESSION['adminAccess'] = true;
