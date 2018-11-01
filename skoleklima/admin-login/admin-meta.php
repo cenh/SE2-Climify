@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // ** Conpany meta info ** //
 $software_Name = "Klimaovervågning";
@@ -77,5 +77,5 @@ function clean($e) {
 }
 
 session_start();
-	$systemAccess = $_SESSION['adminAccess'];
+$systemAccess = $_SESSION['adminAccess'];
 ?>

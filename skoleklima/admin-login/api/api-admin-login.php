@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 //************************************************
 //	Admin login
@@ -14,15 +14,13 @@ if( $phaseSessionToken != $adminSessionToken ){
     exit;
 }
 
-
-
-$phaseUsername=clean($_POST["username"]);
-
-$phasePassword=clean($_POST["password"]);
-$phasePasswordRex=(string)preg_replace("/ /","+",$phasePassword);
-
-
-
+$phaseUsername = clean(strtolower($_POST['username']));
+$phasePassword = clean($_POST['password']);
+$phasePasswordRex=(string)preg_replace("/ /", "+", $phasePassword);
+$phasePasswordDecrypt = decrypt($phasePasswordRex, ENCRYPTION_KEY);
+$currentTime = date("d-m-Y, H:i");
+$phaseUsername = clean($phaseUsername);
+$phasePasswordDecrypt = clean($phasePasswordDecrypt);
 
 $myResponse = "error";
 
@@ -36,18 +34,6 @@ if ( $phasePassword == "" ) {
     exit;
 }
 
-
-//$secret="6LcTlEQUAAAAANwum0cvt_k_aaK6n9-Gsaqz44Oq";
-//$response=$_POST["captcha"];
-
-//$verify=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$response}");
-//$captcha_success=json_decode($verify);
-//if ($captcha_success->success==false) {
-//    echo '{"status":"error"}'; 
-//    exit;
-//}
-
-
 $servername = DB_HOST;
 $username = DB_USER;
 $password = DB_PASSWORD;
@@ -60,46 +46,47 @@ if ($conn->connect_error) {
     exit;
 }
 
+error_log("Test" ,0);
+
 $stmt = $conn->prepare("SELECT UserID,UserPassword,Blocked FROM DTUManager WHERE UserName = ? LIMIT 1");
 
 $stmt->bind_param("s", $phaseUsername);
 
-if (!$stmt->execute()) { 
+if (!$stmt->execute()) {
+    error_log("Test1" ,0);
     echo '{"status":"errorexc"}';
     $conn->close();
     exit;
 }
 
 $result = $stmt->get_result();
+error_log("Test2" ,0);
 
 if ($result->num_rows==1){
+    error_log("Test3" ,0);
     while($row = $result->fetch_assoc()) {
         $DBUserID = $row["UserID"];
         $DBUserPass = $row["UserPassword"];
         $DBUserUserBlocked = $row["Blocked"];
     }
-
 }
+error_log("Test4" ,0);
 
 $stmt->close();
 
-error_log("test", 0);
-error_log($phasePassword, 0);
-error_log($DBUserPass, 0);
-	if($phasePassword === $DBUserPass) { // TODO: Fix this
-//    if (password_verify ( $phasePassword . $pepper , $DBUserPass )) {
-	error_log("test1", 0);
+$sPasswordDBDecrypted = decrypt($DBUserPass, ENCRYPTION_KEY);
+if ($sPasswordDBDecrypted === $phasePassword) {
     if ($DBUserUserBlocked == 1 ) {
-        session_start();		
+        session_start();
         $_SESSION['adminAccess'] = true;
         $_SESSION['session-time-admin'] = time();
-        
+
         $stmt = $conn->prepare("UPDATE Person SET LastLogin = ? WHERE UserID = ?");
 
         $stmt->bind_param("si", date("Y-m-d, H:i"), $DBUserID);
 
-        if ($stmt->execute()) { 
-            session_start();		
+        if ($stmt->execute()) {
+            session_start();
             $_SESSION['adminAccess'] = true;
             $_SESSION['session-time-admin'] = time();
             echo '{"status":"ok"}';
@@ -117,7 +104,7 @@ error_log($DBUserPass, 0);
     } else {
         echo '{"status":"errornotverif"}';
         $conn->close();
-        exit; 
+        exit;
     }
 } else {
     echo '{"status":"errornorow"}';
