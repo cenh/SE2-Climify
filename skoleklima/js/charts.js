@@ -572,12 +572,12 @@ function getGraphData(){
 }
 
 function disableGraphSettingsSelections() {
-    // $("#reportrange1, #reportrange2").css("opacity", ".5");
-    // $(".daterangepicker").css("visibility", "hidden");
-    // $('.canvas-settings-2-input').attr('disabled', true);
-    // $("#retrunNoDeviceGraph2").css("visibility", "hidden");
-    // $("#btn-get-compare-data").addClass("button-disabled");
-    // disableCompareBtn = true;
+    $("#reportrange1, #reportrange2").css("opacity", ".5");
+    $(".daterangepicker").css("visibility", "hidden");
+    $('.canvas-settings-2-input').attr('disabled', true);
+    $("#retrunNoDeviceGraph2").css("visibility", "hidden");
+    $("#btn-get-compare-data").addClass("button-disabled");
+    disableCompareBtn = true;
 }
 function enableGraphSettingsSelections() {
     if ( enableDataSettings == true ) {
