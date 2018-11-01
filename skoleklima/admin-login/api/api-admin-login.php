@@ -69,13 +69,14 @@ if ($result->num_rows==1){
         $DBUserPass = $row["UserPassword"];
         $DBUserUserBlocked = $row["Blocked"];
     }
-
 }
 error_log("Test4" ,0);
 
 $stmt->close();
 
 $sPasswordDBDecrypted = decrypt($DBUserPass, ENCRYPTION_KEY);
+error_log("DBUserName: " . $DBUserID, 0);
+error_log("DBUserPass: " . $DBUserPass, 0);
 error_log("Pass: " . $phasePasswordDecrypt, 0);
 error_log("DBPass: " . $sPasswordDBDecrypted, 0);
 if ($sPasswordDBDecrypted === $phasePasswordDecrypt) {
