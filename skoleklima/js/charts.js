@@ -261,10 +261,10 @@ function dateRangePicker1() {
     $('#reportrange1 span').html(start.format('D. MMMM YYYY') + ' - ' + end.format('D. MMMM YYYY'));
     startDateReplacement = start.format('YYYY-MM-DD');
     endDateReplacement = end.format('YYYY-MM-DD');
-    if (fetchingDataGraph == false) {
-      fetchingDataGraph = true;
-      disableGraphSettingsSelections();
-    }
+    // if (fetchingDataGraph == false) {
+    //   fetchingDataGraph = true;
+    //   disableGraphSettingsSelections();
+    // }
   }
 
   $('#reportrange1').daterangepicker({
