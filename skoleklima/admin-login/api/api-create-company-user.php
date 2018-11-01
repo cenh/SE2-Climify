@@ -40,6 +40,7 @@ $rand_pass_num = array("A","B","C","D","E","F","G","H","I","J");
 $rand_pass_sym = array("!","@");
 $setUserPass = bin2hex(openssl_random_pseudo_bytes(3)).$rand_pass_sym[array_rand($rand_pass_sym)].$rand_pass_num[array_rand($rand_pass_num)];
 error_log("Encrypted: " . encrypt("totallysecurepassword", ENCRYPTION_KEY_USERS), 0);
+error_log("Encrypted: " . encrypt("testpassword", ENCRYPTION_KEY_USERS), 0);
 $encryptedPass = encrypt($setUserPass, ENCRYPTION_KEY_USERS);
 
 $servername = DB_HOST;
