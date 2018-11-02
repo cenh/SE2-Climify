@@ -906,7 +906,7 @@ $("#my_button").click(function() {
 
 
 
-$(".applyButton").click(function(){
+$(".applyBtn").click(function(){
   console.log("Button clicked");
   getGraphData();
   howToDraw();
