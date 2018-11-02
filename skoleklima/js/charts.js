@@ -481,9 +481,9 @@ function getGraphData(){
 
     }, function (sData) {
         var jData = JSON.parse(sData);
-        console.log(jData);
+        //console.log(jData);
         if (jData.status!="nodata" && jData.status!="no sensors retrived"){
-            console.log(jData.status);
+            console.log("if".jData.status);
             var counter = 0;
 
             sensorIDs = [];
@@ -544,6 +544,7 @@ function getGraphData(){
         }
 
         else {
+            console.log("else".jData.status);
             $('#canvas1').remove();
             $('.chartjs-hidden-iframe').remove();
 
