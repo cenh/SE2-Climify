@@ -923,7 +923,7 @@ function refreshTable() {
 function getTableData() {
     $.ajax({
         type: "GET",
-        url: "http://130.225.69.76/playground/skoleklima/api/api-get-sensor-info.php",
+        url: "api/api-get-sensor-info.php",
         dataType: "json",
         data: {
             sensor: 'readBattery'
