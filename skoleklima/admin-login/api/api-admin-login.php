@@ -77,15 +77,8 @@ error_log("Test4" ,0);
 
 $stmt->close();
 
-<<<<<<< HEAD
-error_log("Password: " . $phasePassword, 0);
-error_log("Password (salted): " . $phasePassword . $pepper, 0);
-error_log("DBUserPass: " . $DBUserPass, 0);
-if (password_verify ($phasePassword . $pepper , $DBUserPass)) {
-=======
 $sPasswordDBDecrypted = decrypt($DBUserPass, ENCRYPTION_KEY);
 if ($sPasswordDBDecrypted === $phasePassword) {
->>>>>>> 4d2d0aa383f459b3d5f38d963c5edae16f89d1b1
     if ($DBUserUserBlocked == 1 ) {
         session_start();
         $_SESSION['adminAccess'] = true;
