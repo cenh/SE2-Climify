@@ -549,7 +549,8 @@ function getGraphData(){
                 
             }
             
-
+            console.log(dataTemperature);
+            console.log(dataHumidity);
             enableDataSettings = true;
             $('.canvas-settings').attr('disabled', false);
             $('#chart-fill').attr('disabled', false);
