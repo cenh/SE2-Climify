@@ -331,7 +331,7 @@ function dateRangePicker1() {
 
     function cb(start, end){
         console.log("Button clicked");
-        getGraphData();
+        //getGraphData();
         howToDraw();
     };
 }
