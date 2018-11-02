@@ -905,15 +905,16 @@ function getTableData() {
             sensor: 'readTemperature'
         }
     }).done(function (res) {
-        console.log(res);
-        var battery_level = (res.results[0].series[0].values.slice(-1)[0])[1];
-        console.log(battery_level);
+        var names = res.results[0].series[0].values;
+        console.table(names);
+        var table1 = $('#table_id1').DataTable();
+        table1.rows.add(names);
+
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
 
-    var table1 = $('#table_id1').DataTable();
-    table1.row.add(['Data', 'Fetched']).draw(false);
-    var table2 = $('#table_id2').DataTable();
-    table2.row.add(['Data2', 'Fetched']).draw(false);
+
+    // var table2 = $('#table_id2').DataTable();
+    // table2.row.add(['Data2', 'Fetched']).draw(false);
 }
