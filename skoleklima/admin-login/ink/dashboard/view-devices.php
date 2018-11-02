@@ -7,7 +7,7 @@
     <div style="width: 100%; height: 50%; border: 1px solid #dddddd;
     text-align: left;
     padding: 8px; float:left;">
-        <table id="table_id1" class="display">
+        <table id="roles_table" class="display">
             <thead>
             <tr>
                 <th>Name</th>

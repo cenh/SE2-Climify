@@ -61,3 +61,42 @@ function signOut() {
         }
     });
 }
+
+
+//roles table
+
+$(document).ready(function () {
+    $('#roles_table').DataTable();
+    getTableData();
+    refreshTable();
+});
+
+function refreshTable() {
+    setInterval(function () {
+        getTableData();
+    }, 3000);
+}
+
+function getTableData() {
+    // $.ajax({
+    //     type: "GET",
+    //     url: "api/api-get-sensor-info.php",
+    //     dataType: "json",
+    //
+    // }).done(function (res) {
+    //     var names = res.results[0].series[0].values;
+    //     var table1 = $('#roles_table').DataTable();
+    //     table1.clear();
+    //     for(var i = 0; i < names.length; i++) {
+    //         table1.row.add([names[i]]).draw(false);
+    //     }
+    //
+    // }).fail(function (jqXHR, textStatus, errorThrown) {
+    //     alert("AJAX call failed: " + textStatus + ", " + errorThrown);
+    // });
+        var table1 = $('#roles_table').DataTable();
+        //table1.clear();
+        table1.row.add([Role]).draw(false);
+
+
+}
