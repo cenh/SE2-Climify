@@ -80,5 +80,7 @@
 
 </div>
 <script>
-    setInterval(loadRoomDetails(), 10000) //every 10 sec
+    setInterval(function(){
+        loadRoomDetails()
+    }, 10000) //every 10 sec
 </script>
