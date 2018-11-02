@@ -521,6 +521,7 @@ function getGraphData(){
                     dataNoisePeak[i]=jData[j][i].NoisePeak;
                     dataTemperature[i]=parseFloat(jData[j][i].Temperature);
                     dataCO2[i]=jData[j][i].CO2;
+                    console.log(jData[j][i].CO2);
                     //dataTemperature[i]=parseFloat(jData[0][i].value);
                     var time = jData[1][i].time
     
