@@ -14,9 +14,13 @@ if( $phaseSessionToken != $adminSessionToken ){
     exit;
 }
 
-$phaseUsername=clean($_POST["username"]);
-$phasePassword=clean($_POST["password"]);
-$phasePasswordRex=(string)preg_replace("/ /","+",$phasePassword);
+$phaseUsername = clean(strtolower($_POST['username']));
+$phasePassword = clean($_POST['password']);
+$phasePasswordRex=(string)preg_replace("/ /", "+", $phasePassword);
+$phasePasswordDecrypt = decrypt($phasePasswordRex, ENCRYPTION_KEY);
+$currentTime = date("d-m-Y, H:i");
+$phaseUsername = clean($phaseUsername);
+$phasePasswordDecrypt = clean($phasePasswordDecrypt);
 
 $myResponse = "error";
 
@@ -42,33 +46,46 @@ if ($conn->connect_error) {
     exit;
 }
 
+error_log("Test" ,0);
+
 $stmt = $conn->prepare("SELECT UserID,UserPassword,Blocked FROM DTUManager WHERE UserName = ? LIMIT 1");
 
 $stmt->bind_param("s", $phaseUsername);
 
 if (!$stmt->execute()) {
+<<<<<<< HEAD
+=======
+    error_log("Test1" ,0);
+>>>>>>> 4d2d0aa383f459b3d5f38d963c5edae16f89d1b1
     echo '{"status":"errorexc"}';
     $conn->close();
     exit;
 }
 
 $result = $stmt->get_result();
+error_log("Test2" ,0);
 
 if ($result->num_rows==1){
+    error_log("Test3" ,0);
     while($row = $result->fetch_assoc()) {
         $DBUserID = $row["UserID"];
         $DBUserPass = $row["UserPassword"];
         $DBUserUserBlocked = $row["Blocked"];
     }
-
 }
+error_log("Test4" ,0);
 
 $stmt->close();
 
+<<<<<<< HEAD
 error_log("Password: " . $phasePassword, 0);
 error_log("Password (salted): " . $phasePassword . $pepper, 0);
 error_log("DBUserPass: " . $DBUserPass, 0);
 if (password_verify ($phasePassword . $pepper , $DBUserPass)) {
+=======
+$sPasswordDBDecrypted = decrypt($DBUserPass, ENCRYPTION_KEY);
+if ($sPasswordDBDecrypted === $phasePassword) {
+>>>>>>> 4d2d0aa383f459b3d5f38d963c5edae16f89d1b1
     if ($DBUserUserBlocked == 1 ) {
         session_start();
         $_SESSION['adminAccess'] = true;
