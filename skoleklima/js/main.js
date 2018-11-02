@@ -822,33 +822,7 @@ function generateDate() {
 //     // });
 //
 // });
-//TODO:
-function loadRoomDetails() {
-    $.ajax({
-        type: "GET",
-        url: "http://130.225.69.76/playground/skoleklima/api/api-get-sensor-info.php",
-        dataType: "json",
-        data: {
-            sensor: 'readBattery'
-        }
-    }).done(function (res) {
-        var battery_level = (res.results[0].series[0].values.slice(-1)[0])[1];
-        document.getElementById("bat_lvl").innerHTML = res;
-        console.log(battery_level)
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("AJAX call failed: " + textStatus + ", " + errorThrown);
-    });
 
-    $.ajax({
-        type: "GET",
-        url: "http://130.225.69.76/playground/skoleklima/api/api-get-current-temperature.php",
-        dataType: "json",
-    }).done(function (res) {
-        console.log(res)
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("AJAX call failed: " + textStatus + ", " + errorThrown);
-    });
-}
 
 $("#my_button").click(function () {
     console.log("Button Pressed");
@@ -906,6 +880,8 @@ $("#my_button").click(function () {
 });
 
 //added table here
+
+
 
 $(document).ready(function () {
     $('#table_id1').DataTable();
