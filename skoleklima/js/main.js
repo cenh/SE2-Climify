@@ -863,6 +863,9 @@ $("#my_button").click(function () {
         message = new Paho.MQTT.Message(msg_text);
         message.destinationName = "commandse2/test";
         client.publish(message);
+
+
+
     }
 
     // called when the client loses its connection
