@@ -902,7 +902,7 @@ function getTableData() {
         url: "api/api-get-sensor-info.php",
         dataType: "json",
         data: {
-            sensor: 'readBattery'
+            sensor: 'readTemperature'
         }
     }).done(function (res) {
         var battery_level = (res.results[0].series[0].values.slice(-1)[0])[1];
