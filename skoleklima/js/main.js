@@ -919,7 +919,6 @@ function refreshTable() {
     setInterval(function () {
         //HERE FETCH DATA FROM DB
 
-
         var table1 = $('#table_id1').DataTable();
         table1.row.add(['Jacob', 'Awesome person']).draw(false);
         var table2 = $('#table_id2').DataTable();
