@@ -46,31 +46,25 @@ if ($conn->connect_error) {
     exit;
 }
 
-error_log("Test" ,0);
-
 $stmt = $conn->prepare("SELECT UserID,UserPassword,Blocked FROM DTUManager WHERE UserName = ? LIMIT 1");
 
 $stmt->bind_param("s", $phaseUsername);
 
 if (!$stmt->execute()) {
-    error_log("Test1" ,0);
     echo '{"status":"errorexc"}';
     $conn->close();
     exit;
 }
 
 $result = $stmt->get_result();
-error_log("Test2" ,0);
 
 if ($result->num_rows==1){
-    error_log("Test3" ,0);
     while($row = $result->fetch_assoc()) {
         $DBUserID = $row["UserID"];
         $DBUserPass = $row["UserPassword"];
         $DBUserUserBlocked = $row["Blocked"];
     }
 }
-error_log("Test4" ,0);
 
 $stmt->close();
 
