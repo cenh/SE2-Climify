@@ -908,13 +908,13 @@ function getTableData() {
         var names = res.results[0].series[0].values;
         console.table(names);
         var table1 = $('#table_id1').DataTable();
-        table1.rows.add(names);
+
+        for(var i = 0; i < names.length; i++) {
+            table1.row.add([names[i], 'Fetched']).draw(false);
+        }
 
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
 
-
-    // var table2 = $('#table_id2').DataTable();
-    // table2.row.add(['Data2', 'Fetched']).draw(false);
 }
