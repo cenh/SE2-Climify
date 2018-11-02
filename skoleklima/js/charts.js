@@ -512,35 +512,39 @@ function getGraphData(){
 
             $("btn-download-graph-data").removeClass("button-disabled");
             console.log(jData);
-            for( var i = 0 ; i < jData[0].length ; i++ ){
-                sensorIDs[i]=jData[0][i].SensorID;
-                sensorAlias[i]=jData[0][i].SensorAlias;
-                dataHumidity[i]=parseFloat(jData[0][i].Humidity);
-                dataNoiseAvg[i]=jData[0][i].NoiseAvg;
-                dataNoisePeak[i]=jData[0][i].NoisePeak;
-                dataTemperature[i]=parseFloat(jData[0][i].Temperature);
-                //dataTemperature[i]=parseFloat(jData[0][i].value);
-                var time = jData[0][i].time
-
-                var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-                h= time.substring(11, 13);
-                if (String(h).length==1){
-                    h = "0" +h;
-
+            for( var j = 0; j < jData.length; j++){
+                for( var i = 0 ; i < jData[j].length ; i++ ){
+                    sensorIDs[i]=jData[j][i].SensorID;
+                    sensorAlias[i]=jData[j][i].SensorAlias;
+                    dataHumidity[i]=parseFloat(jData[j][i].Humidity);
+                    dataNoiseAvg[i]=jData[j][i].NoiseAvg;
+                    dataNoisePeak[i]=jData[j][i].NoisePeak;
+                    dataTemperature[i]=parseFloat(jData[j][i].Temperature);
+                    //dataTemperature[i]=parseFloat(jData[0][i].value);
+                    var time = jData[0][i].time
+    
+                    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    
+                    h= time.substring(11, 13);
+                    if (String(h).length==1){
+                        h = "0" +h;
+    
+                    }
+                    m= time.substring(14,16);
+                    if (String(m).length==1){
+                        m= "0" + m;
+                    }
+    
+                    month = months[parseInt(time.substring(5,7))-1];
+    
+                    date = time.substring(8,10);
+    
+                    dataDates[i]= date + ". " + month + " " + h + ":" + m;
+                    dataCO2[i]=jData[0][i].CO2;
                 }
-                m= time.substring(14,16);
-                if (String(m).length==1){
-                    m= "0" + m;
-                }
-
-                month = months[parseInt(time.substring(5,7))-1];
-
-                date = time.substring(8,10);
-
-                dataDates[i]= date + ". " + month + " " + h + ":" + m;
-                dataCO2[i]=jData[0][i].CO2;
+                
             }
+            
 
             enableDataSettings = true;
             $('.canvas-settings').attr('disabled', false);
