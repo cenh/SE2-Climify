@@ -885,7 +885,6 @@ $("#my_button").click(function () {
 
 $(document).ready(function () {
     $('#table_id1').DataTable();
-    $('#table_id2').DataTable();
     getTableData();
     refreshTable();
 });
@@ -908,7 +907,7 @@ function getTableData() {
         var names = res.results[0].series[0].values;
         console.table(names);
         var table1 = $('#table_id1').DataTable();
-
+        table1.clear();
         for(var i = 0; i < names.length; i++) {
             table1.row.add([names[i], 'Fetched']).draw(false);
         }
@@ -916,5 +915,4 @@ function getTableData() {
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
-
 }
