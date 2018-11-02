@@ -332,10 +332,9 @@ function dateRangePicker1() {
 
     cb(start, end);
     $('#reportrange1').on('apply.daterangepicker', function (ev, picker) {
-        console.log("Button clicked");
         getGraphData();
         howToDraw();
-    })
+    });
 }
 
 function dateRangePicker2() {
@@ -387,6 +386,10 @@ function dateRangePicker2() {
     }, cb);
 
     cb(start, end);
+    $('#reportrange2').on('apply.daterangepicker', function (ev, picker) {
+        getGraphData();
+        howToDraw();
+    });
 }
 
 function GTMtimeRound(time){
