@@ -905,7 +905,6 @@ $("#my_button").click(function () {
     }
 });
 
-
 //added table here
 
 $(document).ready(function () {
@@ -922,6 +921,21 @@ function refreshTable() {
 }
 
 function getTableData() {
+    $.ajax({
+        type: "GET",
+        url: "http://130.225.69.76/playground/skoleklima/api/api-get-sensor-info.php",
+        dataType: "json",
+        data: {
+            sensor: 'readBattery'
+        }
+    }).done(function (res) {
+        var battery_level = (res.results[0].series[0].values.slice(-1)[0])[1];
+        document.getElementById("bat_lvl").innerHTML = res;
+        console.log(battery_level);
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        alert("AJAX call failed: " + textStatus + ", " + errorThrown);
+    });
+
     var table1 = $('#table_id1').DataTable();
     table1.row.add(['Data', 'Fetched']).draw(false);
     var table2 = $('#table_id2').DataTable();
