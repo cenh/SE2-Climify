@@ -329,7 +329,11 @@ function dateRangePicker1() {
 
     }, cb);
 
-    cb(start, end);
+    function cb(start, end){
+        console.log("Button clicked");
+        getGraphData();
+        howToDraw();
+    };
 }
 
 function dateRangePicker2() {
