@@ -925,13 +925,12 @@ function getTableData() {
         type: "GET",
         url: "api/api-get-sensor-info.php",
         dataType: "json",
-        data: {
-            sensor: 'readBattery'
-        }
+        // data: {
+        //     sensor: 'readBattery'
+        // }
     }).done(function (res) {
-        var battery_level = (res.results[0].series[0].values.slice(-1)[0])[1];
-        document.getElementById("bat_lvl").innerHTML = res;
-        console.log(battery_level);
+        //var battery_level = (res.results[0].series[0].values.slice(-1)[0])[1];
+        console.log(res);
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
