@@ -905,7 +905,6 @@ function getTableData() {
         }
     }).done(function (res) {
         var names = res.results[0].series[0].values;
-        console.table(names);
         var table1 = $('#table_id1').DataTable();
         table1.clear();
         for(var i = 0; i < names.length; i++) {
