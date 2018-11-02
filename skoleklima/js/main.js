@@ -924,7 +924,7 @@ function getTableData() {
     $.ajax({
         type: "GET",
         url: "api/api-get-sensor-info.php",
-        dataType: "json",
+        //dataType: "json",
         // data: {
         //     sensor: 'readBattery'
         // }
