@@ -906,7 +906,7 @@ function getTableData() {
         }
     }).done(function (res) {
         var names = res.results[0].series[0].values;
-        console.log(names);
+        console.table(names);
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
