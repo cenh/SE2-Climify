@@ -96,7 +96,7 @@ function getTableData() {
     // });
         var table1 = $('#roles_table').DataTable();
         //table1.clear();
-        table1.row.add([Role]).draw(false);
+        table1.row.add(['Role']).draw(false);
 
 
 }
