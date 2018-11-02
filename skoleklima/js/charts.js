@@ -482,7 +482,7 @@ function getGraphData(){
     }, function (sData) {
         var jData = JSON.parse(sData);
         console.log(jData);
-        if (jData.status!="nodata" || jData.status!="no sensors retrived"){
+        if (jData.status!="nodata" && jData.status!="no sensors retrived"){
 
 
 
