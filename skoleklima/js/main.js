@@ -905,8 +905,8 @@ function getTableData() {
             sensor: 'readTemperature'
         }
     }).done(function (res) {
-        var battery_level = (res.results[0].series[0].values.slice(-1)[0])[1];
-        console.log(battery_level);
+        var names = res.results[0].series[0].values;
+        console.log(names);
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
