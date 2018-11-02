@@ -518,7 +518,7 @@ function getGraphData(){
                     sensorIDs[i]=jData[j][i].SensorID;
                     sensorAlias[i]=jData[j][i].SensorAlias;
                     if((parseFloat(jData[j][i].Humidity) != null))
-                        if(!isNan(parseFloat(jData[j][i].Humidity)))
+                        if(!isNaN(parseFloat(jData[j][i].Humidity)))
                             dataHumidity[i]=parseFloat(jData[j][i].Humidity);
                     dataNoiseAvg[i]=jData[j][i].NoiseAvg;
                     dataNoisePeak[i]=jData[j][i].NoisePeak;
