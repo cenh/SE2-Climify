@@ -483,11 +483,8 @@ function getGraphData(){
         var jData = JSON.parse(sData);
         console.log(jData);
         if (jData.status!="nodata" && jData.status!="no sensors retrived"){
-
-
-
+            console.log(jData.status);
             var counter = 0;
-
 
             sensorIDs = [];
             sensorAlias = [];
@@ -499,15 +496,9 @@ function getGraphData(){
             dataNoiseAvg = [];
             dataNoisePeak  = [];
 
-
-
-
-
             xDataExist = false;
 
             $("btn-download-graph-data").removeClass("button-disabled");
-
-
 
             for( var i = 0 ; i < jData[0].length ; i++ ){
                 sensorIDs[i]=jData[0][i].SensorID;
