@@ -899,3 +899,15 @@ $("#my_button").click(function() {
     console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
   }
 });
+
+
+
+
+
+
+
+$(".applyButton").click(){
+  console.log("Button clicked");
+  getGraphData();
+  howToDraw();
+}
