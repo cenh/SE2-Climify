@@ -292,7 +292,8 @@ function dateRangePicker1() {
             fetchingDataGraph = true;
             disableGraphSettingsSelections();
         }
-
+        
+        
     }
 
     $('#reportrange1').daterangepicker({
@@ -329,11 +330,12 @@ function dateRangePicker1() {
 
     }, cb);
 
-    function cb(start, end){
+    cb(start, end);
+    $('#reportrange1').on('apply.daterangepicker', function (ev, picker) {
         console.log("Button clicked");
-        //getGraphData();
+        getGraphData();
         howToDraw();
-    };
+    })
 }
 
 function dateRangePicker2() {
