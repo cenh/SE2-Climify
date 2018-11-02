@@ -908,7 +908,7 @@ function getTableData() {
         var table1 = $('#table_id1').DataTable();
         table1.clear();
         for(var i = 0; i < names.length; i++) {
-            table1.row.add([names[i], 'Fetched']).draw(false);
+            table1.row.add([names[i]]).draw(false);
         }
 
     }).fail(function (jqXHR, textStatus, errorThrown) {
