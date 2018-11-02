@@ -19,17 +19,17 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 	@Override
 	public void run() {
 		super.run();
-		
+	
 		if (topic.startsWith(Topic.COMMAND.getTopic())) {
 			try {
 				System.out.println("Inside topic " + topic); 
 				Command command = dslJson.deserialize(Command.class, message.getPayload(), message.getPayload().length);
 				rest.sendCommandToItem(command);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		
+		
 	}
-
 }

@@ -15,8 +15,6 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
-//import se2.groupc.mqtt.MessageHandler;
-//import se2.groupc.mqtt.PublishMessageTask;
 
 /**
  * This class implements the core logic to asynchronously connect to a broker, receive & publish messages.
@@ -92,6 +90,7 @@ public class AsyncMqttController implements MqttCallbackExtended {
 	@Override
 	public void connectionLost(Throwable cause) {
 		System.out.println("Connection lost by: " + cause.getMessage());
+		cause.printStackTrace();
 		// Notify relevant workers
 
 	}
@@ -169,6 +168,14 @@ public class AsyncMqttController implements MqttCallbackExtended {
 	 */
 	protected MessageHandler getMessageHandler(String topic, MqttMessage message) {
 		return new MessageHandler(topic, message);		
+	}
+	
+	/**
+	 * Dispatches the task off to the threadpool.
+	 * @param runnable
+	 */
+	protected void executeTask(Runnable runnable) {
+		threadPool.execute(runnable);
 	}
 
 }
