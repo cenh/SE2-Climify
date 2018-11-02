@@ -512,7 +512,7 @@ function getGraphData(){
 
             $("btn-download-graph-data").removeClass("button-disabled");
             console.log(jData);
-            for( var j = 0; j < jData.length; j++){
+            for( var j = jData.length; j > 0; j--){
                 for( var i = 0 ; i < jData[j].length ; i++ ){
                     sensorIDs[i]=jData[j][i].SensorID;
                     sensorAlias[i]=jData[j][i].SensorAlias;
@@ -520,6 +520,7 @@ function getGraphData(){
                     dataNoiseAvg[i]=jData[j][i].NoiseAvg;
                     dataNoisePeak[i]=jData[j][i].NoisePeak;
                     dataTemperature[i]=parseFloat(jData[j][i].Temperature);
+                    dataCO2[i]=jData[j][i].CO2;
                     //dataTemperature[i]=parseFloat(jData[0][i].value);
                     var time = jData[0][i].time
     
@@ -540,7 +541,7 @@ function getGraphData(){
                     date = time.substring(8,10);
     
                     dataDates[i]= date + ". " + month + " " + h + ":" + m;
-                    dataCO2[i]=jData[0][i].CO2;
+                   
                 }
                 
             }
