@@ -517,12 +517,14 @@ function getGraphData(){
                     
                     sensorIDs[i]=jData[j][i].SensorID;
                     sensorAlias[i]=jData[j][i].SensorAlias;
-                    if(parseFloat(jData[j][i].Humidity) != null)
-                        dataHumidity[i]=parseFloat(jData[j][i].Humidity);
+                    if((parseFloat(jData[j][i].Humidity) != null))
+                        if(!isNan(parseFloat(jData[j][i].Humidity)))
+                            dataHumidity[i]=parseFloat(jData[j][i].Humidity);
                     dataNoiseAvg[i]=jData[j][i].NoiseAvg;
                     dataNoisePeak[i]=jData[j][i].NoisePeak;
                     if(parseFloat(jData[j][i].Temperature) != null)
-                        dataTemperature[i]=parseFloat(jData[j][i].Temperature);
+                        if(!isNaN(parseFloat(jData[j][i].Temperature)))
+                            dataTemperature[i]=parseFloat(jData[j][i].Temperature);
                     dataCO2[i]=jData[j][i].CO2;
                     //dataTemperature[i]=parseFloat(jData[0][i].value);
                     var time = jData[1][i].time
@@ -551,6 +553,7 @@ function getGraphData(){
             
             console.log(dataTemperature);
             console.log(dataHumidity);
+
             enableDataSettings = true;
             $('.canvas-settings').attr('disabled', false);
             $('#chart-fill').attr('disabled', false);
