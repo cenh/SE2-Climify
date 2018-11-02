@@ -515,7 +515,7 @@ function getGraphData(){
             for( var i = 0 ; i < jData[0].length ; i++ ){
                 sensorIDs[i]=jData[0][i].SensorID;
                 sensorAlias[i]=jData[0][i].SensorAlias;
-                dataHumidity[i]=jData[0][i].Humidity;
+                dataHumidity[i]=parseFloat(jData[0][i].Humidity);
                 dataNoiseAvg[i]=jData[0][i].NoiseAvg;
                 dataNoisePeak[i]=jData[0][i].NoisePeak;
                 dataTemperature[i]=parseFloat(jData[0][i].Temperature);
