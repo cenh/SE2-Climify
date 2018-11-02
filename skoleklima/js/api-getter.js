@@ -3,7 +3,7 @@ function loadRoomDetails() {
     console.log("ROOM DETAILS....");
     $.ajax({
         type: "GET",
-        url: "http://130.225.69.76/playground/skoleklima/api/api-get-current-temperature.php",
+        url: "api/api-get-current-temperature.php",
         dataType: "json",
     }).done(function (res) {
         var json_t = JSON.parse(res);
@@ -14,7 +14,7 @@ function loadRoomDetails() {
     });
     $.ajax({
         type: "GET",
-        url: "http://130.225.69.76/playground/skoleklima/api/api-get-humidity.php",
+        url: "api/api-get-humidity.php",
         dataType: "json",
     }).done(function (res) {
         var json_h = JSON.parse(res);
