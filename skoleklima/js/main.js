@@ -931,7 +931,7 @@ function getTableData() {
     }).done(function (res) {
         var battery_level = (res.results[0].series[0].values.slice(-1)[0])[1];
         document.getElementById("bat_lvl").innerHTML = res;
-        console.log(battery_level)
+        console.log(battery_level);
     }).fail(function (jqXHR, textStatus, errorThrown) {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
