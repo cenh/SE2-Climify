@@ -917,7 +917,4 @@ function getTableData() {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
 
-
-    // var table2 = $('#table_id2').DataTable();
-    // table2.row.add(['Data2', 'Fetched']).draw(false);
 }
