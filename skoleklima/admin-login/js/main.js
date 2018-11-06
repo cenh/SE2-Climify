@@ -78,12 +78,12 @@ function refreshTable() {
 }
 
 function getTableData() {
-    var sUrl = "../api/api-get-roles.php";
-    // Do AJAX and phase link to api
-    $.get(sUrl, function (sData) {
-        var jData = JSON.parse(sData);
-        console.table(jData);
-    });
+    // var sUrl = "../api/api-get-roles.php";
+    // // Do AJAX and phase link to api
+    // $.get(sUrl, function (sData) {
+    //     var jData = JSON.parse(sData);
+    //     console.table(jData);
+    // });
 
     var table = $('#roles_table').DataTable();
     //table1.clear();
