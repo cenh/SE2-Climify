@@ -66,7 +66,8 @@ function signOut() {
 //roles table
 
 $(document).ready(function () {
-    $('#roles_table').DataTable();
+    var table = $('#roles_table').DataTable();
+    table.draw();
     getTableData();
     refreshTable();
 });
