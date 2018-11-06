@@ -22,6 +22,11 @@ public class MariaDBCommunicator {
 	Connection connection;
 	
 	public void connect() throws SQLException {
+		try {
+			Class.forName( "org.mariadb.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306", "root", "totallysecurepassword");
 		Statement statement = connection.createStatement();
 		statement.execute("USE Climafy3");
