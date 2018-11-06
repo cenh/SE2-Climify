@@ -81,7 +81,5 @@ function clean($e)
 
 session_start();
 
-echo '<script>console.log("api works here!")</script>';
-
 $systemAccess = $_SESSION['adminAccess'];
 ?>

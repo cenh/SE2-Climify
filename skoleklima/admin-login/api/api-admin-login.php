@@ -112,4 +112,7 @@ if ($sPasswordDBDecrypted === $phasePassword) {
     exit;
 };
 
+echo '<script>console.log("api works here!")</script>';
+
+
 ?>
