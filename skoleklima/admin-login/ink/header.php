@@ -9,7 +9,7 @@
     </div>
 </header>
 
-<div style="width: 100%; text-align: center;
+<div style="width: 100%; height: 50%; text-align: center;
          font-weight: bold; font-size: 150%;"> Roles </div>
 
 <div style="width: 100%; height: 50%; border: 1px solid #dddddd;
