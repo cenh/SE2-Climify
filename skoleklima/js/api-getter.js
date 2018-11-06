@@ -2,7 +2,7 @@
 function loadRoomDetails() {
     console.log("ROOM DETAILS....");
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "api/api-get-all-sensordata.php",
         data: {'sensor': 'readOutdoorTemperature'},
         dataType: "json"
@@ -14,7 +14,7 @@ function loadRoomDetails() {
         alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     });
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "api/api-get-all-sensordata.php",
         data: {'sensor': 'readHumidity'},
         dataType: "json"
