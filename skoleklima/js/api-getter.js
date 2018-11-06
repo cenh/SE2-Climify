@@ -6,7 +6,9 @@ function loadRoomDetails() {
     $.ajax({
         type: "POST",
         url: "api/api-get-all-sensordata.php",
-        data: {sensor: 'readOutdoorTemperature'}
+        data: {
+            sensor: 'readOutdoorTemperature'
+        }
     }).done(function (res) {
         console.log(res);
         var t_latest = res.results[0].series[0].values.slice(-1)[0];
