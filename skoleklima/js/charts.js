@@ -292,8 +292,8 @@ function dateRangePicker1() {
             fetchingDataGraph = true;
             disableGraphSettingsSelections();
         }
-        
-        
+
+
     }
 
     $('#reportrange1').daterangepicker({
@@ -327,7 +327,6 @@ function dateRangePicker1() {
             'Sidste 30 dage': [moment().subtract(29, 'days'), moment()],
             'Denne måned': [moment().startOf('month'), moment().endOf('month')],
         },
-
     }, cb);
 
     cb(start, end);
@@ -482,8 +481,6 @@ function getGraphData(){
 
     var sUrl = "api/api-get-graph-data.php";
 
-
-
     clearChartData();
     $.post(sUrl, {
         fAY2YfpdKvR: sender,
@@ -495,7 +492,7 @@ function getGraphData(){
         var jData = JSON.parse(sData);
         //console.log(jData);
         if (jData.status!="nodata" && jData.status!="no sensors retrived"){
-            
+
             var counter = 0;
 
             sensorIDs = [];
@@ -514,7 +511,7 @@ function getGraphData(){
             console.log(jData);
             for( var j = 0; j < jData.length; j++){
                 for( var i = 0 ; i < jData[j].length ; i++ ){
-                    
+
                     sensorIDs[i]=jData[j][i].SensorID;
                     sensorAlias[i]=jData[j][i].SensorAlias;
                     if((parseFloat(jData[j][i].Humidity) != null))
@@ -528,29 +525,29 @@ function getGraphData(){
                     dataCO2[i]=jData[j][i].CO2;
                     //dataTemperature[i]=parseFloat(jData[0][i].value);
                     var time = jData[1][i].time
-    
+
                     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    
+
                     h= time.substring(11, 13);
                     if (String(h).length==1){
                         h = "0" +h;
-    
+
                     }
                     m= time.substring(14,16);
                     if (String(m).length==1){
                         m= "0" + m;
                     }
-    
+
                     month = months[parseInt(time.substring(5,7))-1];
-    
+
                     date = time.substring(8,10);
-    
+
                     dataDates[i]= date + ". " + month + " " + h + ":" + m;
-                   
+
                 }
-                
+
             }
-            
+
             console.log(dataTemperature);
             console.log(dataHumidity);
 
@@ -568,7 +565,7 @@ function getGraphData(){
         }
 
         else {
-            
+
             $('#canvas1').remove();
             $('.chartjs-hidden-iframe').remove();
 
@@ -1070,10 +1067,6 @@ function removeCompareDevices(boxQR) {
     }
 }
 
-
-
-
-
 function startCompareCharset() {
     $("#gettingCompareDataWait").show();
     clearCompareGraph();
@@ -1096,41 +1089,24 @@ function getCompareCharsetData(){
     numberOfLocations=0;
 
     $(".chart-select-location option").each(function(){
-
         // Add $(this).val() to your list
 
         //locStand is the standard location option "Choose Location"...
 
         LocID = $(this).attr('id');
-
         if (!LocationIDs.includes(LocID)){
-
             if($(this).val()!="locStand"){
-
-
-
                 var isChecked = document.getElementById('check'+LocID).checked;
-
 
                 if (isChecked){
                     numberOfLocations++;
                     LocationIDs.push(LocID);
                 }
-
             }
         }
-
-
     });
 
-
-
     LocationIDs = JSON.stringify(LocationIDs)
-
-
-
-
-
 
     var sUrl = "api/api-get-compare-data.php"
 
@@ -1149,14 +1125,10 @@ function getCompareCharsetData(){
         $("#retrunNoSchoolGraph2").hide();
         $("#retrunNoSchoolGraph2Part2").hide();
 
-
         var jData = JSON.parse(sData);
 
         if (jData.status!="nodata"){
             //[i][j]  -> i = different sensors, j = different datapoints
-
-
-
             dates = [];
             temperature = [];
             humidity = [];
@@ -1169,20 +1141,13 @@ function getCompareCharsetData(){
                       'rgba(153, 102, 255, 1)',
                       'rgba(255, 159, 64, 1)'];
 
-
-
-
-
             for( var i = 0 ; i < jData.length ; i++ ){
                 for( var j = 0 ; j < jData[i].length; j++ ){
-
 
                     var time = jData[i][j].time;
 
                     if (typeof time != "undefined"){
                         var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-
 
                         h= time.substring(11, 13);
                         if (String(h).length==1){
@@ -1197,11 +1162,6 @@ function getCompareCharsetData(){
                         month = months[parseInt(time.substring(5,7))-1];
 
                         date = time.substring(8,10);
-
-
-
-
-
 
                         dToInsert = date + ". " + month + " " + h + ":" + m;
                         dates.push(dToInsert);
@@ -1271,13 +1231,10 @@ function getCompareCharsetData(){
     });
 }
 
-
-
 function callDrawCompareGraph(){
 
     drawCompareGraph();
 }
-
 
 function clearCompareData() {
     compareData.dataDates = [];
