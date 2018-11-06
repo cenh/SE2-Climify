@@ -20,9 +20,12 @@
   <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-compiler-plugin</artifactId>
-    <version>3.3</version>
+    <version>3.8.0</version>
     <configuration>
       <compilerArgument>-Xlint:unchecked</compilerArgument>
+      <annotationProcessors>
+      	<annotationProcessor>com.dslplatform.json.processor.CompiledJsonAnnotationProcessor</annotationProcessor>
+      </annotationProcessors>
     </configuration>
   </plugin>
 </plugins>
@@ -68,13 +71,13 @@
 <dependency>
   <groupId>com.dslplatform</groupId>
   <artifactId>dsl-json-java8</artifactId>
-  <version>1.8.2</version>
+  <version>1.8.3</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/com.dslplatform/dsl-json-processor -->
 <dependency>
     <groupId>com.dslplatform</groupId>
     <artifactId>dsl-json-processor</artifactId>
-    <version>1.8.2</version>
+    <version>1.8.3</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/org.influxdb/influxdb-java -->
 <dependency>
