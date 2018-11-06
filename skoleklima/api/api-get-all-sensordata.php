@@ -1,5 +1,5 @@
 <?php
-$body = $_GET;
+$body = file_get_contents('php://input');
 $sensor = json_decode($body);
 /*switch ($body) {
     case "readOutdoorTemperature":
