@@ -4,8 +4,8 @@ function loadRoomDetails() {
     $.ajax({
         type: "GET",
         url: "api/api-get-all-sensordata.php",
-        dataType: "json",
-        data: {'sensor': 'readOutdoorTemperature'}
+        data: {'sensor': 'readOutdoorTemperature'},
+        dataType: "json"
     }).done(function (res) {
         console.log(res);
         var t_latest = res.results[0].series[0].values.slice(-1)[0];
@@ -16,8 +16,8 @@ function loadRoomDetails() {
     $.ajax({
         type: "GET",
         url: "api/api-get-all-sensordata.php",
-        dataType: "json",
-        data: {'sensor':"readHumidity"}
+        data: {'sensor': 'readHumidity'},
+        dataType: "json"
     }).done(function (res) {
         console.log(res);
         var h_latest = res.results[0].series[0].values.slice(-1)[0];
