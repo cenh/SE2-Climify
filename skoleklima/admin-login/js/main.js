@@ -82,6 +82,7 @@ function getTableData() {
     // Do AJAX and phase link to api
     $.get(sUrl, function (sData) {
         var jData = JSON.parse(sData);
+        console.log(jData);
         console.table(jData);
     });
 
