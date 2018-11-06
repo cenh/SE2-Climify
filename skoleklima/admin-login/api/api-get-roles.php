@@ -6,10 +6,10 @@ require_once "../session.php";
 
 $phaseSessionToken = clean($_POST[sessionToken]);
 
-if( $phaseSessionToken != $adminSessionToken ){
-    echo '{"status 1":"error"}';
-    exit;
-}
+//if( $phaseSessionToken != $adminSessionToken ){
+//    echo '{"status 1":"error"}';
+//    exit;
+//}
 
 if (!$systemAccess) {
     echo '{"status 2":"error"}';
