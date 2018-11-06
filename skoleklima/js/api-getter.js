@@ -1,7 +1,7 @@
 
 function loadRoomDetails() {
     //console.log("ROOM DETAILS....");
-    $.get("api/api-get-all-sensordata.php", {sensor:'readOutdoorTemperature'},
+    $.get("api/api-get-all-sensordata.php", { sensor:'readOutdoorTemperature'},
         function (res) {
             console.log(res);
             //var t_latest = res.results[0].series[0].values.slice(-1)[0];
