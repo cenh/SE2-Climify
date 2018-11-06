@@ -6,6 +6,8 @@
 require_once "../meta.php";
 require_once "../app/vendor/autoload.php";
 require_once "../app/vendor/ruler/vendor/autoload.php";
+require_once "../app/vendor/ruler/src/Ruler/RuleBuilder.php";
+
 
 $rb = new RuleBuilder;
 $rule = $rb->create(
