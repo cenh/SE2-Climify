@@ -75,7 +75,7 @@ public class RestCommunicator {
         return response.body().string();
     }
 	
-	public void getAllThings() {
+	public String getAllThings() throws IOException {
 		String commandUrl = restBaseUrl + "things/";
         Headers headers = Utilities.getHeaders(HeaderType.JSON);
 
@@ -85,17 +85,12 @@ public class RestCommunicator {
             .get()
             .build();
 
-        Response response;
-		try {
-			response = client.newCall(request).execute();
-			System.out.println("Things: " + response.body().string());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        Response response = client.newCall(request).execute();
+        
+        return response.body().string();
 	}
 	
-	public void getAllLinks() {
+	public String getAllLinks() throws IOException {
 		String commandUrl = restBaseUrl + "links/";
         Headers headers = Utilities.getHeaders(HeaderType.JSON);
 
@@ -105,13 +100,8 @@ public class RestCommunicator {
             .get()
             .build();
 
-        Response response;
-		try {
-			response = client.newCall(request).execute();
-			System.out.println("Links: " + response.body().string());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        Response response = client.newCall(request).execute();
+        
+        return response.body().string();
 	}
 }
