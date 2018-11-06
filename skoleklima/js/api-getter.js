@@ -10,7 +10,7 @@ function loadRoomDetails() {
             sensor: 'readOutdoorTemperature'
         }
     }).done(function (res) {
-        console.log(res);
+        res = JSON.parse(res);
         var t_latest = res.results[0].series[0].values.slice(-1)[0];
         document.getElementById("temp_cur").innerHTML = t_latest[1].substring(0, 4) + " ℃";
     }).fail(function (jqXHR, textStatus, errorThrown) {
