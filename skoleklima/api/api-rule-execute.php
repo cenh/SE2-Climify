@@ -7,7 +7,7 @@ require_once "../meta.php";
 
 $rb = new RuleBuilder;
 $rule = $rb->create(
-  $rb['temperature']->greaterThanOrEqualTo($rb['actualTemperature'])
+  $rb['temperature']->greaterThanOrEqualTo($rb['actualTemperature']),
 
   function() {
     error_log("RULE_EXECUTED!!!!!", 0);
