@@ -1,5 +1,5 @@
 <?php
-$body = $_POST["sensor"];
+$body = $_GET["sensor"];
 switch ($body) {
     case "readOutdoorTemperature":
         $dbVariable = "Temperature";
