@@ -22,7 +22,7 @@ public class MariaDBCommunicator {
 	Connection connection;
 	
 	public void connect() throws SQLException {
-		connection = DriverManager.getConnection("jdcb:mariadb://localhost:3306", "root", "totallysecurepassword");
+		connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306", "root", "totallysecurepassword");
 		Statement statement = connection.createStatement();
 		statement.execute("USE Climafy3");
 	}
