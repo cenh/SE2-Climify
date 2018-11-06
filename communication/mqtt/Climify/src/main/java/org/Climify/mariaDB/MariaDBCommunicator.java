@@ -57,7 +57,8 @@ public class MariaDBCommunicator {
 	}
 	
 	private void insertRaspberryPi(String raspberryPiUID, Integer locationID) {
-		String sql = "INSERT INTO RaspberryPis(UID, LocationID)";
+		String sql = "INSERT INTO RaspberryPis(UID, LocationID)"
+					+ " VALUES(?,?)";
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, raspberryPiUID);
