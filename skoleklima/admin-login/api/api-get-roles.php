@@ -4,20 +4,20 @@
 require_once "../admin-meta.php";
 require_once "../session.php";
 
-//$phaseSessionToken = clean($_POST[sessionToken]);
-//
-//if( $phaseSessionToken != $adminSessionToken ){
-//    echo '{"status":"error"}';
-//    exit;
-//}
-//
-//if (!$systemAccess) {
-//    echo '{"status":"error"}';
-//    exit;
-//}
-//
-//$phaseStatus=clean($_POST["status"]); //Blocked
-//$phaseSearch=clean($_POST["search"]);
+$phaseSessionToken = clean($_POST[sessionToken]);
+
+if( $phaseSessionToken != $adminSessionToken ){
+    echo '{"status 1":"error"}';
+    exit;
+}
+
+if (!$systemAccess) {
+    echo '{"status 2":"error"}';
+    exit;
+}
+
+$phaseStatus=clean($_POST["status"]); //Blocked
+$phaseSearch=clean($_POST["search"]);
 
 
 $servername = DB_HOST;
