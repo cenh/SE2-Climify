@@ -1,5 +1,6 @@
 <?php
 
+echo "<script>console.log('reached code point!');</script>";
 
 require_once "../admin-meta.php";
 require_once "../session.php";
@@ -32,8 +33,13 @@ if ($conn->connect_error) {
     exit;
 }
 
+$query = "SELECT * FROM Role";
 
-$stmt = $conn->prepare("(SELECT * FROM Role);");
+
+if(!$stmt->prepare($query))
+{
+    print "Failed to prepare statement\n";
+}
 
 
 $stmt->execute();
@@ -54,3 +60,43 @@ $stmt->close();
 $conn->close();
 
 ?>
+
+<?php
+//
+//$mysqli = new mysqli("127.0.0.1", "user", "password", "world");
+//
+//if($mysqli->connect_error)
+//{
+//    die("$mysqli->connect_errno: $mysqli->connect_error");
+//}
+//
+//
+//$stmt = $mysqli->stmt_init();
+//if(!$stmt->prepare($query))
+//{
+//    print "Failed to prepare statement\n";
+//}
+//else
+//{
+//    $stmt->bind_param("s", $continent);
+//
+//    $continent_array = array('Europe','Africa','Asia','North America');
+//
+//    foreach($continent_array as $continent)
+//    {
+//        $stmt->execute();
+//        $result = $stmt->get_result();
+//        while ($row = $result->fetch_array(MYSQLI_NUM))
+//        {
+//            foreach ($row as $r)
+//            {
+//                print "$r ";
+//            }
+//            print "\n";
+//        }
+//    }
+//}
+//
+//$stmt->close();
+//$mysqli->close();
+//?>
