@@ -78,7 +78,7 @@ function refreshTable() {
 }
 
 function getTableData() {
-    var sUrl = "../api/api-get-companyes.php";
+    var sUrl = "../api/api-get-roles.php";
     // Do AJAX and phase link to api
     $.get(sUrl, function (sData) {
         var jData = JSON.parse(sData);

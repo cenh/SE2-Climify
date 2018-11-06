@@ -1,6 +1,5 @@
 <?php
 
-echo '<script>console.log("api works here!")</script>';
 
 require_once "../admin-meta.php";
 require_once "../session.php";
