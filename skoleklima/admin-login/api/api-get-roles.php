@@ -1,6 +1,5 @@
 <?php
 
-echo '<script>console.log("start")</script>';
 
 require_once "../admin-meta.php";
 require_once "../session.php";
@@ -38,7 +37,6 @@ $query = "SELECT * FROM Role";
 
 if(!$stmt->prepare($query))
 {
-    echo '<script>console.log("prepare failed")</script>';
     print "Failed to prepare statement\n";
 }
 
