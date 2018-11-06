@@ -4,7 +4,7 @@
 var sessionToken = $("#session-token").val();
 
 // Login
-$(document).on("click", "#btn-login-system", function(){
+$(document).on("click", "#btn-login-system", function () {
     var username = $("#inp-login-username").val();
     var password = $("#inp-login-password").val();
     if (username != "" && password != "") {
@@ -20,7 +20,7 @@ $(document).on("click", "#btn-login-system", function(){
             success: function (data) {
                 var jData = JSON.parse(data);
                 if (jData.status == "ok") {
-               location.reload();
+                    location.reload();
                 } else {
                     grecaptcha.reset();
                     $("#inp-login-username").val("");
@@ -29,7 +29,7 @@ $(document).on("click", "#btn-login-system", function(){
                     $("#inp-login-password").addClass("wrong-login");
                     setTimeout(() => {
                         $("#inp-login-username").removeClass("wrong-login");
-                        $("#inp-login-password").removeClass("wrong-login"); 
+                        $("#inp-login-password").removeClass("wrong-login");
                     }, 2000);
                 }
             }
@@ -43,7 +43,7 @@ $("#inp-login-username, #inp-login-password").keyup(function (event) {
     }
 });
 
-$("#btn-sign-out").click(function(){
+$("#btn-sign-out").click(function () {
     signOut();
 });
 
@@ -94,9 +94,11 @@ function getTableData() {
     // }).fail(function (jqXHR, textStatus, errorThrown) {
     //     alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     // });
-        var table1 = $('#roles_table').DataTable();
-        //table1.clear();
-        table1.row.add(['Role']).draw(false);
+
+    console.log('refreshed');
+    var table = $('#roles_table').DataTable();
+    //table1.clear();
+    table.row.add(['Role']).draw(false);
 
 
 }
