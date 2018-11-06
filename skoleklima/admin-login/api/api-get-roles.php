@@ -4,12 +4,13 @@
 require_once "../admin-meta.php";
 require_once "../session.php";
 
-$phaseSessionToken = clean($_POST[sessionToken]);
+//$phaseSessionToken = clean($_POST[sessionToken]);
+$phaseSessionToken = $adminSessionToken;
 
-//if( $phaseSessionToken != $adminSessionToken ){
-//    echo '{"status 1":"error"}';
-//    exit;
-//}
+if( $phaseSessionToken != $adminSessionToken ){
+    echo '{"status 1":"error"}';
+    exit;
+}
 
 if (!$systemAccess) {
     echo '{"status 2":"error"}';
