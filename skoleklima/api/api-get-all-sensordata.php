@@ -1,5 +1,6 @@
 <?php
-$sensor = file_get_contents('php://input');
+$body = file_get_contents('php://input');
+$sensor = $body['sensor'];
 switch ($sensor) {
     case "readOutdoorTemperature":
         $dbVariable = "Temperature";
