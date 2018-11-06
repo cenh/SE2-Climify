@@ -1,5 +1,6 @@
 <?php
 $body = $_GET;
+$sensor = json_encode($body);
 /*switch ($body) {
     case "readOutdoorTemperature":
         $dbVariable = "Temperature";
@@ -14,4 +15,4 @@ $body = $_GET;
     // TODO: any more things need to be called from this api?? (Hasn't been tested)
 //$data = file_get_contents(   "http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20".$dbVariable ."FROM%20".$body);
 echo $body;
-return $body;
+return $sensor;
