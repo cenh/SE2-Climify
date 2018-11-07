@@ -35,6 +35,7 @@ if(empty($sensor_1)) {
 elseif (empty($sensor_2)) {
   // Means only sensor 1 exists
   if(validateRule($op_1, $value_1, $action_1)) {
+    error_log("Sensor_1 was validated and will now be executed.", 0);
     executeRule($sensor_1, $op_1, $value_1, $action_1);
   }
   else {
@@ -47,6 +48,7 @@ else {
   // We have both sensors described
   if(validateRule($op_1, $value_1, $action_1) && validateRule($op_2, $value_2, $action_2)) {
     // HOW DO WE USE THIS ON TWO SENSORS?
+    error_log("Sensor_1 and sensor_2 was validated and will now be executed.", 0);
     executeRule($sensor_1, $op_1, $value_1, $action_1);
   }
   else {
@@ -65,14 +67,16 @@ function validateRule($op, $value, $action) {
 
 function executeRule($sensor, $op, $value, $action) {
   if($op == "LESS") {
-    $returnFromIfx = $database->query('SELECT * FROM "' . $sensor . '"' . 'WHERE temperature <' . $value . 'ORDER BY time DESC LIMIT 1');
+    $q = 'SELECT * FROM "' . $sensor . '"' . 'WHERE temperature <' . $value . 'ORDER BY time DESC LIMIT 1';
   }
   elseif ($op == "GREATER") {
-    $returnFromIfx = $database->query('SELECT * FROM "' . $sensor . '"' . 'WHERE temperature >' . $value . 'ORDER BY time DESC LIMIT 1');
+    $q = 'SELECT * FROM "' . $sensor . '"' . 'WHERE temperature >' . $value . 'ORDER BY time DESC LIMIT 1';
   }
   elseif ($op == "EQUAL") {
-    $returnFromIfx = $database->query('SELECT * FROM "' . $sensor . '"' . 'WHERE temperature =' . $value . 'ORDER BY time DESC LIMIT 1');
+    $q = 'SELECT * FROM "' . $sensor . '"' . 'WHERE temperature =' . $value . 'ORDER BY time DESC LIMIT 1';
   }
+  error_log("Query: $q", 0);
+  $returnFromIfx = $database->query($q);
   if(empty($returnFromIfx)) {
     // This is actually not bad and an error, just means that we should not execute anything
     echo '{"status":"Result from Influx was empty!"}';
