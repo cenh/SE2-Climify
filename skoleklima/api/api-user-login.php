@@ -56,7 +56,7 @@ if ($RoleName == 1 || $RoleName == 15) {
     $result = $conn->query($q);
     if($result->num_rows > 0) {
       $permissions=array();
-      while($row = $result->mysqli_fetch_assoc())
+      while($row = mysqli_fetch_assoc($result))
       {
         error_log("Pushed permission: ". $row['PermName'], 0);
         array_push($permissions, $row['PermName']);
