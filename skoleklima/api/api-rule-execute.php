@@ -22,10 +22,10 @@ $value_2 = $_GET['value2'];
 $action_1 = $_GET['action1'];
 $action_2 = $_GET['action2'];
 
-error_log('Sensor: $sensor_1', 0);
-error_log('Op: $op_1', 0);
-error_log('Value: $value_1', 0);
-error_log('Action: $action_1', 0);
+error_log("Sensor: $sensor_1", 0);
+error_log("Op: $op_1", 0);
+error_log("Value: $value_1", 0);
+error_log("Action: $action_1", 0);
 
 if(empty($sensor_1)) {
   echo '{"status":"You have to enter a sensor!"}';
