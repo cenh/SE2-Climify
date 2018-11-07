@@ -90,13 +90,16 @@
                     </a>
                 </li>
 					 <?php }
+					 elseif ($perm == "education") { ?>
+						 <hr>
+		 					<li class="menu-link menu-link-learning" data-go-to="learning"></i>
+		 						<a>
+		 							<i class="menu-link-ico nav-icon fa fa-book" aria-hidden="true"></i>
+		 							<p class="menu-link-text">Education</p>
+		 						</a>
+		 					</li>
+					<?php }
 				 			}?>
-				<li class="menu-link menu-link-learning" data-go-to="learning"></i>
-					<a>
-						<i class="menu-link-ico nav-icon fa fa-book" aria-hidden="true"></i>
-						<p class="menu-link-text">Education</p>
-					</a>
-				</li>
 			<span class="mobile-sign-out">
 				<hr>
 				<li class="menu-link menu-link-sign-out">
