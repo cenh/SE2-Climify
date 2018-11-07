@@ -35,7 +35,7 @@ if(empty($sensor_1)) {
 elseif (empty($sensor_2)) {
   // Means only sensor 1 exists
   if(validateRule($op_1, $value_1, $action_1)) {
-    executeRule($sensor, $op, $value, $action);
+    executeRule($sensor_1, $op_1, $value_1, $action_1);
   }
   else {
     echo '{"status":"You need to specify the operator, value and action!"}';
@@ -47,7 +47,7 @@ else {
   // We have both sensors described
   if(validateRule($op_1, $value_1, $action_1) && validateRule($op_2, $value_2, $action_2)) {
     // HOW DO WE USE THIS ON TWO SENSORS?
-    executeRule($sensor, $op, $value, $action);
+    executeRule($sensor_1, $op_1, $value_1, $action_1);
   }
   else {
     echo '{"status":"You need to specify the operator, value and action!"}';
@@ -74,7 +74,8 @@ function executeRule($sensor, $op, $value, $action) {
     $returnFromIfx = $database->query('SELECT * FROM "' . $sensor . '"' . 'WHERE temperature =' . $value . 'ORDER BY time DESC LIMIT 1');
   }
   if(empty($returnFromIfx)) {
-    echo '{"status":"You need to specify the operator, value and action!"}';
+    // This is actually not bad and an error, just means that we should not execute anything
+    echo '{"status":"Result from Influx was empty!"}';
     error_log("Result from Influx was empty", 0);
     exit;
   }
