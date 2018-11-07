@@ -58,7 +58,7 @@
 								</a>
 							</li>
 						<?php }
-						elseif ($perm == "other-users") { ?>
+						elseif ($perm == "permissions") { ?>
 							<li class="menu-link menu-link-permissions" data-go-to="permissions">
 							 <a href="#/Permissions">
 								 <i class="menu-link-ico nav-icon fa fa-address-card" aria-hidden="true"></i>
@@ -66,7 +66,7 @@
 							 </a>
 						 </li>
 					 <?php }
-						elseif ($perm == "other-users") { ?>
+						elseif ($perm == "own-user") { ?>
 							<li class="menu-link menu-link-own-user" data-go-to="own-user">
 								<a href="#/your-profile">
 									<i class="menu-link-ico nav-icon fa fa-user" aria-hidden="true"></i>
@@ -74,7 +74,7 @@
 								</a>
 							</li>
 						<?php }
-						elseif ($perm == "other-users") { ?>
+						elseif ($perm == "system-settings") { ?>
 							<li class="menu-link menu-link-system-settings" data-go-to="system-settings"></i>
 			           <a href="#/settings">
 			              <i class="menu-link-ico nav-icon fa fa-cog" aria-hidden="true"></i>
@@ -82,7 +82,7 @@
 			           </a>
 			        </li>
 						<?php }
-						elseif ($perm == "other-users") { ?>
+						elseif ($perm == "roomX") { ?>
                 <li class="menu-link menu-link-system-settings" data-go-to="roomX"></i>
                     <a href="#/roomX">
                         <i class="menu-link-ico nav-icon fa fa-times-circle" aria-hidden="true"></i>
