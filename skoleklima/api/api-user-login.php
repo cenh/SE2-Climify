@@ -52,7 +52,7 @@ if ($RoleName == 1 || $RoleName == 15) {
         $stmt->close();
     }
     $q = "SELECT Permission.PermName FROM Permission INNER JOIN RolePermission ON Permission.PermID = RolePermission.PermID WHERE RolePermission.RoleID = $RoleName";
-    error_log("Query: $q", 0)
+    error_log("Query: $q", 0);
     $result = $conn->query($q);
     if($result->num_rows > 0) {
       $permissions=[];
