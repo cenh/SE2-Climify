@@ -97,6 +97,7 @@ $currentUserSchoolAllowedName = $_SESSION['schoolAllowedName'];
 $currentPermLogbook = $_SESSION['permLogbook'];
 $accessToken = "";
 $tokenValidTime = "";
+$permissions = $_SESSION['permissions'];
 
 // Current company Influx Database login information - is set when user sign in
 $influxName = $_SESSION['infN']; // Influx db name
