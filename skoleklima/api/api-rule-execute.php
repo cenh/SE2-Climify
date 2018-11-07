@@ -5,14 +5,6 @@
 
 require_once "../meta-influx.php";
 
-$servername_influx = DB_HOST_INFLUX;
-$serverport_influx = DB_PORT_INFLUX;
-$dbname_influx = DB_NAME_INFLUX;
-$dbuser_influx = DB_USER_INFLUX;
-$dbpass_influx = DB_PASSWORD_INFLUX;
-
-$database = InfluxDB\Client::fromDSN(sprintf('influxdb://%s:%s@%s:%s/%s',$dbuser_influx, $dbpass_influx, $servername_influx, $serverport_influx, $dbname_influx));
-
 $sensor_1 = $_GET['sensor1'];
 $sensor_2 = $_GET['sensor2'];
 $op_1 = $_GET['op1'];
@@ -76,7 +68,17 @@ function executeRule($sensor, $op, $value, $action) {
     $q = "SELECT * FROM $sensor WHERE temperature = $value ORDER BY time DESC LIMIT 1";
   }
   error_log("Query: $q", 0);
+
+  $servername_influx = DB_HOST_INFLUX;
+  $serverport_influx = DB_PORT_INFLUX;
+  $dbname_influx = DB_NAME_INFLUX;
+  $dbuser_influx = DB_USER_INFLUX;
+  $dbpass_influx = DB_PASSWORD_INFLUX;
+  error_log("$dbuser_influx, $dbpass_influx, $servername_influx, $serverport_influx, $dbname_influx", 0);
+  $database = InfluxDB\Client::fromDSN(sprintf('influxdb://%s:%s@%s:%s/%s',$dbuser_influx, $dbpass_influx, $servername_influx, $serverport_influx, $dbname_influx));
   $returnFromIfx = $database->query($q);
+
+
   if(empty($returnFromIfx)) {
     // This is actually not bad and an error, just means that we should not execute anything
     echo '{"status":"Result from Influx was empty!"}';
