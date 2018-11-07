@@ -77,7 +77,8 @@ function executeRule($sensor, $op, $value, $action) {
   error_log("$dbuser_influx, $dbpass_influx, $servername_influx, $serverport_influx, $dbname_influx", 0);
   $database = InfluxDB\Client::fromDSN(sprintf('influxdb://%s:%s@%s:%s/%s',$dbuser_influx, $dbpass_influx, $servername_influx, $serverport_influx, $dbname_influx));
   $returnFromIfx = $database->query($q);
-  error_log("Return from Influx: $returnFromIfx", 0);
+  $points = $returnFromIfx->getPoints();
+  error_log("Return from Influx: $points", 0);
 
   if(empty($returnFromIfx)) {
     // This is actually not bad and an error, just means that we should not execute anything
