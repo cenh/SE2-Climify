@@ -1,9 +1,10 @@
-<div class="view-data-top">
+<div class="single-view view-rules">
+    <div class="view-data-top">
 	<span>
 		<h3>Graphs</h3>
 		<p>See statistics from one or more of the chosen locations.</p>
 	</span>
-    <span>
+        <span>
 		<span>
 			<?php if ( $currentUserRole == 1 || $currentUserRole == 15 ) { ?>
                 <select class="list-schools-other-users" name="option" id="graphMainSelect">
@@ -29,5 +30,6 @@
 
 		</span>
 	</span>
+    </div>
 </div>
 <hr>
