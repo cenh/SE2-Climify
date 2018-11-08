@@ -900,14 +900,14 @@ $("#my_button").click(function() {
   }
 
 $("#fetch-sensors-for-loc").click(function () {
-
+  console.log("Hello?");
   console.log($("#selectLocation").val());
   if($("#selectLocation").val()) {
     var room_selected = $("#selectLocation").val();
     $.post('api-rules-query', {
       room: room_selected
     }).done(function(res){
-
+      console.log(res);
     })
     ;
     $(".rule-databox").attr("visibility","visible");
