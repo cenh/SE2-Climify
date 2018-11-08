@@ -903,7 +903,7 @@ $("#my_button").click(function() {
 });
 // RULES FUNCTIONALITY BELOW
 $("#fetch-sensors-for-loc").on("click",function() {
-    if ($("#sel_location").val() === 1 || "1") {
+    if ($("#sel_location").val()==="1") {
         var room_selected = $("#sel_location").val();
         console.log(room_selected);
         $.post('api/api-rules-query.php', {
@@ -915,7 +915,7 @@ $("#fetch-sensors-for-loc").on("click",function() {
         $(".collapsible").show();
 
     }
-    else if ($("#sel_location").val() === 2 || "2") {
+    else if ($("#sel_location").val()==="2") {
         console.log("2");
         $(".collapsible").hide();
         alert("No rules specefied for selected room");
