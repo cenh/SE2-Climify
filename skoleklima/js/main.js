@@ -907,7 +907,7 @@ $("#fetch-sensors-for-loc").on("click",function(){
     $.post('api/api-rules-query.php', {
       room: room_selected
     }).done(function(res){
-      $(".collasible").text(res);
+      $(".ui-button-text").text("Room: "+res);
     });
     $(".collapsible").show();
 

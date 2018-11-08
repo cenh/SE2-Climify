@@ -45,9 +45,17 @@ while($row = mysqli_fetch_array($result))
     </div>
     <hr>
 
-    <button style="display:none;" class="collapsible"></button>
+    <button style="display:none;" class="collapsible">
+        <span class="ui-button-text"></span>
+    </button>
     <div class="content">
-        <p>Lorem ipsum...</p>
+        <h1>Rules for room</h1>
+        <div class="content-item">
+            <span>
+                <h2>R1</h2>
+
+            </span>
+        </div>
     </div>
 
 
