@@ -52,12 +52,16 @@ while($row = mysqli_fetch_array($result))
         <div class="container-fluid">
             <h2 id="rules-title">Rules for room</h2>
             <div class="container">
-                <div class="col-lg-8">Rule 1</div>
-                <div class="col-lg-4">
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                    </label>
+                <div class="row">
+                    <div class="col-lg-8">Rule 1
+                        <p>This rule opens a window when the read outdoor temperature is greater than 25 degrees</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="switch">
+                            <input type="checkbox" id="rulecheck">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>

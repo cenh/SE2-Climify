@@ -193,13 +193,15 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-
+#software-name-header-wrapper.p {
+  margin-top: auto;
+}
 /* Style the collapsible content. Note: hidden by default */
 .content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
-  background-color: #fefefe;
+  background-color: #e8e8e8;
   transition: max-height 0.2s ease-out;
 }
 .content-item {
