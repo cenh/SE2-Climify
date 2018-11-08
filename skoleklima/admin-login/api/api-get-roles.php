@@ -11,8 +11,11 @@ if (!$systemAccess) {
     exit;
 }
 
-echo $phaseSessionToken;
-echo $adminSessionToken;
+error_log($phaseSessionToken,0);
+error_log($adminSessionToken, 0);
+
+//echo $phaseSessionToken;
+//echo $adminSessionToken;
 
 if( $phaseSessionToken != $adminSessionToken ){
     echo '{"status":"phaseSessionToken error"}';
