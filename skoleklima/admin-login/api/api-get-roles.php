@@ -1,5 +1,7 @@
 <?php
 
+echo '<script>console.log("Your stuff here")</script>';
+
 
 require_once "../admin-meta.php";
 require_once "../session.php";
@@ -16,10 +18,9 @@ if( $phaseSessionToken != $adminSessionToken ){
     exit;
 }
 
-//$phaseStatus=clean($_POST["status"]); //Blocked
-//$phaseSearch=clean($_POST["search"]);
+$phaseStatus=clean($_POST["status"]); //Blocked
+$phaseSearch=clean($_POST["search"]);
 
-echo '<script>console.log("Your stuff here")</script>';
 
 
 $servername = DB_HOST;
