@@ -902,7 +902,7 @@ $("#my_button").click(function() {
 
 $("#fetch-sensors-for-loc").on("click",function(){
   if($("#sel_location").val()) {
-    var room_selected = $("#selectLocation").val();
+    var room_selected = $("#sel_location").val();
     console.log(room_selected);
     $.post('api/api-rules-query.php', {
       room: room_selected
