@@ -1,8 +1,8 @@
 <div class="single-view view-rules">
-    <div class="view-data-top">
+    <div class="view-rules-top">
 	<span>
-		<h3>Graphs</h3>
-		<p>See statistics from one or more of the chosen locations.</p>
+		<h3>Rules</h3>
+		<p>See predefined rules and toggle them (on/off) for a location</p>
 	</span>
         <span>
 		<span>
