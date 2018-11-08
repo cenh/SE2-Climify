@@ -1,7 +1,5 @@
 <?php
 
-echo '<script>console.log("Your stuff here")</script>';
-
 
 require_once "../admin-meta.php";
 require_once "../session.php";
@@ -12,6 +10,9 @@ if (!$systemAccess) {
     echo '{"status":"systemAccess error"}';
     exit;
 }
+
+echo $phaseSessionToken;
+echo $adminSessionToken;
 
 if( $phaseSessionToken != $adminSessionToken ){
     echo '{"status":"phaseSessionToken error"}';
