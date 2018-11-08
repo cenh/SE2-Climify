@@ -80,6 +80,7 @@ function refreshTable() {
 function getTableData() {
     var sUrl = "api/api-get-roles.php";
     // Do AJAX and phase link to api
+    console.log(sessionToken);
     $.post(sUrl, {
         sessionToken: sessionToken,
     }, function (data) {
