@@ -69,7 +69,7 @@
 /*
     Justify content
  */
-.view-login .view-roomX-data-box .view-signup .view-signup-inner-wrapper .view-signup-body .view-signup-body-right .recaptcha-wrapper, .view-login .view-limited-signup .view-signup-inner-wrapper .view-signup-body .view-signup-body-right .recaptcha-wrapper, .view-own-user .user-info-input .btn-update-own-user-wrapper, .view-communication .data-communication-wrapper .communication-area-wrapper-1 .flow-communication-wrapper .add-communication-wrapper .button-communication-wrapper, .map-wrapper .map-settings .upload-map-selection .upload-map-label-wrapper, .crop-img-admin .crop-img-control-wrapper .crop-img-control-inner-wrapper {
+.view-login .view-roomX-data-box .view-rules-top .view-signup .view-signup-inner-wrapper .view-signup-body .view-signup-body-right .recaptcha-wrapper, .view-login .view-limited-signup .view-signup-inner-wrapper .view-signup-body .view-signup-body-right .recaptcha-wrapper, .view-own-user .user-info-input .btn-update-own-user-wrapper, .view-communication .data-communication-wrapper .communication-area-wrapper-1 .flow-communication-wrapper .add-communication-wrapper .button-communication-wrapper, .map-wrapper .map-settings .upload-map-selection .upload-map-label-wrapper, .crop-img-admin .crop-img-control-wrapper .crop-img-control-inner-wrapper {
   -webkit-box-pack: end;
   -moz-box-pack: end;
   -webkit-flex-pack: end;

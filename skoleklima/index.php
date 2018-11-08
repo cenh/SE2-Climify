@@ -75,7 +75,7 @@
     <script type="text/javascript" src="lib/daterangepicker/daterangepicker.js"></script>
 	<script type="text/javascript" src="lib/cropbox/cropbox-min.js"></script>
 	<script src="js/main.js?v=<?php echo $system_version ?>"></script>
-
+    <scritp type="text/javascript" src="js/rule-getter.js"></scritp>
     <script src="croppie/croppie.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCH3z0AYLLOwg0HhYvfXVWVVG1isTjyMUU&libraries=geometry"></script>
 

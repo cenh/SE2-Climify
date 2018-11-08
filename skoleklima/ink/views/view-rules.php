@@ -17,8 +17,6 @@
 				<!-- Content goes here -->
 				<option value="stand" selected>Choose Floor plan</option>
 			</select>
-
-			<button id="fetch-sensors-for-loc" class="link">Get sensors</button>
 		</span>
 		<span>
 			<select class="chart-select-location" id="selectLocation">
@@ -26,6 +24,7 @@
                 <!-- Content goes here -->
 			</select>
 		</span>
+        <button id="fetch-sensors-for-loc" class="link">Get sensors</button>
 	</span>
     </div>
     <hr>
