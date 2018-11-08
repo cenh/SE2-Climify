@@ -13,7 +13,7 @@ if (!$systemAccess) {
 
 if( $phaseSessionToken != $adminSessionToken ){
     echo '{"status":"phaseSessionToken error"}';
-    exit;
+//    exit;
 }
 
 $phaseStatus=clean($_POST["status"]); //Blocked
