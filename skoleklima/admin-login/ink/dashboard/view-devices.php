@@ -1,7 +1,6 @@
 <!-- View dahsboard -->
 
 <div class="viewport">
-
     <div class="viewport-dashboard"> 
         <div class="top-btn-wrapper">
             <span>
@@ -25,5 +24,29 @@
             <p><i class="update-spinner fa fa-spinner fa-spin fa-1x fa-fw"></i> Fetching data...</p>
             <!-- Content goes here -->
         </div>
+    </div>
+</div>
+
+
+<div style="height: 100px"></div>
+
+
+<div style="height: auto">
+    <div style="width: 100%; text-align: center;
+         font-weight: bold; font-size: 150%;"> Roles </div>
+
+    <div style="width: 100%; height: 400px; border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px; float:left;">
+        <table id="roles_table" class="display">
+            <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
     </div>
 </div>
