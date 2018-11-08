@@ -58,7 +58,7 @@ while($row = mysqli_fetch_array($result))
                     </div>
                     <div class="col-lg-3">
                         <label class="switch">
-                            <input type="checkbox" id="rulecheck">
+                            <input id="rulecheck" type="checkbox">
                             <span class="slider round"></span>
                         </label>
                     </div>

@@ -68,6 +68,8 @@ $(document).ready(function() {
 });
 
 // Variables
+var isChecked = !!$('#rulecheck').attr('checked');
+
 var xhttp = new XMLHttpRequest();
 var reE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 var startPage = "";
@@ -900,26 +902,26 @@ $("#my_button").click(function() {
   }
 });
 // RULES FUNCTIONALITY BELOW
-$("#fetch-sensors-for-loc").on("click",function(){
-  if($("#sel_location").val()=== 1 || "1") {
-    var room_selected = $("#sel_location").val();
-    console.log(room_selected);
-    $.post('api/api-rules-query.php', {
-      room: room_selected
-    }).done(function(res){
-      $(".ui-button-text").text("Room: "+res);
-      $("#rules-title").text("Rules for room "+res);
-    });
-    $(".collapsible").show();
+$("#fetch-sensors-for-loc").on("click",function() {
+    if ($("#sel_location").val() === 1 || "1") {
+        var room_selected = $("#sel_location").val();
+        console.log(room_selected);
+        $.post('api/api-rules-query.php', {
+            room: room_selected
+        }).done(function (res) {
+            $(".ui-button-text").text("Room: " + res);
+            $("#rules-title").text("Rules for room " + res);
+        });
+        $(".collapsible").show();
 
-  }
-  else if($("#sel_location").val()===2 || "2") {
-    alert("No rules specefied for selected room");
-  }
+    }
+    else if ($("#sel_location").val() === 2 || "2") {
+        alert("No rules specefied for selected room");
+    }
+});
 
 
-
-var isChecked = $('#rulecheck').attr('checked')?true:false;
+console.log(isChecked);
 if (isChecked){
   console.log("attr_Checked");
   $.ajax({
@@ -935,7 +937,5 @@ if (isChecked){
       }
   })
 }
-
-});
 
 
