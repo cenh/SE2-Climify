@@ -1,6 +1,6 @@
 <!-- View dahsboard -->
 
-<div class="viewport">
+<div class="viewport" style="height: auto">
 
     <div class="viewport-dashboard"> 
         <div class="top-btn-wrapper">
