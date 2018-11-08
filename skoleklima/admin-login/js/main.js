@@ -89,7 +89,7 @@ function getTableData() {
     // });
 
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: "api/api-get-roles.php",
         data: {
             sessionToken: sessionToken,
