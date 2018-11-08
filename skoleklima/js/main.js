@@ -920,6 +920,7 @@ $("#fetch-sensors-for-loc").on("click",function() {
     }
 });
 $("#rulecheck").click(function(){
+    isChecked = !!$('#rulecheck').attr('checked');
     console.log(isChecked);
 
     if (isChecked){
@@ -936,8 +937,9 @@ $("#rulecheck").click(function(){
                 console.log(data);
             }
         })
-    }
-})
+    };
+
+});
 
 
 
