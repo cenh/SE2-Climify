@@ -19,6 +19,8 @@ if( $phaseSessionToken != $adminSessionToken ){
 //$phaseStatus=clean($_POST["status"]); //Blocked
 //$phaseSearch=clean($_POST["search"]);
 
+echo '<script>console.log("Your stuff here")</script>';
+
 
 $servername = DB_HOST;
 $username = DB_USER;
