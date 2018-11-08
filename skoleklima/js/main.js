@@ -911,7 +911,7 @@ $("#fetch-sensors-for-loc").click(function () {
     })
     ;
     $(".rule-databox").attr("visibility","visible");
-    $(".collapsible").attr("visibility","hidden");
+    $(".collapsible").attr("visibility","visible");
 
   }
 
