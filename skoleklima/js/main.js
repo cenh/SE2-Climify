@@ -898,24 +898,21 @@ $("#my_button").click(function() {
     msg = JSON.parse(message.payloadString);
     console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
   }
+});
 
-$("#fetch-sensors-for-loc").click(function () {
-  console.log("Hello?");
-  console.log($("#sel_location").val());
+$("#fetch-sensors-for-loc").on("click",function(){
   if($("#sel_location").val()) {
     var room_selected = $("#selectLocation").val();
-    $.post('api/api-rules-query', {
+    console.log(room_selected);
+    $.post('api/api-rules-query.php', {
       room: room_selected
     }).done(function(res){
       console.log(res);
-    })
-    ;
+    });
     $(".rule-databox").attr("visibility","visible");
     $(".collapsible").attr("visibility","visible");
-
   }
 
 });
 
-});
 
