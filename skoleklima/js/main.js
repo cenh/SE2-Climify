@@ -930,8 +930,7 @@ if (isChecked){
         action1: "Window_Close"
       },
       success: function(data){
-        var json_obj = JSON.parse(data);
-        console.log(json_obj);
+        console.log(data);
       }
   })
 }
