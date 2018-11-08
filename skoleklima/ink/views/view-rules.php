@@ -25,10 +25,9 @@ $result = $stmt->get_result();
 
 $emparray = array();
 $option = "";
-while($row = mysqli_fetch_assoc($result))
+while($row = mysqli_fetch_array($result))
 {
-    $emparray[] = $row[1];
-    $options =$options."<option>$emparray</option>";
+    $options =$options."<option>$row[0]</option>";
 }
 ?>
 
