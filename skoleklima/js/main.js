@@ -913,7 +913,7 @@ $("#fetch-sensors-for-loc").on("click",function(){
     $(".collapsible").show();
 
   }
-  else if($("#sel_location").val()===2) {
+  else if($("#sel_location").val()===2 || "2") {
     alert("No rules specefied for selected room");
   }
 
@@ -921,6 +921,7 @@ $("#fetch-sensors-for-loc").on("click",function(){
 
 var isChecked = $('#rulecheck').attr('checked')?true:false;
 if (isChecked){
+  console.log("attr_Checked");
   $.ajax({
       type: "POST",
       url: "api/api-rule-execute.php",
