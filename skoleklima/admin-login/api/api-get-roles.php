@@ -6,13 +6,13 @@ require_once "../session.php";
 
 $phaseSessionToken = clean($_POST[sessionToken]);
 
-if( $phaseSessionToken != $adminSessionToken ){
-    echo '{"status":"phaseSessionToken error"}';
+if (!$systemAccess) {
+    echo '{"status":"systemAccess error"}';
     exit;
 }
 
-if (!$systemAccess) {
-    echo '{"status":"systemAccess error"}';
+if( $phaseSessionToken != $adminSessionToken ){
+    echo '{"status":"phaseSessionToken error"}';
     exit;
 }
 
@@ -29,7 +29,6 @@ $pepper = HASH_PEPPER;
 $conn = new mysqli($servername, $username, $password, $databasename);
 if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
-    exit;
 }
 
 $query = "SELECT * FROM Role";
