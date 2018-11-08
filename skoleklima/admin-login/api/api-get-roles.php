@@ -13,11 +13,11 @@ if (!$systemAccess) {
 
 if( $phaseSessionToken != $adminSessionToken ){
     echo '{"status":"phaseSessionToken error"}';
-//    exit;
+    exit;
 }
 
-$phaseStatus=clean($_POST["status"]); //Blocked
-$phaseSearch=clean($_POST["search"]);
+//$phaseStatus=clean($_POST["status"]); //Blocked
+//$phaseSearch=clean($_POST["search"]);
 
 
 $servername = DB_HOST;
@@ -56,45 +56,3 @@ echo $messages;
 $stmt->close();
 
 $conn->close();
-
-?>
-
-<?php
-//
-//$mysqli = new mysqli("127.0.0.1", "user", "password", "world");
-//
-//if($mysqli->connect_error)
-//{
-//    die("$mysqli->connect_errno: $mysqli->connect_error");
-//}
-//
-//
-//$stmt = $mysqli->stmt_init();
-//if(!$stmt->prepare($query))
-//{
-//    print "Failed to prepare statement\n";
-//}
-//else
-//{
-//    $stmt->bind_param("s", $continent);
-//
-//    $continent_array = array('Europe','Africa','Asia','North America');
-//
-//    foreach($continent_array as $continent)
-//    {
-//        $stmt->execute();
-//        $result = $stmt->get_result();
-//        while ($row = $result->fetch_array(MYSQLI_NUM))
-//        {
-//            foreach ($row as $r)
-//            {
-//                print "$r ";
-//            }
-//            print "\n";
-//        }
-//    }
-//}
-//
-//$stmt->close();
-//$mysqli->close();
-//?>
