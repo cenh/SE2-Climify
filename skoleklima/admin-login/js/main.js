@@ -78,27 +78,13 @@ function refreshTable() {
 }
 
 function getTableData() {
-    // var sUrl = "api/api-get-roles.php";
+    var sUrl = "api/api-get-roles.php";
     // Do AJAX and phase link to api
-    // $.ajax({
-    //     sessionToken: sessionToken
-    // },function (sData) {
-    //     var jData = JSON.parse(sData);
-    //     console.log(jData);
-    //     //console.table(jData);
-    // });
-
-    $.ajax({
-        type: "GET",
-        url: "api/api-get-roles.php",
-        data: {
-            sessionToken: sessionToken,
-        },
-        success: function (sData) {
-            var jData = JSON.parse(sData);
-            console.log(jData);
-            //console.table(jData);
-        }
+    $.post(sUrl, {
+        sessionToken: sessionToken,
+    }, function (data) {
+        var jData = JSON.parse(data);
+        console.log(jData);
     });
 
     var table = $('#roles_table').DataTable();
@@ -106,30 +92,3 @@ function getTableData() {
     table.row.add(['Role']).draw(false);
 
 }
-
-// $.ajax({
-//     type: "POST",
-//     url: "api/api-admin-login.php",
-//     data: {
-//         sessionToken: sessionToken,
-//         username: username,
-//         password: password,
-//         captcha: grecaptcha.getResponse()
-//     },
-//     success: function (data) {
-//         var jData = JSON.parse(data);
-//         if (jData.status == "ok") {
-//             location.reload();
-//         } else {
-//             grecaptcha.reset();
-//             $("#inp-login-username").val("");
-//             $("#inp-login-password").val("");
-//             $("#inp-login-username").addClass("wrong-login");
-//             $("#inp-login-password").addClass("wrong-login");
-//             setTimeout(() => {
-//                 $("#inp-login-username").removeClass("wrong-login");
-//                 $("#inp-login-password").removeClass("wrong-login");
-//             }, 2000);
-//         }
-//     }
-// });
