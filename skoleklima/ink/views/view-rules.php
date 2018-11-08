@@ -1,26 +1,37 @@
 <?php
 
+$query = "SELECT LocationID FROM Location";
+
+
 $servername = DB_HOST;
 $username = DB_USER;
 $password = DB_PASSWORD;
 $databasename = DB_NAME;
+$pepper = HASH_PEPPER;
 
 $conn = new mysqli($servername, $username, $password, $databasename);
-
-$loc_query = "SELECT LocationID FROM Location";
-
-$result2 = mysqli_query($conn,$loc_query);
-
-
-$options = "";
-
-while($row2 = mysqli_fetch_array($result2))
-{
-    $options = $options."<option>$row2[1]</option>";
+if ($conn->connect_error) {
+    die("Connection error: " . $conn->connect_error);
 }
 
+//RolePermission;
+//Permission;
+
+$stmt = $conn->prepare($query);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+$emparray = array();
+$option = "";
+while($row = mysqli_fetch_assoc($result))
+{
+    $emparray[] = $row[1];
+    $options =$options."<option>$emparray</option>";
+}
 ?>
-?>
+
 
 <!-- show rules -->
 <div class="single-view view-rules">
