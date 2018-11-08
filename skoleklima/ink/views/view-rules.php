@@ -13,7 +13,7 @@
 		<p>View rules and toggle them (on/off) for a chosen location</p>
         <select>
             <?php while ($row1 = mysqli_fetch_array($result1)):;?>
-            <option value="<?php echo $row[1];?>">Select your value</option>
+            <option value="<?php echo $row1[1];?>">Select your value</option>
             <?php endwhile;?>
         </select>
     </div>
