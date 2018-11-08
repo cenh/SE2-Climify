@@ -45,7 +45,7 @@ while($row = mysqli_fetch_array($result))
     </div>
     <hr>
 
-    <button style="visibility:hidden;" class="collapsible"></button>
+    <button style="display:none;" class="collapsible"></button>
     <div class="content">
         <p>Lorem ipsum...</p>
     </div>

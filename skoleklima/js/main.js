@@ -907,10 +907,10 @@ $("#fetch-sensors-for-loc").on("click",function(){
     $.post('api/api-rules-query.php', {
       room: room_selected
     }).done(function(res){
-      console.log(res);
+      $(".collasible").text(res);
     });
-    $(".rule-databox").attr("visibility","visible");
-    $(".collapsible").attr("visibility","visible");
+    $(".collapsible").show();
+
   }
 
 });

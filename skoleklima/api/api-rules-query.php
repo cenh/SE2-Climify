@@ -31,6 +31,9 @@ $room = $_POST['room'];
 //{
 //    $options =$options."<option>$row[0]</option>";
 //}
-//?>
+
+//
+echo $room
+?>
 <!---->
 <!--$-->
