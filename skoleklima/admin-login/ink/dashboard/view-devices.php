@@ -67,7 +67,10 @@
         <table id="roles_table" class="display">
             <thead>
             <tr>
-                <th>Name</th>
+                <th>Role</th>
+            </tr>
+            <tr>
+                <th>Permission</th>
             </tr>
             </thead>
             <tbody>

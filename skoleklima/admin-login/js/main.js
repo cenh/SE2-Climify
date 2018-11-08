@@ -87,8 +87,10 @@ function getTableData() {
         console.table(jData);
     });
 
+
+
     var table = $('#roles_table').DataTable();
     //table1.clear();
-    table.row.add(['Role']).draw(false);
+    table.rows.add(jData).draw(false);
 
 }
