@@ -85,12 +85,13 @@ function getTableData() {
     }, function (data) {
         var jData = JSON.parse(data);
         console.table(jData);
+        var table = $('#roles_table').DataTable();
+        //table1.clear();
+        table.rows.add(jData).draw(false);
     });
 
 
 
-    var table = $('#roles_table').DataTable();
-    //table1.clear();
-    table.rows.add(jData).draw(false);
+
 
 }
