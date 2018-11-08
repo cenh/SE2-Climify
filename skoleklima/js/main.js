@@ -916,6 +916,8 @@ $("#fetch-sensors-for-loc").on("click",function() {
 
     }
     else if ($("#sel_location").val() === 2 || "2") {
+        console.log("2");
+        $(".collapsible").hide();
         alert("No rules specefied for selected room");
     }
 });
