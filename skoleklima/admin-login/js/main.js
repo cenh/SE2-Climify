@@ -87,12 +87,9 @@ function getTableData() {
         console.table(jData);
         var table = $('#roles_table').DataTable();
         table.clear();
-        var role = "";
+
         for (var i = 0; i < jData.length; i++) {
-            if(jData[i].RoleName != role)
-                role = jData[i].RoleName;
-            else(role = "");
-            table.row.add([role, jData[i].PermDescription]).draw(false);
+            table.row.add([jData[i].RoleName, jData[i].PermDescription]).draw(false);
         }
     });
 
