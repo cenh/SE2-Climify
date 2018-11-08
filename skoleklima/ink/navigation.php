@@ -42,6 +42,14 @@
 								</a>
 							</li>
 						<?php }
+                        elseif ($perm == "rules") { ?>
+                            <li class="menu-link menu-link-data" data-go-to="rules">
+                                <a href="#/rules">
+                                    <i class="menu-link-ico nav-icon fa fa-pencil-ruler" aria-hidden="true"></i>
+                                    <p class="menu-link-text">Rules</p>
+                                </a>
+                            </li>
+                        <?php }
 						elseif ($perm == "communication") { ?>
 							<li class="menu-link menu-link-communication" data-go-to="communication"></i>
 								<a href="#/logbook">
