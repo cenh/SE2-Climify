@@ -12,8 +12,8 @@
 		<h3>Rules</h3>
 		<p>View rules and toggle them (on/off) for a chosen location</p>
         <select>
-            <?php while ($row1 = mysqli_fetch_array($result1)):;?>
-            <option value="<?php echo $row1[1];?>">Select your value</option>
+            <?php while($row1 = mysqli_fetch_array($result1)):;?>
+            <option value?="<?php echo $row1[0];?>"><?php echo $row1[1];?></option>
             <?php endwhile;?>
         </select>
     </div>
