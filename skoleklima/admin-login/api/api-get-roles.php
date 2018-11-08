@@ -4,17 +4,17 @@
 require_once "../admin-meta.php";
 require_once "../session.php";
 
-$phaseSessionToken = clean($_POST[sessionToken]);
-
-if (!$systemAccess) {
-    echo '{"status":"systemAccess error"}';
-    exit;
-}
-
-if( $phaseSessionToken != $adminSessionToken ){
-    echo '{"status":"phaseSessionToken error"}';
-    exit;
-}
+//$phaseSessionToken = clean($_POST[sessionToken]);
+//
+//if (!$systemAccess) {
+//    echo '{"status":"systemAccess error"}';
+//    exit;
+//}
+//
+//if( $phaseSessionToken != $adminSessionToken ){
+//    echo '{"status":"phaseSessionToken error"}';
+//    exit;
+//}
 
 //$phaseStatus=clean($_POST["status"]); //Blocked
 //$phaseSearch=clean($_POST["search"]);
@@ -31,7 +31,7 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM Role";
+$query = "SELECT * FROM Role;";
 
 
 if(!$stmt->prepare($query))
