@@ -901,10 +901,10 @@ $("#my_button").click(function() {
 
 $("#fetch-sensors-for-loc").click(function () {
   console.log("Hello?");
-  console.log($("#selectLocation").val());
-  if($("#selectLocation").val()) {
+  console.log($("#sel_location").val());
+  if($("#sel_location").val()) {
     var room_selected = $("#selectLocation").val();
-    $.post('api-rules-query', {
+    $.post('api/api-rules-query', {
       room: room_selected
     }).done(function(res){
       console.log(res);

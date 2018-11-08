@@ -24,7 +24,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 $emparray = array();
-$option = "";
+$options = "";
 while($row = mysqli_fetch_array($result))
 {
     $options =$options."<option>$row[0]</option>";
@@ -38,14 +38,14 @@ while($row = mysqli_fetch_array($result))
 	<span>
 		<h3>Rules</h3>
 		<p>View rules and toggle them (on/off) for a chosen location</p>
-        <select style="min-width: 80px;">
-            Select location ID: <?php echo $options;?>
+        <select id="sel_location" style="min-width: 80px;">
+            <?php echo $options;?>
         </select>
         <button id="fetch-sensors-for-loc" class="link">Search rules</button>
     </div>
     <hr>
 
-    <button style="visibility:hidden;" class="collapsible">Open :<p id="roomID"></p></button>
+    <button style="visibility:hidden;" class="collapsible"></button>
     <div class="content">
         <p>Lorem ipsum...</p>
     </div>
