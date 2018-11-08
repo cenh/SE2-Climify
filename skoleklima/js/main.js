@@ -901,7 +901,7 @@ $("#my_button").click(function() {
 });
 // RULES FUNCTIONALITY BELOW
 $("#fetch-sensors-for-loc").on("click",function(){
-  if($("#sel_location").val()===1) {
+  if($("#sel_location").val()=== 1 || "1") {
     var room_selected = $("#sel_location").val();
     console.log(room_selected);
     $.post('api/api-rules-query.php', {
