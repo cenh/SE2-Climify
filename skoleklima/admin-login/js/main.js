@@ -80,7 +80,9 @@ function refreshTable() {
 function getTableData() {
     var sUrl = "api/api-get-roles.php";
     // Do AJAX and phase link to api
-    $.get(sUrl, function (sData) {
+    $.get(sUrl, {
+        sessionToken: sessionToken
+    },function (sData) {
         var jData = JSON.parse(sData);
         console.log(jData);
         //console.table(jData);
@@ -91,3 +93,20 @@ function getTableData() {
     table.row.add(['Role']).draw(false);
 
 }
+
+// var sUrl = "api/api-delete-company-user.php";
+// $.post(sUrl, {
+//     sessionToken: sessionToken,
+//     userid: id
+// }, function (data) {
+//     var jData = JSON.parse(data);
+//     if (jData.status == "ok") {
+//         $(".user-meta-subusers-userlist").find("[data-company-user-id='" + id + "']").empty();
+//     } else {
+//         swal({
+//             title: "Error",
+//             text: 'Something went wrong. Try again later',
+//             type: "error"
+//         });
+//     }
+// });
