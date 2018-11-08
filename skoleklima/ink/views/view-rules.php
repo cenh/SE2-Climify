@@ -12,7 +12,7 @@
 		<h3>Rules</h3>
 		<p>View rules and toggle them (on/off) for a chosen location</p>
         <select>
-            <?php while ($row1 = mysql_fetch_array($result1)):;?>
+            <?php while ($row1 = mysqli_fetch_array($result1)):;?>
             <option value="<?php echo $row[1];?>"></option>
             <?php endwhle;?>
         </select>
