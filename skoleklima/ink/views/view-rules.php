@@ -49,12 +49,17 @@ while($row = mysqli_fetch_array($result))
         <span class="ui-button-text"></span>
     </button>
     <div class="content">
-        <h1>Rules for room</h1>
-        <div class="content-item">
-            <span>
-                <h2>R1</h2>
-
-            </span>
+        <div class="container-fluid">
+            <h2 id="rules-title">Rules for room</h2>
+            <div class="container">
+                <div class="col-lg-8">Rule 1</div>
+                <div class="col-lg-4">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -908,6 +908,7 @@ $("#fetch-sensors-for-loc").on("click",function(){
       room: room_selected
     }).done(function(res){
       $(".ui-button-text").text("Room: "+res);
+      $("#rules-title").text("Rules for room "+res);
     });
     $(".collapsible").show();
 
