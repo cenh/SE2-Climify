@@ -1,3 +1,4 @@
+<h1>Hello World</h1>
 <div class="single-view view-rules">
     <div class="view-rules-top">
 	<span>
