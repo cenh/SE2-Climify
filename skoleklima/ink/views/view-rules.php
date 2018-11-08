@@ -1,6 +1,6 @@
 <?php
     $conn = mysqli_connect($DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-    $loc_query = "SELECT LocationID From 'Location''"
+    $loc_query = "SELECT LocationID From 'Location''";
 
     $result1 = mysqli_query($conn,$loc_query);
 ?>
@@ -14,7 +14,7 @@
         <select>
             <?php while ($row1 = mysqli_fetch_array($result1)):;?>
             <option value="<?php echo $row[1];?>"></option>
-            <?php endwhle;?>
+            <?php endwhile;?>
         </select>
     </div>
 </div>
