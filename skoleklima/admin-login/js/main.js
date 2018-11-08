@@ -33,7 +33,7 @@ $(document).on("click", "#btn-login-system", function () {
                     }, 2000);
                 }
             }
-        })
+        });
     }
 });
 
@@ -78,14 +78,27 @@ function refreshTable() {
 }
 
 function getTableData() {
-    var sUrl = "api/api-get-roles.php";
+    // var sUrl = "api/api-get-roles.php";
     // Do AJAX and phase link to api
-    $.post(sUrl, {
-        sessionToken: sessionToken
-    },function (sData) {
-        var jData = JSON.parse(sData);
-        console.log(jData);
-        //console.table(jData);
+    // $.ajax({
+    //     sessionToken: sessionToken
+    // },function (sData) {
+    //     var jData = JSON.parse(sData);
+    //     console.log(jData);
+    //     //console.table(jData);
+    // });
+
+    $.ajax({
+        type: "POST",
+        url: "api/api-get-roles.php",
+        data: {
+            sessionToken: sessionToken,
+        },
+        success: function (sData) {
+            var jData = JSON.parse(sData);
+            console.log(jData);
+            //console.table(jData);
+        }
     });
 
     var table = $('#roles_table').DataTable();
@@ -94,19 +107,29 @@ function getTableData() {
 
 }
 
-// var sUrl = "api/api-delete-company-user.php";
-// $.post(sUrl, {
-//     sessionToken: sessionToken,
-//     userid: id
-// }, function (data) {
-//     var jData = JSON.parse(data);
-//     if (jData.status == "ok") {
-//         $(".user-meta-subusers-userlist").find("[data-company-user-id='" + id + "']").empty();
-//     } else {
-//         swal({
-//             title: "Error",
-//             text: 'Something went wrong. Try again later',
-//             type: "error"
-//         });
+// $.ajax({
+//     type: "POST",
+//     url: "api/api-admin-login.php",
+//     data: {
+//         sessionToken: sessionToken,
+//         username: username,
+//         password: password,
+//         captcha: grecaptcha.getResponse()
+//     },
+//     success: function (data) {
+//         var jData = JSON.parse(data);
+//         if (jData.status == "ok") {
+//             location.reload();
+//         } else {
+//             grecaptcha.reset();
+//             $("#inp-login-username").val("");
+//             $("#inp-login-password").val("");
+//             $("#inp-login-username").addClass("wrong-login");
+//             $("#inp-login-password").addClass("wrong-login");
+//             setTimeout(() => {
+//                 $("#inp-login-username").removeClass("wrong-login");
+//                 $("#inp-login-password").removeClass("wrong-login");
+//             }, 2000);
+//         }
 //     }
 // });
