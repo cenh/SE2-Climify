@@ -83,7 +83,7 @@ function getTableData() {
     $.get(sUrl, function (sData) {
         var jData = JSON.parse(sData);
         console.log(jData);
-        console.table(jData);
+        //console.table(jData);
     });
 
     var table = $('#roles_table').DataTable();
