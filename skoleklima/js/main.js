@@ -919,23 +919,26 @@ $("#fetch-sensors-for-loc").on("click",function() {
         alert("No rules specefied for selected room");
     }
 });
+$("#rulecheck").click(function(){
+    console.log(isChecked);
+
+    if (isChecked){
+        console.log("attr_Checked");
+        $.ajax({
+            type: "POST",
+            url: "api/api-rule-execute.php",
+            data: {
+                sensor1: "readOutdoorTemperature",
+                op1: "GREATER",
+                action1: "Window_Close"
+            },
+            success: function(data){
+                console.log(data);
+            }
+        })
+    }
+})
 
 
-console.log(isChecked);
-if (isChecked){
-  console.log("attr_Checked");
-  $.ajax({
-      type: "POST",
-      url: "api/api-rule-execute.php",
-      data: {
-        sensor1: "readOutdoorTemperature",
-        op1: "GREATER",
-        action1: "Window_Close"
-      },
-      success: function(data){
-        console.log(data);
-      }
-  })
-}
 
 
