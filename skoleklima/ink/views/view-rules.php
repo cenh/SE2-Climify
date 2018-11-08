@@ -20,8 +20,7 @@
 		</span>
 		<span>
 			<select class="chart-select-location" id="selectLocation">
-			<option value="locStand" selected>Choose Location</option>
-                <!-- Content goes here -->
+
 			</select>
 		</span>
         <button id="fetch-sensors-for-loc" class="link">Get sensors</button>
