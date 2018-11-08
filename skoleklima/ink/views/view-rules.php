@@ -1,6 +1,6 @@
 <?php
     $conn = mysqli_connect($DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-    $loc_query = "SELECT LocationID From 'Location''";
+    $loc_query = "SELECT LocationID FROM Location";
 
     $result1 = mysqli_query($conn,$loc_query);
 ?>
@@ -13,7 +13,7 @@
 		<p>View rules and toggle them (on/off) for a chosen location</p>
         <select>
             <?php while ($row1 = mysqli_fetch_array($result1)):;?>
-            <option value="<?php echo $row[1];?>"></option>
+            <option value="<?php echo $row[1];?>">Select your value</option>
             <?php endwhile;?>
         </select>
     </div>
