@@ -924,7 +924,6 @@ $("#rulecheck").click(function(){
     console.log(isChecked);
 
     if (isChecked){
-        console.log("attr_Checked");
         $.ajax({
             type: "POST",
             url: "api/api-rule-execute.php",
@@ -935,8 +934,9 @@ $("#rulecheck").click(function(){
                 action1: "Window_Close"
             },
             success: function(data){
-              var response =JSON.parse(data);
-              alert(response);
+              //var response =JSON.parse(data);
+              console.log(data);
+              alert(data);
             }
         })
     };
