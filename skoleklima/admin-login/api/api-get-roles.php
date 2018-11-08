@@ -33,7 +33,10 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM Role";
+$query = "SELECT * FROM Role r JOIN RolePermission rp ON r.RoleID = rp.RoleID";
+
+//RolePermission;
+//Permission;
 
 $stmt = $conn->prepare($query);
 
