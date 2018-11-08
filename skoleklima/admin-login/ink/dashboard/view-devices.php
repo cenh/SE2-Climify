@@ -1,6 +1,6 @@
 <!-- View dahsboard -->
 
-<div class="viewport" style="height: auto">
+<div class="viewport">
 
     <div class="viewport-dashboard"> 
         <div class="top-btn-wrapper">
@@ -26,19 +26,4 @@
             <!-- Content goes here -->
         </div>
     </div>
-</div>
-
-<div style="width: 100%; height: auto; border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px; float:left;">
-    <table id="roles_table" class="display">
-        <thead>
-        <tr>
-            <th>Name</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
 </div>
