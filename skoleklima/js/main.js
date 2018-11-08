@@ -931,10 +931,12 @@ $("#rulecheck").click(function(){
             data: {
                 sensor1: "readOutdoorTemperature",
                 op1: "GREATER",
+                value1: 24,
                 action1: "Window_Close"
             },
             success: function(data){
-                console.log(data);
+              var response =JSON.parse(data);
+              alert(response);
             }
         })
     };
