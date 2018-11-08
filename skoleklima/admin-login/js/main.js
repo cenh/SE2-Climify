@@ -87,9 +87,9 @@ function getTableData() {
         console.table(jData);
         var table = $('#roles_table').DataTable();
 
-        // for (var i = 0; i < jData.length; i++) {
-        //     table.row.add([jData[i].RoleName, jData[i].PermDescription]).draw(false);
-        // }
+        for (var i = 0; i < jData.length; i++) {
+            table.row.add([jData[i].RoleName, jData[i].PermDescription]).draw(false);
+        }
 
         //table1.clear();
 
