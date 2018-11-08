@@ -4,7 +4,6 @@
 	<span>
 		<h3>Rules</h3>
 		<p>View rules and toggle them (on/off) for a chosen location</p>
-	</span>
         <span>
 		<span>
 			<?php if ( $currentUserRole == 1 || $currentUserRole == 15 ) { ?>
@@ -19,18 +18,17 @@
 				<option value="stand" selected>Choose Floor plan</option>
 			</select>
 
-			<button id="btn-toggle-chart-info" class="link"></button>
+			<button id="fetch-sensors-for-loc" class="link">Get sensors</button>
 		</span>
 		<span>
 			<select class="chart-select-location" id="selectLocation">
 			<option value="locStand" selected>Choose Location</option>
                 <!-- Content goes here -->
 			</select>
-
-
-
 		</span>
 	</span>
     </div>
-
+    <hr>
+	</span>
+    </div>
 </div>
