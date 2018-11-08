@@ -5,14 +5,14 @@
 
 require_once "../meta-influx.php";
 
-$sensor_1 = $_GET['sensor1'];
-$sensor_2 = $_GET['sensor2'];
-$op_1 = $_GET['op1'];
-$op_2 = $_GET['op2'];
-$value_1 = $_GET['value1'];
-$value_2 = $_GET['value2'];
-$action_1 = $_GET['action1'];
-$action_2 = $_GET['action2'];
+$sensor_1 = $_POST['sensor1'];
+$sensor_2 = $_POST['sensor2'];
+$op_1 = $_POST['op1'];
+$op_2 = $_POST['op2'];
+$value_1 = $_POST['value1'];
+$value_2 = $_POST['value2'];
+$action_1 = $_POST['action1'];
+$action_2 = $_POST['action2'];
 
 error_log("Sensor: $sensor_1", 0);
 error_log("Op: $op_1", 0);
