@@ -58,15 +58,16 @@ function validateRule($op, $value, $action) {
 }
 
 function executeRule($sensor, $op, $value, $action) {
-  if($op == "LESS") {
-    $q = "SELECT * FROM $sensor WHERE temperature < $value ORDER BY time DESC LIMIT 1";
-  }
-  elseif ($op == "GREATER") {
-    $q = "SELECT * FROM $sensor WHERE temperature > $value ORDER BY time DESC LIMIT 1";
-  }
-  elseif ($op == "EQUAL") {
-    $q = "SELECT * FROM $sensor WHERE temperature = $value ORDER BY time DESC LIMIT 1";
-  }
+  // if($op == "LESS") {
+  //   $q = "SELECT * FROM $sensor WHERE temperature < $value ORDER BY time DESC LIMIT 1";
+  // }
+  // elseif ($op == "GREATER") {
+  //   $q = "SELECT * FROM $sensor WHERE temperature > $value ORDER BY time DESC LIMIT 1";
+  // }
+  // elseif ($op == "EQUAL") {
+  //   $q = "SELECT * FROM $sensor WHERE temperature = $value ORDER BY time DESC LIMIT 1";
+  // }
+  $q = "SELECT * FROM $sensor ORDER BY time DESC LIMIT 1";
   error_log("Query: $q", 0);
 
   $servername_influx = DB_HOST_INFLUX;
