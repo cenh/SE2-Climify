@@ -11,11 +11,6 @@ if (!$systemAccess) {
     exit;
 }
 
-error_log($phaseSessionToken,0);
-error_log($adminSessionToken, 0);
-
-//echo $phaseSessionToken;
-//echo $adminSessionToken;
 
 if( $phaseSessionToken != $adminSessionToken ){
     echo '{"status":"phaseSessionToken error"}';
@@ -40,12 +35,7 @@ if ($conn->connect_error) {
 
 $query = "SELECT * FROM Role";
 
-
-if(!$stmt->prepare($query))
-{
-    print "Failed to prepare statement\n";
-}
-
+$stmt = $conn->prepare($query);
 
 $stmt->execute();
 
