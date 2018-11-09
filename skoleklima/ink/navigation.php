@@ -127,7 +127,6 @@
 					</a>
 				</li>
 			</span>
-
 		</ul>
 	</nav>
 	<div class="system-about-link"><i class="fa fa-info-circle" aria-hidden="true"></i>
