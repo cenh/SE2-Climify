@@ -80,7 +80,7 @@ function executeRule($sensor, $op, $value, $action) {
   $returnFromIfx = $database->query($q);
   $points = $returnFromIfx->getPoints();
   $points_values = array_values($points);
-  error_log(print_r($points_values[0][0], TRUE), 0);
+  error_log(print_r($points_values[1], TRUE), 0);
 
   if(empty($returnFromIfx)) {
     // This is actually not bad and an error, just means that we should not execute anything
