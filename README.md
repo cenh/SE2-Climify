@@ -32,7 +32,7 @@ This will install the different .jar for each of the communication components. E
 ## Releases
 
 ### Release 2
-Tag for release #1: https://github.com/cenh/SE2-Climify/tree/R2
+Tag for release #2: https://github.com/cenh/SE2-Climify/tree/R2
 
 #### Skoleklima files changed:
 Here is a list of the files changed and their changes within the 'skoleklima' folder.
