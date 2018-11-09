@@ -19,10 +19,15 @@ Here is a list of the files changed and their changes within the 'skoleklima' fo
 9. admin-login/api/api-get-roles.php - Added role tables to the admin page.
 10. admin-login/index.php - Added role table.
 
-#### Communication files changed
+#### Communication (Java) files changed
 Here is a list of the files changed and their changes within the 'communication/mqtt' folder.
 
-1. 
+1. Climify/src/main/java/org/Climify/ClimifyMessageHandler.java - Changed to also save sensor in MariaDB.
+2. Climify/src/main/java/org/Climify/ClimifyMqttController.java - MariaDB connection.
+3. Climify/src/main/java/org/Climify/influxDB/InfluxCommunicator.java - Updated to save category aswell.
+4. Climify/src/main/java/org/Climify/mariaDB/MariaDBCommunicator.java - MariaDB communication protocol.
+5. MqttLib/src/main/java/org/MqttLib/openhab/ - Various updates and new files for openHAB usage.
+6. RaspberryPi/src/main/java/org/RaspberryPi/ - Various changes to RaspberryPi communication with MQTT.
 
 # VMs
 
