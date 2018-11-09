@@ -4,7 +4,8 @@ public enum Topic {
 	NEWCLIENT("newClient"), 
 	NEWSENSOR("newSensor"), 
 	SENSORDATA("sensorData"),
-	COMMAND("commandse2");
+	COMMAND("commandse2"),
+	SENSORUPDATE("sensorUpdate");
 	
 	private final String topic;
 	
