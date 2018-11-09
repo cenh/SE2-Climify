@@ -19,7 +19,7 @@
 				$perms = array_values($permissions);
 				error_log(print_r($perms, TRUE), 0);
 				error_log(print_r($permissions, TRUE), 0);
-				if(array_key_exists("devices", $perms))
+				if(array_key_exists("devices\n", $perms))
 				{
 					error_log("YES", 0);
 				}
