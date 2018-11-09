@@ -79,7 +79,7 @@ function executeRule($sensor, $op, $value, $action) {
   $database = InfluxDB\Client::fromDSN(sprintf('influxdb://%s:%s@%s:%s/%s',$dbuser_influx, $dbpass_influx, $servername_influx, $serverport_influx, $dbname_influx));
   $returnFromIfx = $database->query($q);
   $points = $returnFromIfx->getPoints();
-  error_log(print_r($points[0], TRUE), 0);
+  error_log(print_r($points[0]["Temperature"], TRUE), 0);
 
   if(empty($returnFromIfx)) {
     // This is actually not bad and an error, just means that we should not execute anything
