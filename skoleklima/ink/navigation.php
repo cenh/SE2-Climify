@@ -16,8 +16,12 @@
 	<nav>
 		<ul>
 			<?php
-			foreach($permissions as $perm){
-					error_log("Looking at permission: $perm", 0);
+				if(array_key_exists("devices"), $permissions)
+				{
+					error_log("YES", 0);
+				}
+				else {
+					error_log("NOPE", 0);
 				}
 			?>
 			<!--
