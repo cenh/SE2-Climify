@@ -15,6 +15,22 @@
     <maven.compiler.source>1.8</maven.compiler.source>
   </properties>
 
+ <build>
+  <plugins>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.8.0</version>
+    <configuration>
+      <compilerArgument>-Xlint:unchecked</compilerArgument>
+      <annotationProcessors>
+      	<annotationProcessor>com.dslplatform.json.processor.CompiledJsonAnnotationProcessor</annotationProcessor>
+      </annotationProcessors>
+    </configuration>
+  </plugin>
+</plugins>
+</build>
+
 	<repositories>
     	<repository>
        	 <id>Eclipse Paho Repo</id>
@@ -55,19 +71,25 @@
 <dependency>
   <groupId>com.dslplatform</groupId>
   <artifactId>dsl-json-java8</artifactId>
-  <version>1.8.2</version>
+  <version>1.8.3</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/com.dslplatform/dsl-json-processor -->
 <dependency>
     <groupId>com.dslplatform</groupId>
     <artifactId>dsl-json-processor</artifactId>
-    <version>1.8.2</version>
+    <version>1.8.3</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/org.influxdb/influxdb-java -->
 <dependency>
     <groupId>org.influxdb</groupId>
     <artifactId>influxdb-java</artifactId>
     <version>2.13</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+<dependency>
+    <groupId>org.mariadb.jdbc</groupId>
+    <artifactId>mariadb-java-client</artifactId>
+    <version>2.3.0</version>
 </dependency>
 
 
