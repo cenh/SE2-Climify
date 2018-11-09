@@ -523,10 +523,8 @@ function getGraphData(){
                         if(!isNaN(parseFloat(jData[j][i].Temperature)))
                             dataTemperature[i]=parseFloat(jData[j][i].Temperature);
                     if(parseFloat(jData[j][i].CO2) != null)
-                        if(!isNaN(parseFloat(jData[j][i].CO2))){
+                        if(!isNaN(parseFloat(jData[j][i].CO2)))
                             dataCO2[i]=parseFloat(jData[j][i].CO2);
-                            console.log(dataCO2[i]);
-                        }
                             
                     //dataTemperature[i]=parseFloat(jData[0][i].value);
                     var time = jData[1][i].time
@@ -555,6 +553,7 @@ function getGraphData(){
 
             console.log(dataTemperature);
             console.log(dataHumidity);
+            console.log(dataCO2);
 
             enableDataSettings = true;
             $('.canvas-settings').attr('disabled', false);
