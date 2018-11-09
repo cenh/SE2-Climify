@@ -19,12 +19,19 @@
 				$perms = array_values($permissions);
 				error_log(print_r($perms, TRUE), 0);
 				error_log(print_r($permissions, TRUE), 0);
-				if(array_key_exists("devices\n", $perms))
+				if(in_array("devices\n", $perms))
 				{
 					error_log("YES", 0);
 				}
 				else {
 					error_log("NOPE", 0);
+				}
+				if(in_array("devices", $perms))
+				{
+					error_log("YES2", 0);
+				}
+				else {
+					error_log("NOPE2", 0);
 				}
 			?>
 			<!--
