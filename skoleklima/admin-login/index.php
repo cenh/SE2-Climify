@@ -15,6 +15,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Arimo:400,400i,700|Poppins:500|Raleway:500i" rel="stylesheet">
 	<link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../lib/sweetalert/dist/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 </head>
 <body>
 
@@ -36,6 +37,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="../lib/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="js/main.js?v=<?php echo $system_version ?>"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
     <script>
         [

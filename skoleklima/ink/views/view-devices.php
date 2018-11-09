@@ -7,10 +7,10 @@
         </span>
         <span>
             <span>
-                <?php if ( $currentUserRole == 1 ) { ?>
-                <select class="list-schools-other-users" name="option">
+                <?php if ($currentUserRole == 1) { ?>
+                    <select class="list-schools-other-users" name="option">
                     <option value="" selected>Choose Institution</option>
-                    <!-- Content goes here -->
+                        <!-- Content goes here -->
                 </select>
                 <?php } ?>
                 <button id="btn-show-all-decices" class="link"></button>	
@@ -51,32 +51,36 @@
                 <button class="btn-delete-selected-map">Delete chosen map</button>
             </div>
             <div class="upload-map-selection">
-                <p>For the best result, use a picture of at least 800px x 500px.<br>You can use pictures in the format jpg, png og gif.</p>
+                <p>For the best result, use a picture of at least 800px x 500px.<br>You can use pictures in the format
+                    jpg, png og gif.</p>
                 <form id="frm-map-upload" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="inp-map-user-role" id="inp-map-user-role" value="<?php echo $currentUserRole ?>">
-                    <input type="hidden" name="inp-map-school" id="inp-map-school" value="<?php  ?>">
+                    <input type="hidden" name="inp-map-user-role" id="inp-map-user-role"
+                           value="<?php echo $currentUserRole ?>">
+                    <input type="hidden" name="inp-map-school" id="inp-map-school" value="<?php ?>">
                     <input type="text" name="inp-map-name" id="inp-map-name" placeholder="Navngiv kort">
                     <div class="upload-map-label-wrapper">
                         <label for="upload-map-file" class="upload-map-label">Choose floor plan from drive
-                            <input type="file" name="upload-map-file" id="upload-map-file" accept="image/x-png,image/gif,image/jpeg" >
+                            <input type="file" name="upload-map-file" id="upload-map-file"
+                                   accept="image/x-png,image/gif,image/jpeg">
                         </label>
                     </div>
                 </form>
             </div>
             <h4>Available sensors:</h4>
-            <div id="place-devices-list"> 
+            <div id="place-devices-list">
                 <!-- content goes here -->
             </div>
             <button id="btn-save-devices-placement">Save changes</button>
         </div>
     </div>
     <div class="crop-img-admin">
-        <div class= "progress-align">
-            
+        <div class="progress-align">
+
             <div class="header-progress-container">
-                <a href="#/" id="close-cropper" onclick="resetUpload()" ><i class="ico-close-signup link fa fa-times"></i></a>
+                <a href="#/" id="close-cropper" onclick="resetUpload()"><i
+                            class="ico-close-signup link fa fa-times"></i></a>
                 <ol class="header-progress-list">
-                    <li id="beskær" class="header-progress-item done" >Crop</li>
+                    <li id="beskær" class="header-progress-item done">Crop</li>
                     <li id="første" class="header-progress-item todo">First coordinate</li>
                     <li id="andet" class="header-progress-item todo">Second coordinate</li>
                 </ol>

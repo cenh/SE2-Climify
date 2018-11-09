@@ -1,40 +1,34 @@
 /**********************************/
 //		Main JS
 /**********************************/
-
 siteOnline = false;
 
 //Source for DATALIST - https://www.raymondcamden.com/2012/06/14/example-of-a-dynamic-html5-datalist-control/
 //Source for municipality API - https://dawa.aws.dk/dok/api/kommune#s%C3%B8gning
 
 $(document).ready(function () {
+    //TODO:
+    //loadRoomDetails();
 
     $("#search").on("input", function (e) {
         var val = $(this).val();
         if (val === "") return;
         //You could use this to limit results
         //if(val.length < 3) return;
-
-
-        $.get("https://dawa.aws.dk/kommuner/autocomplete?q=" + val, {term: val}, function (data) {
-
+        $.get("https://dawa.aws.dk/kommuner/autocomplete?q=" + val, {
+            term: val
+        }, function (data) {
             var dataList = $("#searchResults");
             dataList.empty();
 
             if (data.length) {
-
                 for (var i = 0, len = data.length; i < len; i++) {
                     var opt = $("<option></option>").attr("value", data[i].kommune.navn);
                     dataList.append(opt);
-
-
                 }
-
-
             }
         }, "json");
     });
-
 
     //START get Weather location from jsonfile
     var weatherApiId = "229e3ade24a07a661eb7f3f802d21280";
@@ -43,7 +37,7 @@ $(document).ready(function () {
     var jContrylist = [];
 
     $.ajax({
-        async: true,   // this will solve the problem
+        async: true, // this will solve the problem
         type: "POST",
         url: "./json/countries.json",
         contentType: "application/json",
@@ -71,14 +65,9 @@ $(document).ready(function () {
         });
     });
     // END get Weather location from jsonfile
-
-
 });
 
-
 // Variables
-
-
 var xhttp = new XMLHttpRequest();
 var reE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 var startPage = "";
@@ -122,8 +111,7 @@ function msieversion() {
     var msie = ua.indexOf("MSIE ");
     if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
         browserIsIE = true;
-    }
-    else  // If another browser, return 0
+    } else // If another browser, return 0
     {
         browserIsIE = false;
     }
@@ -179,7 +167,7 @@ function setAutoLogout() {
     if (icMeterSystemAccessTokenExperes < systemAutoReload) {
         systemAutoReload = icMeterSystemAccessTokenExperes;
     }
-    var timeToReload = systemAutoReload + "999"// MS
+    var timeToReload = systemAutoReload + "999" // MS
     setTimeout(function () {
         location.reload();
     }, timeToReload);
@@ -198,8 +186,12 @@ function loadLoginPage() {
                 $("#loadCower").fadeOut();
                 showView(startPage);
                 if (window.matchMedia('(min-width: 800px)').matches) {
-                    $(".img-con").animate({left: '-35vw'}, 1000, "swing");
-                    $(".login-con").animate({right: '0px'}, 1000, "swing");
+                    $(".img-con").animate({
+                        left: '-35vw'
+                    }, 1000, "swing");
+                    $(".login-con").animate({
+                        right: '0px'
+                    }, 1000, "swing");
                 }
             });
             if (currentUserID !== "") {
@@ -223,12 +215,9 @@ function loadAutoLogin() {
         }
         ;
     }, loadDealy)
-
-
 }
 
 // Hide / Show Views
-
 function showView(view) {
     loadPage = ".view-" + view;
     $(".view").css("display", "none").removeClass("flex");
@@ -243,7 +232,6 @@ function hideView(view) {
 };
 
 // Login
-
 function validateLoginType() {
     if ($("#inp-login-name").val() !== "" && $("#inp-login-pass").val() !== "") {
         requestLoginSystem();
@@ -253,9 +241,7 @@ function validateLoginType() {
 }
 
 if (browserIsIE == false) {
-
     function requestLoginSystem() {
-
         var typedUserName = $("#inp-login-name").val();
         var typedPassword = $("#inp-login-pass").val();
         // Store link to api and phase userinput
@@ -269,11 +255,13 @@ if (browserIsIE == false) {
                 var sUrl = "api/api-user-login.php?fAY2YfpdKvR=" + sender_first + "&username=" + typedUserName + "&password=" + passEncrypt;
                 // Do AJAX and pahse
                 $.get(sUrl, function (sData) {
-
-
                     if (jData.status == "ok") {
-                        $.cookie("username", typedUserName, {expires: 10});
-                        $.cookie("password", passEncrypt, {expires: 10});
+                        $.cookie("username", typedUserName, {
+                            expires: 10
+                        });
+                        $.cookie("password", passEncrypt, {
+                            expires: 10
+                        });
                         correctLogin();
                     } else {
                         wrongLogin();
@@ -288,8 +276,12 @@ if (browserIsIE == false) {
     function correctLogin() {
         $(".login-input").val("");
         if (window.matchMedia('(min-width: 800px)').matches) {
-            $(".img-con").animate({left: '-100vw'}, 1000, "swing");
-            $(".login-con").animate({right: '-40vw'}, 1000, "swing", function () {
+            $(".img-con").animate({
+                left: '-100vw'
+            }, 1000, "swing");
+            $(".login-con").animate({
+                right: '-40vw'
+            }, 1000, "swing", function () {
                 location.reload();
             });
         } else {
@@ -316,7 +308,6 @@ function unsupportedBrowser() {
 }
 
 // Log out
-
 function signOut() {
     // Store link to api in variable
     var sUrl = "api/api-clear-all-sessions.php";
@@ -330,7 +321,6 @@ function signOut() {
         }
     });
 }
-
 
 function tokeErrorLogOutUsers() {
     if (currentUserRole !== "1") {
@@ -350,7 +340,6 @@ function placeAccessToken() {
 };
 
 // Request Auto-login
-
 function requestAutoLoginSystem() {
     var cookieUserName = $.cookie("username");
     var cookiePassword = $.cookie("password");
@@ -364,17 +353,17 @@ function requestAutoLoginSystem() {
 
             showSchool = jData.school;
             loadAutoLogin();
-        }
-        else {
+        } else {
             signOut();
         }
     });
 };
 
 // Request new user signup
-
 $("#link-request-new-profile").click(function () {
-    $(".img-con").animate({left: '0'}, 500, "swing");
+    $(".img-con").animate({
+        left: '0'
+    }, 500, "swing");
     $(".img-con").addClass("blur");
     setTimeout(() => {
         $(".view-signup").css("display", "flex").hide().fadeIn();
@@ -393,7 +382,9 @@ function closeSetupProfile() {
     $(".view-signup").fadeOut();
     $(".img-con").addClass("none-blur");
     setTimeout(() => {
-        $(".img-con").animate({left: '-35vw'}, 500, "swing");
+        $(".img-con").animate({
+            left: '-35vw'
+        }, 500, "swing");
     }, 1000);
     setTimeout(() => {
         $(".img-con").removeClass("blur");
@@ -406,20 +397,15 @@ $(document).on("focus", ".inp-signup", function () {
 });
 
 $("#btn-send-profile-request").click(function () {
-
     //Check if the muncipality is on the list of valid ones:
-
     var mun = $("#search").val();
-
-    $.get("https://dawa.aws.dk/kommuner/autocomplete?q=" + mun, {term: mun}, function (data) {
-
+    $.get("https://dawa.aws.dk/kommuner/autocomplete?q=" + mun, {
+        term: mun
+    }, function (data) {
         if (data.length == 0) {
             alert("Vælg venligst en kommune fra listen.");
-        }
-        else return;
-
+        } else return;
     }, "json");
-
 
     var profileRequestVal = {
         userName: false,
@@ -436,7 +422,6 @@ $("#btn-send-profile-request").click(function () {
         recaptcha: false
     }
 
-
     var inpUserName = $("#inp-signup-company-username");
     var inpPassword = $("#inp-signup-company-password");
     var inpMun = $("#search");
@@ -448,7 +433,6 @@ $("#btn-send-profile-request").click(function () {
     var inpStreet = $("#inp-signup-company-street1");
     var inpZip = $("#inp-signup-company-zipcode");
     var inpCity = $("#inp-signup-company-city");
-
 
     if (inpUserName.val().length < 2) {
         inpUserName.addClass("wrong-login");
@@ -466,7 +450,6 @@ $("#btn-send-profile-request").click(function () {
         profileRequestVal.password = true;
     }
 
-
     if (inpCompName.val().length < 2) {
         inpCompName.addClass("wrong-login");
         profileRequestVal.compName = false;
@@ -482,7 +465,6 @@ $("#btn-send-profile-request").click(function () {
         inpMun.removeClass('wrong-login');
         profileRequestVal.mun = true;
     }
-
 
     if (inpNameFirst.val().length < 2) {
         inpNameFirst.addClass("wrong-login");
@@ -614,14 +596,14 @@ function requestNewCompanySetup() {
 }
 
 // Request new limited user signup
-
 $("#link-request-new-limited-profile").click(function () {
-    $(".img-con").animate({left: '0'}, 500, "swing");
+    $(".img-con").animate({
+        left: '0'
+    }, 500, "swing");
     $(".img-con").addClass("blur");
     setTimeout(() => {
         $(".view-limited-signup").css("display", "flex").hide().fadeIn();
     }, 1000);
-
 
     ga('set', 'page', '/Ny-begrænset-bruger-admodning/');
     ga('send', 'pageview');
@@ -637,7 +619,9 @@ function closeSetupLimitedProfile() {
     $(".view-limited-signup").fadeOut();
     $(".img-con").addClass("none-blur");
     setTimeout(() => {
-        $(".img-con").animate({left: '-35vw'}, 500, "swing");
+        $(".img-con").animate({
+            left: '-35vw'
+        }, 500, "swing");
     }, 1000);
     setTimeout(() => {
         $(".img-con").removeClass("blur");
@@ -650,7 +634,6 @@ $(document).on("focus", ".inp-signup", function () {
 });
 
 $("#btn-send-limited-profile-request").click(function () {
-
     var profileRequestVal = {
         nameFirst: false,
         nameLast: false,
@@ -658,7 +641,6 @@ $("#btn-send-limited-profile-request").click(function () {
         uname: false,
         pword: false,
         admin: false,
-
     }
 
     var inpNameFirst = $("#inp-signup-first-name");
@@ -712,7 +694,6 @@ $("#btn-send-limited-profile-request").click(function () {
         profileRequestVal.admin = true;
     }
 
-
     if (profileRequestVal.nameFirst &&
         profileRequestVal.nameLast &&
         profileRequestVal.email &&
@@ -721,13 +702,9 @@ $("#btn-send-limited-profile-request").click(function () {
         profileRequestVal.admin) {
         requestNewUserSetup();
     }
-
 });
 
-
 function requestNewUserSetup() {
-
-
     var inpNameFirst = $("#inp-signup-first-name").val();
     var inpNameLast = $("#inp-signup-last-name").val();
     var inpEmail = $("#inp-signup-email").val();
@@ -767,9 +744,8 @@ function requestNewUserSetup() {
             }
         }
     });
-
-
 }
+
 //
 // CHART stuff
 //
@@ -780,136 +756,158 @@ function requestNewUserSetup() {
 // for (i = 0; i < 6; i++) {
 //     x.push(i + 1);
 // }
-function generateDate(){
+function generateDate() {
     var today = new Date();
     var DD = today.getDate();
-    var MM = today.getMonth()+1; //January is 0!
+    var MM = today.getMonth() + 1; //January is 0!
     var YYYY = today.getFullYear();
     var hh = today.getHours();
     var mm = today.getMinutes();
     var ss = today.getSeconds();
-    if(DD<10) {
-        DD = '0'+DD
+    if (DD < 10) {
+        DD = '0' + DD
     }
-    if(MM<10) {
-        MM = '0'+MM
+    if (MM < 10) {
+        MM = '0' + MM
     }
 
-    today = DD + '/' + MM + '/' + YYYY + '/' + hh+':'+mm+':'+ss;
+    today = DD + '/' + MM + '/' + YYYY + '/' + hh + ':' + mm + ':' + ss;
     return today;
-
 }
 
 //var x = ['09/10/2018  00:00', '05/10/2018  00:00:', '06/10/2018  00:00','07/10/2018  00:00','08/10/2018  00:00', '09/10/2018  00:00'];
-var x = [];
-var timeFormat = 'DD/MM/YYYY  HH::mm:ss';
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        datasets: [{
-            label: "Set temperature",
-            data: []//[12, 19, 3, 5, 2, 3]
-        }],
-        labels: x
-    },
-    options: {
-        responsive: true,
-        title: "Set temperature chart",
-        scales: {
-            xAxes: [{
-                type: 'time',
-                time: {
-                    format: timeFormat,
-                    // round: 'day'
-                    tooltipFormat: 'll HH:mm:ss'
-                },
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Date'
-                }
-            }],
-            yAxes: [{
-                scaleLabel: {
-                    display: true,
-                    labelString: 'value'
-                }
-            }]
-        }
-    }
-    //?u=admin&p=groupc%db=scadb&q=SHOW%20SERIES
-    ///query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery
-});
-$("#button2").click(function(){
-    // $.get("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery", function (data) {
-    //     console.log(data);
-    //     console.log("Logged")
-    //
-    // });
-    $.ajax({
-        type: "GET",
-        url: "http://130.225.69.76/influxdb/skoleklima/api/api-get-sensor-info.php",
-        dataType: "json",
-        data: {sensor: 'readOutdoorTemperature'}
-    }).done(function (res) {
-        console.log(res)
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("AJAX call failed: " + textStatus + ", " + errorThrown);
-    });
-    console.log("Done");
-});
+// var x = [];
+// var timeFormat = 'DD/MM/YYYY  HH::mm:ss';
+// var ctx = document.getElementById("myChart");
+// var myChart = new Chart(ctx, {
+//     type: 'line',
+//     data: {
+//         datasets: [{
+//             label: "Set temperature",
+//             data: []//[12, 19, 3, 5, 2, 3]
+//         }],
+//         labels: x
+//     },
+//     options: {
+//         responsive: true,
+//         title: "Set temperature chart",
+//         scales: {
+//             xAxes: [{
+//                 type: 'time',
+//                 time: {
+//                     format: timeFormat,
+//                     // round: 'day'
+//                     tooltipFormat: 'll HH:mm:ss'
+//                 },
+//                 scaleLabel: {
+//                     display: true,
+//                     labelString: 'Date'
+//                 }
+//             }],
+//             yAxes: [{
+//                 scaleLabel: {
+//                     display: true,
+//                     labelString: 'value'
+//                 }
+//             }]
+//         }
+//     }
+//
+// });
+// $("#button2").click(function(){
+//     // $.get("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20value%20FROM%20readBattery", function (data) {
+//     //     console.log(data);
+//     //     console.log("Logged")
+//     //
+//     // });
+//
+// });
 
 
 $("#my_button").click(function () {
+    console.log("Button Pressed");
     var x = document.getElementById("temp");
     var text = x.elements[0].value;
-    var temperature = Number(text);
 
-    //i++;
-    myChart.data.labels.push(generateDate());
-    myChart.data.datasets.forEach((dataset) => {
-        dataset.data.push(temperature);
-    });
-    myChart.update();
-
+    document.getElementById('current_set_temp').innerHTML = text;
 
     // Create a client instance
     client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
     client.startTrace();
-// set callback handlers
+    // set callback handlers
     client.onConnectionLost = onConnectionLost;
     //client.onMessageArrived = onMessageArrived;
-// connect the client
+    // connect the client
     client.connect({
         onSuccess: onConnect,
         useSSL: true
     });
     console.log("attempting to connect...");
 
-// called when the client connects
+    // called when the client connects
     function onConnect() {
         // Once a connection has been made, make a subscription and send a message.
         console.log("onConnect");
         //client.subscribe("testse2");
-        msg = {name: "setTemperature", value: text};
+        msg = {
+            name: "setTemperature",
+            value: text
+        };
         msg_text = JSON.stringify(msg);
         message = new Paho.MQTT.Message(msg_text);
         message.destinationName = "commandse2/test";
         client.publish(message);
-        document.getElementById('current_set_temp').innerHTML = text;
+
+
+
     }
 
-// called when the client loses its connection
+    // called when the client loses its connection
     function onConnectionLost(responseObject) {
         if (responseObject.errorCode !== 0) {
             console.log("onConnectionLost:" + responseObject.errorMessage);
         }
     }
 
-// called when a message arrives
+    // called when a message arrives
     function onMessageArrived(message) {
         msg = JSON.parse(message.payloadString);
         console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
     }
-
 });
+
+//added table here
+
+
+
+$(document).ready(function () {
+    $('#table_id1').DataTable();
+    getTableData();
+    refreshTable();
+});
+
+function refreshTable() {
+    setInterval(function () {
+        getTableData();
+    }, 3000);
+}
+
+function getTableData() {
+    $.ajax({
+        type: "GET",
+        url: "api/api-get-sensor-info.php",
+        dataType: "json",
+
+    }).done(function (res) {
+        var names = res.results[0].series[0].values;
+        var table1 = $('#table_id1').DataTable();
+        table1.clear();
+        for(var i = 0; i < names.length; i++) {
+            table1.row.add([names[i]]).draw(false);
+        }
+
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        alert("AJAX call failed: " + textStatus + ", " + errorThrown);
+    });
+
+}
