@@ -45,7 +45,7 @@
                         elseif ($perm == "rules") { ?>
                             <li class="menu-link menu-link-rules" data-go-to="rules">
                                 <a href="#/rules">
-                                    <i class="menu-link-ico nav-icon fas fa-pencil-ruler" aria-hidden="true"></i>
+                                    <i class="menu-link-ico nav-icon fas fa-magic" aria-hidden="true"></i>
                                     <p class="menu-link-text">Rules</p>
                                 </a>
                             </li>
