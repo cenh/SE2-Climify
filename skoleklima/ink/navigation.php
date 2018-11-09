@@ -15,7 +15,11 @@
 	<hr class="user-info-nav">
 	<nav>
 		<ul>
-			<?php error_log(print_r($permissions, TRUE), 0); ?>
+			<?php
+			foreach($permissions as $perm){
+					error_log("Looking at permission: $perm", 0);
+				}
+			?>
 			<!--
 			<?php
 				foreach($permissions as $perm){
