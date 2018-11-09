@@ -37,9 +37,6 @@ public class RestCommunicator {
 				.post(body)
 				.build();
 
-		System.out.println("Request: " + request.toString());
-		System.out.println("Headers: " + request.headers().toString());
-
 		try {
 			Response response = client.newCall(request).execute();
 			System.out.println("Response from command to item: " + response.code() + " " + response.message());
@@ -49,7 +46,21 @@ public class RestCommunicator {
 		}
 	}
 	
-	public void sendSensorsToServer(){
+	public String getItem(String item) throws IOException {
+		String commandUrl = restBaseUrl + "items/" + item;
+        Headers headers = Utilities.getHeaders(HeaderType.JSON);
+
+        Request request = new Request.Builder()
+            .url(commandUrl)
+            .headers(headers)
+            .get()
+            .build();
+        
+		Response response = client.newCall(request).execute();
+		return response.body().string();
+	}
+	
+	public String getAllItems() throws IOException {
         String commandUrl = restBaseUrl + "items/" + "?recursive=false&fields=name%2C%20category";
         Headers headers = Utilities.getHeaders(HeaderType.JSON);
 
@@ -59,13 +70,38 @@ public class RestCommunicator {
             .get()
             .build();
 
-        try {
-            Response response = client.newCall(request).execute();
-            System.out.println(response.body().string());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
+        Response response = client.newCall(request).execute();
+        
+        return response.body().string();
     }
+	
+	public String getAllThings() throws IOException {
+		String commandUrl = restBaseUrl + "things/";
+        Headers headers = Utilities.getHeaders(HeaderType.JSON);
+
+        Request request = new Request.Builder()
+            .url(commandUrl)
+            .headers(headers)
+            .get()
+            .build();
+
+        Response response = client.newCall(request).execute();
+        
+        return response.body().string();
+	}
+	
+	public String getAllLinks() throws IOException {
+		String commandUrl = restBaseUrl + "links/";
+        Headers headers = Utilities.getHeaders(HeaderType.JSON);
+
+        Request request = new Request.Builder()
+            .url(commandUrl)
+            .headers(headers)
+            .get()
+            .build();
+
+        Response response = client.newCall(request).execute();
+        
+        return response.body().string();
+	}
 }

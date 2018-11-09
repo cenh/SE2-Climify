@@ -9,6 +9,8 @@ siteOnline = false;
 $(document).ready(function () {
     //TODO:
     //loadRoomDetails();
+    loadRoomDetails();
+
 
     $("#search").on("input", function (e) {
         var val = $(this).val();

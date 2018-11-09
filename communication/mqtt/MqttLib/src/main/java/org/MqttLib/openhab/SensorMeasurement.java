@@ -14,6 +14,7 @@ public class SensorMeasurement {
 	public String type;
 	public String value;
 	public String time;
+	public String category;
 	
 	public SensorMeasurement() {
 		
@@ -24,6 +25,10 @@ public class SensorMeasurement {
 		this.type = type;
 		this.value = value;
 		this.time = getTime();
+	}
+	
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	private String getTime() {
