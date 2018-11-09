@@ -79,7 +79,7 @@ function executeRule($sensor, $op, $value, $action) {
   $database = InfluxDB\Client::fromDSN(sprintf('influxdb://%s:%s@%s:%s/%s',$dbuser_influx, $dbpass_influx, $servername_influx, $serverport_influx, $dbname_influx));
   $returnFromIfx = $database->query($q);
   $points = $returnFromIfx->getPoints();
-  error_log(print_r($points[1][0], TRUE), 0);
+  error_log(print_r($points[0][1], TRUE), 0);
 
   if(empty($returnFromIfx)) {
     // This is actually not bad and an error, just means that we should not execute anything
@@ -89,7 +89,7 @@ function executeRule($sensor, $op, $value, $action) {
   }
   else {
     // We should send an MQTT message here I think.
-    echo $points[1][0];
+    echo $points[0][1];
     error_log("We did it! Action executed.", 0);
     exit;
   }
