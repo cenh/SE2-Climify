@@ -15,6 +15,8 @@
 	<hr class="user-info-nav">
 	<nav>
 		<ul>
+			<?php error_log(print_r($permissions, TRUE), 0); ?>
+			<!--
 			<?php
 				foreach($permissions as $perm){
 						error_log("Looking at permission: $perm", 0);
@@ -108,6 +110,7 @@
 		 					</li>
 					<?php }
 				 			}?>
+						-->
 			<span class="mobile-sign-out">
 				<hr>
 				<li class="menu-link menu-link-sign-out">
