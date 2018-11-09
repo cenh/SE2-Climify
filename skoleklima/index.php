@@ -1,4 +1,4 @@
-<?php 
+<?php
 	require_once "meta.php";
 ?>
 
@@ -104,7 +104,7 @@
 	                document.head.appendChild(script);
 	            });
         	</script>
-			
+
 		<?php } else { ?>
 			<script>
 				ga('set', 'page', '/Login/');
