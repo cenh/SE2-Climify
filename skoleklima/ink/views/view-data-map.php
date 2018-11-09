@@ -20,7 +20,28 @@
 	</span>
 	</div>
 	<hr>
-	<div class="data-map-info-wrapper">
+
+    <div style="width: 100%; height: 50%; text-align: center;
+         font-weight: bold; font-size: 150%;"> Devices </div>
+
+    <div style="width: 100%; height: 50%; border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px; float:left;">
+        <table id="table_id1" class="display">
+            <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <hr>
+    <div class="data-map-info-wrapper">
 		<i id="icn-close-data-map-info" class="link fa fa-times" aria-hidden="true"></i>
 		<h4>Sensor information</h4>
 		<div class="info-map-wrapper">
