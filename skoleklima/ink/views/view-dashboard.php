@@ -9,6 +9,7 @@
 			require_once "view-own-user.php";
 			require_once "view-system-settings.php";
 			require_once "view-roomX.php";
+			require_once "view-rules.php";
 		} elseif ($currentUserRole == 15) {
 			require_once "view-data.php";
 			require_once "view-data-map.php";
@@ -22,7 +23,8 @@
 			require_once "view-own-user.php";
 			require_once "view-permissions.php";
             require_once "view-roomX.php";
-		} elseif ($currentUserRole == 3) {
+            require_once "view-rules.php";
+        } elseif ($currentUserRole == 3) {
 			require_once "view-data.php";
 			require_once "view-data-map.php";
 			require_once "view-other-users.php";
