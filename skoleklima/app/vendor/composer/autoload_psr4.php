@@ -13,6 +13,7 @@ return array(
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'MongoDB\\' => array($vendorDir . '/mongodb/mongodb/src'),
+    'Ruler\\' => array($vendorDir . '/ruler/src/Ruler'),
     'InfluxDB\\' => array($vendorDir . '/influxdb/influxdb-php/src/InfluxDB'),
     'Illuminate\\Support\\' => array($vendorDir . '/illuminate/support'),
     'Illuminate\\Events\\' => array($vendorDir . '/illuminate/events'),

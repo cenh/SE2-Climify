@@ -69,7 +69,7 @@
 /*
     Justify content
  */
-.view-login .view-roomX-data-box .view-signup .view-signup-inner-wrapper .view-signup-body .view-signup-body-right .recaptcha-wrapper, .view-login .view-limited-signup .view-signup-inner-wrapper .view-signup-body .view-signup-body-right .recaptcha-wrapper, .view-own-user .user-info-input .btn-update-own-user-wrapper, .view-communication .data-communication-wrapper .communication-area-wrapper-1 .flow-communication-wrapper .add-communication-wrapper .button-communication-wrapper, .map-wrapper .map-settings .upload-map-selection .upload-map-label-wrapper, .crop-img-admin .crop-img-control-wrapper .crop-img-control-inner-wrapper {
+.view-login .view-roomX-data-box .view-rules-top .view-signup .view-signup-inner-wrapper .view-signup-body .view-signup-body-right .recaptcha-wrapper, .view-login .view-limited-signup .view-signup-inner-wrapper .view-signup-body .view-signup-body-right .recaptcha-wrapper, .view-own-user .user-info-input .btn-update-own-user-wrapper, .view-communication .data-communication-wrapper .communication-area-wrapper-1 .flow-communication-wrapper .add-communication-wrapper .button-communication-wrapper, .map-wrapper .map-settings .upload-map-selection .upload-map-label-wrapper, .crop-img-admin .crop-img-control-wrapper .crop-img-control-inner-wrapper {
   -webkit-box-pack: end;
   -moz-box-pack: end;
   -webkit-flex-pack: end;
@@ -117,6 +117,100 @@
   -webkit-align-items: center;
   -moz-align-items: center;
   align-items: center; }
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+p {
+  margin: auto;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+p#software-name-header-wrapper {
+  margin-top: auto;
+}
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #e8e8e8;
+  transition: max-height 0.2s ease-out;
+}
+.content-item {
+  background-color: #f1f1f1;
+  padding: 0 18px;
+}
+
 
 .view-data .view-data-control .view-live-data-wrapper {
   -webkit-box-align: stretch;
