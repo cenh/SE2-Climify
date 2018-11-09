@@ -828,7 +828,13 @@ $("#my_button").click(function () {
     console.log("Button Pressed");
     var x = document.getElementById("temp");
     var text = x.elements[0].value;
-
+    var temperature = Number(text);
+    // //i++;
+    // myChart.data.labels.push(generateDate());
+    // myChart.data.datasets.forEach((dataset) => {
+    //     dataset.data.push(temperature);
+    // });
+    // myChart.update();
     document.getElementById('current_set_temp').innerHTML = text;
 
     // Create a client instance
