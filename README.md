@@ -1,5 +1,34 @@
 # SE2-Climify:
 
+## Installation
+
+### Jenkins server
+Prerequistive:
+1. Java
+2. Jenkins
+
+Follow the Jenkins installation guide, set up a user account.
+
+### Webserver
+Prerequistive:
+1. Java
+2. PHP
+3. Apache
+
+Make sure that Apache is set up correctly. Then place the skoleklima files inside /var/www/html/, then run the Climify.jar (See below).
+
+
+### Communication
+Prerequistive:
+1. Maven
+2. Java
+
+Go to communication/mqtt and enter command:
+'mvn clean install package'
+
+This will install the different .jar for each of the communication components. E.g. the Climify webserver .jar will be located in Climify/target. This can be run using 'java -jar Climify.jar'
+
+
 ## Releases
 
 ### Release 2
