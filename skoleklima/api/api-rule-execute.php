@@ -89,7 +89,7 @@ function executeRule($sensor, $op, $value, $action) {
   }
   else {
     // We should send an MQTT message here I think.
-    echo $points[0];
+    echo $points[0][0];
     error_log("We did it! Action executed.", 0);
     exit;
   }
