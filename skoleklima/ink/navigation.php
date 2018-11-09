@@ -16,7 +16,10 @@
 	<nav>
 		<ul>
 			<?php
-				if(array_key_exists("devices", $permissions))
+				$perms = array_values($permissions);
+				error_log(print_r($perms, TRUE), 0);
+				error_log(print_r($permissions, TRUE), 0);
+				if(array_key_exists("devices", $perms))
 				{
 					error_log("YES", 0);
 				}
