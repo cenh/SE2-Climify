@@ -16,7 +16,7 @@
 	<nav>
 		<ul>
 			<?php
-				if(array_key_exists("devices"), $permissions)
+				if(array_key_exists("devices", $permissions)
 				{
 					error_log("YES", 0);
 				}
