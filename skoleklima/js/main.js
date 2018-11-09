@@ -921,7 +921,7 @@ $("#rulecheck").click(function(){
                 sensor1: "readOutdoorTemperature",
                 op1: "GREATER",
                 value1: 24,
-                action1: "Window_Close"
+                action1: "Window_Open"
             },
             success: function(data){
               //var response =JSON.parse(data);
