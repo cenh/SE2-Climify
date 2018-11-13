@@ -5,7 +5,7 @@ $(document).ready(function () {
     $('#table_id1').DataTable();
     // getTableData();
     // refreshTable();
-    $('select').formSelect();
+
 
     var sUrl = "api/api-get-rooms.php";
     $.post(sUrl, function (data) {
@@ -24,8 +24,7 @@ $(document).ready(function () {
 
         }
     });
-    $('select').material_select();
-
+    $('select').formSelect();
 });
 
 function refreshTable(element) {
