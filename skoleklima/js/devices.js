@@ -8,15 +8,15 @@ $(document).ready(function () {
     $.post(sUrl, function (data) {
         var jData = JSON.parse(data);
         for(var i = 0; i<jData.length; i++) {
-            var html = '<div onclick=\'refreshTable()\'>' + jData[i].LocationName + '</div>';
+            var html = '<a onclick=\'refreshTable(this)\'>' + jData[i].LocationName + '</a>';
             $('#myDropdown').append(html);
         }
     });
 
 });
 
-function refreshTable() {
-    console.log(this.text);
+function refreshTable(element) {
+    console.log(element.html());
     // setInterval(function () {
     //     getTableData();
     // }, 10000);
