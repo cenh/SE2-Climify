@@ -8,9 +8,11 @@ $(document).ready(function () {
     $.post(sUrl, function (data) {
         var jData = JSON.parse(data);
         console.table(jData);
+        for(var i = 0; i<jData.length; i++) {
+            var html = '<a>' + jData[i].LocationName + '</a>';
+            $('#myDropdown').append(html);
+        }
     });
-
-    $('#myDropdown').append('<a>About</a>');
 
 });
 
