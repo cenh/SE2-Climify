@@ -1,13 +1,12 @@
 $(document).ready(function () {
     $('#table_id1').DataTable();
-    getTableData();
+    // getTableData();
     refreshTable();
 
 
     var sUrl = "api/api-get-devices.php";
     $.post(sUrl, function (data) {
         var jData = JSON.parse(data);
-        console.table(jData);
         for(var i = 0; i<jData.length; i++) {
             var html = '<a onclick=\'refreshTable()\'>' + jData[i].LocationName + '</a>';
             $('#myDropdown').append(html);
@@ -17,7 +16,7 @@ $(document).ready(function () {
 });
 
 function refreshTable() {
-    console.log("hello");
+    alert($(this).text());
     // setInterval(function () {
     //     getTableData();
     // }, 10000);
