@@ -60,3 +60,13 @@ function filterFunction() {
         }
     }
 }
+
+$(document).click(function (e) {
+    e.stopPropagation();
+    var container = $("myDropdown");
+
+    //check if the clicked area is dropDown or not
+    if (container.has(e.target).length === 0) {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+});
