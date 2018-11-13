@@ -9,7 +9,7 @@ $(document).ready(function () {
         var jData = JSON.parse(data);
         console.table(jData);
         for(var i = 0; i<jData.length; i++) {
-            var html = '<a>' + jData[i].LocationName + '</a>';
+            var html = '<a onclick=\'refreshTable()\'>' + jData[i].LocationName + '</a>';
             $('#myDropdown').append(html);
         }
     });
@@ -17,9 +17,10 @@ $(document).ready(function () {
 });
 
 function refreshTable() {
-    setInterval(function () {
-        getTableData();
-    }, 10000);
+    console.log("hello");
+    // setInterval(function () {
+    //     getTableData();
+    // }, 10000);
 }
 
 function getTableData() {
@@ -60,13 +61,3 @@ function filterFunction() {
         }
     }
 }
-
-$(document).click(function (e) {
-    e.stopPropagation();
-    var container = $("myDropdown");
-
-    //check if the clicked area is dropDown or not
-    if (container.has(e.target).length === 0) {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-});
