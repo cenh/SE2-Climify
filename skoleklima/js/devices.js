@@ -14,8 +14,7 @@ $(document).ready(function () {
         for(var i = 0; i<jData.length; i++) {
             // var html = '<a onclick=\'refreshTable(this)\'>' + jData[i].LocationName + '</a>';
 
-            var x = document.getElementById("myDropdown");
-            console.log(x);
+            var x = document.getElementById("select_room");
             var option = document.createElement("option");
             option.text = jData[i].LocationName;
             option.value = jData[i].LocationID;
