@@ -40,7 +40,7 @@
     </div>
 
 
-    <hr>
+<!--    <hr>-->
 <!--    <div class="data-map-info-wrapper">-->
 <!--		<i id="icn-close-data-map-info" class="link fa fa-times" aria-hidden="true"></i>-->
 <!--		<h4>Sensor information</h4>-->
@@ -113,7 +113,7 @@
 <!--	</div>-->
 <!--	<div class="data-map">-->
 <!--		<h4 class="map-selection-head map-selection-head-show">-->
-<!--            <!-- Content goes here -->-->
+<!--            <!-- Content goes here -->
 <!--        </h4>-->
 <!--		<div class="map-wrapper">-->
 <!--			<div class="map-location">-->
@@ -122,16 +122,16 @@
 <!--				<p class="canvasDataInfo map-info map-info-no-map">No maps available</p>-->
 <!--    			<div class="map-frame-wrapper">-->
 <!--					<div class="map-frame map-frame-show">-->
-<!--						<!-- Content goes here -->-->
+<!--						<!-- Content goes here -->
 <!--		    		</div>-->
 <!--		    		<div class="device-frame device-frame-show">-->
-<!--						<!-- Content goes here -->-->
+<!--						<!-- Content goes here -->
 <!--		    		</div>-->
 <!--	    		</div>-->
 <!--			</div>-->
 <!--			<div class="map-settings map-settings-show">-->
 <!--				<select class="map-selection map-selection-show" name="option">-->
-<!--					<!-- Content goes here -->-->
+<!--					<!-- Content goes here -->
 <!--				</select>-->
 <!--				<h4>Choose display</h4>-->
 <!--				<div class="map-selection-btn-wrapper">		-->
@@ -190,7 +190,7 @@
 <!--		<div class="data-map-charts-wrapper">-->
 <!--			<div class="data-map-charts">-->
 <!--				<div class="data-map-charts-content">-->
-<!--					<!-- Content goes here -->-->
+<!--					<!-- Content goes here -->
 <!--				</div>-->
 <!--			</div>-->
 <!--			<div class="map-settings">-->
@@ -215,7 +215,7 @@
 <!--			<div class="data-map-charts-live">-->
 <!--				<p id="gettingLiveDataMapDay"><i class="fa fa-spinner fa-spin fa-1x fa-fw"></i> Loading data...</p>-->
 <!--				<div class="data-map-charts-content-live">-->
-<!--					<!-- Content goes here -->-->
+<!--					<!-- Content goes here -->
 <!--				</div>-->
 <!--			</div>-->
 <!--			<div class="map-settings-wrapper">-->
