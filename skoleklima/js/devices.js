@@ -30,12 +30,11 @@ function refreshDropdown() {
     });
 }
 
-function refreshTable(value) {
-    console.log(value);
-    //getTableData(room);
+function refreshTable(roomID) {
+    getTableData(roomID);
 }
 
-function getTableData(room) {
+function getTableData(roomID) {
     // $.ajax({
     //     type: "GET",
     //     url: "api/api-get-sensor-info.php",
@@ -54,9 +53,8 @@ function getTableData(room) {
     // });
 
     var sUrl = "api/api-get-devices.php";
-    // Do AJAX and phase link to api
     $.post(sUrl, {
-        roomID: room,
+        roomID: roomID,
     }, function (data) {
         var jData = JSON.parse(data);
         console.table(jData);
@@ -68,23 +66,4 @@ function getTableData(room) {
         // }
     });
 
-}
-
-function dropdown() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-function filterFunction() {
-    var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    div = document.getElementById("myDropdown");
-    a = div.getElementsByTagName("a");
-    for (i = 0; i < a.length; i++) {
-        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-            a[i].style.display = "";
-        } else {
-            a[i].style.display = "none";
-        }
-    }
 }
