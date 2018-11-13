@@ -1,3 +1,19 @@
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+    host: "localhost:3306",
+    user: "root",
+    password: "totallysecurepassword"
+});
+
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+});
+
+
+
+
 $(document).ready(function () {
     $('#table_id1').DataTable();
     getTableData();
