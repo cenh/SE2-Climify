@@ -16,7 +16,7 @@ $(document).ready(function () {
 });
 
 function refreshTable(element) {
-    console.log(element);
+    console.log(element.innerHTML);
     // setInterval(function () {
     //     getTableData();
     // }, 10000);
