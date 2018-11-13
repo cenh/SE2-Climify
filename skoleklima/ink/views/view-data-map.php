@@ -22,14 +22,24 @@
 	<hr>
 
 
-    <div style="height: 45px">
-        <div class="dropdown">
-            <button onclick="dropdown()" class="dropbtn">Dropdown</button>
-            <div id="myDropdown" class="dropdown-content">
-                <input type="text" placeholder="Search..." id="myInput" onkeyup="filterFunction()">
-<!--                <a href="#about">About</a>-->
-            </div>
-        </div>
+<!--    <div style="height: 45px">-->
+<!--        <div class="dropdown">-->
+<!--            <button onclick="dropdown()" class="dropbtn">Dropdown</button>-->
+<!--            <div id="myDropdown" class="dropdown-content">-->
+<!--                <input type="text" placeholder="Search..." id="myInput" onkeyup="filterFunction()">-->
+<!--<!--                <a href="#about">About</a>-->-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <div class="input-field col s12">
+        <select>
+            <option value="" disabled selected>Choose Your Room</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+        </select>
+        <label>Rooms</label>
     </div>
 
 
@@ -48,58 +58,58 @@
         </table>
     </div>
 
-    <style>
-        .dropbtn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .dropbtn:hover, .dropbtn:focus {
-            background-color: #3e8e41;
-        }
-
-        #myInput {
-            border-box: box-sizing;
-            background-position: 14px 12px;
-            background-repeat: no-repeat;
-            font-size: 16px;
-            padding: 14px 20px 12px 45px;
-            border: none;
-            border-bottom: 1px solid #ddd;
-        }
-
-        #myInput:focus {outline: 3px solid #ddd;}
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f6f6f6;
-            min-width: 230px;
-            overflow: auto;
-            border: 1px solid #ddd;
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown a:hover {background-color: #ddd;}
-
-        .show {display: block;}
-    </style>
+<!--    <style>-->
+<!--        .dropbtn {-->
+<!--            background-color: #4CAF50;-->
+<!--            color: white;-->
+<!--            padding: 16px;-->
+<!--            font-size: 16px;-->
+<!--            border: none;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!---->
+<!--        .dropbtn:hover, .dropbtn:focus {-->
+<!--            background-color: #3e8e41;-->
+<!--        }-->
+<!---->
+<!--        #myInput {-->
+<!--            border-box: box-sizing;-->
+<!--            background-position: 14px 12px;-->
+<!--            background-repeat: no-repeat;-->
+<!--            font-size: 16px;-->
+<!--            padding: 14px 20px 12px 45px;-->
+<!--            border: none;-->
+<!--            border-bottom: 1px solid #ddd;-->
+<!--        }-->
+<!---->
+<!--        #myInput:focus {outline: 3px solid #ddd;}-->
+<!---->
+<!--        .dropdown {-->
+<!--            position: relative;-->
+<!--            display: inline-block;-->
+<!--        }-->
+<!---->
+<!--        .dropdown-content {-->
+<!--            display: none;-->
+<!--            position: absolute;-->
+<!--            background-color: #f6f6f6;-->
+<!--            min-width: 230px;-->
+<!--            overflow: auto;-->
+<!--            border: 1px solid #ddd;-->
+<!--            z-index: 1;-->
+<!--        }-->
+<!---->
+<!--        .dropdown-content a {-->
+<!--            color: black;-->
+<!--            padding: 12px 16px;-->
+<!--            text-decoration: none;-->
+<!--            display: block;-->
+<!--        }-->
+<!---->
+<!--        .dropdown a:hover {background-color: #ddd;}-->
+<!---->
+<!--        .show {display: block;}-->
+<!--    </style>-->
 
 
 <!--    <hr>-->

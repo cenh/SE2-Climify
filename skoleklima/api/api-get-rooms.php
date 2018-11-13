@@ -6,15 +6,13 @@ $username = DB_USER;
 $password = DB_PASSWORD;
 $databasename = DB_NAME;
 
-$roomID = clean($_POST[roomID]);
-
 
 $conn = new mysqli($servername, $username, $password, $databasename);
 if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "";
+$query = "SELECT LocationName, LocationID FROM Location";
 
 $stmt = $conn->prepare($query);
 
