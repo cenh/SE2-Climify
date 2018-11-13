@@ -13,7 +13,6 @@ $(document).ready(function () {
             // var html = '<a onclick=\'refreshTable(this)\'>' + jData[i].LocationName + '</a>';
 
             var x = document.getElementById("select_room");
-            console.log(x);
             var option = document.createElement("option");
             option.text = jData[i].LocationName;
             option.value = jData[i].LocationID;
@@ -31,9 +30,9 @@ function refreshDropdown() {
     });
 }
 
-function refreshTable(element) {
-    var room = element.innerHTML;
-    getTableData(room);
+function refreshTable(value) {
+    console.log(value);
+    //getTableData(room);
 }
 
 function getTableData(room) {

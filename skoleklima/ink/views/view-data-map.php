@@ -33,7 +33,7 @@
     <!--    </div>-->
     <div style="height: auto">
         <div class="input-field col s12">
-            <select id="select_room">
+            <select id="select_room" onchange="refreshTable(value)">
                 <option value="" disabled selected>Choose Your Room</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
