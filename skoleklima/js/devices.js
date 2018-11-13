@@ -10,6 +10,8 @@ $(document).ready(function () {
         console.table(jData);
     });
 
+    $('#myDropdown').append('<a>About</a>');
+
 });
 
 function refreshTable() {
