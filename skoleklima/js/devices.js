@@ -2,6 +2,14 @@ $(document).ready(function () {
     $('#table_id1').DataTable();
     getTableData();
     refreshTable();
+
+
+    var sUrl = "api/api-get-devices.php";
+    $.post(sUrl, function (data) {
+        var jData = JSON.parse(data);
+        console.table(jData);
+    });
+
 });
 
 function refreshTable() {
