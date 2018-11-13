@@ -5,7 +5,7 @@ $(document).ready(function () {
     $('#table_id1').DataTable();
     // getTableData();
     // refreshTable();
-    $('select').formSelect();
+
 
     var sUrl = "api/api-get-rooms.php";
     $.post(sUrl, function (data) {
@@ -15,7 +15,6 @@ $(document).ready(function () {
             // var html = '<a onclick=\'refreshTable(this)\'>' + jData[i].LocationName + '</a>';
 
             var x = document.getElementById("select_room");
-            console.log(x);
             var option = document.createElement("option");
             option.text = jData[i].LocationName;
             option.value = jData[i].LocationID;
@@ -24,6 +23,7 @@ $(document).ready(function () {
 
         }
     });
+    $('select').formSelect();
 
 });
 
