@@ -17,7 +17,7 @@ $(document).ready(function () {
             option.text = jData[i].LocationName;
             option.value = jData[i].LocationID;
             x.add(option);
-
+            refreshDropdown();
 
         }
     });
