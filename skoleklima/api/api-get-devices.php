@@ -14,7 +14,7 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM Sensors";
+$query = "SELECT * FROM Location";
 
 $stmt = $conn->prepare($query);
 

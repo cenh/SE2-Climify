@@ -52,24 +52,18 @@ function getTableData(roomID) {
     //     alert("AJAX call failed: " + textStatus + ", " + errorThrown);
     // });
 
-    // var sUrl = "api/api-get-devices.php";
-    // $.post(sUrl, {
-    //     roomID: roomID,
-    // }, function (data) {
-    //     var jData = JSON.parse(data);
-    //     console.table(jData);
-    //     // var table = $('#roles_table').DataTable();
-    //     // table.clear();
-    //     //
-    //     // for (var i = 0; i < jData.length; i++) {
-    //     //     table.row.add([jData[i].RoleName, jData[i].PermDescription]).draw(false);
-    //     // }
-    // });
-
-    var sUrl = "api/api-get-rooms.php";
-    $.post(sUrl, function (data) {
+    var sUrl = "api/api-get-devices.php";
+    $.post(sUrl, {
+        roomID: roomID,
+    }, function (data) {
         var jData = JSON.parse(data);
-        console.log(jData);
+        console.table(jData);
+        // var table = $('#roles_table').DataTable();
+        // table.clear();
+        //
+        // for (var i = 0; i < jData.length; i++) {
+        //     table.row.add([jData[i].RoleName, jData[i].PermDescription]).draw(false);
+        // }
     });
 
 }
