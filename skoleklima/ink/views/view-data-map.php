@@ -32,7 +32,7 @@
 <!--        </div>-->
 <!--    </div>-->
 
-    <div class="input-field col s12">
+    <div class="select">
         <select>
             <option value="" disabled selected>Choose Your Room</option>
             <option value="1">Option 1</option>
