@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#table_id1').DataTable();
     // getTableData();
-    refreshTable();
+    // refreshTable();
 
 
     var sUrl = "api/api-get-devices.php";
@@ -16,7 +16,7 @@ $(document).ready(function () {
 });
 
 function refreshTable() {
-    alert($(this).text());
+    console.log(this.text);
     // setInterval(function () {
     //     getTableData();
     // }, 10000);
