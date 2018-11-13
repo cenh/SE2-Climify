@@ -24,7 +24,8 @@ $(document).ready(function () {
 
         }
     });
-    $('select').formSelect();
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, options);
 });
 
 function refreshTable(element) {
