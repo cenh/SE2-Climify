@@ -8,7 +8,7 @@ $(document).ready(function () {
     $.post(sUrl, function (data) {
         var jData = JSON.parse(data);
         for(var i = 0; i<jData.length; i++) {
-            var html = '<a onclick=\'refreshTable()\'>' + jData[i].LocationName + '</a>';
+            var html = '<div onclick=\'refreshTable()\'>' + jData[i].LocationName + '</div>';
             $('#myDropdown').append(html);
         }
     });
