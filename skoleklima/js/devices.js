@@ -12,8 +12,15 @@ $(document).ready(function () {
         var jData = JSON.parse(data);
         rooms = jData;
         for(var i = 0; i<jData.length; i++) {
-            var html = '<a onclick=\'refreshTable(this)\'>' + jData[i].LocationName + '</a>';
-            $('#myDropdown').append(html);
+            // var html = '<a onclick=\'refreshTable(this)\'>' + jData[i].LocationName + '</a>';
+
+            var x = document.getElementById("myDropdown");
+            var option = document.createElement("option");
+            option.text = jData[i].LocationName;
+            option.value = jData[i].LocationID;
+            x.add(option, x[0]);
+
+
         }
     });
 

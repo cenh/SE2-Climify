@@ -27,7 +27,7 @@
     <!--            <button onclick="dropdown()" class="dropbtn">Dropdown</button>-->
     <!--            <div id="myDropdown" class="dropdown-content">-->
     <!--                <input type="text" placeholder="Search..." id="myInput" onkeyup="filterFunction()">-->
-    <!--<!--                <a href="#about">About</a>-->-->
+    <!--                <a href="#about">About</a>-->
     <!--            </div>-->
     <!--        </div>-->
     <!--    </div>-->
@@ -35,9 +35,6 @@
         <div class="input-field col s12">
             <select>
                 <option value="" disabled selected>Choose Your Room</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
             </select>
             <label>Rooms</label>
         </div>
