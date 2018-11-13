@@ -3,9 +3,7 @@ var rooms;
 
 $(document).ready(function () {
     $('#table_id1').DataTable();
-    // getTableData();
-    // refreshTable();
-
+    $('select').formSelect();
 
     var sUrl = "api/api-get-rooms.php";
     $.post(sUrl, function (data) {
@@ -24,12 +22,14 @@ $(document).ready(function () {
 
         }
     });
+    refreshDropdown();
+});
 
+function refreshDropdown() {
     $(document).ready(function(){
         $('select').formSelect();
     });
-
-});
+}
 
 function refreshTable(element) {
     var room = element.innerHTML;
