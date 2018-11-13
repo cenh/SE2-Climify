@@ -6,7 +6,7 @@ $username = DB_USER;
 $password = DB_PASSWORD;
 $databasename = DB_NAME;
 
-$roomID = clean($_POST[roomID]);
+//$roomID = clean($_POST[roomID]);
 
 
 $conn = new mysqli($servername, $username, $password, $databasename);
@@ -14,7 +14,7 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM Sensors WHERE LocationID = $roomID";
+$query = "SELECT * FROM Sensors";
 
 $stmt = $conn->prepare($query);
 
