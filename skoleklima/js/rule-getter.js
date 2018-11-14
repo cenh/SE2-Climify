@@ -6,6 +6,7 @@ $("#fetch-sensors-for-loc").click(function () {
     // We
     $.get('api/api-get-rules.php', {LocationID: location})
         .done(function(res) {
-            
+            var rules = res;
+            console.log(rules)
         })
 });
