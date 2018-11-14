@@ -1,4 +1,11 @@
 
 $("#fetch-sensors-for-loc").click(function () {
-    console.log($("#selectLocation").val());
+    var location = $("#selectLocation").val();
+
+
+    // We
+    $.get('api/api-get-rules.php', {LocationID: location})
+        .done(function(res) {
+            
+        })
 });
