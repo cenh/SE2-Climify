@@ -1,9 +1,9 @@
 
 $("#fetch-sensors-for-loc").click(function () {
-    var location = $("#selectLocation").val();
+    var rule_Location = $("#selectLocation").val();
 
     // We
-    $.get('api/api-get-rules.php', {LocationID: location})
+    $.get('api/api-get-rules.php', {LocationID: rule_Location})
         .done(function(res) {
             var rules = res;
             console.log(rules);
