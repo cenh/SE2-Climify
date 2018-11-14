@@ -34,7 +34,7 @@ while($row = mysqli_fetch_assoc($result))
   array_push($emparray, $temparray);
 }
 json_encode($emparray);
-var_dump($emparray);
+print_r($emparray);
 
 $conn->close();
  ?>
