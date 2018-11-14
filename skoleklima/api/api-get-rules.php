@@ -33,6 +33,7 @@ while($row = mysqli_fetch_assoc($result))
   array_push($temparray[Action] =  $row["Action"]);
   array_push($emparray, $temparray);
 }
+json_encode($emparray);
 echo $emparray;
 
 $conn->close();
