@@ -22,9 +22,10 @@ public class InfluxCommunicator {
 	private InfluxDB influxDB;
 
 	public void saveMeasurement(SensorMeasurement measurement) {
+		//TODO: Should check to make sure there is a category - otherwise we will end up writing to NULL field with the new structure
 		Point point = Point.measurement(measurement.name)
 				.time(fdate(measurement.time), TimeUnit.MILLISECONDS)
-				.addField("value", measurement.value).build();
+				.addField(measurement.category, measurement.value).build();
 		influxDB.write("scadb", "defaultPolicy", point);
 	}
 

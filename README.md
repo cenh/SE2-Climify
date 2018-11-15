@@ -1,3 +1,63 @@
+# SE2-Climify:
+
+## Installation
+
+### Jenkins server
+Prerequistive:
+1. Java
+2. Jenkins
+
+Follow the Jenkins installation guide, set up a user account.
+
+### Webserver
+Prerequistive:
+1. Java
+2. PHP
+3. Apache
+
+Make sure that Apache is set up correctly. Then place the skoleklima files inside /var/www/html/, then run the Climify.jar (See below).
+
+
+### Communication
+Prerequistive:
+1. Maven
+2. Java
+
+Go to communication/mqtt and enter command:
+'mvn clean install package'
+
+This will install the different .jar for each of the communication components. E.g. the Climify webserver .jar will be located in Climify/target. This can be run using 'java -jar Climify.jar'
+
+
+## Releases
+
+### Release 2
+Tag for release #2: https://github.com/cenh/SE2-Climify/tree/R2
+
+#### Skoleklima files changed:
+Here is a list of the files changed and their changes within the 'skoleklima' folder.
+
+1. ink/views/view-data-map.php & ink/views/view-data-map.php - changes to reflect new tables.
+2. ink/navigation.php - changes to reflect permissions.
+3. js/charts.js - changed to retrieve data from more sensors.
+4. api/api-get-all-sensordata.php - Changed to get all sensor data.
+5. api/api-user-login.php - Updated the security.
+6. api/api-get-current-temperature.php, api/api-get-current-humidty.php & api/api-get-battery-level.php - Created to retrieve sensor data.
+7. api/api-get-graph-data.php - Changed to support multiple sensors.
+8. admin-login/api/api-admin-login.php - Updated the security.
+9. admin-login/api/api-get-roles.php - Added role tables to the admin page.
+10. admin-login/index.php - Added role table.
+
+#### Communication (Java) files changed
+Here is a list of the files changed and their changes within the 'communication/mqtt' folder.
+
+1. Climify/src/main/java/org/Climify/ClimifyMessageHandler.java - Changed to also save sensor in MariaDB.
+2. Climify/src/main/java/org/Climify/ClimifyMqttController.java - MariaDB connection.
+3. Climify/src/main/java/org/Climify/influxDB/InfluxCommunicator.java - Updated to save category aswell.
+4. Climify/src/main/java/org/Climify/mariaDB/MariaDBCommunicator.java - MariaDB communication protocol.
+5. MqttLib/src/main/java/org/MqttLib/openhab/ - Various updates and new files for openHAB usage.
+6. RaspberryPi/src/main/java/org/RaspberryPi/ - Various changes to RaspberryPi communication with MQTT.
+
 # VMs
 
 Information about the VMs
@@ -11,7 +71,7 @@ Jenkins webservice: http://se2-jenkins03.compute.dtu.dk:8080/
 
 User: admin - password: totallysecurepassword
 
-## Webapp server 
+## Webapp server
 Domain: se2-webapp03.compute.dtu.dk
 
 IP: 130.225.69.76
@@ -22,9 +82,11 @@ Admin login: http://se2-webapp03.compute.dtu.dk/SE2-Climify/skoleklima/admin-log
 
 Jenkins: http://130.225.69.76:8080/
 
-Mock user: john - password: testpassword
+Mock user (Role: Project Manager): john - password: testpassword
 
-Mock admin: admin - password: totallysecurepassword
+Mock user (Role: Project Observer): jason - password: testpassword
+
+Mock admin: admin - password: totallysecurepassword (Login via the Admin login page, see above link)
 
 Mysql user: root - password: totallysecurepassword
 

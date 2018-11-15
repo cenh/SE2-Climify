@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // ** Conpany meta info ** //
 $software_Name = "Klimaovervågning";
@@ -36,46 +36,50 @@ define("ENCRYPTION_KEY_USERS", "XXX");
 // ** Encryption-key XXX ** //
 define("HASH_PEPPER", "XXX");
 
-function encrypt($string, $key) {
-	$iv = mcrypt_create_iv(
-    mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC),
-    MCRYPT_DEV_URANDOM
-	);
-	$encrypted = base64_encode(
-	    $iv .
-	    mcrypt_encrypt(
-	        MCRYPT_RIJNDAEL_128,
-	        hash('sha256', $key, true),
-	        $string,
-	        MCRYPT_MODE_CBC,
-	        $iv
-	    )
-	);
-	return $encrypted;
+function encrypt($string, $key)
+{
+    $iv = mcrypt_create_iv(
+        mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC),
+        MCRYPT_DEV_URANDOM
+    );
+    $encrypted = base64_encode(
+        $iv .
+        mcrypt_encrypt(
+            MCRYPT_RIJNDAEL_128,
+            hash('sha256', $key, true),
+            $string,
+            MCRYPT_MODE_CBC,
+            $iv
+        )
+    );
+    return $encrypted;
 }
 
-function decrypt($string, $key) {
-	$data = base64_decode($string);
-	$iv = substr($data, 0, mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC));
-	$decrypted = rtrim(
-	    mcrypt_decrypt(
-	        MCRYPT_RIJNDAEL_128,
-	        hash('sha256', $key, true),
-	        substr($data, mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC)),
-	        MCRYPT_MODE_CBC,
-	        $iv
-	    ),
-	    "\0"
-	);
-	return $decrypted;
+function decrypt($string, $key)
+{
+    $data = base64_decode($string);
+    $iv = substr($data, 0, mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC));
+    $decrypted = rtrim(
+        mcrypt_decrypt(
+            MCRYPT_RIJNDAEL_128,
+            hash('sha256', $key, true),
+            substr($data, mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC)),
+            MCRYPT_MODE_CBC,
+            $iv
+        ),
+        "\0"
+    );
+    return $decrypted;
 }
 
-function clean($e) {
+function clean($e)
+{
     $e = strip_tags($e);
     $e = htmlspecialchars($e, ENT_QUOTES);
     return ($e);
 }
 
 session_start();
-	$systemAccess = $_SESSION['adminAccess'];
+
+$systemAccess = $_SESSION['adminAccess'];
 ?>

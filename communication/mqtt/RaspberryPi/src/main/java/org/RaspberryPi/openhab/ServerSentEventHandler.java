@@ -3,6 +3,7 @@ package org.RaspberryPi.openhab;
 import org.MqttLib.mqtt.BaseHandler;
 import org.MqttLib.mqtt.Topic;
 import org.MqttLib.openhab.BaseEventHandler;
+import org.MqttLib.openhab.Item;
 import org.MqttLib.openhab.SensorMeasurement;
 import org.RaspberryPi.ServerSentEventCallback;
 
@@ -10,6 +11,7 @@ import com.launchdarkly.eventsource.MessageEvent;
 
 public class ServerSentEventHandler extends BaseHandler implements BaseEventHandler {
 	
+	private RestCommunicator rest = new RestCommunicator();
 	private ServerSentEventCallback callback;
 	
 	@Override
@@ -24,7 +26,14 @@ public class ServerSentEventHandler extends BaseHandler implements BaseEventHand
 		Event.EventResponse newEvent = dslJson.deserialize(Event.EventResponse.class, data, data.length);
 		System.out.println("topic: " + newEvent.topic + " payload type: " + newEvent.payload.type + " payload value: " + newEvent.payload.value + " eventType: " + newEvent.type);
 		if (callback != null && newEvent.type.equals("ItemStateEvent")) {
+			String itemJson = rest.getItem(newEvent.getName());
+			System.out.println(itemJson);
+			byte[] itemBytes = itemJson.getBytes("UTF-8");
+			Item item = dslJson.deserialize(Item.class, itemBytes, itemBytes.length);
+			System.out.println(item.toString());
+			
 			SensorMeasurement sensorMeasurement = new SensorMeasurement(newEvent.getName(), newEvent.payload.type, newEvent.payload.value);
+			sensorMeasurement.setCategory(item.category);
 			dslJson.serialize(writer, sensorMeasurement);
 			callback.newMeasurement(Topic.SENSORDATA.getTopic()+"/"+sensorMeasurement.name, writer.getByteBuffer());
 			writer.reset();

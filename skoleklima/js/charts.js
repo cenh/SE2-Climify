@@ -83,11 +83,11 @@ $('#check-chart-data-noisePeak').change(function() {
 
 $(document).on("change", "#check-chart-data-xData", function(){
     if (enableDataSettings == true) {
-        if ($(this).is(":checked")) {			
+        if ($(this).is(":checked")) {
             numberOfChecked++;
             graph.dataSetHidden.xData = false;
-            howToDraw();	
-        } else {			
+            howToDraw();
+        } else {
             numberOfChecked--;
             graph.dataSetHidden.xData = true;
             howToDraw();
@@ -105,10 +105,10 @@ $('#check-chart-data-humidity').change(function() {
             howToDraw();
         } else {
             numberOfChecked--;
-            graph.dataSetHidden.humidity = true;    
+            graph.dataSetHidden.humidity = true;
             howToDraw();
         }
-    }	
+    }
 });
 
 $('#check-chart-data-co2').change(function() {
@@ -132,7 +132,7 @@ function howToDraw(){
         drawGraphSingle();
     }
     else if(numberOfChecked==2){
-        drawGraphDouble();   
+        drawGraphDouble();
     }
 
 }
@@ -193,9 +193,9 @@ var graphCompare = {
     selecteDevices: [],
     begin: false,
     startDate:false,
-    startTime: 00+hourDiff+":00:00", 
+    startTime: 00+hourDiff+":00:00",
     endDate:false,
-    endTime: 23+hourDiff+":55:00", 
+    endTime: 23+hourDiff+":55:00",
     chartType: "line",
     chartFill: false,
     animationDuration: 500,
@@ -216,7 +216,7 @@ function clearChartData() {
     dataXData = [];
 }
 
-function clearCompareChartData() { 
+function clearCompareChartData() {
     graphCompare.selecteDevices = []
 }
 
@@ -290,8 +290,10 @@ function dateRangePicker1() {
 
         if ( fetchingDataGraph == false ) {
             fetchingDataGraph = true;
-            disableGraphSettingsSelections(); 
+            disableGraphSettingsSelections();
         }
+
+
     }
 
     $('#reportrange1').daterangepicker({
@@ -325,10 +327,13 @@ function dateRangePicker1() {
             'Sidste 30 dage': [moment().subtract(29, 'days'), moment()],
             'Denne måned': [moment().startOf('month'), moment().endOf('month')],
         },
-
     }, cb);
 
     cb(start, end);
+    $('#reportrange1').on('apply.daterangepicker', function (ev, picker) {
+        getGraphData();
+        howToDraw();
+    });
 }
 
 function dateRangePicker2() {
@@ -380,6 +385,10 @@ function dateRangePicker2() {
     }, cb);
 
     cb(start, end);
+    $('#reportrange2').on('apply.daterangepicker', function (ev, picker) {
+        getGraphData();
+        howToDraw();
+    });
 }
 
 function GTMtimeRound(time){
@@ -421,7 +430,7 @@ function GTMtimeRound(time){
             break;
         case 10:
             month = "November";
-            break;        
+            break;
         case 11:
             month = "December";
     }
@@ -429,6 +438,9 @@ function GTMtimeRound(time){
     var realtime = GTMtime.getDate()+". "+month+" "+GTMtime.toTimeString().split(' ')[0].slice(0, -3);
     return realtime;
 }
+
+
+
 
 function getGraphData(){
 
@@ -469,8 +481,6 @@ function getGraphData(){
 
     var sUrl = "api/api-get-graph-data.php";
 
-
-
     clearChartData();
     $.post(sUrl, {
         fAY2YfpdKvR: sender,
@@ -479,15 +489,11 @@ function getGraphData(){
         to: endDateReplacement + "T23:59:59Z"
 
     }, function (sData) {
-
-
-        var jData = JSON.parse(sData); 
-        if (jData.status!="nodata"){
-
-
+        var jData = JSON.parse(sData);
+        //console.log(jData);
+        if (jData.status!="nodata" && jData.status!="no sensors retrived"){
 
             var counter = 0;
-
 
             sensorIDs = [];
             sensorAlias = [];
@@ -499,76 +505,70 @@ function getGraphData(){
             dataNoiseAvg = [];
             dataNoisePeak  = [];
 
-
-
-
-
             xDataExist = false;
 
             $("btn-download-graph-data").removeClass("button-disabled");
+            console.log(jData);
+            for( var j = 0; j < jData.length; j++){
+                for( var i = 0 ; i < jData[j].length ; i++ ){
 
+                    sensorIDs[i]=jData[j][i].SensorID;
+                    sensorAlias[i]=jData[j][i].SensorAlias;
+                    if((parseFloat(jData[j][i].Humidity) != null))
+                        if(!isNaN(parseFloat(jData[j][i].Humidity)))
+                            dataHumidity[i]=parseFloat(jData[j][i].Humidity);
+                    dataNoiseAvg[i]=jData[j][i].NoiseAvg;
+                    dataNoisePeak[i]=jData[j][i].NoisePeak;
+                    if(parseFloat(jData[j][i].Temperature) != null)
+                        if(!isNaN(parseFloat(jData[j][i].Temperature)))
+                            dataTemperature[i]=parseFloat(jData[j][i].Temperature);
+                    if(parseFloat(jData[j][i].CO2) != null)
+                        if(!isNaN(parseFloat(jData[j][i].CO2)))
+                            dataCO2[i]=parseFloat(jData[j][i].CO2);
+                            
+                    //dataTemperature[i]=parseFloat(jData[0][i].value);
+                    var time = jData[1][i].time
 
+                    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-            for( var i = 0 ; i < jData[0].length ; i++ ){
-                sensorIDs[i]=jData[0][i].SensorID;
-                sensorAlias[i]=jData[0][i].SensorAlias;
-                dataHumidity[i]=jData[0][i].Humidity;
-                dataNoiseAvg[i]=jData[0][i].NoiseAvg;
-                dataNoisePeak[i]=jData[0][i].NoisePeak;
-                dataTemperature[i]=jData[0][i].Temperature;
+                    h= time.substring(11, 13);
+                    if (String(h).length==1){
+                        h = "0" +h;
 
-                var time = jData[0][i].time
+                    }
+                    m= time.substring(14,16);
+                    if (String(m).length==1){
+                        m= "0" + m;
+                    }
 
-                var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    month = months[parseInt(time.substring(5,7))-1];
 
-                h= time.substring(11, 13);
-                if (String(h).length==1){
-                    h = "0" +h;
+                    date = time.substring(8,10);
+
+                    dataDates[i]= date + ". " + month + " " + h + ":" + m;
 
                 }
-                m= time.substring(14,16);
-                if (String(m).length==1){
-                    m= "0" + m;
-                }
-
-                month = months[parseInt(time.substring(5,7))-1];
-
-                date = time.substring(8,10);
-
-
-
-                dataDates[i]= date + ". " + month + " " + h + ":" + m;
-                dataCO2[i]=jData[0][i].CO2;
-
-
-
 
             }
 
+            console.log(dataTemperature);
+            console.log(dataHumidity);
+            console.log(dataCO2);
 
             enableDataSettings = true;
             $('.canvas-settings').attr('disabled', false);
             $('#chart-fill').attr('disabled', false);
             $('#chart-select-type').attr('disabled', false);
 
-
             howToDraw();
-
 
             downloadDataDisable = false;
             $("#btn-download-graph-data").removeClass("button-disabled");
 
             chart1TryUpdateData = 0;
-
-
-
-
-
-
-        }  
+        }
 
         else {
-
 
             $('#canvas1').remove();
             $('.chartjs-hidden-iframe').remove();
@@ -681,7 +681,7 @@ function drawGraphDouble() {
 
     if (numAttributes==2){
         if(graph.dataSetHidden.temperature){
-            $("#check-chart-data-temperature").attr('disabled','disabled');  
+            $("#check-chart-data-temperature").attr('disabled','disabled');
         }
         if(graph.dataSetHidden.humidity){
             $("#check-chart-data-humidity").attr('disabled','disabled');
@@ -755,16 +755,16 @@ function drawGraphDouble() {
                         label: "Humidity (%)",
                         fill: graph.chartFill,
                         backgroundColor: graph.dataSetColer2.humidity,
-                        borderColor: graph.dataSetColer1.humidity,           
+                        borderColor: graph.dataSetColer1.humidity,
                         pointBorderColor: graph.dataSetColer1.humidity,
-                        pointBackgroundColor: graph.dataSetColer1.humidity,			            
+                        pointBackgroundColor: graph.dataSetColer1.humidity,
                         pointHoverBackgroundColor: graph.dataSetColer2.humidity,
                         pointHoverBorderColor: graph.dataSetColer1.humidity,
                         data: dataHumidity,
                         spanGaps: false,
                         hidden: graph.dataSetHidden.humidity,
                         yAxisID: yAxisIDHum
-                    }, 
+                    },
                     {
                         label: "CO2 (ppm)",
                         fill: graph.chartFill,
@@ -823,11 +823,11 @@ function drawGraphDouble() {
 					}*/
 
                 ]
-            }, 
+            },
             options: {
 
                 animation: {
-                    duration: graph.animationDuration, 
+                    duration: graph.animationDuration,
                 },
                 legend: {
                     display: false
@@ -851,17 +851,17 @@ function drawGraphDouble() {
                     type: 'time',
                     xAxes: [{
                         ticks: {
-                            maxTicksLimit: 25		
+                            maxTicksLimit: 25
                         }
                     }]
                 }
 
-            } 
+            }
 
         });
 
         graph.animationDuration = 500;
-    }	
+    }
 }
 
 
@@ -911,8 +911,6 @@ function drawGraphSingle() {
                 labels: dataDates,
                 datasets: [
                     {
-
-
                         label: "Temperature (°C)",
                         fill: graph.chartFill,
                         backgroundColor: graph.dataSetColer2.temperature,
@@ -929,15 +927,15 @@ function drawGraphSingle() {
                         label: "Humidity (%)",
                         fill: graph.chartFill,
                         backgroundColor: graph.dataSetColer2.humidity,
-                        borderColor: graph.dataSetColer1.humidity,           
+                        borderColor: graph.dataSetColer1.humidity,
                         pointBorderColor: graph.dataSetColer1.humidity,
-                        pointBackgroundColor: graph.dataSetColer1.humidity,			            
+                        pointBackgroundColor: graph.dataSetColer1.humidity,
                         pointHoverBackgroundColor: graph.dataSetColer2.humidity,
                         pointHoverBorderColor: graph.dataSetColer1.humidity,
                         data: dataHumidity,
                         spanGaps: false,
                         hidden: graph.dataSetHidden.humidity
-                    }, 
+                    },
                     {
                         label: "CO2 (ppm)",
                         fill: graph.chartFill,
@@ -993,11 +991,11 @@ function drawGraphSingle() {
 					}*/
 
                 ]
-            }, 
+            },
             options: {
 
                 animation: {
-                    duration: graph.animationDuration, 
+                    duration: graph.animationDuration,
                 },
                 legend: {
                     display: false
@@ -1011,17 +1009,17 @@ function drawGraphSingle() {
                     type: 'time',
                     xAxes: [{
                         ticks: {
-                            maxTicksLimit: 25		
+                            maxTicksLimit: 25
                         }
                     }]
                 }
 
-            } 
+            }
 
         });
 
         graph.animationDuration = 500;
-    }	
+    }
 }
 
 
@@ -1044,9 +1042,9 @@ $(document).on("click",".canvas-settings-2-input", function() {
     $(this).parent().find("label").removeClass('no-after');
     if ($(this).is(":checked")) {
 
-        if ( graphCompare.selecteDevices.length < graphCompare.maxSelections ) {			
+        if ( graphCompare.selecteDevices.length < graphCompare.maxSelections ) {
             $(this).parent().find("label").css("background-color", hexToRgbA(thisBGColor));
-            addCompareDevices(thisBoxQR, boxName, thisBGColor);  
+            addCompareDevices(thisBoxQR, boxName, thisBGColor);
         } else if ( graphCompare.selecteDevices.length == graphCompare.maxSelections ) {
             $(this).parent().find("label").css("background-color", "#fafafa");
             $(this).parent().find("label").addClass('no-after');
@@ -1056,7 +1054,7 @@ $(document).on("click",".canvas-settings-2-input", function() {
 
     } else {
         $(this).parent().find("label").css("background-color", "#fafafa");
-        removeCompareDevices(thisBoxQR);  
+        removeCompareDevices(thisBoxQR);
     }
 });
 
@@ -1072,10 +1070,6 @@ function removeCompareDevices(boxQR) {
             graphCompare.selecteDevices.splice(i, 1);
     }
 }
-
-
-
-
 
 function startCompareCharset() {
     $("#gettingCompareDataWait").show();
@@ -1099,41 +1093,24 @@ function getCompareCharsetData(){
     numberOfLocations=0;
 
     $(".chart-select-location option").each(function(){
-
         // Add $(this).val() to your list
 
         //locStand is the standard location option "Choose Location"...
 
-        LocID = $(this).attr('id'); 
-
+        LocID = $(this).attr('id');
         if (!LocationIDs.includes(LocID)){
-
             if($(this).val()!="locStand"){
-
-
-
                 var isChecked = document.getElementById('check'+LocID).checked;
-
 
                 if (isChecked){
                     numberOfLocations++;
                     LocationIDs.push(LocID);
                 }
-
             }
         }
-
-
     });
 
-
-
     LocationIDs = JSON.stringify(LocationIDs)
-
-
-
-
-
 
     var sUrl = "api/api-get-compare-data.php"
 
@@ -1152,14 +1129,10 @@ function getCompareCharsetData(){
         $("#retrunNoSchoolGraph2").hide();
         $("#retrunNoSchoolGraph2Part2").hide();
 
-
-        var jData = JSON.parse(sData); 
+        var jData = JSON.parse(sData);
 
         if (jData.status!="nodata"){
             //[i][j]  -> i = different sensors, j = different datapoints
-
-
-
             dates = [];
             temperature = [];
             humidity = [];
@@ -1172,20 +1145,13 @@ function getCompareCharsetData(){
                       'rgba(153, 102, 255, 1)',
                       'rgba(255, 159, 64, 1)'];
 
-
-
-
-
             for( var i = 0 ; i < jData.length ; i++ ){
                 for( var j = 0 ; j < jData[i].length; j++ ){
-
 
                     var time = jData[i][j].time;
 
                     if (typeof time != "undefined"){
                         var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-
 
                         h= time.substring(11, 13);
                         if (String(h).length==1){
@@ -1201,12 +1167,7 @@ function getCompareCharsetData(){
 
                         date = time.substring(8,10);
 
-
-
-
-
-
-                        dToInsert = date + ". " + month + " " + h + ":" + m; 
+                        dToInsert = date + ". " + month + " " + h + ":" + m;
                         dates.push(dToInsert);
                         temperature.push(jData[i][j].Temperature);
                         humidity.push(jData[i][j].Humidity);
@@ -1233,7 +1194,7 @@ function getCompareCharsetData(){
                 compareData.dataCO2.push(CO2);
                 compareData.dataNoiseAvg.push(noiseAvg);
                 compareData.dataLabel.push(LocID);
-                compareData.dataColor.push(colors[i]); 
+                compareData.dataColor.push(colors[i]);
 
                 dates = [];
                 temperature = [];
@@ -1274,13 +1235,10 @@ function getCompareCharsetData(){
     });
 }
 
-
-
 function callDrawCompareGraph(){
 
-    drawCompareGraph(); 
+    drawCompareGraph();
 }
-
 
 function clearCompareData() {
     compareData.dataDates = [];
@@ -1387,7 +1345,7 @@ function drawCompareGraph() {
                 enabled: true,
                 mode: 'single',
                 callbacks: {
-                    label: function(tooltipItems, data) { 
+                    label: function(tooltipItems, data) {
                         return compareData.dataLabel[tooltipItems.datasetIndex]+': '+tooltipItems.yLabel + ' ºC';
                     }
                 }
@@ -1395,7 +1353,7 @@ function drawCompareGraph() {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero:false,	           
+                        beginAtZero:false,
                     }
                 }],
                 xAxes: [{
@@ -1471,7 +1429,7 @@ function drawCompareGraph() {
                 enabled: true,
                 mode: 'single',
                 callbacks: {
-                    label: function(tooltipItems, data) { 
+                    label: function(tooltipItems, data) {
                         return compareData.dataLabel[tooltipItems.datasetIndex]+': '+tooltipItems.yLabel + ' %';
                     }
                 }
@@ -1479,7 +1437,7 @@ function drawCompareGraph() {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero:false,	           
+                        beginAtZero:false,
                     }
                 }],
                 xAxes: [{
@@ -1555,7 +1513,7 @@ function drawCompareGraph() {
                 enabled: true,
                 mode: 'single',
                 callbacks: {
-                    label: function(tooltipItems, data) { 
+                    label: function(tooltipItems, data) {
                         return compareData.dataLabel[tooltipItems.datasetIndex]+': '+tooltipItems.yLabel + ' ppm';
                     }
                 }
@@ -1563,7 +1521,7 @@ function drawCompareGraph() {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero:false,	           
+                        beginAtZero:false,
                     }
                 }],
                 xAxes: [{
@@ -1640,7 +1598,7 @@ function drawCompareGraph() {
                 enabled: true,
                 mode: 'single',
                 callbacks: {
-                    label: function(tooltipItems, data) { 
+                    label: function(tooltipItems, data) {
                         return compareData.dataLabel[tooltipItems.datasetIndex]+': '+tooltipItems.yLabel + ' dB';
                     }
                 }
@@ -1654,7 +1612,7 @@ function drawCompareGraph() {
                 }],
                 xAxes: [{
                     ticks: {
-                        maxTicksLimit: 25,	
+                        maxTicksLimit: 25,
                         display: true
                     }
                 }]
@@ -1683,16 +1641,16 @@ function drawMapChart(DiveseSel) {
     var canvasWidth = 4;
     if (mapShow.monitor.temperature) {
         $('.data-map-charts-content').append('<div class="canvas-6-7-8-9-type"><i class="fa fa-thermometer-full" aria-hidden="true"></i>Temperatur</div><canvas id="canvas6" height="'+canvasHeight+'" width="'+canvasWidth+'"></canvas>');
-    }	
+    }
     if (mapShow.monitor.humidity) {
         $('.data-map-charts-content').append('<div class="canvas-6-7-8-9-type"><i class="fa fa-tint" aria-hidden="true"></i>Luftfugtighed</div><canvas id="canvas7" height="'+canvasHeight+'" width="'+canvasWidth+'"></canvas>');
-    }	
+    }
     if (mapShow.monitor.co2) {
         $('.data-map-charts-content').append('<div class="canvas-6-7-8-9-type"><i class="fa fa-cloud" aria-hidden="true"></i>CO2 niveau</div><canvas id="canvas8" height="'+canvasHeight+'" width="'+canvasWidth+'"></canvas>');
-    }	
+    }
     if (mapShow.monitor.noiseAvg) {
         $('.data-map-charts-content').append('<div class="canvas-6-7-8-9-type"><i class="fa fa-microphone" aria-hidden="true"></i>Støj gennemsnit</div><canvas id="canvas9" height="'+canvasHeight+'" width="'+canvasWidth+'"></canvas>');
-    }	
+    }
     Chart.defaults.global.legend.display = false;
     Chart.defaults.global.elements.line.fill = false;
     Chart.defaults.global.elements.point.radius = 1;
@@ -1737,7 +1695,7 @@ function drawMapChart(DiveseSel) {
                     enabled: showTooltipsMapChart,
                     mode: 'single',
                     callbacks: {
-                        label: function(tooltipItems, data) { 
+                        label: function(tooltipItems, data) {
                             return mapShowData.name[tooltipItems.datasetIndex]+': '+tooltipItems.yLabel + ' ºC';
                         }
                     }
@@ -1751,7 +1709,7 @@ function drawMapChart(DiveseSel) {
                     }],
                     xAxes: [{
                         ticks: {
-                            maxTicksLimit: 25,	
+                            maxTicksLimit: 25,
                             display: true
                         }
                     }]
@@ -1774,7 +1732,7 @@ function drawMapChart(DiveseSel) {
                     enabled: showTooltipsMapChart,
                     mode: 'single',
                     callbacks: {
-                        label: function(tooltipItems, data) { 
+                        label: function(tooltipItems, data) {
                             return mapShowData.name[tooltipItems.datasetIndex]+': '+tooltipItems.yLabel + ' %';
                         }
                     }
@@ -1788,7 +1746,7 @@ function drawMapChart(DiveseSel) {
                     }],
                     xAxes: [{
                         ticks: {
-                            maxTicksLimit: 25,	
+                            maxTicksLimit: 25,
                             display: true
                         }
                     }]
@@ -1811,7 +1769,7 @@ function drawMapChart(DiveseSel) {
                     enabled: showTooltipsMapChart,
                     mode: 'single',
                     callbacks: {
-                        label: function(tooltipItems, data) { 
+                        label: function(tooltipItems, data) {
                             return mapShowData.name[tooltipItems.datasetIndex]+': '+tooltipItems.yLabel + ' ppm';
                         }
                     }
@@ -1825,7 +1783,7 @@ function drawMapChart(DiveseSel) {
                     }],
                     xAxes: [{
                         ticks: {
-                            maxTicksLimit: 25,	
+                            maxTicksLimit: 25,
                             display: true
                         }
                     }]
@@ -1848,7 +1806,7 @@ function drawMapChart(DiveseSel) {
                     enabled: showTooltipsMapChart,
                     mode: 'single',
                     callbacks: {
-                        label: function(tooltipItems, data) { 
+                        label: function(tooltipItems, data) {
                             return mapShowData.name[tooltipItems.datasetIndex]+': '+tooltipItems.yLabel + ' dB';
                         }
                     }
@@ -1862,7 +1820,7 @@ function drawMapChart(DiveseSel) {
                     }],
                     xAxes: [{
                         ticks: {
-                            maxTicksLimit: 25,	
+                            maxTicksLimit: 25,
                             display: true
                         }
                     }]
@@ -1936,7 +1894,7 @@ function drawMapChart(DiveseSel) {
             }
         }
     }
-    addData();	
+    addData();
 }
 
 // Map chart Live
@@ -1967,16 +1925,16 @@ function drawMapChartDay(DiveseSel) {
     var canvasWidth = 4;
     if (mapShow.monitor.temperature) {
         $('.data-map-charts-content-live').append('<div class="canvas-10-11-12-13-type"><i class="fa fa-thermometer-full" aria-hidden="true"></i>Temperatur</div><canvas id="canvas10" height="'+canvasHeight+'" width="'+canvasWidth+'"></canvas>');
-    }	
+    }
     if (mapShow.monitor.humidity) {
         $('.data-map-charts-content-live').append('<div class="canvas-10-11-12-13-type"><i class="fa fa-tint" aria-hidden="true"></i>Luftfugtighed</div><canvas id="canvas11" height="'+canvasHeight+'" width="'+canvasWidth+'"></canvas>');
-    }	
+    }
     if (mapShow.monitor.co2) {
         $('.data-map-charts-content-live').append('<div class="canvas-10-11-12-13-type"><i class="fa fa-cloud" aria-hidden="true"></i>CO2 niveau</div><canvas id="canvas12" height="'+canvasHeight+'" width="'+canvasWidth+'"></canvas>');
-    }	
+    }
     if (mapShow.monitor.noiseAvg) {
         $('.data-map-charts-content-live').append('<div class="canvas-10-11-12-13-type"><i class="fa fa-microphone" aria-hidden="true"></i>Støj gennemsnit</div><canvas id="canvas13" height="'+canvasHeight+'" width="'+canvasWidth+'"></canvas>');
-    }	
+    }
     Chart.defaults.global.legend.display = false;
     Chart.defaults.global.elements.line.fill = false;
     Chart.defaults.global.elements.point.radius = 1;
@@ -2021,7 +1979,7 @@ function drawMapChartDay(DiveseSel) {
                     enabled: showTooltipsMapChartLive,
                     mode: 'single',
                     callbacks: {
-                        label: function(tooltipItems, data) { 
+                        label: function(tooltipItems, data) {
                             return mapShowDataLive.name[tooltipItems.datasetIndex]+': '+tooltipItems.yLabel + ' ºC';
                         }
                     }
@@ -2035,7 +1993,7 @@ function drawMapChartDay(DiveseSel) {
                     }],
                     xAxes: [{
                         ticks: {
-                            maxTicksLimit: 25,	
+                            maxTicksLimit: 25,
                             display: true
                         }
                     }]
@@ -2058,7 +2016,7 @@ function drawMapChartDay(DiveseSel) {
                     enabled: showTooltipsMapChartLive,
                     mode: 'single',
                     callbacks: {
-                        label: function(tooltipItems, data) { 
+                        label: function(tooltipItems, data) {
                             return mapShowDataLive.name[tooltipItems.datasetIndex]+': '+tooltipItems.yLabel + ' %';
                         }
                     }
@@ -2072,7 +2030,7 @@ function drawMapChartDay(DiveseSel) {
                     }],
                     xAxes: [{
                         ticks: {
-                            maxTicksLimit: 25,	
+                            maxTicksLimit: 25,
                             display: true
                         }
                     }]
@@ -2132,7 +2090,7 @@ function drawMapChartDay(DiveseSel) {
                     enabled: showTooltipsMapChartLive,
                     mode: 'single',
                     callbacks: {
-                        label: function(tooltipItems, data) { 
+                        label: function(tooltipItems, data) {
                             return mapShowDataLive.name[tooltipItems.datasetIndex]+': '+tooltipItems.yLabel + ' dB';
                         }
                     }
@@ -2146,7 +2104,7 @@ function drawMapChartDay(DiveseSel) {
                     }],
                     xAxes: [{
                         ticks: {
-                            maxTicksLimit: 25,	
+                            maxTicksLimit: 25,
                             display: true
                         }
                     }]
@@ -2238,33 +2196,33 @@ function drawMapChartDay(DiveseSel) {
             }
         }
     }
-    addData();	
+    addData();
 }
 
 function updateMapChartLine(){
-    if ( mapAutoPlay == false ) { 
+    if ( mapAutoPlay == false ) {
         if (mapShow.monitor.temperature) {
             ChartTemp.options.tooltips.enabled = false;
         }
-        if (mapShow.monitor.humidity) {	
-            ChartHum.options.tooltips.enabled = false; 
+        if (mapShow.monitor.humidity) {
+            ChartHum.options.tooltips.enabled = false;
         }
         if (mapShow.monitor.co2) {
             ChartCo2.options.tooltips.enabled = false;
-        }	
+        }
         if (mapShow.monitor.noiseAvg) {
             ChartNoi.options.tooltips.enabled = false;
         }
     } else {
         if (mapShow.monitor.temperature) {
             ChartTemp.options.tooltips.enabled = true;
-        }	
+        }
         if (mapShow.monitor.humidity) {
             ChartHum.options.tooltips.enabled = true;
         }
         if (mapShow.monitor.co2) {
             ChartCo2.options.tooltips.enabled = true;
-        }	
+        }
         if (mapShow.monitor.noiseAvg) {
             ChartNoi.options.tooltips.enabled = true;
         }

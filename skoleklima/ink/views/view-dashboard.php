@@ -8,10 +8,13 @@
 			require_once "view-other-users.php";
 			require_once "view-own-user.php";
 			require_once "view-system-settings.php";
+			require_once "view-roomX.php";
+			require_once "view-rules.php";
 		} elseif ($currentUserRole == 15) {
 			require_once "view-data.php";
 			require_once "view-data-map.php";
 			require_once "view-own-user.php";
+            require_once "view-roomX.php";
 		} elseif ($currentUserRole == 2) {
 			require_once "view-devices.php";
 			require_once "view-data.php";
@@ -19,14 +22,18 @@
 			require_once "view-other-users.php";
 			require_once "view-own-user.php";
 			require_once "view-permissions.php";
-		} elseif ($currentUserRole == 3) {
+            require_once "view-roomX.php";
+            require_once "view-rules.php";
+        } elseif ($currentUserRole == 3) {
 			require_once "view-data.php";
 			require_once "view-data-map.php";
 			require_once "view-other-users.php";
 			require_once "view-own-user.php";
+            require_once "view-roomX.php";
 		} elseif ($currentUserRole == 4) {
 			require_once "view-data.php";
 			require_once "view-data-map.php";
+            require_once "view-roomX.php";
 		}
 		if($currentPermLogbook == 1 ){
 			require_once "view-communication.php";
