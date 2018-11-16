@@ -48,6 +48,11 @@
     </div>
 
 
+    <div style="width: 50%; height: 50%; background-color: green; float:left;">-</div>
+    <div style="width: 50%; height: 50%; background-color: blue; float:right;">-</div>
+    <div style="width: 100%; height: 50%; background-color: red; clear:both">-</div>
+
+
 <!--MAP BELOW-->
 
     <!--    <hr>-->

@@ -5,13 +5,10 @@ $(document).ready(function() {
         "searching":   false,
         "paging": false,
         "info": false
-
     } );
 } );
 
 $(document).ready(function () {
-
-
     var sUrl = "api/api-get-rooms.php";
     $.post(sUrl, function (data) {
         var jData = JSON.parse(data);
@@ -28,6 +25,7 @@ $(document).ready(function () {
         }
     });
 });
+
 
 function refreshTable(roomID) {
     getTableData(roomID);
