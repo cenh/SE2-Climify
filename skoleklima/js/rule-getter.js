@@ -14,7 +14,7 @@ function generateDivs(sensor, operator, value, action, ruleNo){
             '<div id="'+body_id+'" class="collapse" aria-labelledby="'+header_id+'" data-parent="#accordionExample">',
                 '<div class="card-body">',
                     '<div class=row">',
-                        '<div class="col-10>"',
+                        '<div class="col-10">',
                             message,
                         '</div>',
                         '<div class="col-2">',
