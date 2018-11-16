@@ -23,10 +23,13 @@ function generateDivs(sensor, operator, value, action, ruleNo){
                             '<span class="slider round"></span>',
                             '</label>',
                         '</div>',
+                    '</div>',
                 '</div>',
             '</div>',
         '</div>'
     ].join('');
+
+
     $(".accordion").append(html);
 }
 
