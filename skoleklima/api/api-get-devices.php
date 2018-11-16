@@ -14,7 +14,7 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT LocationName FROM Location WHERE LocationID = $roomID";
+$query = "SELECT * FROM RaspberryPis WHERE LocationID = $roomID";
 
 $stmt = $conn->prepare($query);
 
