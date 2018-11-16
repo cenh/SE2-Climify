@@ -27,7 +27,7 @@ $("#fetch-sensors-for-loc").on("click",function() {
 
     $.get('api/api-get-rules.php', {LocationID: rule_Location})
         .done(function(res) {
-            rules = JSON.parse(res);
+            var rules = JSON.parse(res);
             for(i=0;i < rules.length;i++){
                 var rule = rules[i];
                 generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.Action,i)
@@ -58,5 +58,4 @@ $("#fetch-sensors-for-loc").on("click",function() {
         $(".collapsible").hide();
         alert("No rules specefied for selected room");
     }
-});
 });
