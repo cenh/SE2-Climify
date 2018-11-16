@@ -9,7 +9,7 @@ function generateDivs(sensor, operator, value, action, ruleNo){
                     '<div class="row">',
                         '<div class="col-lg-8">Rule '+ruleNo,
                             '<b>Rule: </b>' +message,
-                        '</div>,
+                        '</div>',
                         '<div class="col-lg-3">',
                             '<label class="switch">',
                                 '<input id="rulecheck" type="checkbox">',
