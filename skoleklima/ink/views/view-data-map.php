@@ -3,7 +3,7 @@
     <div class="view-data-top">
 	<span>
 		<h3>Devices</h3>
-		<p>An overview of installed devices.</p>
+		<p>An overview of installed devices</p>
 	</span>
         <span>
 		<span>
