@@ -1,13 +1,21 @@
 package org.Climify.influxDB;
 
+import org.Climify.Climify;
+import org.Climify.mariaDB.MariaDBCommunicator;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.Point;
 
+import java.io.PrintStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
+import java.io.IOException;
 
 import org.MqttLib.openhab.SensorMeasurement;
 import org.influxdb.InfluxDB;
@@ -27,6 +35,8 @@ public class InfluxCommunicator {
 				.time(fdate(measurement.time), TimeUnit.MILLISECONDS)
 				.addField(measurement.category, measurement.value).build();
 		influxDB.write("scadb", "defaultPolicy", point);
+        Climify climify = new Climify();
+        climify.executeRule(measurement.name);
 	}
 
 	public void connect() {
