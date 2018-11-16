@@ -61,6 +61,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 		List<List<String>> results = new ArrayList<List<String>>();
 		results = mb.getRulesBySensorID(SensorID);
 		for(List<String> result : results) {
+		    System.out.println("Running rule on sensor: " + result.get(0));
 			try {
 				URL url = new URL("http://localhost:8080/api/api-execute-rule.php");
 				HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
