@@ -26,7 +26,6 @@
             <select id="select_room" onchange="refreshTable(value)">
                 <option value="" disabled selected>Choose Your Room</option>
             </select>
-            <label>Rooms</label>
         </div>
     </div>
 
