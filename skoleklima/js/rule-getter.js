@@ -1,12 +1,19 @@
+function generateDivs(sensor, operator, value, action){
+    console.log("if " +sensor+" is "+operator + " than" +value + " then" + action );
 
+}
 
 $("#fetch-sensors-for-loc").on("click",function() {
     var rule_Location = $("#sel_location").val();
 
     $.get('api/api-get-rules.php', {LocationID: rule_Location})
         .done(function(res) {
-            var rules = res;
-            console.log(rules);
+            var rules = JSON.parse(rules);
+            for(i=0;i < rules.length;i++){
+                var rule = rules[i]
+                //TODO: finish the function
+                generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.Action)
+            }
         });
 
     if ($("#sel_location").val()==="1") {
