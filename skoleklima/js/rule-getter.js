@@ -1,18 +1,19 @@
 function generateDivs(sensor, operator, value, action, ruleNo){
     var message = "if " +sensor+" is "+operator + " than " +value + " then " + action.toUpperCase();
-    var header_id = 'rule'+ruleNo;
+    var header_id = 'heading'+ruleNo;
     var body_id = 'collapse'+ruleNo;
     var html = [
-        '<div class="container-fluid">',
-            '<div class="row">',
-                '<div class="col-lg-8">',
-                    '<b>Rule '+ruleNo+': ' + '</b>' +message,
-                '</div>',
-                '<div class="col-lg-3">',
-                    '<label class="switch">',
-                        '<input id="rulecheck" type="checkbox">',
-                        '<span class="slider round"></span>',
-                    '</label>',
+        '<div class="card">',
+            '<div class="card-header" id="'+header_id+'">',
+                '<h5 class="mb-0">',
+                '<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#'+body_id+'" aria-expanded="true" aria-controls="'+body_id+'">',
+                    'Rule '+(Number(ruleNo)+1).toString(),
+                '</button>',
+                '</h5>',
+            '</div>',
+            '<div id="'+body_id+'" class="collapse show" aria-labelledby="'+header_id+'" data-parent="#accordionExample">',
+                '<div class="card-body">',
+                    message,
                 '</div>',
             '</div>',
         '</div>'

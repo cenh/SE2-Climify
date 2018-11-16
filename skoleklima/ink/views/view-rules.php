@@ -48,11 +48,8 @@ while($row = mysqli_fetch_array($result))
     <button style="display:none;" class="collapsible">
         <span class="ui-button-text"></span>
     </button>
-    <div class="content">
-        <h2 id="rules-title">Rules for room</h2>
-        <div class="container">
+    <div class="accordion" id="accordionExample">
 
-        </div>
     </div>
 
     <!-- TEST -->
