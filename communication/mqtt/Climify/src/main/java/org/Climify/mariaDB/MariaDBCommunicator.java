@@ -1,10 +1,8 @@
 package org.Climify.mariaDB;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.MqttLib.openhab.Channel;
 import org.MqttLib.openhab.DeviceUpdate;
@@ -88,6 +86,7 @@ public class MariaDBCommunicator {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, link.itemName);
 			ps.setString(2, link.channelUID);
+			ps.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -144,8 +143,39 @@ public class MariaDBCommunicator {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, channelUID);
 			ps.setString(2, thingUID);
+			ps.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public List<List<String>> getRulesBySensorID(String sensorID) {
+        String SensorID = "";
+        String Operator = "";
+        String Value = "";
+        String Action = "";
+		List<List<String>> results = new ArrayList<List<String>>();
+		String sql = "SELECT * FROM Rule WHERE SensorID = ?";
+		try {
+		    PreparedStatement ps = connection.prepareStatement(sql);
+		    ps.setString(1, sensorID);
+            ResultSet result = ps.executeQuery();
+            while(result.next())
+            {
+            	List<String> rs = new ArrayList<String>();
+            	SensorID = result.getString(1);
+				Operator = result.getString(2);
+				Value = result.getString(3);
+				Action = result.getString(4);
+				rs.add(SensorID);
+				rs.add(Operator);
+				rs.add(Value);
+				rs.add(Action);
+				results.add(rs);
+            }
+        } catch (SQLException e) {
+		    e.printStackTrace();
+        }
+        return results;
 	}
 }
