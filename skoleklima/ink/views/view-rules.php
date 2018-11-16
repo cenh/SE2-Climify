@@ -48,7 +48,7 @@ while($row = mysqli_fetch_array($result))
     <button style="display:none;" class="collapsible">
         <span class="ui-button-text"></span>
     </button>
-    <div class="accordion" id="accordionRules">
-
+    <div class="content">
 
     </div>
+</div>
