@@ -1,7 +1,13 @@
 var rooms;
 
+$(document).ready(function() {
+    $('#table_id1').DataTable( {
+        "searching":   false
+    } );
+} );
+
 $(document).ready(function () {
-    $('#table_id1').DataTable();
+
 
     var sUrl = "api/api-get-rooms.php";
     $.post(sUrl, function (data) {
