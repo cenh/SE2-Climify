@@ -57,6 +57,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 	}
 
 	public void executeRule(String SensorID) {
+	    System.out.println("Looking for rules on sensor: " + SensorID);
 		List<List<String>> results = new ArrayList<List<String>>();
 		results = mariaDB.getRulesBySensorID(SensorID);
 		for(List<String> result : results) {
