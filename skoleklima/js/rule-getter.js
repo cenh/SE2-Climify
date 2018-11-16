@@ -3,23 +3,24 @@ function generateDivs(sensor, operator, value, action, ruleNo){
     var header_id = 'rule'+ruleNo;
     var body_id = 'collapse'+ruleNo;
     var html = [
-        '<div class="card">',
-            '<div class="card-header" id="'+header_id+'">',
-                '<h5 class="mb-0">',
-                '<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#'+body_id + ' aria-expanded="true" aria-controls="'+body_id+'">',
-                    'rule: '+ruleNo,
-                '</button>',
-                '</h5>',
-            '</div>',
-            '<div id="'+body_id+'" class="collapse show" aria-labelledby="'+body_id+'" data-parent="#accordionRules">',
-                '<div class="card-body">',
-                    message,
+        '<div class="container-fluid">',
+            '<h2 id="rules-title">Rules for room '+ruleNo+'</h2>',
+                '<div class="container">',
+                    '<div class="row">',
+                        '<div class="col-lg-8">Rule '+ruleNo,
+                            '<b>Rule: </b>' +message,
+                        '</div>,
+                        '<div class="col-lg-3">',
+                            '<label class="switch">',
+                                '<input id="rulecheck" type="checkbox">',
+                                '<span class="slider round"></span>',
+                            '</label>',
+                        '</div>',
+                    '</div>',
                 '</div>',
-             '</div>',
         '</div>'
     ].join('');
-    $(".accordion").empty();
-    $(".accordion").append(html);
+    $(".content").append(html);
 }
 
 $("#fetch-sensors-for-loc").on("click",function() {
