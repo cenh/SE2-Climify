@@ -1,9 +1,7 @@
 var rooms;
 
-
 $(document).ready(function () {
     $('#table_id1').DataTable();
-    $('select').formSelect();
 
     var sUrl = "api/api-get-rooms.php";
     $.post(sUrl, function (data) {
@@ -17,18 +15,10 @@ $(document).ready(function () {
             option.text = jData[i].LocationName;
             option.value = jData[i].LocationID;
             x.add(option);
-            refreshDropdown();
 
         }
     });
-    refreshDropdown();
 });
-
-function refreshDropdown() {
-    $(document).ready(function(){
-        $('select').formSelect();
-    });
-}
 
 function refreshTable(roomID) {
     getTableData(roomID);
