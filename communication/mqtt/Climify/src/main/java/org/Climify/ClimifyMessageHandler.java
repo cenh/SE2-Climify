@@ -57,9 +57,8 @@ public class ClimifyMessageHandler extends MessageHandler {
 	}
 
 	public void executeRule(String SensorID) {
-		MariaDBCommunicator mb = new MariaDBCommunicator();
 		List<List<String>> results = new ArrayList<List<String>>();
-		results = mb.getRulesBySensorID(SensorID);
+		results = mariaDB.getRulesBySensorID(SensorID);
 		for(List<String> result : results) {
 		    System.out.println("Running rule on sensor: " + result.get(0));
 			try {
