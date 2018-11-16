@@ -48,24 +48,7 @@ while($row = mysqli_fetch_array($result))
     <button style="display:none;" class="collapsible">
         <span class="ui-button-text"></span>
     </button>
-    <div class="content">
-        <div class="container-fluid">
-            <h2 id="rules-title">Rules for room</h2>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">Rule 1
-                        <p>This rule opens a window when the read outdoor temperature is greater than 24 degrees</p>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="switch">
-                            <input id="rulecheck" type="checkbox">
-                            <span class="slider round"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="accordion" id="accordionRules">
+
+
     </div>
-
-
-</div>
