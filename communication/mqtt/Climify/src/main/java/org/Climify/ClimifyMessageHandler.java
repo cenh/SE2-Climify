@@ -63,7 +63,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 		for(List<String> result : results) {
 		    System.out.println("Running rule on sensor: " + result.get(0));
 			try {
-				URL url = new URL("http://localhost:8080/api/api-execute-rule.php");
+				URL url = new URL("http://localhost:8080/rules/skoleklima/api/api-execute-rule.php");
 				HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
 				httpCon.setDoOutput(true);
 				httpCon.setRequestMethod("POST");
