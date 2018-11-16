@@ -162,12 +162,12 @@ public class MariaDBCommunicator {
             ResultSet result = ps.executeQuery();
             while(result.next())
             {
-            	System.out.println("Found rule with ID: " + result.getString(0));
+            	System.out.println("Found rule with ID: " + result.getString(1));
             	List<String> rs = new ArrayList<String>();
-            	SensorID = result.getString(1);
-				Operator = result.getString(2);
-				Value = result.getString(3);
-				Action = result.getString(4);
+            	SensorID = result.getString(2);
+				Operator = result.getString(3);
+				Value = result.getString(4);
+				Action = result.getString(5);
 				rs.add(SensorID);
 				rs.add(Operator);
 				rs.add(Value);
