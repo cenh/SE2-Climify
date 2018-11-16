@@ -18,7 +18,7 @@ function generateDivs(sensor, operator, value, action, ruleNo){
             '</div>',
         '</div>'
     ].join('');
-    $(".content").append(html);
+    $(".accordion").append(html);
 }
 
 $("#fetch-sensors-for-loc").on("click",function() {
