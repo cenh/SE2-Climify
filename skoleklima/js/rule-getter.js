@@ -25,11 +25,11 @@ $("#fetch-sensors-for-loc").on("click",function() {
     var rule_Location = $("#sel_location").val();
 
     $.get('api/api-get-rules.php', {LocationID: rule_Location})
-        .done(function (res) {
+        .done(function(res) {
             var rules = JSON.parse(res);
-            for (i = 0; i < rules.length; i++) {
+            for(i=0;i < rules.length;i++){
                 var rule = rules[i];
-                generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.Action, i)
+                generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.Action,i)
             }
         });
 });

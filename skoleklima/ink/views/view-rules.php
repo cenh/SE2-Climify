@@ -41,7 +41,10 @@ while($row = mysqli_fetch_array($result))
         <select id="sel_location" style="min-width: 80px;">
             <?php echo $options;?>
         </select>
+        <button id="fetch-sensors-for-loc" class="link">Search rules</button>
     </div>
+    <hr>
+
     <button style="display:none;" class="collapsible">
         <span class="ui-button-text"></span>
     </button>
