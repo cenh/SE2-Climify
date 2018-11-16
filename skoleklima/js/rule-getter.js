@@ -1,5 +1,5 @@
 function generateDivs(sensor, operator, value, action, ruleNo){
-    var message = "if " +sensor+" is "+operator + " than " +value + " then" + action.toUpperCase();
+    var message = "if " +sensor+" is "+operator + " than " +value + " then " + action.toUpperCase();
     var header_id = 'rule'+ruleNo;
     var body_id = 'collapse'+ruleNo;
     var html = [
@@ -19,7 +19,6 @@ function generateDivs(sensor, operator, value, action, ruleNo){
         '</div>'
     ].join('');
     $(".accordion").append(html);
-    console.log("done");
 }
 
 $("#fetch-sensors-for-loc").on("click",function() {
