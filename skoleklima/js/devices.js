@@ -2,7 +2,9 @@ var rooms;
 
 $(document).ready(function() {
     $('#table_id1').DataTable( {
-        "searching":   false
+        "searching":   false,
+        "paging": false
+
     } );
 } );
 
