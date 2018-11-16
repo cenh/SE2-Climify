@@ -1,4 +1,4 @@
-function generateDivs(sensor, operator, value, action, ruleNo){
+function generateDivs(sensor, operator, value, action, ruleNo, ruleCount){
     var message = "if " +sensor+" is "+operator + " than " +value + " then " + action.toUpperCase();
     var header_id = 'heading'+ruleNo;
     var body_id = 'collapse'+ruleNo;
@@ -27,10 +27,11 @@ function generateDivs(sensor, operator, value, action, ruleNo){
                 '</div>',
             '</div>',
         '</div>'
+
     ].join('');
-
-
     $(".accordion").append(html);
+    $("#rule-count").append("Rules: "+ruleCount);
+
 }
 
 $("#fetch-sensors-for-loc").on("click",function() {
@@ -39,9 +40,10 @@ $("#fetch-sensors-for-loc").on("click",function() {
     $.get('api/api-get-rules.php', {LocationID: rule_Location})
         .done(function(res) {
             var rules = JSON.parse(res);
+            var size = rules.length;
             for(i=0;i < rules.length;i++){
                 var rule = rules[i];
-                generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.Action,i)
+                generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.Action,i,size);
             }
         });
 });
