@@ -49,7 +49,16 @@ while($row = mysqli_fetch_array($result))
         <span class="ui-button-text"></span>
     </button>
     <div class="accordion" id="accordionExample">
-
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <p id="rule-count"></p>
+            </div>
+            <div class="col-md-4">
+                <button class="mybtn">
+                    <i class="fa fa-plus-circle"></i>
+                </button>
+            </div>
     </div>
 
 
