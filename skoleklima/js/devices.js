@@ -8,6 +8,14 @@ $(document).ready(function() {
     } );
 } );
 
+$(document).ready(function() {
+    $('#table_id2').DataTable( {
+        "searching":   false,
+        "paging": false,
+        "info": false
+    } );
+} );
+
 $(document).ready(function () {
     var sUrl = "api/api-get-rooms.php";
     $.post(sUrl, function (data) {

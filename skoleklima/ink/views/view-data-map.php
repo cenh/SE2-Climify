@@ -32,25 +32,41 @@
 
 
 
-    <div style="width: 100%; height: auto; border: 1px solid #dddddd;
+
+
+
+    <div style="width: 50%; height: 50%; background-color: green; float:left;">
+        <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
     padding: 8px; float:left;">
-        <table id="table_id1" class="display">
-            <thead>
-            <tr>
-                <th>Name</th>
-            </tr>
-            </thead>
-            <tbody>
+            <table id="table_id1" class="display">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
+    <div style="width: 50%; height: 50%; background-color: blue; float:right;">
+        <div style="width: 100%; height: auto; border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px; float:left;">
+            <table id="table_id2" class="display">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
 
-
-    <div style="width: 50%; height: 50%; background-color: green; float:left;">-</div>
-    <div style="width: 50%; height: 50%; background-color: blue; float:right;">-</div>
-    <div style="width: 100%; height: 50%; background-color: red; clear:both">-</div>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
 <!--MAP BELOW-->
