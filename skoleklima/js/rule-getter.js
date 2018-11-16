@@ -18,6 +18,7 @@ function generateDivs(sensor, operator, value, action, ruleNo){
              '</div>',
         '</div>'
     ].join('');
+    $(".accordion").empty();
     $(".accordion").append(html);
 }
 
@@ -26,28 +27,23 @@ $("#fetch-sensors-for-loc").on("click",function() {
 
     $.get('api/api-get-rules.php', {LocationID: rule_Location})
         .done(function(res) {
-            var rules = JSON.parse(res);
+            rules = JSON.parse(res);
             for(i=0;i < rules.length;i++){
                 var rule = rules[i];
                 generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.Action,i)
             }
         });
-
-    if ($("#sel_location").val()==="1") {
-        var room_selected = $("#sel_location").val();
-        console.log(room_selected);
-        $.post('api/api-rules-query.php', {
-            room: room_selected
-        }).done(function (res) {
-            $(".ui-button-text").text("Room: " + res);
-            $("#rules-title").text("Rules for room " + res);
-        });
+    var room_selected = $("#sel_location").val();
+    $.post('api/api-rules-query.php', {
+        room: room_selected
+    }).done(function (res) {
+        $(".ui-button-text").text("Room: " + res);
+        $("#rules-title").text("Rules for room " + res);
+    });
+    if (rules){
         $(".collapsible").show();
-
-    }
-    else if ($("#sel_location").val()==="2") {
-        console.log("2");
+    } else {
         $(".collapsible").hide();
-        alert("No rules specefied for selected room");
     }
+
 });
