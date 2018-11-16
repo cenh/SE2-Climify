@@ -4,20 +4,17 @@ function generateDivs(sensor, operator, value, action, ruleNo){
     var body_id = 'collapse'+ruleNo;
     var html = [
         '<div class="container-fluid">',
-            '<h2 id="rules-title">Rules for room '+ruleNo+'</h2>',
-                '<div class="container">',
-                    '<div class="row">',
-                        '<div class="col-lg-8">Rule '+ruleNo,
-                            '<b>Rule: </b>' +message,
-                        '</div>',
-                        '<div class="col-lg-3">',
-                            '<label class="switch">',
-                                '<input id="rulecheck" type="checkbox">',
-                                '<span class="slider round"></span>',
-                            '</label>',
-                        '</div>',
-                    '</div>',
+            '<div class="row">',
+                '<div class="col-lg-8">',
+                    '<b>Rule '+ruleNo+': ' + '</b>' +message,
                 '</div>',
+                '<div class="col-lg-3">',
+                    '<label class="switch">',
+                        '<input id="rulecheck" type="checkbox">',
+                        '<span class="slider round"></span>',
+                    '</label>',
+                '</div>',
+            '</div>',
         '</div>'
     ].join('');
     $(".content").append(html);

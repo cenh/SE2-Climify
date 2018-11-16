@@ -49,6 +49,9 @@ while($row = mysqli_fetch_array($result))
         <span class="ui-button-text"></span>
     </button>
     <div class="content">
+        <h2 id="rules-title">Rules for room</h2>
+        <div class="container">
 
+        </div>
     </div>
 </div>
