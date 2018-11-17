@@ -32,7 +32,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 		
 		if (topic.startsWith(Topic.SENSORDATA.getTopic())) {
 			try {
-				System.out.println("Inside topic " + topic); 
+				System.out.println("Inside topic " + topic);
 				SensorMeasurement measurement = dslJson.deserialize(SensorMeasurement.class, message.getPayload(), message.getPayload().length);
 				influx.saveMeasurement(measurement);
 				executeRule(measurement.name);
@@ -56,10 +56,10 @@ public class ClimifyMessageHandler extends MessageHandler {
 		}
 	}
 
-	public void executeRule(String SensorID) {
+	private void executeRule(String SensorID) {
 	    System.out.println("Looking for rules on sensor: " + SensorID);
 		List<List<String>> results = new ArrayList<List<String>>();
-		results = mariaDB.getRulesBySensorID(SensorID);
+		results = this.mariaDB.getRulesBySensorID(SensorID);
 		for(List<String> result : results) {
 		    System.out.println("Running rule on sensor: " + result.get(0));
 			try {
