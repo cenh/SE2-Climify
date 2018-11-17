@@ -57,16 +57,16 @@ while($row = mysqli_fetch_array($result))
                 <p id="rule-count"></p>
             </div>
             <div class="col-md-4">
-                <button class="mybtn" style="float: right" data-toggle="modal" data-target="modalCreateRule">
+                <button class="mybtn" style="float: right" data-toggle="modal" data-target="#modalCreateRule">
                     <i class="fa fa-plus-circle"></i>
                 </button>
             </div>
             <!-- MODAL -->
-            <div class="modal fade" id="modalCreateRule" tabindex="-1" role="dialog" aria-labelledby="modalCreateRule" aria-hidden="true">
+            <div class="modal fade" id="modalCreateRule" tabindex="-1" role="dialog" aria-labelledby="modalCreateRuleTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalCreateRule">Add a rule</h5>
+                            <h5 class="modal-title" id="modalCreateRuleTitle">Add a rule</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
