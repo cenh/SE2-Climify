@@ -30,8 +30,12 @@ function generateDivs(sensor, operator, value, action, ruleNo, ruleCount){
 
     ].join('');
     $(".accordion").append(html);
-    $("#rule-count").append("Rules: "+ruleCount);
 
+}
+
+function clearAccordion(size){
+    $(".accordion").empty();
+    $("#rule-count").text("Rules: "+size)
 }
 
 $("#fetch-sensors-for-loc").on("click",function() {
@@ -41,6 +45,7 @@ $("#fetch-sensors-for-loc").on("click",function() {
         .done(function(res) {
             var rules = JSON.parse(res);
             var size = rules.length;
+            clearAccordion(size);
             for(i=0;i < rules.length;i++){
                 var rule = rules[i];
                 generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.Action,i,size);
