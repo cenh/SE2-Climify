@@ -57,7 +57,7 @@ while($row = mysqli_fetch_array($result))
                 <p id="rule-count"></p>
             </div>
             <div class="col-md-4">
-                <button class="mybtn" style="float-right">
+                <button class="mybtn" style="float: right">
                     <i class="fa fa-plus-circle"></i>
                 </button>
             </div>
