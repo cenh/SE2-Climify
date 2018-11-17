@@ -7,7 +7,7 @@ import com.dslplatform.json.CompiledJson;
 public class Thing {
 	public String label;
 	public String bridgeUID;
-	public String uid;
+	public String UID;
 	public String thingTypeUID;
 	public List<Channel> channels;
 	public StatusInfo statusInfo;
