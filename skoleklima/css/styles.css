@@ -349,17 +349,17 @@ label {
   cursor: pointer; }
 
 button {
-  border-radius: 0% !important;
-  color: #000000 !important;
-  outline: none !important;
-  background-color: #89b2c8 !important;
-  padding: .2em .5em !important;
-  border: 1px solid #4f5567 !important;
+  border-radius: 0% ;
+  color: #000000 ;
+  outline: none ;
+  background-color: #89b2c8 ;
+  padding: .2em .5em ;
+  border: 1px solid #4f5567;
   height: 26px;
   min-width: 140px; }
   button:hover, button:focus {
-    cursor: pointer !important;
-    background-color: #92b2c7 !important; }
+    cursor: pointer;
+    background-color: #92b2c7; }
 
 .delte-button {
   background: #DD6B55 !important; }
