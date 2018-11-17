@@ -57,9 +57,29 @@ while($row = mysqli_fetch_array($result))
                 <p id="rule-count"></p>
             </div>
             <div class="col-md-4">
-                <button class="mybtn" style="float: right">
+                <button class="mybtn" style="float: right" data-toggle="modal" data-target="exampleModalCenter">
                     <i class="fa fa-plus-circle"></i>
                 </button>
+            </div>
+            <!-- MODAL -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCreateRule" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalCreateRule">Add a rule</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            TODO ADDING A INPUT FORM HEHE
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" id="submitRule" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
