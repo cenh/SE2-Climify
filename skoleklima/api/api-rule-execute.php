@@ -55,7 +55,7 @@ function executeRule($sensor, $op, $value, $action) {
   $returnFromIfx = $database->query($q);
   $points = $returnFromIfx->getPoints();
   $sensor_value = array_values($points[0]);
-  error_log($points_values[], 0);
+  error_log($sensor_value[], 0);
 
 
   if(empty($returnFromIfx)) {
