@@ -5,10 +5,10 @@
 
 require_once "../meta-influx.php";
 
-$sensor = $_POST['sensor'];
-$op = $_POST['op'];
-$value = $_POST['value'];
-$action = $_POST['action'];
+$sensor = $_POST['sensorID'];
+$op = $_POST['Operator'];
+$value = $_POST['Value'];
+$action = $_POST['Action'];
 
 error_log("Sensor: $sensor", 0);
 error_log("Op: $op", 0);
