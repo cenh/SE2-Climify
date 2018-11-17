@@ -88,6 +88,7 @@ public class MariaDBCommunicator {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, link.itemName);
 			ps.setString(2, link.channelUID);
+			ps.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -101,7 +102,7 @@ public class MariaDBCommunicator {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, thing.label);
 			ps.setString(2, thing.bridgeUID);
-			ps.setString(3, thing.uid);
+			ps.setString(3, thing.UID);
 			ps.setString(4, thing.thingTypeUID);
 			ps.setString(5, thing.statusInfo.status);
 			ps.setString(6, thing.statusInfo.statusDetail);
@@ -113,7 +114,7 @@ public class MariaDBCommunicator {
 		}
 		
 		for (Channel channel: thing.channels) {
-			insertChannel(channel, thing.uid);
+			insertChannel(channel, thing.UID);
 		}
 	}
 	
@@ -144,6 +145,7 @@ public class MariaDBCommunicator {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, channelUID);
 			ps.setString(2, thingUID);
+			ps.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
