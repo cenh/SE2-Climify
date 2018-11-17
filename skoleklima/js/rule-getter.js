@@ -52,3 +52,7 @@ $("#fetch-sensors-for-loc").on("click",function() {
             }
         });
 });
+
+$(".mybtn").on("click",function() {
+
+})
