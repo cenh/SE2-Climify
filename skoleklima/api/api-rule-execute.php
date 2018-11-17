@@ -54,7 +54,7 @@ function executeRule($sensor, $op, $value, $action) {
   $database = InfluxDB\Client::fromDSN(sprintf('influxdb://%s:%s@%s:%s/%s',$dbuser_influx, $dbpass_influx, $servername_influx, $serverport_influx, $dbname_influx));
   $returnFromIfx = $database->query($q);
   $points = $returnFromIfx->getPoints();
-  $sensor_value = array_values($points[0])[];
+  $sensor_value = array_values($points[0]);
   error_log($points_values[], 0);
 
   if(empty($returnFromIfx)) {
