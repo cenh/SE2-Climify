@@ -81,7 +81,6 @@ function refreshTable(roomID) {
         roomID: roomID,
     }, function (data) {
         var jData = JSON.parse(data);
-        console.table(jData);
         var table = $('#table_id1').DataTable();
         table.clear();
         for (var i = 0; i < jData.length; i++) {
