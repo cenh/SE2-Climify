@@ -42,7 +42,7 @@ function refreshTable(roomID) {
     }, function (data) {
         var jData = JSON.parse(data);
         console.table(jData);
-        var table = $('#roles_table').DataTable();
+        var table = $('#table_id1').DataTable();
         table.clear();
         for (var i = 0; i < jData.length; i++) {
             table.row.add([jData[i]]).draw(false);
