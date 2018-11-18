@@ -64,8 +64,6 @@ $(document).ready(function () {
         var jData = JSON.parse(data);
         rooms = jData;
         for(var i = 0; i<jData.length; i++) {
-            // var html = '<a onclick=\'refreshTable(this)\'>' + jData[i].LocationName + '</a>';
-
             var x = document.getElementById("select_room");
             var option = document.createElement("option");
             option.text = jData[i].LocationName;
@@ -89,5 +87,6 @@ function refreshTable(roomID) {
         for (var i = 0; i < jData.length; i++) {
             table.row.add([jData[i].Label]).draw(false);
         }
+        table.draw(false);
     });
 }
