@@ -36,24 +36,16 @@ $(document).ready(function () {
 
 
 function refreshTable(roomID) {
-    getTableData(roomID);
-}
-
-function getTableData(roomID) {
-
-
     var sUrl = "api/api-get-devices.php";
     $.post(sUrl, {
         roomID: roomID,
     }, function (data) {
         var jData = JSON.parse(data);
         console.table(jData);
-        // var table = $('#roles_table').DataTable();
-        // table.clear();
-        //
-        // for (var i = 0; i < jData.length; i++) {
-        //     table.row.add([jData[i].RoleName, jData[i].PermDescription]).draw(false);
-        // }
+        var table = $('#roles_table').DataTable();
+        table.clear();
+        for (var i = 0; i < jData.length; i++) {
+            table.row.add([jData[i]]).draw(false);
+        }
     });
-
 }
