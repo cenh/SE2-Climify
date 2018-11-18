@@ -45,7 +45,7 @@ function refreshTable(roomID) {
         var table = $('#table_id1').DataTable();
         table.clear();
         for (var i = 0; i < jData.length; i++) {
-            table.row.add([jData[i]]).draw(false);
+            table.row.add([jData[i].Label]).draw(false);
         }
     });
 }
