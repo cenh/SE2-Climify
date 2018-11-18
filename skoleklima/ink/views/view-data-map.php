@@ -30,10 +30,6 @@
     </div>
 
 
-
-
-
-
     <div style="width: 50%; height: 50%; float:left;">
         <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
@@ -44,12 +40,10 @@
                     <th>Sensors</th>
                 </tr>
                 </thead>
-                <tbody>
-
-                </tbody>
             </table>
         </div>
     </div>
+
     <div style="width: 50%; height: 50%; float:right;">
         <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
@@ -68,7 +62,7 @@
     </div>
 
 
-<!--MAP BELOW-->
+    <!--MAP BELOW-->
 
     <!--    <hr>-->
     <!--    <div class="data-map-info-wrapper">-->

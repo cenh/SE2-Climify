@@ -5,11 +5,11 @@ function format ( d ) {
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
         '<tr>'+
         '<td>Full name:</td>'+
-        '<td>'+d.name+'</td>'+
+        '<td></td>'+
         '</tr>'+
         '<tr>'+
         '<td>Extension number:</td>'+
-        '<td>'+d.extn+'</td>'+
+        '<td></td>'+
         '</tr>'+
         '<tr>'+
         '<td>Extra info:</td>'+
@@ -20,9 +20,14 @@ function format ( d ) {
 
 $(document).ready(function() {
     $('#table_id1').DataTable( {
-        "searching":   false,
+        "searching": false,
         "paging": false,
-        "info": false
+        "info": false,
+        "columns": [
+            {
+                "className":    'details-control'
+            }
+        ]
     } );
 
     // Add event listener for opening and closing details
