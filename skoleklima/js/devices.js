@@ -19,7 +19,7 @@ function format ( d ) {
 }
 
 $(document).ready(function() {
-    $('#table_id1').DataTable( {
+    var table = $('#table_id1').DataTable( {
         "searching": false,
         "paging": false,
         "info": false,
