@@ -57,8 +57,8 @@ while($row = mysqli_fetch_array($result))
                 <p id="rule-count"></p>
             </div>
             <div class="col-md-4">
-                <button class="mybtn" style="float: right" data-toggle="modal" data-target="#modalCreateRule">
-                    <i class="fa fa-plus-circle"></i>
+                <button class="link" style="float: right" data-toggle="modal" data-target="#modalCreateRule">
+                    Create new rule
                 </button>
             </div>
             <!-- MODAL -->
