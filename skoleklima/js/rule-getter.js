@@ -12,7 +12,7 @@ function generateDivs(sensor, operator, value, action, ruleNo, ruleCount){
                 '</h5>',
             '</div>',
             '<div id="'+body_id+'" class="collapse" aria-labelledby="'+header_id+'" data-parent="#accordionExample">',
-                '<div class="card-body">',
+                '<div class="card-body" id="'+ruleNo+'">',
                     '<div class="row">',
                         '<div class="col-sm-8">',
                             message,
