@@ -18,10 +18,9 @@ function generateDivs(sensor, operator, value, action, ruleNo, ruleCount){
                             message,
                         '</div>',
                         '<div class="col-sm-4">',
-                            '<label class="switch">',
-                                '<input id="rulecheck" type="checkbox">',
-                                '<span class="slider round"></span>',
-                            '</label>',
+                            '<button class="mybtn" style="float:right">',
+                                '<i class="fa fa-trash" aria-hidden="true"></i>',
+                            '</button>',
                         '</div>',
                     '</div>',
                 '</div>',
@@ -35,8 +34,12 @@ function generateDivs(sensor, operator, value, action, ruleNo, ruleCount){
 
 function clearAccordion(size){
     $(".accordion").empty();
-    $("#rule-count").text("Rules: "+size)
+    $("#rule-count").text("Rules: "+size);
 }
+
+var rulelocationChosen = function() {
+    return $("#sel_location").val();
+};
 
 $("#fetch-sensors-for-loc").on("click",function() {
     var rule_Location = $("#sel_location").val();
@@ -54,5 +57,5 @@ $("#fetch-sensors-for-loc").on("click",function() {
 });
 
 $(".mybtn").on("click",function() {
-
-})
+    console.log(rulelocationChosen());
+});
