@@ -39,6 +39,7 @@ function generateRuleForms(){
     $.get('api/api-get-operators.php')
         .done(function (res) {
             opArray = JSON.parse(res);
+            $('#opSelect').append('<option value=""Select operator></option>');
             for (i=0;i < opArray.length; i++){
                 $("#opSelect").append("<option value="+opArray[i].Type+">"+results[i].Type+"</option>");
             }
@@ -113,7 +114,10 @@ $("#modalRule").on("click",function () {
         });
 });
 
-if(!$("#sensorSelect").val()){
-    generateRuleForms();
-}
+$("#sensorSelect").change(function(){
+    if($("#sensorSelect").val()){
+        generateRuleForms();
+    }
+});
+
 
