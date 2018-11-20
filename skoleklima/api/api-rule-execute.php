@@ -42,7 +42,7 @@ function executeRule($sensor, $op, $value, $action) {
   // elseif ($op == "EQUAL") {
   //   $q = "SELECT * FROM $sensor WHERE temperature = $value ORDER BY time DESC LIMIT ";
   // }
-  $q = "SELECT * FROM $sensor ORDER BY time DESC LIMIT ";
+  $q = "SELECT * FROM $sensor ORDER BY time DESC LIMIT 1";
   error_log("Query: $q", 0);
 
   $servername_influx = DB_HOST_INFLUX;
