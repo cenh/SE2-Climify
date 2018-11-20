@@ -509,7 +509,6 @@ function getGraphData() {
                     if ((parseFloat(jData[j][i].Humidity) != null))
                         if (!isNaN(parseFloat(jData[j][i].Humidity)))
                             dataHumidity[i] = parseFloat(jData[j][i].Humidity);
-                    console.log(jData[j][i].NoiseAvg);
                     dataNoiseAvg[i] = jData[j][i].NoiseAvg;
                     dataNoisePeak[i] = jData[j][i].NoisePeak;
                     if (parseFloat(jData[j][i].Temperature) != null)
