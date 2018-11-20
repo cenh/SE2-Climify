@@ -1057,7 +1057,7 @@ var tab_text;
 var data_type = 'data:application/vnd.ms-excel';
 var dataExportFileName = 'Data_Export';
 
-function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHumidity, ListOfDataHumidity, ListOfDataCO2, ListOfDataNoiseAvg, ListOfDataNoisePeak, ListOfDataXData) {
+function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHumidity, ListOfDataCO2, ListOfDataNoiseAvg, ListOfDataNoisePeak, ListOfDataXData) {
 
     LocationID = $(".chart-select-location").find('option:selected').attr('value');
     dataExportFileName = 'Data_Export_' + showSchool + '_' + currentDate;
@@ -1099,14 +1099,14 @@ function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHum
 	</tr>\
 	</thead><tbody>';
 
-    if (dataXData.length === 0) {
-        for (i = 0; i < dataDates.length; i++) {
-            var exportDates = dataDates[i].toString();
-            var exportTemperature = dataTemperature[i].toString().replace(/\./g, ',');
-            var exportHumidity = dataHumidity[i].toString().replace(/\./g, ',');
-            var exportCo2 = dataCO2[i].toString().replace(/\./g, ',');
-            var exportNoiseAvg = dataNoiseAvg[i].toString().replace(/\./g, ',');
-            var exportNoisePeak = dataNoisePeak[i].toString().replace(/\./g, ',');
+    if (ListOfDataXData.length === 0) {
+        for (i = 0; i < ListOfDataDates.length; i++) {
+            var exportDates = ListOfDataDates[i].toString();
+            var exportTemperature = ListOfDataTemperature[i].toString().replace(/\./g, ',');
+            var exportHumidity = ListOfDataHumidity[i].toString().replace(/\./g, ',');
+            var exportCo2 = ListOfDataCO2[i].toString().replace(/\./g, ',');
+            var exportNoiseAvg = ListOfDataNoiseAvg[i].toString().replace(/\./g, ',');
+            var exportNoisePeak = ListOfDataNoisePeak[i].toString().replace(/\./g, ',');
             TableMarkUp += '<tr><td>' + exportDates + '</td><td>' + exportTemperature + '</td><td>' + exportHumidity + '</td><td>' + exportCo2 + '</td><td>' + exportNoiseAvg + '</td><td>' + exportNoisePeak + '</td><td></td></tr>';
         }
     } else {
