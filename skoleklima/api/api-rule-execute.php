@@ -5,7 +5,7 @@
 
 require_once "../meta-influx.php";
 
-$sensor = $_POST['sensorID'];
+$sensor = $_POST['SensorID'];
 $op = $_POST['Operator'];
 $value = $_POST['Value'];
 $action = $_POST['Action'];
@@ -55,8 +55,6 @@ function executeRule($sensor, $op, $value, $action) {
   $returnFromIfx = $database->query($q);
   $points = $returnFromIfx->getPoints();
   $sensor_value = array_values($points[0]);
-  error_log($sensor_value, 0);
-
 
   if(empty($returnFromIfx)) {
     // This is actually not bad and an error, just means that we should not execute anything
@@ -76,7 +74,7 @@ function executeRule($sensor, $op, $value, $action) {
     elseif ($op == "EQUAL" && $sensor_value == $value) {
       $result = $action;
     }
-    error_log("Result: " . $result);
+    error_log("Result: " . $result, 0);
     echo "{\"Result\": \"$result\"}";
     exit;
   }
