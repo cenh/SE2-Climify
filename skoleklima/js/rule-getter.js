@@ -1,4 +1,4 @@
-function generateDivs(sensor, operator, value, action, ruleNo, ruleCount){
+function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID){
     var message = "if " +sensor+" is "+operator + " than " +value + " then " + action.toUpperCase();
     var header_id = 'heading'+ruleNo;
     var body_id = 'collapse'+ruleNo;
@@ -12,7 +12,7 @@ function generateDivs(sensor, operator, value, action, ruleNo, ruleCount){
         '</h5>',
         '</div>',
         '<div id="'+body_id+'" class="collapse" aria-labelledby="'+header_id+'" data-parent="#accordionExample">',
-        '<div class="card-body" id="'+ruleNo+'">',
+        '<div class="card-body" id="'+ruleID+'">',
         '<div class="row">',
         '<div class="col-sm-8">',
         message,
@@ -51,7 +51,7 @@ $("#fetch-sensors-for-loc").on("click",function() {
             clearAccordion(size);
             for(i=0;i < rules.length;i++){
                 var rule = rules[i];
-                generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.Action,i,size);
+                generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.Action,i,size, rule.RuleID);
             }
         });
 });
@@ -59,7 +59,7 @@ $("#fetch-sensors-for-loc").on("click",function() {
 $(".accordion").on("click","button.mybtn", function() {
     var thisRoom = rulelocationChosen();
     var ruleID = $(this).parent().parent().parent().attr('id');
-    console.log("Delete rule " + ruleID + " from room: " + thisRoom);
+
 
 });
 
