@@ -40,8 +40,8 @@ function generateRuleForms(){
         .done(function (res) {
             opArray = JSON.parse(res);
             $('#opSelect').append('<option value=""Select operator></option>');
-            for (i=0;i < opArray.length; i++){
-                $("#opSelect").append("<option value="+opArray[i].Type+">"+results[i].Type+"</option>");
+            for (i=0; i < opArray.length; i++){
+                $("#opSelect").append("<option value="+opArray[i].Type+">"+opArray[i].Type+"</option>");
             }
         });
 
