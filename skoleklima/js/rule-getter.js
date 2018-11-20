@@ -56,9 +56,9 @@ $("#fetch-sensors-for-loc").on("click",function() {
         });
 });
 
-$(".mybtn").on("click",function() {
+$(".accordion").on("click","button.mybtn", function() {
     var thisRoom = rulelocationChosen();
-
     console.log(thisRoom);
+
 });
 
