@@ -57,7 +57,7 @@ while($row = mysqli_fetch_array($result))
                 <p id="rule-count"></p>
             </div>
             <div class="col-md-4">
-                <button class="link" style="float: right" data-toggle="modal" data-target="#modalCreateRule">
+                <button class="link" style="float: right" data-toggle="modal" data-target="#modalCreateRule" id="modalRule">
                     Create new rule
                 </button>
             </div>
@@ -72,7 +72,9 @@ while($row = mysqli_fetch_array($result))
                             </button>
                         </div>
                         <div class="modal-body">
-                            TODO ADDING A INPUT FORM HEHE
+                            <select id="sensorSelect">
+                                <option value="" disabled selected>Select a sensor</option>
+                            </select>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

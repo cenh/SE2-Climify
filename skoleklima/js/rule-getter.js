@@ -83,3 +83,19 @@ $(".accordion").on("click","button.mybtn", function() {
 
 });
 
+$("modalRule").on("click",function () {
+
+
+    $.get('api/api-get-sensors-from-location.php', {LocationID: rulelocationChosen()})
+        .done(function (res) {
+            sensorOptions = [];
+
+            results = JSON.parse(res);
+            for (i=0;i < results.length; i++){
+                $("#sensorSelect").append("<option value="+results[i]+"></option>");
+            }
+
+        })
+
+});
+
