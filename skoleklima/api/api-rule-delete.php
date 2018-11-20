@@ -23,9 +23,5 @@ if ($conn->connect_error) {
 $q = "DELETE FROM Rule WHERE RuleID=$RuleID";
 $result = mysqli_query($conn, $q) or die("Error in Selecting " . mysqli_error($conn));
 
-// If I was smart I would have some cascade rule in mysql
-$q = "DELETE FROM RuleLocation WHERE RuleID=$RuleID AND LocationID=$LocationID";
-$result = mysqli_query($conn, $q) or die("Error in Selecting " . mysqli_error($conn));
-
 $conn->close();
 ?>
