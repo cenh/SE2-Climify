@@ -517,14 +517,14 @@ if (currentUserRole == "1") {
     });
 
     function requestDeleBuilding(buildingID) {
-        var sUrl = "api/api-delete-building.php"
+        var sUrl = "api/api-delete-building.php";
         $.post(sUrl, {
             fAY2YfpdKvR: sender,
             buildingID: buildingID
         }, function (sData) {
             var jData = JSON.parse(sData);
             if (jData.status == "ok") {
-                $("#btn-create-new-building-show").text("Manage Buildings")
+                $("#btn-create-new-building-show").text("Manage Buildings");
                 $(".building-detail-wapper").slideUp();
                 showBuildigDetail = false;
                 clearBuildingDetails();
@@ -1099,6 +1099,7 @@ function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHum
 	</tr>\
 	</thead><tbody>';
 
+    console.log(ListOfDataCO2);
     if (ListOfDataXData.length === 0) {
         for (i = 0; i < ListOfDataDates.length; i++) {
             var exportDates = ListOfDataDates[i].toString();
