@@ -1,7 +1,7 @@
 <?php
 require_once "../meta.php";
 
-if( $currentUserID == ""){
+if($currentUserID == ""){
   echo '{"status":"No UserID"}';
 	exit;
 }

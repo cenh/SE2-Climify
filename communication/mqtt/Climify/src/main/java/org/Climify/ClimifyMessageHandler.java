@@ -1,6 +1,11 @@
 package org.Climify;
 
 import java.io.IOException;
+import java.io.PrintStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.Climify.influxDB.InfluxCommunicator;
 import org.Climify.mariaDB.MariaDBCommunicator;
@@ -27,9 +32,10 @@ public class ClimifyMessageHandler extends MessageHandler {
 		
 		if (topic.startsWith(Topic.SENSORDATA.getTopic())) {
 			try {
-				System.out.println("Inside topic " + topic); 
+				System.out.println("Inside topic " + topic);
 				SensorMeasurement measurement = dslJson.deserialize(SensorMeasurement.class, message.getPayload(), message.getPayload().length);
 				influx.saveMeasurement(measurement);
+				executeRule(measurement.name);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -47,6 +53,30 @@ public class ClimifyMessageHandler extends MessageHandler {
 				e.printStackTrace();
 			}
 			
+		}
+	}
+
+	private void executeRule(String SensorID) {
+	    System.out.println("Looking for rules on sensor: " + SensorID);
+		List<List<String>> results = new ArrayList<List<String>>();
+		results = this.mariaDB.getRulesBySensorID(SensorID);
+		for(List<String> result : results) {
+		    System.out.println("Running rule on sensor: " + result.get(0));
+			try {
+				URL url = new URL("http://localhost:80/rules/skoleklima/api/api-rule-execute.php");
+				HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+				httpCon.setDoOutput(true);
+				httpCon.setRequestMethod("POST");
+				PrintStream ps = new PrintStream(httpCon.getOutputStream());
+				ps.print("SensorID=" + result.get(0));
+				ps.print("&Operator=" + result.get(1));
+				ps.print("&Value=" + result.get(2));
+				ps.print("&Action=" + result.get(3));
+				httpCon.getInputStream();
+				ps.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
