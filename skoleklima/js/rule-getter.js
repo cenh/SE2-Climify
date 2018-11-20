@@ -59,7 +59,26 @@ $("#fetch-sensors-for-loc").on("click",function() {
 $(".accordion").on("click","button.mybtn", function() {
     var thisRoom = rulelocationChosen();
     var ruleID = $(this).parent().parent().parent().attr('id');
-
+    $.ajax({
+        type: "POST",
+        url: "api/api-rule-delete.php",
+        data: {
+            RuleID: ruleID,
+            LocationID: thisRoom
+        }
+    }).done(function () {
+        alert("Deleted ruleID "+ ruleID + " from room " + thisRoom);
+      /*  $.get('api/api-get-rules.php', {LocationID: thisRoom})
+            .done(function(res) {
+                var rules = JSON.parse(res);
+                var size = rules.length;
+                clearAccordion(size);
+                for(i=0;i < rules.length;i++){
+                    var rule = rules[i];
+                    generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.Action,i,size, rule.RuleID);
+                }
+            });*/
+    });
 
 });
 
