@@ -27,7 +27,7 @@ $emparray = array();
 while($row = mysqli_fetch_assoc($result))
 {
   $temparray = [];
-  array_push($temparray[RuleID]) = $row["RuleID"]);
+  array_push($temparray[RuleID] = $row["RuleID"]);
   array_push($temparray[SensorID] = $row["SensorID"]);
   array_push($temparray[Operator] = $row["Operator"]);
   array_push($temparray[Value] = $row["Value"]);
