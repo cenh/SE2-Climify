@@ -1099,7 +1099,6 @@ function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHum
 	</tr>\
 	</thead><tbody>';
 
-    console.log(ListOfDataCO2);
     if (ListOfDataXData.length === 0) {
         for (i = 0; i < ListOfDataDates.length; i++) {
             var exportDates = ListOfDataDates[i].toString();
@@ -1145,7 +1144,6 @@ function fnExcelReport() {
     tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
     tab_text = tab_text + "<table border='1px'>";
     tab_text = tab_text + $('#myModifiedTable').html();
-    ;
     tab_text = tab_text + '</table></body></html>';
     data_type = 'data:application/vnd.ms-excel';
     var ua = window.navigator.userAgent;
