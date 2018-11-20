@@ -10,7 +10,8 @@ $servername = DB_HOST;
 $username = DB_USER;
 $password = DB_PASSWORD;
 $databasename = DB_NAME;
-$LocationID = $_POST['RuleID'];
+$RuleID = $_POST['RuleID'];
+$LocationID = $_POST['LocationID'];
 
 $conn = new mysqli($servername, $username, $password, $databasename);
 if ($conn->connect_error) {
@@ -21,4 +22,10 @@ if ($conn->connect_error) {
 
 $q = "DELETE FROM Rule WHERE RuleID=$RuleID";
 $result = mysqli_query($conn, $q) or die("Error in Selecting " . mysqli_error($conn));
+
+// If I was smart I would have some cascade rule in mysql
+$q = "DELETE FROM RuleLocation WHERE RuleID=$RuleID AND LocationID=$LocationID";
+$result = mysqli_query($conn, $q) or die("Error in Selecting " . mysqli_error($conn));
+
+$conn->close();
 ?>
