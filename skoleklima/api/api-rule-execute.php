@@ -66,17 +66,17 @@ function executeRule($sensor, $op, $value, $action) {
   else {
     // We should send an MQTT message here I think.
     $result = "Rule requirements haven't been met";
-  if($op == "LESS" && $sensor_value < $value) {
-    $result = $action;
-  }
-  elseif ($op == "GREATER" && $sensor_value > $value) {
-    $result = $action;
-  }
-  elseif ($op == "EQUAL" && $sensor_value == $value) {
-    $result = $action;
-  }
-    echo $result;
-    error_log("We did it! Action executed.", 0);
+    if($op == "LESS" && $sensor_value < $value) {
+      $result = $action;
+    }
+    elseif ($op == "GREATER" && $sensor_value > $value) {
+      $result = $action;
+    }
+    elseif ($op == "EQUAL" && $sensor_value == $value) {
+      $result = $action;
+    }
+    error_log("Result: " . $result);
+    echo "{\"Result\": \"$result\"}";
     exit;
   }
   return $returnFromIfx;
