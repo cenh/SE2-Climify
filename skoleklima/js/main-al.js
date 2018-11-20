@@ -1110,15 +1110,15 @@ function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHum
             TableMarkUp += '<tr><td>' + exportDates + '</td><td>' + exportTemperature + '</td><td>' + exportHumidity + '</td><td>' + exportCo2 + '</td><td>' + exportNoiseAvg + '</td><td>' + exportNoisePeak + '</td><td></td></tr>';
         }
     } else {
-        for (i = 0; i < dataDates.length; i++) {
-            var exportDates = dataDates[i].toString();
-            var exportTemperature = dataTemperature[i].toString().replace(/\./g, ',');
-            var exportHumidity = dataHumidity[i].toString().replace(/\./g, ',');
-            var exportCo2 = dataCO2[i].toString().replace(/\./g, ',');
-            var exportNoiseAvg = dataNoiseAvg[i].toString().replace(/\./g, ',');
+        for (i = 0; i < ListOfDataXData.length; i++) {
+            var exportDates = ListOfDataDates[i].toString();
+            var exportTemperature = ListOfDataTemperature[i].toString().replace(/\./g, ',');
+            var exportHumidity = ListOfDataHumidity[i].toString().replace(/\./g, ',');
+            var exportCo2 = ListOfDataCO2[i].toString().replace(/\./g, ',');
+            var exportNoiseAvg = ListOfDataNoisePeak[i].toString().replace(/\./g, ',');
             var exportNoisePeak = dataNoisePeak[i].toString().replace(/\./g, ',');
-            var exporXData = dataXData[i].toString().replace(/\./g, ',');
-            TableMarkUp += '<tr><td>' + exportDates + '</td><td>' + exportTemperature + '</td><td>' + exportHumidity + '</td><td>' + exportCo2 + '</td><td>' + exportNoiseAvg + '</td><td>' + exportNoisePeak + '</td><td>' + exporXData + '</td></tr>';
+            var exportXData = ListOfDataXData[i].toString().replace(/\./g, ',');
+            TableMarkUp += '<tr><td>' + exportDates + '</td><td>' + exportTemperature + '</td><td>' + exportHumidity + '</td><td>' + exportCo2 + '</td><td>' + exportNoiseAvg + '</td><td>' + exportNoisePeak + '</td><td>' + exportXData + '</td></tr>';
         }
     }
 
