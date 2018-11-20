@@ -79,4 +79,5 @@ function executeRule($sensor, $op, $value, $action) {
   }
   return $returnFromIfx;
 }
+$conn->close();
  ?>
