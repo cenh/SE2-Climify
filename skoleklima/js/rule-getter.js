@@ -92,10 +92,10 @@ $("#modalRule").on("click",function () {
 
             results = JSON.parse(res);
             for (i=0;i < results.length; i++){
-                $("#sensorSelect").append("<option value="+results[i]+"></option>");
+                $("#sensorSelect").append("<option value="+results[i].SensorTypeID+">"+results[i].SensorTypeID+"</option>");
             }
 
-        })
+        });
 
 });
 
