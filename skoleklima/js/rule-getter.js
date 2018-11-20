@@ -33,9 +33,9 @@ function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID)
 }
 
 function generateRuleForms(){
-    $('.modal-body').append('<select id="opSelect"></select>');
-    $('.modal-body').append('<select id="actionSelect"></select>');
-
+    $('.modal-body').append('<b>is</b><select id="opSelect"></select>');
+    $('.modal-body').append('<b>than</b><input type="number" id="selectValue" name="value">');
+    $('.modal-body').append('<b>then</b><select id="actionSelect"></select>');
     $.get('api/api-get-operators.php')
         .done(function (res) {
             opArray = JSON.parse(res);

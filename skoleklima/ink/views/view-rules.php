@@ -72,6 +72,7 @@ while($row = mysqli_fetch_array($result))
                             </button>
                         </div>
                         <div class="modal-body">
+                            <b>If</b>
                             <select id="sensorSelect">
                                 <option value="" disabled selected>Select a sensor</option>
                             </select>
