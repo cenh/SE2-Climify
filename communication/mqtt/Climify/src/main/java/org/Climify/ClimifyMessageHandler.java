@@ -68,7 +68,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 				httpCon.setDoOutput(true);
 				httpCon.setRequestMethod("POST");
 				PrintStream ps = new PrintStream(httpCon.getOutputStream());
-				ps.print("?sensorID=" + result.get(0));
+				ps.print("sensorID=" + result.get(0));
 				ps.print("&Operator=" + result.get(1));
 				ps.print("&Value=" + result.get(2));
 				ps.print("&Action=" + result.get(3));
