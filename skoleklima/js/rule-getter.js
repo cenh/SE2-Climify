@@ -44,11 +44,6 @@ function generateRuleForms(){
             }
         });
 
-    html = [
-        '<select id="opSelect">',
-            '<option value="'opArray+
-        '</select>'
-    ].join('');
 
 }
 
