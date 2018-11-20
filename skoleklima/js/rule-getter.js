@@ -58,7 +58,8 @@ $("#fetch-sensors-for-loc").on("click",function() {
 
 $(".accordion").on("click","button.mybtn", function() {
     var thisRoom = rulelocationChosen();
-    console.log(thisRoom);
+    var ruleID = $(this).parent().parent().parent().attr('id');
+    console.log("Delete rule " + ruleID + " from room: " + thisRoom);
 
 });
 
