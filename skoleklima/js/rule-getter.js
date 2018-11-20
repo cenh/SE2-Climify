@@ -41,6 +41,16 @@ var rulelocationChosen = function() {
     return $("#sel_location").val();
 };
 
+var getrules = function(){
+
+    $.get('api/api-get-rules.php', {LocationID: rule_Location})
+        .done(function(res) {
+            rules = JSON.parse(res);
+        });
+    return rules;
+
+};
+
 $("#fetch-sensors-for-loc").on("click",function() {
     var rule_Location = $("#sel_location").val();
 
@@ -68,16 +78,7 @@ $(".accordion").on("click","button.mybtn", function() {
         }
     }).done(function () {
         alert("Deleted ruleID "+ ruleID + " from room " + thisRoom);
-      /*  $.get('api/api-get-rules.php', {LocationID: thisRoom})
-            .done(function(res) {
-                var rules = JSON.parse(res);
-                var size = rules.length;
-                clearAccordion(size);
-                for(i=0;i < rules.length;i++){
-                    var rule = rules[i];
-                    generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.Action,i,size, rule.RuleID);
-                }
-            });*/
+        clearAccordion(getrules().length);
     });
 
 });
