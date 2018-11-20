@@ -32,6 +32,26 @@ function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID)
 
 }
 
+function generateRuleForms(){
+    $('.modal-body').append('<select id="opSelect"></select>');
+    $('.modal-body').append('<select id="actionSelect"></select>');
+
+    $.get('api/api-get-operators.php')
+        .done(function (res) {
+            opArray = JSON.parse(res);
+            for (i=0;i < opArray.length; i++){
+                $("#opSelect").append("<option value="+opArray[i].Type+">"+results[i].Type+"</option>");
+            }
+        });
+
+    html = [
+        '<select id="opSelect">',
+            '<option value="'opArray+
+        '</select>'
+    ].join('');
+
+}
+
 function clearAccordion(size){
     $(".accordion").empty();
     $("#rule-count").text("Rules: "+size);
@@ -88,14 +108,17 @@ $("#modalRule").on("click",function () {
 
     $.get('api/api-get-sensors-from-location.php', {LocationID: rulelocationChosen()})
         .done(function (res) {
-            sensorOptions = [];
-
+            $("#sensorSelect").empty();
             results = JSON.parse(res);
+            $("#sensorSelect").append('<option value="" >Select a sensor</option>');
+
             for (i=0;i < results.length; i++){
-                $("#sensorSelect").append("<option value="+results[i].SensorTypeID+">"+results[i].SensorTypeID+"</option>");
+                $("#sensorSelect").append("<option value="+results[i].SensorID+">"+results[i].SensorID+"</option>");
             }
-
         });
-
 });
+
+if(!$("#sensorSelect").val()){
+    generateRuleForms();
+}
 
