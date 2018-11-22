@@ -37,9 +37,9 @@ function clearRuleForms(){
 }
 
 function generateRuleForms(){
-    $('.modal-body').append('<b>is</b><select id="opSelect"></select>');
-    $('.modal-body').append('<b>than/to</b><input type="number" id="selectValue" name="value">');
-    $('.modal-body').append('<b>then</b><select id="actionSelect"></select>');
+    $('#form-op').append('<b>is</b><select id="opSelect"></select>');
+    $('#form-value').append('<b>than/to</b><input type="number" id="selectValue" name="value">');
+    $('.#form-action').append('<b>then</b><select id="actionSelect"></select>');
     $.get('api/api-get-operators.php')
         .done(function (res) {
             opArray = JSON.parse(res);

@@ -82,8 +82,11 @@ while($row = mysqli_fetch_array($result))
                                 <b>is</b>
                             </div>
                             <div id="form-value">
+                                <b>to/than</b>
                             </div>
                             <div id="form-action">
+                                <b>then</b>
+
                             </div>
                         </div>
                         <div class="modal-footer">
