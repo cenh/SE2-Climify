@@ -72,10 +72,19 @@ while($row = mysqli_fetch_array($result))
                             </button>
                         </div>
                         <div class="modal-body">
-                            <b>If</b>
-                            <select id="sensorSelect">
-                                <option value="" disabled selected>Select a sensor</option>
-                            </select>
+                            <div id="form-sensor">
+                                <b>If</b>
+                                <select id="sensorSelect">
+                                    <option value="" disabled selected>Select a sensor</option>
+                                </select>
+                            </div>
+                            <div id="form-op">
+                                <b>is</b>
+                            </div>
+                            <div id="form-value">
+                            </div>
+                            <div id="form-action">
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

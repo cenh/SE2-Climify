@@ -32,9 +32,13 @@ function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID)
 
 }
 
+function clearRuleForms(){
+    $()
+}
+
 function generateRuleForms(){
     $('.modal-body').append('<b>is</b><select id="opSelect"></select>');
-    $('.modal-body').append('<b>than</b><input type="number" id="selectValue" name="value">');
+    $('.modal-body').append('<b>than/to</b><input type="number" id="selectValue" name="value">');
     $('.modal-body').append('<b>then</b><select id="actionSelect"></select>');
     $.get('api/api-get-operators.php')
         .done(function (res) {
@@ -100,24 +104,21 @@ $(".accordion").on("click","button.mybtn", function() {
 });
 
 $("#modalRule").on("click",function () {
-
-
     $.get('api/api-get-sensors-from-location.php', {LocationID: rulelocationChosen()})
         .done(function (res) {
             $("#sensorSelect").empty();
             results = JSON.parse(res);
             $("#sensorSelect").append('<option value="" >Select a sensor</option>');
-
             for (i=0;i < results.length; i++){
                 $("#sensorSelect").append("<option value="+results[i].SensorID+">"+results[i].SensorID+"</option>");
             }
         });
 });
 
-$("#sensorSelect").change(function(){
+/*$("#sensorSelect").change(function(){
     if($("#sensorSelect").val()){
         generateRuleForms();
     }
-});
+});*/
 
 
