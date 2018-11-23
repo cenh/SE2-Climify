@@ -1,21 +1,4 @@
-function format(d) {
-    // `d` is the original data object for the row
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        '<tr>' +
-        '<td>Full name:</td>' +
-        '<td></td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Extension number:</td>' +
-        '<td></td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Extra info:</td>' +
-        '<td>And any further details here (images etc)...</td>' +
-        '</tr>' +
-        '</table>';
-}
-
+// initialize the tables
 $(document).ready(function () {
     var table = $('#table_id1').DataTable({
         "searching": false,
@@ -77,6 +60,36 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $('#table_id3').DataTable({
+        "searching": false,
+        "paging": false,
+        "info": false,
+    });
+});
+
+// functions for collapsing
+function format(d) {
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<tr>' +
+        '<td>Full name:</td>' +
+        '<td></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Extension number:</td>' +
+        '<td></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Extra info:</td>' +
+        '<td>And any further details here (images etc)...</td>' +
+        '</tr>' +
+        '</table>';
+}
+
+
+
+// dropdown with rooms
+$(document).ready(function () {
     var sUrl = "api/api-get-rooms.php";
     $.post(sUrl, function (data) {
         var jData = JSON.parse(data);
@@ -90,6 +103,7 @@ $(document).ready(function () {
     });
 });
 
+// put rows into tables
 function refreshTable(roomID) {
     var sUrl = "api/api-get-devices.php";
     $.post(sUrl, {
