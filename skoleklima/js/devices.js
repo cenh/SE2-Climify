@@ -47,10 +47,32 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#table_id2').DataTable({
+    var table = $('#table_id2').DataTable({
         "searching": false,
         "paging": false,
-        "info": false
+        "info": false,
+        "columns": [
+            {
+                "className": 'details-control'
+            }
+        ]
+    });
+
+    // Add event listener for opening and closing details
+    $('#table_id2 tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+        }
     });
 });
 
@@ -58,7 +80,6 @@ $(document).ready(function () {
     var sUrl = "api/api-get-rooms.php";
     $.post(sUrl, function (data) {
         var jData = JSON.parse(data);
-        rooms = jData;
         for (var i = 0; i < jData.length; i++) {
             var x = document.getElementById("select_room");
             var option = document.createElement("option");
@@ -76,11 +97,17 @@ function refreshTable(roomID) {
     }, function (data) {
         var jData = JSON.parse(data);
         console.table(jData);
-        var table = $('#table_id1').DataTable();
-        table.clear();
+        var table_sensors = $('#table_id1').DataTable();
+        var table_actuators = $('#table_id2').DataTable();
+        table_sensors.clear();
+        table_actuators.clear();
         for (var i = 0; i < jData.length; i++) {
-            table.row.add([jData[i].Label]).draw(false);
+            if(jData[i].ReadOnly == 1)
+                table_sensors.row.add([jData[i].Name]).draw(false);
+            else
+                table_actuators.row.add([jData[i].Name]).draw(false);
         }
-        table.draw(false);
+        table_sensors.draw(false);
+        table_actuators.draw(false);
     });
 }
