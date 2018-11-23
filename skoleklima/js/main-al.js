@@ -1129,6 +1129,7 @@ function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHum
 function fnExcelReport() {
     var ListOfDataDates = dataDates;
     var ListOfDataTemperature = dataTemperature;
+    console.log(ListOfDataTemperature);
     var ListOfDataHumidity = dataHumidity;
     var ListOfDataCO2 = dataCO2;
     var ListOfDataNoiseAvg = dataNoise;
