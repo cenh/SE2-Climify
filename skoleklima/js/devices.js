@@ -95,11 +95,14 @@ $(document).ready(function () {
         for (var i = 0; i < jData.length; i++) {
             var x = document.getElementById("select_room");
             var x_devices = document.getElementById("select_room_devices");
-            var option = document.createElement("option");
-            option.text = jData[i].LocationName;
-            option.value = jData[i].LocationID;
-            x.add(option);
-            x_devices.add(option);
+            var option1 = document.createElement("option");
+            var option2 = document.createElement("option");
+            option1.text = jData[i].LocationName;
+            option1.value = jData[i].LocationID;
+            option2.text = jData[i].LocationName;
+            option2.value = jData[i].LocationID;
+            x.add(option1);
+            x_devices.add(option2);
         }
     });
 });
