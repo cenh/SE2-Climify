@@ -10,7 +10,6 @@ $(document).ready(function () {
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": '',
-                "width": "30px"
             },
             {}
         ]
@@ -44,8 +43,7 @@ $(document).ready(function () {
                 "className":      'details-control',
                 "orderable":      false,
                 "data":           null,
-                "defaultContent": '',
-                "width": "30px"
+                "defaultContent": ''
             },
             {}
         ],
