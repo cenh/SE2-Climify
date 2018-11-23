@@ -14,19 +14,22 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM RaspberryPis JOIN Things WHERE LocationID = $roomID";
+//$query = "SELECT * FROM RaspberryPis JOIN Things WHERE LocationID = $roomID";
 
-//$query = "SELECT items.* FROM ITEMS as items
-//INNER JOIN RaspberryPis as rp
-//INNER JOIN Things as t
-//INNER JOIN ThingsChannels as tc
-//INNER JOIN Links as links
-//WHERE rp.LocationID = $roomID
-//AND t.RaspberryPiUID = rp.UID
-//AND tc.ThingUID = t.UID
-//AND links.ChannelUID = tc.ChannelUID
-//AND items.Name = links.ItemName
-//AND items.ReadOnly = 1";
+//$query = "SELECT * FROM I";
+
+
+$query = "SELECT items.* FROM Items as items
+INNER JOIN RaspberryPis as rp
+INNER JOIN Things as t
+INNER JOIN ThingsChannels as tc
+INNER JOIN Links as links
+WHERE rp.LocationID = $roomID
+AND t.RaspberryPiUID = rp.UID
+AND tc.ThingUID = t.UID
+AND links.ChannelUID = tc.ChannelUID
+AND items.Name = links.ItemName
+AND items.ReadOnly = 1";
 
 
 
