@@ -1,21 +1,4 @@
-function format(d) {
-    // `d` is the original data object for the row
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        '<tr>' +
-        '<td>Full name:</td>' +
-        '<td></td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Extension number:</td>' +
-        '<td></td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Extra info:</td>' +
-        '<td>And any further details here (images etc)...</td>' +
-        '</tr>' +
-        '</table>';
-}
-
+// initialize the tables
 $(document).ready(function () {
     var table = $('#table_id1').DataTable({
         "searching": false,
@@ -77,20 +60,55 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $('#table_id3').DataTable({
+        "searching": false,
+        "paging": false,
+        "info": false,
+    });
+});
+
+// functions for collapsing
+function format(d) {
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<tr>' +
+        '<td>Full name:</td>' +
+        '<td></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Extension number:</td>' +
+        '<td></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Extra info:</td>' +
+        '<td>And any further details here (images etc)...</td>' +
+        '</tr>' +
+        '</table>';
+}
+
+
+// dropdown with rooms
+$(document).ready(function () {
     var sUrl = "api/api-get-rooms.php";
     $.post(sUrl, function (data) {
         var jData = JSON.parse(data);
         for (var i = 0; i < jData.length; i++) {
             var x = document.getElementById("select_room");
-            var option = document.createElement("option");
-            option.text = jData[i].LocationName;
-            option.value = jData[i].LocationID;
-            x.add(option);
+            var x_devices = document.getElementById("select_room_devices");
+            var option1 = document.createElement("option");
+            var option2 = document.createElement("option");
+            option1.text = jData[i].LocationName;
+            option1.value = jData[i].LocationID;
+            option2.text = jData[i].LocationName;
+            option2.value = jData[i].LocationID;
+            x.add(option1);
+            x_devices.add(option2);
         }
     });
 });
 
-function refreshTable(roomID) {
+// put rows into tables
+function refreshTableSensorsAndActuators(roomID) {
     var sUrl = "api/api-get-devices.php";
     $.post(sUrl, {
         roomID: roomID,
@@ -102,12 +120,27 @@ function refreshTable(roomID) {
         table_sensors.clear();
         table_actuators.clear();
         for (var i = 0; i < jData.length; i++) {
-            if(jData[i].ReadOnly == 1)
+            if (jData[i].ReadOnly == 1)
                 table_sensors.row.add([jData[i].Name]).draw(false);
             else
                 table_actuators.row.add([jData[i].Name]).draw(false);
         }
         table_sensors.draw(false);
         table_actuators.draw(false);
+    });
+}
+
+function refreshTableDevices(roomID) {
+    var sUrl = "api/api-get-devices.php";
+    $.post(sUrl, {
+        roomID: roomID,
+    }, function (data) {
+        var jData = JSON.parse(data);
+        var table_devices = $('#table_id3').DataTable();
+        table_devices.clear();
+        for (var i = 0; i < jData.length; i++) {
+            table_devices.row.add([jData[i].Name]).draw(false);
+        }
+        table_devices.draw(false);
     });
 }
