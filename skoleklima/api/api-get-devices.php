@@ -28,8 +28,7 @@ WHERE rp.LocationID = $roomID
 AND t.RaspberryPiUID = rp.UID
 AND tc.ThingUID = t.UID
 AND links.ChannelUID = tc.ChannelUID
-AND items.Name = links.ItemName
-AND items.ReadOnly = 0";
+AND items.Name = links.ItemName";
 
 
 
