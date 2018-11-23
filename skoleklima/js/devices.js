@@ -128,7 +128,7 @@ function refreshTableSensorsAndActuators(roomID) {
             if (jData[i].ReadOnly == 1)
                 table_sensors.row.add([jData[i].Name]).draw(false);
             else
-                table_actuators.row.add([,jData[i].Name]).draw(false);
+                table_actuators.row.add(['',jData[i].Name]).draw(false);
         }
         table_sensors.draw(false);
         table_actuators.draw(false);
