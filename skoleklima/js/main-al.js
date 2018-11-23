@@ -1057,7 +1057,7 @@ var tab_text;
 var data_type = 'data:application/vnd.ms-excel';
 var dataExportFileName = 'Data_Export';
 
-function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHumidity, ListOfDataCO2, ListOfDataNoiseAvg, ListOfDataNoisePeak, ListOfDataXData) {
+function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHumidity, ListOfDataCO2, ListOfDataNoiseAvg, ListOfDataXData) {
 
     LocationID = $(".chart-select-location").find('option:selected').attr('value');
     dataExportFileName = 'Data_Export_' + showSchool + '_' + currentDate;
@@ -1098,27 +1098,27 @@ function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHum
 	</td>\
 	</tr>\
 	</thead><tbody>';
-
+    console.log(ListOfDataDates.length);
     if (ListOfDataXData.length === 0) {
         for (i = 0; i < ListOfDataDates.length; i++) {
             var exportDates = ListOfDataDates[i].toString();
-            var exportTemperature = ListOfDataTemperature[i].toString().replace(/\./g, ',');
-            var exportHumidity = ListOfDataHumidity[i].toString().replace(/\./g, ',');
-            var exportCo2 = ListOfDataCO2[i].toString().replace(/\./g, ',');
-            var exportNoiseAvg = ListOfDataNoiseAvg[i].toString().replace(/\./g, ',');
-            var exportNoisePeak = ListOfDataNoisePeak[i].toString().replace(/\./g, ',');
-            TableMarkUp += '<tr><td>' + exportDates + '</td><td>' + exportTemperature + '</td><td>' + exportHumidity + '</td><td>' + exportCo2 + '</td><td>' + exportNoiseAvg + '</td><td>' + exportNoisePeak + '</td><td></td></tr>';
+            var exportTemperature = isShort(i,ListOfDataTemperature);
+            var exportHumidity = isShort(i, ListOfDataHumidity);
+            var exportCo2 = isShort(i, ListOfDataCO2);
+            var exportNoiseAvg = isShort(i, ListOfDataNoiseAvg);
+            //var exportNoisePeak = ListOfDataNoisePeak[i].toString().replace(/\./g, ',');
+            TableMarkUp += '<tr><td>' + exportDates + '</td><td>' + exportTemperature + '</td><td>' + exportHumidity + '</td><td>' + exportCo2 + '</td><td>' + exportNoiseAvg + '</td><td></td></tr>';
         }
     } else {
         for (i = 0; i < ListOfDataXData.length; i++) {
             var exportDates = ListOfDataDates[i].toString();
-            var exportTemperature = ListOfDataTemperature[i].toString().replace(/\./g, ',');
-            var exportHumidity = ListOfDataHumidity[i].toString().replace(/\./g, ',');
-            var exportCo2 = ListOfDataCO2[i].toString().replace(/\./g, ',');
-            var exportNoiseAvg = ListOfDataNoisePeak[i].toString().replace(/\./g, ',');
-            var exportNoisePeak = dataNoisePeak[i].toString().replace(/\./g, ',');
+            var exportTemperature = isShort(i,ListOfDataTemperature);
+            var exportHumidity = isShort(i, ListOfDataHumidity);
+            var exportCo2 = isShort(i, ListOfDataCO2);
+            var exportNoiseAvg = isShort(i, ListOfDataNoiseAvg);
+            //var exportNoisePeak = dataNoisePeak[i].toString().replace(/\./g, ',');
             var exportXData = ListOfDataXData[i].toString().replace(/\./g, ',');
-            TableMarkUp += '<tr><td>' + exportDates + '</td><td>' + exportTemperature + '</td><td>' + exportHumidity + '</td><td>' + exportCo2 + '</td><td>' + exportNoiseAvg + '</td><td>' + exportNoisePeak + '</td><td>' + exportXData + '</td></tr>';
+            TableMarkUp += '<tr><td>' + exportDates + '</td><td>' + exportTemperature + '</td><td>' + exportHumidity + '</td><td>' + exportCo2 + '</td><td>' + exportNoiseAvg + '</td><td>' + exportXData + '</td></tr>';
         }
     }
 
@@ -1126,16 +1126,23 @@ function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHum
     $('#exportDataHolder').append(TableMarkUp);
 }
 
+function isShort(i, dataTable){
+    if(i >= dataTable.length)
+        return "";
+    else
+        return dataTable[i].toString().replace(/\./g, ',');
+}
+
 function fnExcelReport() {
     var ListOfDataDates = dataDates;
     var ListOfDataTemperature = dataTemperature;
+    console.log(ListOfDataTemperature);
     var ListOfDataHumidity = dataHumidity;
     var ListOfDataCO2 = dataCO2;
-    var ListOfDataNoiseAvg = dataNoiseAvg;
-    var ListOfDataNoisePeak = dataNoisePeak;
+    var ListOfDataNoiseAvg = dataNoise;
+    //var ListOfDataNoisePeak = dataNoisePeak;
     var ListOfDataXData = dataXData;
-
-    CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHumidity, ListOfDataCO2, ListOfDataNoiseAvg, ListOfDataNoisePeak, ListOfDataXData);
+    CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHumidity, ListOfDataCO2, ListOfDataNoiseAvg, ListOfDataXData);
 
     tab_text = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
     tab_text = tab_text + '<head><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>';

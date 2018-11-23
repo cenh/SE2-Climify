@@ -18,7 +18,7 @@ $(document).ready(function () {
         dataTemperature: [],
         dataHumidity: [],
         dataCO2: [],
-        dataNoiseAvg: [],
+        dataNoise: [],
         dataLabel: [],
         dataColor: []
     };
@@ -176,7 +176,7 @@ var dataDates = [];
 var dataTemperature = [];
 var dataHumidity = [];
 var dataCO2 = [];
-var dataNoiseAvg = [];
+var dataNoise = [];
 var dataNoisePeak = [];
 var dataXData = [];
 var enableDataSettings = true;
@@ -207,7 +207,7 @@ function clearChartData() {
     dataTemperature = [];
     dataHumidity = [];
     dataCO2 = [];
-    dataNoiseAvg = [];
+    dataNoise = [];
     dataNoisePeak = [];
     dataXData = [];
 }
@@ -494,7 +494,7 @@ function getGraphData() {
             dataTemperature = [];
             dataHumidity = [];
             dataCO2 = [];
-            dataNoiseAvg = [];
+            dataNoise = [];
             dataNoisePeak = [];
 
             xDataExist = false;
@@ -509,8 +509,10 @@ function getGraphData() {
                     if ((parseFloat(jData[j][i].Humidity) != null))
                         if (!isNaN(parseFloat(jData[j][i].Humidity)))
                             dataHumidity[i] = parseFloat(jData[j][i].Humidity);
-                    dataNoiseAvg[i] = jData[j][i].NoiseAvg;
-                    dataNoisePeak[i] = jData[j][i].NoisePeak;
+                    if ((parseFloat(jData[j][i].Noise) != null))
+                        if (!isNaN(parseFloat(jData[j][i].Noise)))
+                            dataNoise[i] = parseFloat(jData[j][i].Noise);
+                    //dataNoisePeak[i] = jData[j][i].NoisePeak;
                     if (parseFloat(jData[j][i].Temperature) != null)
                         if (!isNaN(parseFloat(jData[j][i].Temperature)))
                             dataTemperature[i] = parseFloat(jData[j][i].Temperature);
@@ -543,9 +545,10 @@ function getGraphData() {
 
             }
 
-            console.log(dataTemperature);
-            console.log(dataHumidity);
-            console.log(dataCO2);
+            // console.log(dataTemperature);
+            // console.log(dataHumidity);
+            // console.log(dataCO2);
+            console.log(dataNoise);
 
             enableDataSettings = true;
             $('.canvas-settings').attr('disabled', false);
@@ -776,7 +779,7 @@ function drawGraphDouble() {
                         pointBackgroundColor: graph.dataSetColer1.noiseAvg,
                         pointHoverBackgroundColor: graph.dataSetColer2.noiseAvg,
                         pointHoverBorderColor: graph.dataSetColer1.noiseAvg,
-                        data: dataNoiseAvg,
+                        data: dataNoise,
                         spanGaps: false,
                         hidden: graph.dataSetHidden.noiseAvg,
                         yAxisID: yAxisIDnoiseAvg
@@ -946,7 +949,7 @@ function drawGraphSingle() {
                         pointBackgroundColor: graph.dataSetColer1.noiseAvg,
                         pointHoverBackgroundColor: graph.dataSetColer2.noiseAvg,
                         pointHoverBorderColor: graph.dataSetColer1.noiseAvg,
-                        data: dataNoiseAvg,
+                        data: dataNoise,
                         spanGaps: false,
                         hidden: graph.dataSetHidden.noiseAvg
                     },
@@ -1179,7 +1182,7 @@ function getCompareCharsetData() {
                 compareData.dataTemperature.push(temperature);
                 compareData.dataHumidity.push(humidity);
                 compareData.dataCO2.push(CO2);
-                compareData.dataNoiseAvg.push(noiseAvg);
+                compareData.dataNoise.push(noiseAvg);
                 compareData.dataLabel.push(LocID);
                 compareData.dataColor.push(colors[i]);
 
@@ -1224,7 +1227,7 @@ function clearCompareData() {
     compareData.dataTemperature = [];
     compareData.dataHumidity = [];
     compareData.dataCO2 = [];
-    compareData.dataNoiseAvg = [];
+    compareData.dataNoise = [];
     compareData.dataLabel = [];
     compareData.dataColor = [];
 }
@@ -1521,52 +1524,52 @@ function drawCompareGraph() {
             datasets: [
                 {
                     label: compareData.dataLabel[0],
-                    data: compareData.dataNoiseAvg[0],
+                    data: compareData.dataNoise[0],
                     borderColor: compareData.dataColor[0],
                 },
                 {
                     label: compareData.dataLabel[1],
-                    data: compareData.dataNoiseAvg[1],
+                    data: compareData.dataNoise[1],
                     borderColor: compareData.dataColor[1],
                 },
                 {
                     label: compareData.dataLabel[2],
-                    data: compareData.dataNoiseAvg[2],
+                    data: compareData.dataNoise[2],
                     borderColor: compareData.dataColor[2],
                 },
                 {
                     label: compareData.dataLabel[3],
-                    data: compareData.dataNoiseAvg[3],
+                    data: compareData.dataNoise[3],
                     borderColor: compareData.dataColor[3],
                 },
                 {
                     label: compareData.dataLabel[4],
-                    data: compareData.dataNoiseAvg[4],
+                    data: compareData.dataNoise[4],
                     borderColor: compareData.dataColor[4],
                 },
                 {
                     label: compareData.dataLabel[5],
-                    data: compareData.dataNoiseAvg[5],
+                    data: compareData.dataNoise[5],
                     borderColor: compareData.dataColor[5],
                 },
                 {
                     label: compareData.dataLabel[6],
-                    data: compareData.dataNoiseAvg[6],
+                    data: compareData.dataNoise[6],
                     borderColor: compareData.dataColor[6],
                 },
                 {
                     label: compareData.dataLabel[7],
-                    data: compareData.dataNoiseAvg[7],
+                    data: compareData.dataNoise[7],
                     borderColor: compareData.dataColor[7],
                 },
                 {
                     label: compareData.dataLabel[8],
-                    data: compareData.dataNoiseAvg[8],
+                    data: compareData.dataNoise[8],
                     borderColor: compareData.dataColor[8],
                 },
                 {
                     label: compareData.dataLabel[9],
-                    data: compareData.dataNoiseAvg[9],
+                    data: compareData.dataNoise[9],
                     borderColor: compareData.dataColor[9],
                 }
             ]
