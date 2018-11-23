@@ -540,16 +540,9 @@ function getGraphData() {
                     date = time.substring(8, 10);
 
                     dataDates[i] = date + ". " + month + " " + h + ":" + m;
-
                 }
-
             }
-
-            // console.log(dataTemperature);
-            // console.log(dataHumidity);
-            // console.log(dataCO2);
-            console.log(dataNoise);
-
+            console.log(getStats(dataTemperature));
             enableDataSettings = true;
             $('.canvas-settings').attr('disabled', false);
             $('#chart-fill').attr('disabled', false);
@@ -2227,4 +2220,59 @@ function updateMapChartLine() {
         ChartNoi.update();
         dataMapNoi.lineAtIndex = ($("#map-set-timerange").val());
     }
+}
+
+function getStats(numbers) {
+  var mean = getMean(numbers);
+  var median = getMedian(numbers);
+  var max = getMax(numbers);
+  var min = getMin(numbers);
+  var variance = getVariance(numbers);
+  var json = { "mean" : mean,
+                "median" : median,
+                "max" : max,
+                "min" : min,
+                "variance" : variance};
+  return JSON.parse(json);
+}
+
+function getMean(numbers) {
+    // mean of [3, 5, 4, 4, 1, 1, 2, 3] is 2.875
+    var total = 0;
+    for (var i = 0; i < numbers.length; i++) {
+        total += numbers[i];
+    }
+    return total / numbers.length;
+}
+
+function getMedian(numbers) {
+    // median of [3, 5, 4, 4, 1, 1, 2, 3] = 3
+    var median = 0;
+    var numsLen = numbers.length;
+    numbers.sort();
+    if (numsLen % 2 === 0) { // is even
+        // average of two middle numbers
+        median = (numbers[numsLen / 2 - 1] + numbers[numsLen / 2]) / 2;
+    } else { // is odd
+        // middle number only
+        median = numbers[(numsLen - 1) / 2];
+    }
+    return median;
+}
+
+function getMax(numbers) {
+  return Math.max(numbers);
+}
+
+function getMin(numbers) {
+  return Math.min(numbers);
+}
+
+function getVariance(numbers) {
+  var mean = getMean(numbers);
+  var v = 0;
+  for (var i = 0; i < numbers.length; i++) {
+      v += Math.pow(numbers[i]-mean, 2);
+  }
+  return v / numbers.length;
 }
