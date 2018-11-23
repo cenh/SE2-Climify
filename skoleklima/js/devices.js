@@ -36,8 +36,12 @@ $(document).ready(function () {
         "info": false,
         "columns": [
             {
-                "className": 'details-control'
-            }
+                "className":      'details-control',
+                "orderable":      false,
+                "data":           null,
+                "defaultContent": ''
+            },
+            {"data": "Actuators"}
         ]
     });
 
