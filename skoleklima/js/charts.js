@@ -2233,7 +2233,7 @@ function getStats(numbers) {
                 "max" : max,
                 "min" : min,
                 "variance" : variance};
-  return JSON.parse(json);
+  return json;
 }
 
 function getMean(numbers) {
