@@ -147,5 +147,7 @@ function refreshTableDevices(roomID) {
 
 // listen for new devices in a chosen room
 function listen() {
-    console.log('listen');
+    var drop = document.getElementById("select_room_devices");
+    var roomID = drop.options[drop.selectedIndex].value;
+    alert('listen for new devices in room ' + roomID);
 }
