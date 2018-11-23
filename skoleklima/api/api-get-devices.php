@@ -29,7 +29,7 @@ AND t.RaspberryPiUID = rp.UID
 AND tc.ThingUID = t.UID
 AND links.ChannelUID = tc.ChannelUID
 AND items.Name = links.ItemName
-AND items.ReadOnly = 1";
+AND items.ReadOnly = 0";
 
 
 
