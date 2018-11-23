@@ -27,6 +27,7 @@ $emparray = array();
 while($row = mysqli_fetch_assoc($result))
 {
   $temparray = [];
+  $sensor = $row["SensorTypeID"];
   array_push($temparray[SensorTypeID] = $row["SensorTypeID"]);
   array_push($temparray[SensorTypeName] = $row["SensorTypeName"]);
   array_push($temparray[SensorID] = $row["SensorID"]);

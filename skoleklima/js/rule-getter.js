@@ -110,7 +110,7 @@ $("#modalRule").on("click",function () {
             results = JSON.parse(res);
             $("#sensorSelect").append('<option value="" >Select a sensor</option>');
             for (i=0;i < results.length; i++){
-                $("#sensorSelect").append("<option value="+results[i].SensorID+">"+results[i].SensorID+"</option>");
+                $("#sensorSelect").append("<option value="+results[i].SensorID+">"+results[i].SensorTypeName+"</option>");
             }
         });
 });
