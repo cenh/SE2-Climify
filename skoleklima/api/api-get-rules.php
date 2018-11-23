@@ -32,6 +32,7 @@ while($row = mysqli_fetch_assoc($result))
   $result2 = mysqli_query($conn, $q) or die("Error in Selecting " . mysqli_error($conn));
   while($row2 = mysqli_fetch_assoc($result2))
   {
+    error_log(print_r($row2, TRUE), 0);
     array_push($temparray[SensorType] = $row2["SensorTypeName"]);
     error_log("LOOK: " . $row2["SensorTypeName"], 0);
   }
