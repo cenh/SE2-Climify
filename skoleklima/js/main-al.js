@@ -1098,7 +1098,7 @@ function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHum
 	</td>\
 	</tr>\
 	</thead><tbody>';
-
+    console.log(ListOfDataDates.length);
     if (ListOfDataXData.length === 0) {
         for (i = 0; i < ListOfDataDates.length; i++) {
             var exportDates = ListOfDataDates[i].toString();
