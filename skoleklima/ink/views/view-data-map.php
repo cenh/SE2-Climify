@@ -68,11 +68,11 @@
 
         <style>
             td.details-control {
-                background: url('../../img/right.png') no-repeat center center;
+                background: url('img/right.png') no-repeat center center;
                 cursor: pointer;
             }
             tr.shown td.details-control {
-                background: url('../../img/down.png') no-repeat center center;
+                background: url('img/down.png') no-repeat center center;
             }
         </style>
 
