@@ -69,10 +69,12 @@
         <style>
             td.details-control {
                 background-color: #9933ff;
+                content: "\f0da";
                 cursor: pointer;
             }
             tr.shown td.details-control {
                 background-color: #00caf2;
+                content: "\f0d7";
             }
         </style>
 
