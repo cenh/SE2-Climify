@@ -29,7 +29,7 @@
         </div>
     </div>
 
-
+<div>
     <div style="width: 50%; height: 50%; float:left;">
         <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
@@ -60,8 +60,9 @@
             </table>
         </div>
     </div>
+</div>
 
-    <div>
+    <div style="text-align: center">
         <h2>Manage Devices</h2>
     </div>
 
