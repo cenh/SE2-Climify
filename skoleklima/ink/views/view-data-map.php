@@ -68,11 +68,8 @@
 
         <style>
             td.details-control {
-                /*background-color: #9933ff;*/
+                background-color: #9933ff;
                 content: "\f0da";
-                font-family: FontAwesome;
-                position: absolute;
-                z-index: 1;
                 cursor: pointer;
             }
             tr.shown td.details-control {
