@@ -58,7 +58,6 @@ $(document).ready(function () {
     var sUrl = "api/api-get-rooms.php";
     $.post(sUrl, function (data) {
         var jData = JSON.parse(data);
-        rooms = jData;
         for (var i = 0; i < jData.length; i++) {
             var x = document.getElementById("select_room");
             var option = document.createElement("option");
