@@ -41,8 +41,8 @@ $(document).ready(function () {
                 "data":           null,
                 "defaultContent": ''
             },
+            {}
         ],
-        "order": [[1, 'asc']]
     });
 
     // Add event listener for opening and closing details
