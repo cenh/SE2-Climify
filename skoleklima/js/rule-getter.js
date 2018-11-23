@@ -81,7 +81,7 @@ $("#fetch-sensors-for-loc").on("click",function() {
             clearAccordion(size);
             for(i=0;i < rules.length;i++){
                 var rule = rules[i];
-                generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.Action,i,size, rule.RuleID);
+                generateDivs(rule.SensorType, rule.Operator, rule.Value, rule.Action,i,size, rule.RuleID);
             }
         });
 });
@@ -120,5 +120,3 @@ $("#modalRule").on("click",function () {
         generateRuleForms();
     }
 });*/
-
-
