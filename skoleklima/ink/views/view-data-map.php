@@ -79,7 +79,6 @@
     </div>
 
     <hr>
-    <img src="../../img/right.png">
 
     <div style="text-align: center">
         <h2>Manage Devices</h2>
