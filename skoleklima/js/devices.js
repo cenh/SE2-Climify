@@ -109,7 +109,7 @@ $(document).ready(function () {
 
 // put rows into tables
 function refreshTableSensorsAndActuators(roomID) {
-    var sUrl = "api/api-get-devices.php";
+    var sUrl = "api/api-get-items.php";
     $.post(sUrl, {
         roomID: roomID,
     }, function (data) {
@@ -131,15 +131,16 @@ function refreshTableSensorsAndActuators(roomID) {
 }
 
 function refreshTableDevices(roomID) {
-    var sUrl = "api/api-get-devices.php";
+    var sUrl = "api/api-get-things.php";
     $.post(sUrl, {
         roomID: roomID,
     }, function (data) {
         var jData = JSON.parse(data);
+        console.table(jData);
         var table_devices = $('#table_id3').DataTable();
         table_devices.clear();
         for (var i = 0; i < jData.length; i++) {
-            table_devices.row.add([jData[i].Name]).draw(false);
+            table_devices.row.add([jData[i].Label]).draw(false);
         }
         table_devices.draw(false);
     });
