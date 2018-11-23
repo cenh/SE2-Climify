@@ -47,14 +47,19 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#table_id2').DataTable({
+    var table = $('#table_id2').DataTable({
         "searching": false,
         "paging": false,
-        "info": false
+        "info": false,
+        "columns": [
+            {
+                "className": 'details-control'
+            }
+        ]
     });
 
     // Add event listener for opening and closing details
-    $('#table_id1 tbody').on('click', 'td.details-control', function () {
+    $('#table_id2 tbody').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
 
