@@ -2261,11 +2261,11 @@ function getMedian(numbers) {
 }
 
 function getMax(numbers) {
-  return Math.max(numbers);
+  return Math.max.apply(null, numbers);
 }
 
 function getMin(numbers) {
-  return Math.min(numbers);
+  return Math.min.apply(null, numbers);
 }
 
 function getVariance(numbers) {
