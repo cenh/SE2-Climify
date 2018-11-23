@@ -69,10 +69,7 @@
         <style>
             td.details-control {
                 background-color: #9933ff;
-                position: absolute;
                 font-family: FontAwesome;
-                top: 0;
-                left: 10px;
                 content: "\f005";
                 cursor: pointer;
             }
