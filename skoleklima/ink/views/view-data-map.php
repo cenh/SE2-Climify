@@ -61,6 +61,10 @@
         </div>
     </div>
 
+    <div>
+        <h2>Manage Devices</h2>
+    </div>
+
 
     <!--MAP BELOW-->
 
