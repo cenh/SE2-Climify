@@ -40,6 +40,7 @@
                 <table id="table_id1" class="display">
                     <thead>
                     <tr>
+                        <th></th>
                         <th>Sensors</th>
                     </tr>
                     </thead>
@@ -54,6 +55,7 @@
                 <table id="table_id2" class="display">
                     <thead>
                     <tr>
+                        <th></th>
                         <th>Actuators</th>
                     </tr>
                     </thead>
