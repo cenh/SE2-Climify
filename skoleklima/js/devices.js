@@ -6,9 +6,9 @@ $(document).ready(function () {
         "info": false,
         "columns": [
             {
-                "className":      'details-control',
-                "orderable":      false,
-                "data":           null,
+                "className": 'details-control',
+                "orderable": false,
+                "data": null,
                 "defaultContent": '',
             },
             {}
@@ -40,9 +40,9 @@ $(document).ready(function () {
         "info": false,
         "columns": [
             {
-                "className":      'details-control',
-                "orderable":      false,
-                "data":           null,
+                "className": 'details-control',
+                "orderable": false,
+                "data": null,
                 "defaultContent": ''
             },
             {}
@@ -129,9 +129,9 @@ function refreshTableSensorsAndActuators(roomID) {
         table_actuators.clear();
         for (var i = 0; i < jData.length; i++) {
             if (jData[i].ReadOnly === 1)
-                table_sensors.row.add([jData[i].Name]).draw(false);
+                table_sensors.row.add(['', jData[i].Name]).draw(false);
             else
-                table_actuators.row.add(['',jData[i].Name]).draw(false);
+                table_actuators.row.add(['', jData[i].Name]).draw(false);
         }
         table_sensors.draw(false);
         table_actuators.draw(false);
