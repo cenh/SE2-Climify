@@ -144,3 +144,8 @@ function refreshTableDevices(roomID) {
         table_devices.draw(false);
     });
 }
+
+// listen for new devices in a chosen room
+function listen() {
+    console.table('listen');
+}
