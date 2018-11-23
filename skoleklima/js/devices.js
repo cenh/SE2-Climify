@@ -42,7 +42,8 @@ $(document).ready(function () {
                 "defaultContent": ''
             },
             {"data": "Actuators"}
-        ]
+        ],
+        "order": [[1, 'asc']]
     });
 
     // Add event listener for opening and closing details
