@@ -41,7 +41,6 @@ $(document).ready(function () {
                 "data":           null,
                 "defaultContent": ''
             },
-            {"data": "Actuators"}
         ],
         "order": [[1, 'asc']]
     });
@@ -125,7 +124,7 @@ function refreshTableSensorsAndActuators(roomID) {
         table_sensors.clear();
         table_actuators.clear();
         for (var i = 0; i < jData.length; i++) {
-            if (jData[i].ReadOnly == 1)
+            if (jData[i].ReadOnly === 1)
                 table_sensors.row.add([jData[i].Name]).draw(false);
             else
                 table_actuators.row.add(['',jData[i].Name]).draw(false);
