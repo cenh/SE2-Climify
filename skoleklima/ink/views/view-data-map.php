@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <div>
+    <div style="overflow: auto">
 
         <div style="width: 50%; height: 50%; float:left;">
             <div style="width: 100%; height: auto; border: 1px solid #dddddd;
