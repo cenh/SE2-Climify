@@ -68,12 +68,11 @@
 
         <style>
             td.details-control {
-                content: 'open';
+                background: url('../../img/right.png') no-repeat center center;
                 cursor: pointer;
             }
             tr.shown td.details-control {
-                background-color: #00caf2;
-                content: "\f0d7";
+                background: url('../../img/down.png') no-repeat center center;
             }
         </style>
 
