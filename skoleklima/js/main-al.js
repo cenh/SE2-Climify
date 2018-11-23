@@ -1102,20 +1102,20 @@ function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHum
     if (ListOfDataXData.length === 0) {
         for (i = 0; i < ListOfDataDates.length; i++) {
             var exportDates = ListOfDataDates[i].toString();
-            var exportTemperature = ListOfDataTemperature[i].toString().replace(/\./g, ',');
-            var exportHumidity = ListOfDataHumidity[i].toString().replace(/\./g, ',');
-            var exportCo2 = ListOfDataCO2[i].toString().replace(/\./g, ',');
-            var exportNoiseAvg = ListOfDataNoiseAvg[i].toString().replace(/\./g, ',');
+            var exportTemperature = isShort(i,ListOfDataTemperature);
+            var exportHumidity = isShort(i, ListOfDataHumidity);
+            var exportCo2 = isShort(i, ListOfDataCO2);
+            var exportNoiseAvg = isShort(i, ListOfDataNoiseAvg);
             //var exportNoisePeak = ListOfDataNoisePeak[i].toString().replace(/\./g, ',');
             TableMarkUp += '<tr><td>' + exportDates + '</td><td>' + exportTemperature + '</td><td>' + exportHumidity + '</td><td>' + exportCo2 + '</td><td>' + exportNoiseAvg + '</td><td></td></tr>';
         }
     } else {
         for (i = 0; i < ListOfDataXData.length; i++) {
             var exportDates = ListOfDataDates[i].toString();
-            var exportTemperature = ListOfDataTemperature[i].toString().replace(/\./g, ',');
-            var exportHumidity = ListOfDataHumidity[i].toString().replace(/\./g, ',');
-            var exportCo2 = ListOfDataCO2[i].toString().replace(/\./g, ',');
-            var exportNoiseAvg = ListOfDataNoiseAvg[i].toString().replace(/\./g, ',');
+            var exportTemperature = isShort(i,ListOfDataTemperature);
+            var exportHumidity = isShort(i, ListOfDataHumidity);
+            var exportCo2 = isShort(i, ListOfDataCO2);
+            var exportNoiseAvg = isShort(i, ListOfDataNoiseAvg);
             //var exportNoisePeak = dataNoisePeak[i].toString().replace(/\./g, ',');
             var exportXData = ListOfDataXData[i].toString().replace(/\./g, ',');
             TableMarkUp += '<tr><td>' + exportDates + '</td><td>' + exportTemperature + '</td><td>' + exportHumidity + '</td><td>' + exportCo2 + '</td><td>' + exportNoiseAvg + '</td><td>' + exportXData + '</td></tr>';
@@ -1124,6 +1124,13 @@ function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHum
 
     TableMarkUp += "</tbody></table>";
     $('#exportDataHolder').append(TableMarkUp);
+}
+
+function isShort(i, dataTable){
+    if(i >= dataTable.length)
+        return "";
+    else
+        return dataTable[i].toString().replace(/\./g, ',');
 }
 
 function fnExcelReport() {
