@@ -545,9 +545,10 @@ function getGraphData() {
 
             }
 
-            console.log(dataTemperature);
-            console.log(dataHumidity);
-            console.log(dataCO2);
+            // console.log(dataTemperature);
+            // console.log(dataHumidity);
+            // console.log(dataCO2);
+            console.log(dataNoise);
 
             enableDataSettings = true;
             $('.canvas-settings').attr('disabled', false);
