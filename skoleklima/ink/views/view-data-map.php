@@ -68,9 +68,7 @@
 
         <style>
             td.details-control {
-                background-color: #9933ff;
-                font-family: FontAwesome;
-                content: "\f005";
+                content: 'open';
                 cursor: pointer;
             }
             tr.shown td.details-control {
