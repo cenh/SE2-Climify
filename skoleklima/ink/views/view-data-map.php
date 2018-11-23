@@ -66,24 +66,6 @@
             </div>
         </div>
 
-        <style>
-            td.details-control {
-                position: absolute;
-                font-family: 'FontAwesome';
-                top: 0;
-                left: 10px;
-                content: "\f005";
-                cursor: pointer;
-            }
-            tr.shown td.details-control {
-                position: absolute;
-                font-family: 'FontAwesome';
-                top: 0;
-                left: 10px;
-                content: "\f005";
-            }
-        </style>
-
     </div>
 
     <hr>
