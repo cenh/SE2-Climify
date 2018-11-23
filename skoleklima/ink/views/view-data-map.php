@@ -74,11 +74,10 @@
     </div>
 
     <div style="height: auto">
-        <div class="input-field col s12">
-            <select id="select_room_devices" onchange="refreshTableDevices(value)">
-                <option value="" disabled selected>Choose Your Room</option>
-            </select>
-        </div>
+        <select id="select_room_devices" onchange="refreshTableDevices(value)">
+            <option value="" disabled selected>Choose Your Room</option>
+        </select>
+        <button>Listen for new devices</button>
     </div>
 
     <div style="width: 100%; height: auto; border: 1px solid #dddddd;
