@@ -77,7 +77,7 @@
         <select id="select_room_devices" onchange="refreshTableDevices(value)">
             <option value="" disabled selected>Choose Your Room</option>
         </select>
-        <button onclick="listen()">Listen for new devices</button>
+        <button onclick="listen()">Discover new devices</button>
     </div>
 
     <div style="width: 100%; height: auto; border: 1px solid #dddddd;

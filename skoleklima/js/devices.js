@@ -147,5 +147,5 @@ function refreshTableDevices(roomID) {
 
 // listen for new devices in a chosen room
 function listen() {
-    console.table('listen');
+    console.log('listen');
 }
