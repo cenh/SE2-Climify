@@ -66,6 +66,16 @@
             </div>
         </div>
 
+        <style>
+            td.details-control {
+                background-color: #9933ff;
+                cursor: pointer;
+            }
+            tr.shown td.details-control {
+                background-color: #00caf2;
+            }
+        </style>
+
     </div>
 
     <hr>
