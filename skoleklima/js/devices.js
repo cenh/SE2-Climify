@@ -143,6 +143,7 @@ function refreshTableDevices(roomID) {
         }
         table_devices.draw(false);
     });
+    document.getElementById("listen_button").disabled = false;
 }
 
 // listen for new devices in a chosen room
