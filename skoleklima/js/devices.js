@@ -87,7 +87,6 @@ function format(d) {
 }
 
 
-
 // dropdown with rooms
 $(document).ready(function () {
     var sUrl = "api/api-get-rooms.php";
@@ -95,16 +94,18 @@ $(document).ready(function () {
         var jData = JSON.parse(data);
         for (var i = 0; i < jData.length; i++) {
             var x = document.getElementById("select_room");
+            var x_devices = document.getElementById("select_room_devices");
             var option = document.createElement("option");
             option.text = jData[i].LocationName;
             option.value = jData[i].LocationID;
             x.add(option);
+            x_devices.add(option);
         }
     });
 });
 
 // put rows into tables
-function refreshTable(roomID) {
+function refreshTableSensorsAndActuators(roomID) {
     var sUrl = "api/api-get-devices.php";
     $.post(sUrl, {
         roomID: roomID,
@@ -116,12 +117,27 @@ function refreshTable(roomID) {
         table_sensors.clear();
         table_actuators.clear();
         for (var i = 0; i < jData.length; i++) {
-            if(jData[i].ReadOnly == 1)
+            if (jData[i].ReadOnly == 1)
                 table_sensors.row.add([jData[i].Name]).draw(false);
             else
                 table_actuators.row.add([jData[i].Name]).draw(false);
         }
         table_sensors.draw(false);
         table_actuators.draw(false);
+    });
+}
+
+function refreshTableDevices(roomID) {
+    var sUrl = "api/api-get-devices.php";
+    $.post(sUrl, {
+        roomID: roomID,
+    }, function (data) {
+        var jData = JSON.parse(data);
+        var table_devices = $('#table_id3').DataTable();
+        table_devices.clear();
+        for (var i = 0; i < jData.length; i++) {
+            table_devices.row.add([jData[i].Name]).draw(false);
+        }
+        table_devices.draw(false);
     });
 }

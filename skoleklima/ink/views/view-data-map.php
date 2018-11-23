@@ -27,7 +27,7 @@
 
     <div style="height: auto">
         <div class="input-field col s12">
-            <select id="select_room" onchange="refreshTable(value)">
+            <select id="select_room" onchange="refreshTableSensorsAndActuators(value)">
                 <option value="" disabled selected>Choose Your Room</option>
             </select>
         </div>
@@ -71,6 +71,14 @@
 
     <div style="text-align: center">
         <h2>Manage Devices</h2>
+    </div>
+
+    <div style="height: auto">
+        <div class="input-field col s12">
+            <select id="select_room_devices" onchange="refreshTableDevices(value)">
+                <option value="" disabled selected>Choose Your Room</option>
+            </select>
+        </div>
     </div>
 
     <div style="width: 100%; height: auto; border: 1px solid #dddddd;
