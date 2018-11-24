@@ -33,12 +33,14 @@ function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID)
 }
 
 function clearRuleForms() {
-    $
+    $('#opselect').empty();
+    $('#actionSelect').empty();
 }
 
 function generateRuleForms(){
     $.get('api/api-get-operators.php')
         .done(function (res) {
+            $("#opSelect").append('<option value="" disabled selected>Select operator</option>');
             opArray = JSON.parse(res);
             for (i=0; i < opArray.length; i++){
                 $("#opSelect").append("<option value="+opArray[i].Type+">"+opArray[i].Type+"</option>");
@@ -55,6 +57,12 @@ function generateRuleForms(){
 
 }
 
+$('#actionSelect').change(function () {
+    if($('#actionSelect').val === 1){
+        $('.form-action').append('<input type="number" name="setTemp" min="4" max="35">')
+    }
+});
+
 function clearAccordion(size){
     $(".accordion").empty();
     $("#rule-count").text("Rules: "+size);
@@ -63,6 +71,7 @@ function clearAccordion(size){
 var rulelocationChosen = function() {
     return $("#sel_location").val();
 };
+
 
 var getrules = function(){
 
@@ -111,11 +120,12 @@ $("#modalRule").on("click",function () {
         .done(function (res) {
             $("#sensorSelect").empty();
             results = JSON.parse(res);
-            $("#sensorSelect").append('<option value="" >Select a sensor</option>');
+            $("#sensorSelect").append('<option value="" disabled selected>Select a sensor</option>');
             for (i=0;i < results.length; i++){
                 $("#sensorSelect").append("<option value="+results[i].SensorID+">"+results[i].SensorTypeName+"</option>");
             }
         });
+    clearRuleForms();
     generateRuleForms();
 });
 
@@ -124,3 +134,27 @@ $("#modalRule").on("click",function () {
         generateRuleForms();
     }
 });*/
+
+$("#submitRule").on("click",function () {
+     var Location = rulelocationChosen();
+     var SensorID = $('#sensorSelect').val();
+     var op = $('#opSelect').val();
+     var value =  $('#selectValue').val();
+     var action = $('#actionSelect').val;
+
+     var setTemp =  $('[name=setTemp]').val();
+    $.ajax({
+        type: "POST",
+        url: "api/api-rule-save.php",
+        data: {
+            LocationID: Location,
+            SensorID:  SensorID,
+            Operator: op,
+            Value: value,
+            Action: action
+        }
+    }).done(function () {
+        alert("Saved");
+    });
+
+});
