@@ -90,7 +90,7 @@ function format_sensors(d) {
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
         '<td>Category:</td>' +
-        '<td>' + actuators[index].Category + '</td>' +
+        '<td>' + sensors[index].Category + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Last Measurement:</td>' +
