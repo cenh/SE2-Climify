@@ -135,7 +135,7 @@ $("#submitRule").on("click",function () {
     var SensorID = $('#sensorSelect').val();
     var op = $('#opSelect').val();
     var value =  $('#selectValue').val();
-    var action = $('#actionSelect').val;
+    var action = $('#actionSelect').val();
     var setTemp =  $('[name=setTemp]').val();
     $.ajax({
         type: "POST",
