@@ -15,6 +15,7 @@ $SensorID = $_POST['SensorID'];
 $Operator = $_POST['Operator'];
 $Value = $_POST['Value'];
 $Action = $_POST['Action'];
+$setTemp = $_POST['setTemperature'];
 
 $conn = new mysqli($servername, $username, $password, $databasename);
 if ($conn->connect_error) {

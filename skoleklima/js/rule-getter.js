@@ -48,6 +48,7 @@ function generateRuleForms(){
         });
     $.get('api/api-get-actions.php')
         .done(function(res) {
+            $("#actionSelect").append('<option value="" disabled selected>Select Action</option>');
             actionsArray = JSON.parse(res);
             for (i=0;i<actionsArray.length; i++){
                 $("#actionSelect").append('<option value="'+actionsArray[i].ActionID+'">'+actionsArray[i].Action+'</option>');
@@ -145,13 +146,14 @@ $("#submitRule").on("click",function () {
             SensorID:  SensorID,
             Operator: op,
             Value: value,
-            Action: action
+            Action: action,
+            setTemperature: setTemp
         }
     }).done(function () {
         alert("Saved");
     });
 
-})
+});
 $('#actionSelect').change(function () {
     console.log($('#actionSelect').val());
     if($('#actionSelect').val() === 1){
