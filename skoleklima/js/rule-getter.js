@@ -40,7 +40,6 @@ function generateRuleForms(){
     $.get('api/api-get-operators.php')
         .done(function (res) {
             opArray = JSON.parse(res);
-            $('#opSelect').append('<option value=""Select operator></option>');
             for (i=0; i < opArray.length; i++){
                 $("#opSelect").append("<option value="+opArray[i].Type+">"+opArray[i].Type+"</option>");
             }
@@ -49,7 +48,7 @@ function generateRuleForms(){
         .done(function(res) {
             actionsArray = JSON.parse(res);
             for (i=0;i<actionsArray.length; i++){
-                $("#actionSelect").append('<option value="'+actionsArray[i].Action+'">'+actionsArray[i].Action+'</option>');
+                $("#actionSelect").append('<option value="'+actionsArray[i].ActionID+'">'+actionsArray[i].Action+'</option>');
             }
         });
 
