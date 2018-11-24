@@ -86,34 +86,37 @@ function format_sensors(d) {
     // `d` is the original data object for the row
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
-        '<td>Full name:</td>' +
+        '<td>Name:</td>' +
         '<td>' + d[1] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Extension number:</td>' +
+        '<td>Category:</td>' +
         '<td></td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Extra info:</td>' +
-        '<td>And any further details here (images etc)...</td>' +
+        '<td>Action:</td>' +
+        '<td></td>' +
         '</tr>' +
         '</table>';
 }
 
 function format_actuators(d) {
     // `d` is the original data object for the row
+    var index = actuators.findIndex(function(row) {
+        return row.Name === d[1];
+    });
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
-        '<td>Full name:</td>' +
+        '<td>Name:</td>' +
         '<td>' + d[1] + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Extension number:</td>' +
-        '<td></td>' +
+        '<td>Category:</td>' +
+        '<td>actuators[index].Category</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Extra info:</td>' +
-        '<td>And any further details here (images etc)...</td>' +
+        '<td>Last Measurement:</td>' +
+        '<td></td>' +
         '</tr>' +
         '</table>';
 }
@@ -160,7 +163,6 @@ function refreshTableSensorsAndActuators(roomID) {
             else {
                 table_actuators.row.add(['', jData[i].Name]).draw(false);
                 actuators.push(jData[i]);
-
             }
         }
         table_sensors.draw(false);
