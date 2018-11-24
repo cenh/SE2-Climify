@@ -10,9 +10,8 @@ $(document).ready(function () {
                 "orderable": false,
                 "data": null,
                 "defaultContent": '',
-                "width": "30px"
             },
-            {}
+            {"width": "90%"}
         ],
         "order": [[1, 'asc']]
     });
