@@ -81,8 +81,7 @@ $(document).ready(function () {
         "columns": [
             {
                 "className": 'delete',
-                "orderable": false,
-                "width": "50px"
+                "orderable": false
             },
             null
         ],
