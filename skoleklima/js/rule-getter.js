@@ -132,7 +132,7 @@ $("#modalRule").on("click",function () {
 
 $("#submitRule").on("click",function () {
     var Location = rulelocationChosen();
-    var SensorID = $('#sensorSelect').val();
+    var sensorID = $('#sensorSelect').val();
     var op = $('#opSelect').val();
     var value =  $('#selectValue').val();
     var action = $('#actionSelect').val();
@@ -142,7 +142,7 @@ $("#submitRule").on("click",function () {
         url: "api/api-rule-save.php",
         data: {
             LocationID: Location,
-            SensorID:  SensorID,
+            SensorID:  sensorID,
             Operator: op,
             Value: value,
             Action: action,
