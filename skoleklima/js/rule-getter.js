@@ -131,13 +131,12 @@ $("#modalRule").on("click",function () {
 });*/
 
 $("#submitRule").on("click",function () {
-     var Location = rulelocationChosen();
-     var SensorID = $('#sensorSelect').val();
-     var op = $('#opSelect').val();
-     var value =  $('#selectValue').val();
-     var action = $('#actionSelect').val;
-
-     var setTemp =  $('[name=setTemp]').val();
+    var Location = rulelocationChosen();
+    var SensorID = $('#sensorSelect').val();
+    var op = $('#opSelect').val();
+    var value =  $('#selectValue').val();
+    var action = $('#actionSelect').val;
+    var setTemp =  $('[name=setTemp]').val();
     $.ajax({
         type: "POST",
         url: "api/api-rule-save.php",
@@ -155,7 +154,6 @@ $("#submitRule").on("click",function () {
 
 });
 $('#actionSelect').change(function () {
-    console.log($('#actionSelect').val());
     if($('#actionSelect').val() === "1"){
         $('#form-action').append('<b> to </b><input type="number" name="setTemp" min="4" max="35">');
     }
