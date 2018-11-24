@@ -112,7 +112,7 @@ function format_actuators(d) {
         '</tr>' +
         '<tr>' +
         '<td>Category:</td>' +
-        '<td>actuators[index].Category</td>' +
+        '<td>' + actuators[index].Category + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Last Measurement:</td>' +
