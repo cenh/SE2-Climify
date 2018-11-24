@@ -11,7 +11,7 @@ $username = DB_USER;
 $password = DB_PASSWORD;
 $databasename = DB_NAME;
 $LocationID = $_POST['LocationID'];
-$SensorID = $_POST['SensorID'];
+$sensorID = $_POST['SensorID'];
 $Operator = $_POST['Operator'];
 $Value = $_POST['Value'];
 $Action = $_POST['Action'];
@@ -24,11 +24,11 @@ if ($conn->connect_error) {
   exit;
 }
 
-$q = "INSERT INTO Rule(SensorID, Operator, Value, Action) VALUES ($SensorID, $Operator, $Value, $Action)";
+$q = "INSERT INTO Rule(SensorID, Operator, Value, Action) VALUES ($sensorID, $Operator, $Value, $Action)";
 $result = mysqli_query($conn, $q) or die("Error in Selecting " . mysqli_error($conn));
 
 # Get the RuleID, so we can insert into RuleLocation
-$q = "SELECT RuleID FROM Rule WHERE SensorID=$SensorID AND Operator=$Operator AND Value=$Value AND Action=$Action";
+$q = "SELECT RuleID FROM Rule WHERE SensorID=$sensorID AND Operator=$Operator AND Value=$Value AND Action=$Action";
 $result = mysqli_query($conn, $q) or die("Error in Selecting " . mysqli_error($conn));
 
 if($result->num_rows==1){
