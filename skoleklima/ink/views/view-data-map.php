@@ -80,7 +80,7 @@
 
     <hr>
 
-    <div style="text-align: center">
+    <div style="text-align: center; padding-top: 30px">
         <h2>Manage Devices</h2>
     </div>
 
