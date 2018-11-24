@@ -28,7 +28,7 @@ $(document).ready(function () {
         }
         else {
             // Open this row
-            row.child(format(row.data())).show();
+            row.child(format_sensors(row.data())).show();
             tr.addClass('shown');
         }
     });
@@ -63,7 +63,7 @@ $(document).ready(function () {
         }
         else {
             // Open this row
-            row.child(format(row.data())).show();
+            row.child(format_actuators(row.data())).show();
             tr.addClass('shown');
         }
     });
@@ -78,12 +78,30 @@ $(document).ready(function () {
 });
 
 // functions for collapsing
-function format(d) {
+function format_sensors(d) {
     // `d` is the original data object for the row
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
         '<td>Full name:</td>' +
+        '<td>' + d.Name + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Extension number:</td>' +
         '<td></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Extra info:</td>' +
+        '<td>And any further details here (images etc)...</td>' +
+        '</tr>' +
+        '</table>';
+}
+
+function format_actuators(d) {
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<tr>' +
+        '<td>Full name:</td>' +
+        '<td>' + d.Name + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Extension number:</td>' +
