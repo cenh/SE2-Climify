@@ -26,7 +26,7 @@ $emparray = array();
 while($row = mysqli_fetch_assoc($result))
 {
     $temparray = [];
-    array_push($temparray[ActionID] = $row["ID"]);
+    array_push($temparray[ActionID] = $row["id"]);
     array_push($temparray[Action] = $row["Description"]);
 
     array_push($emparray, $temparray);
