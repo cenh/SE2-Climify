@@ -150,8 +150,8 @@ function refreshTableSensorsAndActuators(roomID) {
         var table_actuators = $('#table_id2').DataTable();
         table_sensors.clear();
         table_actuators.clear();
-        sensors.clear();
-        actuators.clear();
+        sensors = [];
+        actuators = [];
         for (var i = 0; i < jData.length; i++) {
             if (jData[i].ReadOnly === 1) {
                 table_sensors.row.add(['', jData[i].Name]).draw(false);
