@@ -155,11 +155,11 @@ function refreshTableSensorsAndActuators(roomID) {
         for (var i = 0; i < jData.length; i++) {
             if (jData[i].ReadOnly === 1) {
                 table_sensors.row.add(['', jData[i].Name]).draw(false);
-                sensors.append(jData[i]);
+                sensors.push(jData[i]);
             }
             else {
                 table_actuators.row.add(['', jData[i].Name]).draw(false);
-                actuators.append(jData[i]);
+                actuators.push(jData[i]);
 
             }
         }
