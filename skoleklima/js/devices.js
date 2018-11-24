@@ -74,7 +74,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#table_id3').DataTable({
+    var table = $('#table_id3').DataTable({
         "searching": false,
         "paging": false,
         "info": false,
