@@ -84,17 +84,16 @@ $(document).ready(function () {
 // functions for collapsing
 function format_sensors(d) {
     // `d` is the original data object for the row
+    var index = actuators.findIndex(function(row) {
+        return row.Name === d[1];
+    });
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
-        '<td>Name:</td>' +
-        '<td>' + d[1] + '</td>' +
-        '</tr>' +
-        '<tr>' +
         '<td>Category:</td>' +
-        '<td></td>' +
+        '<td>' + actuators[index].Category + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Action:</td>' +
+        '<td>Last Measurement:</td>' +
         '<td></td>' +
         '</tr>' +
         '</table>';
@@ -106,16 +105,13 @@ function format_actuators(d) {
         return row.Name === d[1];
     });
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        '<tr>' +
-        '<td>Name:</td>' +
-        '<td>' + d[1] + '</td>' +
-        '</tr>' +
+
         '<tr>' +
         '<td>Category:</td>' +
         '<td>' + actuators[index].Category + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Last Measurement:</td>' +
+        '<td>Action:</td>' +
         '<td></td>' +
         '</tr>' +
         '</table>';
