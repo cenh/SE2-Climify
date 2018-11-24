@@ -51,7 +51,7 @@ function generateRuleForms(){
             $("#actionSelect").append('<option value="" disabled selected>Select Action</option>');
             actionsArray = JSON.parse(res);
             for (i=0;i<actionsArray.length; i++){
-                $("#actionSelect").append('<option value="'+actionsArray[i].ActionID+'">'+actionsArray[i].Action+'</option>');
+                $("#actionSelect").append('<option value="'+actionsArray[i].Action+'">'+actionsArray[i].Action+'</option>');
             }
         });
 
@@ -154,7 +154,7 @@ $("#submitRule").on("click",function () {
 
 });
 $('#actionSelect').change(function () {
-    if($('#actionSelect').val() === "1"){
+    if($('#actionSelect').val() === "Set Temperature"){
         $('#form-action').append('<b> to </b><input type="number" name="setTemp" min="4" max="35">');
     }
 });
