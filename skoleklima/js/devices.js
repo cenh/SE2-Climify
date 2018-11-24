@@ -48,7 +48,7 @@ $(document).ready(function () {
                 "defaultContent": '',
                 "width": "30px"
             },
-            {"width": "100%"}
+            null
         ],
         "order": [[1, 'asc']]
     });
