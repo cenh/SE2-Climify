@@ -75,13 +75,11 @@ while($row = mysqli_fetch_array($result))
                             <div id="form-sensor">
                                 <b>If</b>
                                 <select id="sensorSelect">
-                                    <option value="" disabled selected>Select a sensor</option>
                                 </select>
                             </div>
                             <div id="form-op">
                                 <b>is</b>
                                 <select id="opSelect">
-                                    <option value="" disabled selected>Select operator</option>
                                 </select>
                             </div>
                             <div id="form-value">
