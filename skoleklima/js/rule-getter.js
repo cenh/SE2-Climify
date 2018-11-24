@@ -157,6 +157,6 @@ $("#submitRule").on("click",function () {
 $('#actionSelect').change(function () {
     console.log($('#actionSelect').val());
     if($('#actionSelect').val() === "1"){
-        $('.form-action').append('<input type="number" name="setTemp" min="4" max="35">')
+        $('.form-action').append('<input type="number" name="setTemp" min="4" max="35">');
     }
 });
