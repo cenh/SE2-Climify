@@ -148,8 +148,8 @@ $("#submitRule").on("click",function () {
             Action: action,
             setTemperature: setTemp
         }
-    }).done(function () {
-        alert("Saved");
+    }).done(function (res) {
+        alert(res);
     });
 
 });
