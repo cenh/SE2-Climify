@@ -46,7 +46,6 @@ $(document).ready(function () {
                 "orderable": false,
                 "data": null,
                 "defaultContent": '',
-                "width": "10%"
             },
             null
         ],
