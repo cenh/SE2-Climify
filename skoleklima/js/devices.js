@@ -83,7 +83,7 @@ function format_sensors(d) {
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
         '<td>Full name:</td>' +
-        '<td>' + d.Name + '</td>' +
+        '<td>' + d.Sensors + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Extension number:</td>' +
@@ -101,7 +101,7 @@ function format_actuators(d) {
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
         '<td>Full name:</td>' +
-        '<td>' + d.Name + '</td>' +
+        '<td>' + d.Actuators + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Extension number:</td>' +
