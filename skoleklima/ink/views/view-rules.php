@@ -82,7 +82,7 @@ while($row = mysqli_fetch_array($result))
                                 <select id="opSelect">
                                 </select>
                             </div>
-                            <div id="form-value">
+                            <div>
                                 <b>to/than</b>
                                 <input type="number" id="selectValue" name="value">
                             </div>
@@ -95,11 +95,11 @@ while($row = mysqli_fetch_array($result))
                                 </select>
                             </div>
                             </div>
-                            <div class="col" id ="selectValue">
+                            <div class="col" id ="form-action">
 
                             </div>
 
-                        </div>
+                            </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" id="submitRule" class="btn btn-primary">Save changes</button>
