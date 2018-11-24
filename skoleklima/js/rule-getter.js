@@ -45,7 +45,7 @@ function generateRuleForms(){
                 $("#opSelect").append("<option value="+opArray[i].Type+">"+opArray[i].Type+"</option>");
             }
         });
-    $.get('api/api-get-actions.pho')
+    $.get('api/api-get-actions.php')
         .done(function(res) {
             actionsArray = JSON.parse(res);
             for (i=0;i<actionsArray.length; i++){
