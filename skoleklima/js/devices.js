@@ -84,7 +84,7 @@ $(document).ready(function () {
 // functions for collapsing
 function format_sensors(d) {
     // `d` is the original data object for the row
-    var index = actuators.findIndex(function(row) {
+    var index = sensors.findIndex(function(row) {
         return row.Name === d[1];
     });
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
@@ -105,7 +105,6 @@ function format_actuators(d) {
         return row.Name === d[1];
     });
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-
         '<tr>' +
         '<td>Category:</td>' +
         '<td>' + actuators[index].Category + '</td>' +
