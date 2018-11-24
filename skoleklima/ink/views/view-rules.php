@@ -86,12 +86,19 @@ while($row = mysqli_fetch_array($result))
                                 <b>to/than</b>
                                 <input type="number" id="selectValue" name="value">
                             </div>
+                            <div class="row">
+                            <div class="col">
                             <div id="form-action">
                                 <b>then</b>
                                 <select id="actionSelect">
                                     <option value="" disabled selected>Select an action</option>
                                 </select>
                             </div>
+                            </div>
+                            <div class="col" id ="selectValue">
+
+                            </div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
