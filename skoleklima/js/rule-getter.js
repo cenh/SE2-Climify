@@ -57,14 +57,6 @@ function generateRuleForms(){
 
 }
 
-$('#actionSelect').change(function () {
-    console.log()
-    if($('#actionSelect').val() === 1){
-
-        $('.form-action').append('<input type="number" name="setTemp" min="4" max="35">')
-    }
-});
-
 function clearAccordion(size){
     $(".accordion").empty();
     $("#rule-count").text("Rules: "+size);
@@ -159,4 +151,10 @@ $("#submitRule").on("click",function () {
         alert("Saved");
     });
 
+})
+$('#actionSelect').change(function () {
+    console.log($('#actionSelect').val());
+    if($('#actionSelect').val() === 1){
+        $('.form-action').append('<input type="number" name="setTemp" min="4" max="35">')
+    }
 });
