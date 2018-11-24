@@ -80,13 +80,19 @@ while($row = mysqli_fetch_array($result))
                             </div>
                             <div id="form-op">
                                 <b>is</b>
+                                <select id="opSelect">
+                                    <option value="" disabled selected>Select operator</option>
+                                </select>
                             </div>
                             <div id="form-value">
                                 <b>to/than</b>
+                                <input type="number" id="selectValue" name="value">
                             </div>
                             <div id="form-action">
                                 <b>then</b>
-
+                                <select id="actionSelect">
+                                    <option value="" disabled selected>Select an action</option>
+                                </select>
                             </div>
                         </div>
                         <div class="modal-footer">

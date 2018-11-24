@@ -37,9 +37,6 @@ function clearRuleForms() {
 }
 
 function generateRuleForms(){
-    $('#form-op').append('<b>is</b><select id="opSelect"></select>');
-    $('#form-value').append('<b>than/to</b><input type="number" id="selectValue" name="value">');
-    $('.#form-action').append('<b>then</b><select id="actionSelect"></select>');
     $.get('api/api-get-operators.php')
         .done(function (res) {
             opArray = JSON.parse(res);
@@ -50,9 +47,11 @@ function generateRuleForms(){
         });
     $.get('api/api-get-actions.pho')
         .done(function(res) {
-            actions = JSON.parse(res);
-            $('#actionSelect').append('<')
-        })
+            actionsArray = JSON.parse(res);
+            for (i=0;i<actionsArray.length; i++){
+                $("#actionSelect").append('<option value="'+actionsArray[i].Action+'">'+actionsArray[i].Action+'</option>');
+            }
+        });
 
 
 }
