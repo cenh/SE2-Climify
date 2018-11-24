@@ -32,8 +32,8 @@ function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID)
 
 }
 
-function clearRuleForms(){
-    $()
+function clearRuleForms() {
+    $
 }
 
 function generateRuleForms(){
@@ -48,6 +48,11 @@ function generateRuleForms(){
                 $("#opSelect").append("<option value="+opArray[i].Type+">"+opArray[i].Type+"</option>");
             }
         });
+    $.get('api/api-get-actions.pho')
+        .done(function(res) {
+            actions = JSON.parse(res);
+            $('#actionSelect').append('<')
+        })
 
 
 }
@@ -113,6 +118,7 @@ $("#modalRule").on("click",function () {
                 $("#sensorSelect").append("<option value="+results[i].SensorID+">"+results[i].SensorTypeName+"</option>");
             }
         });
+    generateRuleForms();
 });
 
 /*$("#sensorSelect").change(function(){
