@@ -97,6 +97,7 @@
         <table id="table_id3" class="display">
             <thead>
             <tr>
+                <th></th>
                 <th>Devices</th>
             </tr>
             </thead>
@@ -104,6 +105,12 @@
 
             </tbody>
         </table>
+        <style>
+            td.delete {
+                background-color: #b70404;
+                cursor: pointer;
+            }
+        </style>
     </div>
 
 

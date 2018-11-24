@@ -78,6 +78,23 @@ $(document).ready(function () {
         "searching": false,
         "paging": false,
         "info": false,
+        "columns": [
+            {
+                "className": 'delete',
+                "orderable": false,
+                "data": null,
+                "defaultContent": '',
+            },
+            null
+        ],
+        "order": [[1, 'asc']]
+    });
+
+    // Add event listener for opening and closing details
+    $('#table_id3 tbody').on('click', 'td.delete', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+        console.log(row[1] + ' clicked');
     });
 });
 
@@ -176,7 +193,7 @@ function refreshTableDevices(roomID) {
         var table_devices = $('#table_id3').DataTable();
         table_devices.clear();
         for (var i = 0; i < jData.length; i++) {
-            table_devices.row.add([jData[i].Label]).draw(false);
+            table_devices.row.add(['DELETE', jData[i].Label]).draw(false);
         }
         table_devices.draw(false);
     });
