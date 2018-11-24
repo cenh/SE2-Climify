@@ -80,11 +80,10 @@ $(document).ready(function () {
 // functions for collapsing
 function format_sensors(d) {
     // `d` is the original data object for the row
-    console.log(d);
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
         '<td>Full name:</td>' +
-        '<td>' + d.Sensors + '</td>' +
+        '<td>' + d[1] + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Extension number:</td>' +
@@ -102,7 +101,7 @@ function format_actuators(d) {
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
         '<td>Full name:</td>' +
-        '<td>' + d.Actuators + '</td>' +
+        '<td>' + d[1] + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Extension number:</td>' +
