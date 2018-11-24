@@ -88,12 +88,10 @@ while($row = mysqli_fetch_array($result))
                             </div>
                             <div class="row">
                             <div class="col">
-                            <div id="form-action">
                                 <b>then</b>
                                 <select id="actionSelect">
                                     <option value="" disabled selected>Select an action</option>
                                 </select>
-                            </div>
                             </div>
                             <div class="col" id ="form-action">
 
