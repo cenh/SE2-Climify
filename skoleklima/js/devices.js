@@ -81,7 +81,8 @@ $(document).ready(function () {
         "columns": [
             {
                 "className": 'delete',
-                "orderable": false
+                "orderable": false,
+                "width": "50px"
             },
             null
         ],
@@ -92,7 +93,7 @@ $(document).ready(function () {
     $('#table_id3 tbody').on('click', 'td.delete', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
-        console.log(row.data()[1] + ' clicked');
+        alert('Delete ' + row.data()[1]);
     });
 });
 
