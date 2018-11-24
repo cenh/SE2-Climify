@@ -58,7 +58,9 @@ function generateRuleForms(){
 }
 
 $('#actionSelect').change(function () {
-    if($('#actionSelect').val === 1){
+    console.log()
+    if($('#actionSelect').val() === 1){
+
         $('.form-action').append('<input type="number" name="setTemp" min="4" max="35">')
     }
 });
