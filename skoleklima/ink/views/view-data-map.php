@@ -11,7 +11,7 @@
 <!--			--><?php //if ($currentUserRole == 1 || $currentUserRole == 15) { ?>
 <!--                <select class="list-schools-other-users" name="option" id="dataViewSelect">-->
 <!--					<option value="" selected>Choose Institution</option>-->
-<!--                    <!-- Content goes here -->-->
+<!--                    <!-- Content goes here -->
 <!--				</select>-->
 <!--            --><?php //} ?>
 <!--		</span>-->
