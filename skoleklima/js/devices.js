@@ -122,7 +122,10 @@ function format_actuators(d) {
     });
     var action;
     if(actuators[index].ItemType === "Number"){
-        action = '<td>numeric</td>';
+        action = '<td><form action="/action_page.php">\n' +
+            'Set value: <input type="number"><br>\n' +
+            '<input type="submit">\n' +
+            '</form></td>';
     } else {
         action = '<td>on/off</td>';
     }
