@@ -124,7 +124,7 @@ function format_actuators(d) {
     var action;
     if(actuators[index].ItemType === "Number"){
         action = '<td><form id="set_input">\n' +
-            'Set value: <input type="number"><br>\n' +
+            'Set value: <input type="number" value="10">\n' +
             '<button id="set_button" onclick="set_actuator()">Set</button>\n' +
             '</form></td>';
 
