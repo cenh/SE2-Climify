@@ -76,25 +76,35 @@ public class ClimifyMessageHandler extends MessageHandler {
 			Value = result.get(2);
 			Action = result.get(3);
 			ActuatorID = result.get(4);
+            System.out.println("Extracted Variables: Operator =  "
+                    + Operator + " Value = " + Value + " Action = " + Action + " ActuatorID = " + ActuatorID);
 
 			Command com  = new Command(Action, ActuatorID);
 			dslJson.serialize(writer, com);
 
 			byte[] payload = writer.getByteBuffer();
+			System.out.println("Created a Command:  " + payload);
 			writer.reset();
 
 			switch (Operator){
                     case ("GREATER"):
-                        if (Float.parseFloat(SensorValue) > Float.parseFloat(Value))
+                        if (Float.parseFloat(SensorValue) > Float.parseFloat(Value)){
+                            System.out.println("Sending the Command");
                             msgCall.publish(Topic.COMMAND.getTopic(), 2, payload);
+                        }
+
                         break;
                     case ("LESS"):
-                        if (Float.parseFloat(SensorValue) < Float.parseFloat(Value))
+                        if (Float.parseFloat(SensorValue) < Float.parseFloat(Value)){
+                            System.out.println("Sending the Command");
                             msgCall.publish(Topic.COMMAND.getTopic(), 2, payload);
+                        }
                         break;
                     case ("EQUAL"):
-                        if (Float.parseFloat(SensorValue) == Float.parseFloat(Value))
+                        if (Float.parseFloat(SensorValue) == Float.parseFloat(Value)){
+                            System.out.println("Sending the Command");
                             msgCall.publish(Topic.COMMAND.getTopic(), 2, payload);
+                        }
                         break;
                 }
             }
