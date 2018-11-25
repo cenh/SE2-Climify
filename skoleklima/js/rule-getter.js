@@ -92,6 +92,7 @@ function getRuleID(attr){
 $(".accordion").on("click","button#editRuleBtn", function () {
     ruleID = getRuleID(this);
     console.log(ruleID);
+    isEdit = true;
     $('#modalCreateRule').modal('toggle');
     $.get('api/api-get-sensors-from-location.php', {LocationID: rulelocationChosen()})
         .done(function (res) {
