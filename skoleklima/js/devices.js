@@ -149,48 +149,47 @@ function format_actuators(d) {
 function set_actuator () {
     var x = document.getElementById("set_input");
     var text = x.elements[0].value;
-    console.log(chosen_actuator);
     // Create a client instance
-    // client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
-    // client.startTrace();
+    client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
+    client.startTrace();
     // set callback handlers
-    // client.onConnectionLost = onConnectionLost;
-    // //client.onMessageArrived = onMessageArrived;
-    // // connect the client
-    // client.connect({
-    //     onSuccess: onConnect,
-    //     useSSL: true
-    // });
-    // console.log("attempting to connect...");
-    //
-    // // called when the client connects
-    // function onConnect() {
-    //     // Once a connection has been made, make a subscription and send a message.
-    //     console.log("onConnect");
-    //     //client.subscribe("testse2");
-    //     msg = {
-    //         name: "setTemperature",
-    //         value: text
-    //     };
-    //     msg_text = JSON.stringify(msg);
-    //     message = new Paho.MQTT.Message(msg_text);
-    //     message.destinationName = "commandse2/" + actuator_name;
-    //     client.publish(message);
-    //
-    // }
-    //
-    // // called when the client loses its connection
-    // function onConnectionLost(responseObject) {
-    //     if (responseObject.errorCode !== 0) {
-    //         console.log("onConnectionLost:" + responseObject.errorMessage);
-    //     }
-    // }
-    //
-    // // called when a message arrives
-    // function onMessageArrived(message) {
-    //     msg = JSON.parse(message.payloadString);
-    //     console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
-    // }
+    client.onConnectionLost = onConnectionLost;
+    //client.onMessageArrived = onMessageArrived;
+    // connect the client
+    client.connect({
+        onSuccess: onConnect,
+        useSSL: true
+    });
+    console.log("attempting to connect...");
+
+    // called when the client connects
+    function onConnect() {
+        // Once a connection has been made, make a subscription and send a message.
+        console.log("onConnect");
+        //client.subscribe("testse2");
+        msg = {
+            name: chosen_actuator,
+            value: text
+        };
+        msg_text = JSON.stringify(msg);
+        message = new Paho.MQTT.Message(msg_text);
+        message.destinationName = "commandse2/" + chosen_actuator;
+        client.publish(message);
+
+    }
+
+    // called when the client loses its connection
+    function onConnectionLost(responseObject) {
+        if (responseObject.errorCode !== 0) {
+            console.log("onConnectionLost:" + responseObject.errorMessage);
+        }
+    }
+
+    // called when a message arrives
+    function onMessageArrived(message) {
+        msg = JSON.parse(message.payloadString);
+        console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
+    }
 }
 
 
