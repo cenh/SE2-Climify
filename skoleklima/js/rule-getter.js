@@ -128,16 +128,16 @@ $("#sensorSelect").change(function () {
     console.log(sensorID);
     if (sensorID === "readOutdoorTemperature" || sensorID === "readTemperature") {
         console.log("t");
-        $('#unit').innerText('°C');
+        $('#unit').text('°C');
     }
     else if (sensorID === "readBattery" || sensorID === "readHumidity" ) {
-        $('#unit').innerText('%');
+        $('#unit').text('%');
     }
     else if (sensorID === "readCO2") {
-        $('#unit').innerText('PPM');
+        $('#unit').text('PPM');
     }
     else if (sensorID === "MainIndoorStation_Noise") {
-        $('#unit').innerText('dB');
+        $('#unit').text('dB');
     }
 
 });
