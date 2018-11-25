@@ -1,42 +1,37 @@
 <!-- Dashboard -->
 <div class="view view-dashboard">
 	<?php
-		if ($currentUserRole == 1) {
+	<?php
+		$perms = array_values($permissions);
+		if(in_array("devices", $perms)) {
 			require_once "view-devices.php";
-			require_once "view-data.php";
-			require_once "view-data-map.php";
-			require_once "view-other-users.php";
-			require_once "view-own-user.php";
-			require_once "view-system-settings.php";
-			require_once "view-roomX.php";
-			require_once "view-rules.php";
-		} elseif ($currentUserRole == 15) {
-			require_once "view-data.php";
-			require_once "view-data-map.php";
-			require_once "view-own-user.php";
-            require_once "view-roomX.php";
-		} elseif ($currentUserRole == 2) {
-			require_once "view-devices.php";
-			require_once "view-data.php";
-			require_once "view-data-map.php";
-			require_once "view-other-users.php";
-			require_once "view-own-user.php";
-			require_once "view-permissions.php";
-            require_once "view-roomX.php";
-            require_once "view-rules.php";
-        } elseif ($currentUserRole == 3) {
-			require_once "view-data.php";
-			require_once "view-data-map.php";
-			require_once "view-other-users.php";
-			require_once "view-own-user.php";
-            require_once "view-roomX.php";
-		} elseif ($currentUserRole == 4) {
-			require_once "view-data.php";
-			require_once "view-data-map.php";
-            require_once "view-roomX.php";
 		}
-		if($currentPermLogbook == 1 ){
+		if(in_array("data-map", $perms)) {
+			require_once "view-data-map.php";
+		}
+		if(in_array("data", $perms)) {
+			require_once "view-data.php";
+		}
+		if(in_array("rules", $perms)) {
+			require_once "view-rules.php";
+		}
+		if(in_array("communication", $perms)) {
 			require_once "view-communication.php";
+		}
+		if(in_array("other-users", $perms)) {
+			require_once "view-other-users.php";
+		}
+		if(in_array("permissions", $perms)) {
+			require_once "view-permissions.php";
+		}
+		if(in_array("own-users", $perms)) {
+			require_once "view-own-user.php";
+		}
+		if(in_array("system-settings", $perms)) {
+			require_once "view-system-settings.php";
+		}
+		if(in_array("roomX", $perms)) {
+			require_once "view-roomX.php";
 		}
 	?>
 	<div class="go-to-top">
@@ -47,7 +42,7 @@
 			<div>
 				<img src="img/logo/cook_ico.png" alt="Cookie">
 				<p>This site uses cookies to remember your settings.</br>
-				By continuing on the site, you accept the use of cookies. 
+				By continuing on the site, you accept the use of cookies.
 				</p>
 		</div>
 			<button id="btn-accept-cookie">OK</button>
