@@ -6,19 +6,19 @@
 		<p>An overview of installed devices</p>
 	</span>
 
-        <!--        <span>-->
-        <!--		<span>-->
-        <!--			--><?php //if ($currentUserRole == 1 || $currentUserRole == 15) { ?>
-        <!--                <select class="list-schools-other-users" name="option" id="dataViewSelect">-->
-        <!--					<option value="" selected>Choose Institution</option>-->
-        <!--                    <!-- Content goes here -->
-        <!--				</select>-->
-        <!--            --><?php //} ?>
-        <!--		</span>-->
-        <!--		<span>-->
-        <!--			<button class="btn-show-view-map-info">Show info</button>-->
-        <!--		</span>-->
-        <!--	</span>-->
+<!--        <span>-->
+<!--		<span>-->
+<!--			--><?php //if ($currentUserRole == 1 || $currentUserRole == 15) { ?>
+<!--                <select class="list-schools-other-users" name="option" id="dataViewSelect">-->
+<!--					<option value="" selected>Choose Institution</option>-->
+<!--                    <!-- Content goes here -->
+<!--				</select>-->
+<!--            --><?php //} ?>
+<!--		</span>-->
+<!--		<span>-->
+<!--			<button class="btn-show-view-map-info">Show info</button>-->
+<!--		</span>-->
+<!--	</span>-->
     </div>
     <hr>
 
@@ -90,66 +90,8 @@
         <select id="select_room_devices" onchange="refreshTableDevices(value)">
             <option value="" disabled selected>Choose Your Room</option>
         </select>
-        <button id="listen_button" onclick="listen()" disabled><a class="btn" href="#open-modal">Discover New
-                Devices</a></button>
+        <button id="listen_button" onclick="listen()" disabled>Discover new devices</button>
     </div>
-
-    <div id="open-modal" class="modal-window">
-        <div>
-            <a href="#" title="Close" class="modal-close">Close</a>
-            <h1>Listening...</h1>
-            <div>A CSS-only modal based on the :target pseudo-class. Hope you find it helpful. Say hello on Twitter.</div>
-        </div>
-    </div>
-
-    <style>
-        .modal-window {
-            position: fixed;
-            background-color: rgba(255, 255, 255, 0.25);
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            z-index: 999;
-            opacity: 0;
-            pointer-events: none;
-            -webkit-transition: all 0.3s;
-            -moz-transition: all 0.3s;
-            transition: all 0.3s;
-        &:target {
-             opacity: 1;
-             pointer-events: auto;
-         }
-        &>div {
-             width: 400px;
-             position: absolute;
-             top: 50%;
-             left: 50%;
-             transform: translate(-50%, -50%);
-             padding: 2em;
-             background: #ffffff;
-             color: #333333;
-         }
-
-        }
-
-        .modal-close {
-            color: #aaa;
-            line-height: 50px;
-            font-size: 80%;
-            position: absolute;
-            right: 0;
-            text-align: center;
-            top: 0;
-            width: 70px;
-            text-decoration: none;
-        &:hover {
-             color: #000;
-         }
-        }
-
-
-    </style>
 
     <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
