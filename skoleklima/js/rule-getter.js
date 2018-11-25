@@ -89,7 +89,7 @@ $("#fetch-sensors-for-loc").on("click",function() {
             clearAccordion(size);
             for(i=0;i < rules.length;i++){
                 var rule = rules[i];
-                generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.setTemp,i,size, rule.RuleID,rule.actuatorID);
+                generateDivs(rule.SensorID, rule.Operator, rule.Value, rule.setTemp,i,size, rule.RuleID,rule.Actuator);
             }
         });
 });
