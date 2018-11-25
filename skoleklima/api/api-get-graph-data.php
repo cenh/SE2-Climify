@@ -81,7 +81,7 @@ $q = "SELECT items.* FROM Items as items
       AND links.ChannelUID = tc.ChannelUID
       AND items.Name = links.ItemName
       AND items.ReadOnly = 1";
-
+error_log($q, 0);
 $result = $conn->query($q);
 
 $row_cnt = $result->num_rows;
@@ -98,8 +98,9 @@ $to = strtotime($to) * $multi;
 
 while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
     //LAST() -> newest entry
-  $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["Name"] . '"' . 'WHERE time >=' . $from . ' AND time <=' . $to . '');
-
+  $q = 'SELECT * FROM "' . $currentSensorIDArray["Name"] . '"' . 'WHERE time >=' . $from . ' AND time <=' . $to . '';
+  error_log($q, 0);
+  $currentSensorRow = $database->query($q);
   $currentPoints = $currentSensorRow ->getPoints();
   array_push($sensors,$currentPoints);
 }
