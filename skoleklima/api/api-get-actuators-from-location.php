@@ -20,17 +20,17 @@ if($conn->connect_error) {
   exit;
 }
 
-$q = "SELECT items.* FROM Items as items" .
-     "INNER JOIN RaspberryPis as rp" .
-     "INNER JOIN Things as t" .
-     "INNER JOIN ThingsChannels as tc" .
-     "INNER JOIN Links as links" .
-     "WHERE rp.LocationID = $LocationID" .
-     "AND t.RaspberryPiUID = rp.UID" .
-     "AND tc.ThingUID = t.UID" .
-     "AND links.ChannelUID = tc.ChannelUID" .
-     "AND items.Name = links.ItemName" .
-     "AND items.ReadOnly = 0;"
+$q = "SELECT items.* FROM Items as items
+      INNER JOIN RaspberryPis as rp
+      INNER JOIN Things as t
+      INNER JOIN ThingsChannels as tc
+      INNER JOIN Links as links
+      WHERE rp.LocationID = $LocationID
+      AND t.RaspberryPiUID = rp.UID
+      AND tc.ThingUID = t.UID
+      AND links.ChannelUID = tc.ChannelUID
+      AND items.Name = links.ItemName
+      AND items.ReadOnly = 0";
 error_log($q, 0);
 $result = mysqli_query($conn, $q) or die("Error in Selecting " . mysqli_error($conn));
 
