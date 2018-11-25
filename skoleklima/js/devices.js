@@ -126,7 +126,7 @@ function format_actuators(d) {
     if(actuators[index].ItemType === "Number"){
         action = '<td><form id="set_input">\n' +
             'Set value: <input type="number" value="10">\n' +
-            '<button id="set_button" onclick="set_actuator()">Set</button>\n' +
+            '<button id="set_button" onclick="set_actuator() ">Set</button>\n' +
             '</form></td>';
         chosen_actuator = actuators[index].Name;
     } else {
@@ -160,12 +160,12 @@ function set_actuator () {
         onSuccess: onConnect,
         useSSL: true
     });
-    console.log("attempting to connect...");
+    // console.log("attempting to connect...");
 
     // called when the client connects
     function onConnect() {
         // Once a connection has been made, make a subscription and send a message.
-        console.log("onConnect");
+        // console.log("onConnect");
         //client.subscribe("testse2");
         msg = {
             name: chosen_actuator,
@@ -181,14 +181,14 @@ function set_actuator () {
     // called when the client loses its connection
     function onConnectionLost(responseObject) {
         if (responseObject.errorCode !== 0) {
-            console.log("onConnectionLost:" + responseObject.errorMessage);
+            // console.log("onConnectionLost:" + responseObject.errorMessage);
         }
     }
 
     // called when a message arrives
     function onMessageArrived(message) {
         msg = JSON.parse(message.payloadString);
-        console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
+        // console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
     }
 }
 

@@ -5,19 +5,20 @@
 		<h3>Devices</h3>
 		<p>An overview of installed devices</p>
 	</span>
-        <span>
-		<span>
-			<?php if ($currentUserRole == 1 || $currentUserRole == 15) { ?>
-                <select class="list-schools-other-users" name="option" id="dataViewSelect">
-					<option value="" selected>Choose Institution</option>
-                    <!-- Content goes here -->
-				</select>
-            <?php } ?>
-		</span>
-		<span>
-			<button class="btn-show-view-map-info">Show info</button>
-		</span>
-	</span>
+
+<!--        <span>-->
+<!--		<span>-->
+<!--			--><?php //if ($currentUserRole == 1 || $currentUserRole == 15) { ?>
+<!--                <select class="list-schools-other-users" name="option" id="dataViewSelect">-->
+<!--					<option value="" selected>Choose Institution</option>-->
+<!--                    <!-- Content goes here -->-->
+<!--				</select>-->
+<!--            --><?php //} ?>
+<!--		</span>-->
+<!--		<span>-->
+<!--			<button class="btn-show-view-map-info">Show info</button>-->
+<!--		</span>-->
+<!--	</span>-->
     </div>
     <hr>
 
@@ -71,6 +72,7 @@
                 background: url('img/right.png') no-repeat center center;
                 cursor: pointer;
             }
+
             tr.shown td.details-control {
                 background: url('img/down.png') no-repeat center center;
             }
