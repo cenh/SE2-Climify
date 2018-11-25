@@ -1,7 +1,7 @@
 // arrays for displayed items
 var sensors = [];
 var actuators = [];
-var sensors_data = []
+var sensors_data = [];
 
 // initialize the tables
 $(document).ready(function () {
@@ -120,6 +120,12 @@ function format_actuators(d) {
     var index = actuators.findIndex(function (row) {
         return row.Name === d[1];
     });
+    var action;
+    if(actuators[index].ItemType === "Number"){
+        action = '<td>numeric</td>';
+    } else {
+        action = '<td>on/off</td>';
+    }
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
         '<td>Category:</td>' +
@@ -127,7 +133,7 @@ function format_actuators(d) {
         '</tr>' +
         '<tr>' +
         '<td>Action:</td>' +
-        '<td></td>' +
+        action +
         '</tr>' +
         '</table>';
 }
