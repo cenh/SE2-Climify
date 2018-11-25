@@ -122,7 +122,23 @@ $("#modalRule").on("click",function () {
     clearRuleForms();
     generateRuleForms();
 });
+$("#sensorSelect").change(function () {
+    var sensorID = $('#sensorSelect').val();
 
+    if (sensorID === 1) {
+        $('#unit').innerText('°C');
+    }
+    else if (sensorID === 2 ) {
+        $('#unit').innerText('%');
+    }
+    else if (sensorID ===3) {
+        $('#unit').innerText('PPM');
+    }
+    else if (sensorID === 4) {
+        $('#unit').innerText('dB');
+    }
+
+});
 
 $("#submitRule").on("click",function () {
     var Location = rulelocationChosen();
