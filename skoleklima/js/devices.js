@@ -185,7 +185,7 @@ function refreshTableSensorsAndActuators(roomID) {
         sensor: "readOutdoorTemperature",
     }, function (data) {
         var jData = JSON.parse(data);
-        console.table(jData);
+        console.table(jData.results[0].series[0].values[0][1]);
     });
 
 
