@@ -263,9 +263,8 @@ function refreshTableThings(roomID) {
         roomID: roomID,
     }, function (data) {
         var jData = JSON.parse(data);
-        var table_sensors = $('#table_id4').DataTable();
-        table_sensors.clear();
-        table_actuators.clear();
+        var table_things = $('#table_id4').DataTable();
+        table_things.clear();
         sensors = [];
         actuators = [];
         sensors_data = [];
