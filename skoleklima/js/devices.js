@@ -1,6 +1,7 @@
 // arrays for displayed items
 var sensors = [];
 var actuators = [];
+var sensors_data = []
 
 // initialize the tables
 $(document).ready(function () {
@@ -165,6 +166,7 @@ function refreshTableSensorsAndActuators(roomID) {
         table_actuators.clear();
         sensors = [];
         actuators = [];
+        sensors_data = [];
         for (var i = 0; i < jData.length; i++) {
             if (jData[i].ReadOnly === 1) {
                 table_sensors.row.add(['', jData[i].Name]).draw(false);
@@ -188,10 +190,12 @@ function refreshTableSensorsAndActuators(roomID) {
             sensors_names: toPush,
         }, function (data1) {
             var jData1 = JSON.parse(data1);
-            console.table(jData1);
+            for (j = 0; j < jData1.length; j++) {
+                sensors_data.push(JSON.parse(jData1[j]).results[0].series[0].values[0][1]);
+            }
         });
 
-
+        console.log(sensors_data);
     });
 }
 
