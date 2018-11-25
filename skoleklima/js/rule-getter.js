@@ -1,5 +1,5 @@
 function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID,actuator){
-    var message = "if " +sensor+" is "+operator + " than " +value + " then set " + actuator + " to: " + action.toUpperCase();
+    var message = "if " +sensor+" is "+operator + " than " +value + " then set " + actuator + " to: " + action;
     var header_id = 'heading'+ruleNo;
     var body_id = 'collapse'+ruleNo;
     var html = [
