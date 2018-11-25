@@ -148,7 +148,7 @@ $("#submitRule").on("click",function () {
     var sensorID = $('#sensorSelect').val();
     var op = $('#opSelect').val();
     var value =  $('#selectValue').val();
-    var action = $('#actuatorSelect').val();
+    var actID = $('#actuatorSelect').val();
     var setTemp =  $('[name=setTemp]').val();
     $.ajax({
         type: "POST",
@@ -158,7 +158,7 @@ $("#submitRule").on("click",function () {
             SensorID:  sensorID,
             Operator: op,
             Value: value,
-            Action: action,
+            actuatorID: actID,
             setTemperature: setTemp
         }
     }).done(function (res) {
