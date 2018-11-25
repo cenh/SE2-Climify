@@ -91,8 +91,20 @@ function getRuleID(attr){
 
 $("#editRuleBtn").on("click", function () {
     ruleID = (getRuleID(this));
+    $('#modalCreateRule').modal('toggle');
 
 
+    $.get('api/api-get-sensors-from-location.php', {LocationID: rulelocationChosen()})
+        .done(function (res) {
+            $("#sensorSelect").empty();
+            results = JSON.parse(res);
+            $("#sensorSelect").append('<option value="" disabled selected>Select a sensor</option>');
+            for (i=0;i < results.length; i++){
+                $("#sensorSelect").append("<option value="+results[i].SensorID+">"+results[i].SensorID+"</option>");
+            }
+        });
+    clearRuleForms();
+    generateRuleForms();
 });
 
 $("#fetch-sensors-for-loc").on("click",function() {
