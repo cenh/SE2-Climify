@@ -46,7 +46,7 @@ while($row = mysqli_fetch_array($result))
     <hr>
 
     <div style="text-align: center">
-        <h2>Your Sensors and Actuators</h2>
+        <h2>Your Things</h2>
     </div>
 
     <div style="height: auto">
@@ -62,7 +62,7 @@ while($row = mysqli_fetch_array($result))
             <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
     padding: 8px; float:left;">
-                <table id="table_id1" class="display" style="width: 100%">
+                <table id="table_id4" class="display" style="width: 100%">
                     <thead>
                     <tr>
                         <th></th>

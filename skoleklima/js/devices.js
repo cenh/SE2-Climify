@@ -257,6 +257,48 @@ function refreshTableSensorsAndActuators(roomID) {
     });
 }
 
+function refreshTableThings(roomID) {
+    var sUrl = "api/api-get-items.php";
+    $.post(sUrl, {
+        roomID: roomID,
+    }, function (data) {
+        var jData = JSON.parse(data);
+        var table_sensors = $('#table_id4').DataTable();
+        table_sensors.clear();
+        table_actuators.clear();
+        sensors = [];
+        actuators = [];
+        sensors_data = [];
+        for (var i = 0; i < jData.length; i++) {
+            if (jData[i].ReadOnly === 1) {
+                table_sensors.row.add(['', jData[i].Name]).draw(false);
+                sensors.push(jData[i]);
+            }
+            else {
+                table_actuators.row.add(['', jData[i].Name]).draw(false);
+                actuators.push(jData[i]);
+            }
+        }
+        table_sensors.draw(false);
+        table_actuators.draw(false);
+
+        var toPush = [];
+
+        for (var j = 0; j < sensors.length; j++) {
+            toPush.push(sensors[j].Name);
+        }
+
+        $.post("api/api-get-last-sensors-data.php", {
+            sensors_names: toPush,
+        }, function (data1) {
+            var jData1 = JSON.parse(data1);
+            for (j = 0; j < jData1.length; j++) {
+                sensors_data.push(JSON.parse(jData1[j]).results[0].series[0].values[0][1]);
+            }
+        });
+    });
+}
+
 function refreshTableDevices(roomID) {
     var sUrl = "api/api-get-things.php";
     $.post(sUrl, {
@@ -282,6 +324,6 @@ function listen() {
 
 $("#select_thing").change(function() {
     var x = $(this).val();
-    refreshTableSensorsAndActuators(x);
+    refreshTableThings(x);
     console.log(x);
 });
