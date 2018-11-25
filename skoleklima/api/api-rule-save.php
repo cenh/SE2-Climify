@@ -25,7 +25,7 @@ if ($conn->connect_error) {
   exit;
 }
 
-$q = "INSERT INTO Rule(SensorID, Operator, Value, Action) VALUES ('$sensorID','$Operator',$Value,'$Action')";
+$q = "INSERT INTO Rule(SensorID, Operator, Value, Action,ActuatorID) VALUES ('$sensorID','$Operator',$Value,'$Action','$ActuatorID')";
 $result = mysqli_query($conn, $q) or die("1Error in Selecting " . mysqli_error($conn));
 
 # Get the RuleID, so we can insert into RuleLocation
