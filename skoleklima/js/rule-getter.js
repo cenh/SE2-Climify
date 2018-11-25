@@ -47,12 +47,13 @@ function generateRuleForms(){
                 $("#opSelect").append("<option value="+opArray[i].Type+">"+opArray[i].Type+"</option>");
             }
         });
-    $.get('api/api-get-actions.php')
+    $.get('api/api-get-actuators-from-location.php',rulelocationChosen())
         .done(function(res) {
-            $("#actuatorSelect").append('<option value="" disabled selected>Select Action</option>');
-            actionsArray = JSON.parse(res);
-            for (i=0;i<actionsArray.length; i++){
-                $("#actuatorSelect").append('<option value="'+actionsArray[i].Action+'">'+actionsArray[i].Action+'</option>');
+            $("#actuatorSelect").append('<option value="" disabled selected>Select Actuator</option>');
+            actuatorArray = JSON.parse(res);
+            console.log(actuatorArray);
+            for (i=0;i<actuatorArray.length; i++){
+                $("#actuatorSelect").append('<option value="'+actuatorArray[i].SensorID+'">'+actuatorArray[i].SensorID+'</option>');
             }
         });
 
