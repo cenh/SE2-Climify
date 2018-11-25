@@ -1,5 +1,5 @@
-function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID){
-    var message = "if " +sensor+" is "+operator + " than " +value + " then " + action.toUpperCase();
+function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID,actuator){
+    var message = "if " +sensor+" is "+operator + " than " +value + " then set " + actuator + " to: " + action.toUpperCase();
     var header_id = 'heading'+ruleNo;
     var body_id = 'collapse'+ruleNo;
     var html = [
@@ -84,11 +84,12 @@ $("#fetch-sensors-for-loc").on("click",function() {
     $.get('api/api-get-rules.php', {LocationID: rule_Location})
         .done(function(res) {
             var rules = JSON.parse(res);
+            console.log(rules);
             var size = rules.length;
             clearAccordion(size);
             for(i=0;i < rules.length;i++){
                 var rule = rules[i];
-                generateDivs(rule.SensorType, rule.Operator, rule.Value, rule.Action,i,size, rule.RuleID);
+                generateDivs(rule.SensorType, rule.Operator, rule.Value, rule.Action,i,size, rule.RuleID,rule.actuatorID);
             }
         });
 });
