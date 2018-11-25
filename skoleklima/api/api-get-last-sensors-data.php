@@ -1,6 +1,6 @@
 <?php
 //$names = $_POST["sensors_names"];
-$names = $_POST['sensors_names'];
+$names = array_unique(json_decode($_POST['sensors_names']));
 
 $results = array();
 
@@ -9,8 +9,8 @@ foreach ($names as $name) {
     array_push($results, $data);
 }
 
-$resultsJSON = json_encode( $results , JSON_UNESCAPED_UNICODE );
+$resultsJSON = json_encode( $names , JSON_UNESCAPED_UNICODE );
 
-echo $names;
+echo $resultsJSON;
 
-return $names;
+return $resultsJSON;
