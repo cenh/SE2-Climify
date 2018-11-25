@@ -100,8 +100,17 @@
 				<?php }
 				if(in_array("roomX", $perms))
 				{ ?>
-					<li class="menu-link menu-link-system-settings" data-go-to="roomX"></i>
+					<li class="menu-link menu-link-roomX" data-go-to="roomX"></i>
 							<a href="#/roomX">
+									<i class="menu-link-ico nav-icon fa fa-times-circle" aria-hidden="true"></i>
+									<p class="menu-link-text">Room X</p>
+							</a>
+					</li>
+				<?php }
+				if(in_array("control-map", $perms))
+				{ ?>
+					<li class="menu-link menu-link-control-map" data-go-to="control-map"></i>
+							<a href="#/control-map">
 									<i class="menu-link-ico nav-icon fa fa-times-circle" aria-hidden="true"></i>
 									<p class="menu-link-text">Room X</p>
 							</a>
