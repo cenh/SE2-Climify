@@ -31,7 +31,7 @@ $q = "SELECT items.* FROM Items as items" .
      "AND links.ChannelUID = tc.ChannelUID" .
      "AND items.Name = links.ItemName" .
      "AND items.ReadOnly = 1;"
-
+error_log($q, 0);
 $result = mysqli_query($conn, $q) or die("Error in Selecting " . mysqli_error($conn));
 
 $emparray = array();
