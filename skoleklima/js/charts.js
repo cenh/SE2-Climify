@@ -477,6 +477,7 @@ function getGraphData(){
                     if(jData[1][i].time != null)
                       if(!isNaN(jData[1][i].time))
                         var time = jData[1][i].time;
+                    console.log(i);
                     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                     h= time.substring(11, 13);
                     if (String(h).length==1){
