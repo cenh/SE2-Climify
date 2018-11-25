@@ -14,15 +14,17 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT items.*, ItemType FROM Items as items
+$query = "SELECT items.*, Channels.ItemType FROM Items as items
 INNER JOIN RaspberryPis as rp
 INNER JOIN Things as t
+INNER JOIN Channels
 INNER JOIN ThingsChannels as tc
 INNER JOIN Links as links
 WHERE rp.LocationID = $roomID
 AND t.RaspberryPiUID = rp.UID
 AND tc.ThingUID = t.UID
-AND links.ChannelUID = tc.ChannelUID
+AND links.ChannelUID = tc.ChannelUID 
+AND Channels.UID = links.ChannelUID 
 AND items.Name = links.ItemName";
 
 
