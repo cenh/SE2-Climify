@@ -47,7 +47,7 @@ function generateRuleForms(){
                 $("#opSelect").append("<option value="+opArray[i].Type+">"+opArray[i].Type+"</option>");
             }
         });
-    $.get('api/api-get-actuators-from-location.php',rulelocationChosen())
+    $.get('api/api-get-actuators-from-location.php', {LocationID: rulelocationChosen()})
         .done(function(res) {
             $("#actuatorSelect").append('<option value="" disabled selected>Select Actuator</option>');
             actuatorArray = JSON.parse(res);
