@@ -70,9 +70,64 @@ $(document).ready(function () {
             // Open this row
             row.child(format_actuators(row.data())).show();
             tr.addClass('shown');
+
         }
     });
 });
+
+$("#set_button").click(function () {
+    console.log("Button Pressed");
+    // var x = document.getElementById("temp");
+    // var text = x.elements[0].value;
+    //
+    // document.getElementById('current_set_temp').innerHTML = text;
+    //
+    // // Create a client instance
+    // client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
+    // client.startTrace();
+    // // set callback handlers
+    // client.onConnectionLost = onConnectionLost;
+    // //client.onMessageArrived = onMessageArrived;
+    // // connect the client
+    // client.connect({
+    //     onSuccess: onConnect,
+    //     useSSL: true
+    // });
+    // console.log("attempting to connect...");
+    //
+    // // called when the client connects
+    // function onConnect() {
+    //     // Once a connection has been made, make a subscription and send a message.
+    //     console.log("onConnect");
+    //     //client.subscribe("testse2");
+    //     msg = {
+    //         name: "setTemperature",
+    //         value: text
+    //     };
+    //     msg_text = JSON.stringify(msg);
+    //     message = new Paho.MQTT.Message(msg_text);
+    //     message.destinationName = "commandse2/test";
+    //     client.publish(message);
+    //
+    //
+    //
+    // }
+    //
+    // // called when the client loses its connection
+    // function onConnectionLost(responseObject) {
+    //     if (responseObject.errorCode !== 0) {
+    //         console.log("onConnectionLost:" + responseObject.errorMessage);
+    //     }
+    // }
+    //
+    // // called when a message arrives
+    // function onMessageArrived(message) {
+    //     msg = JSON.parse(message.payloadString);
+    //     console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
+    // }
+});
+
+
 
 $(document).ready(function () {
     var table = $('#table_id3').DataTable({
@@ -122,10 +177,11 @@ function format_actuators(d) {
     });
     var action;
     if(actuators[index].ItemType === "Number"){
-        action = '<td><form action="/action_page.php">\n' +
+        action = '<td><form id="set_input">\n' +
             'Set value: <input type="number"><br>\n' +
-            '<input type="submit">\n' +
+            '<button id="set_button">Set</button>\n' +
             '</form></td>';
+
     } else {
         action = '<td>on/off</td>';
     }
