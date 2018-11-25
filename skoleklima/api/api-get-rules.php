@@ -27,6 +27,13 @@ $emparray = array();
 while($row = mysqli_fetch_assoc($result))
 {
   $temparray = [];
+  $sensor = $row["SensorID"];
+  $q2 = "SELECT * FROM SensorType NATURAL JOIN SensorInstance WHERE SensorInstance.SensorID=\"$sensor\"";
+  $result2 = mysqli_query($conn, $q2) or die("Error in Selecting " . mysqli_error($conn));
+  while($row2 = mysqli_fetch_assoc($result2))
+  {
+    array_push($temparray[SensorType] = $row2["SensorTypeName"]);
+  }
   array_push($temparray[RuleID] = $row["RuleID"]);
   array_push($temparray[SensorID] = $row["SensorID"]);
   array_push($temparray[Operator] = $row["Operator"]);
@@ -37,5 +44,4 @@ while($row = mysqli_fetch_assoc($result))
 echo(json_encode($emparray));
 
 $conn->close();
-
  ?>

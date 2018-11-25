@@ -22,7 +22,6 @@ function loadRoomDetails() {
         data: {sensor: 'readHumidity'}
     }).done(function (res) {
         res = JSON.parse(res);
-        console.log(res);
         var h_latest = res.results[0].series[0].values.slice(-1)[0];
         document.getElementById("humi_cur").innerHTML = h_latest[1].substring(0, 4);
     });
