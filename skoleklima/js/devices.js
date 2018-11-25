@@ -281,6 +281,7 @@ function listen() {
 }
 
 $("#select_thing").change(function() {
-    console.log(this.val());
-    refreshTableSensorsAndActuators(this.val());
+    var x = $(this).val();
+    refreshTableSensorsAndActuators(x);
+    console.log(x);
 });
