@@ -2,6 +2,7 @@
 var sensors = [];
 var actuators = [];
 var sensors_data = [];
+var chosen_actuator;
 
 // initialize the tables
 $(document).ready(function () {
@@ -125,9 +126,9 @@ function format_actuators(d) {
     if(actuators[index].ItemType === "Number"){
         action = '<td><form id="set_input">\n' +
             'Set value: <input type="number" value="10">\n' +
-            '<button id="set_button" onclick="set_actuator(' + actuators[index].Name + ')">Set</button>\n' +
+            '<button id="set_button" onclick="set_actuator()">Set</button>\n' +
             '</form></td>';
-
+        chosen_actuator = actuators[index].Name;
     } else {
         action = '<td>on/off</td>';
     }
@@ -143,15 +144,16 @@ function format_actuators(d) {
         '</table>';
 }
 
-function set_actuator (actuator_name) {
+
+
+function set_actuator () {
     var x = document.getElementById("set_input");
     var text = x.elements[0].value;
-    console.log(actuator_name);
-
+    console.log(chosen_actuator);
     // Create a client instance
     // client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
     // client.startTrace();
-    // // set callback handlers
+    // set callback handlers
     // client.onConnectionLost = onConnectionLost;
     // //client.onMessageArrived = onMessageArrived;
     // // connect the client
