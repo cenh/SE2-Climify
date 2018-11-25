@@ -38,6 +38,7 @@ function clearRuleForms() {
 }
 
 function generateRuleForms(){
+    clearRuleForms();
     $.get('api/api-get-operators.php')
         .done(function (res) {
             $("#opSelect").append('<option value="" disabled selected>Select operator</option>');
