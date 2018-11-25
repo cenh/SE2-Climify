@@ -29,27 +29,9 @@
                     <thead>
                     <tr>
                         <th></th>
-                        <th>Sensors</th>
+                        <th>Things</th>
                     </tr>
                     </thead>
-                </table>
-            </div>
-        </div>
-
-        <div style="width: 50%; float:right;">
-            <div style="width: 100%; height: auto; border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px; float:left;">
-                <table id="table_id2" class="display" style="width: 100%">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>Actuators</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
                 </table>
             </div>
         </div>
@@ -67,7 +49,6 @@
 
     </div>
 
-    <h1> hi </h1>
     <hr>
 
     <div style="text-align: center; padding-top: 30px">
