@@ -1,5 +1,6 @@
 <?php
-$names = $_POST["sensors_names"];
+//$names = $_POST["sensors_names"];
+$names = array_unique(json_decode($_POST['sensors_names']));
 
 $results = array();
 
