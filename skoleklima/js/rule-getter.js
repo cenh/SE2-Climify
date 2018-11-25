@@ -167,7 +167,7 @@ $("#submitRule").on("click",function () {
 
 });
 $('#actuatorSelect').change(function () {
-    if($('#actuatorSelect').val() === "Set Temperature"){
+    if($('#actuatorSelect').val() === "setTemperature"){
         $('#onActionSetTemp').show();
     }
     else {
