@@ -125,7 +125,7 @@ function format_actuators(d) {
     if(actuators[index].ItemType === "Number"){
         action = '<td><form id="set_input">\n' +
             'Set value: <input type="number" value="10">\n' +
-            '<button id="set_button" onclick="set_actuator()">Set</button>\n' +
+            '<button id="set_button" onclick="set_actuator(actuators[index].Name)">Set</button>\n' +
             '</form></td>';
 
     } else {
@@ -143,15 +143,12 @@ function format_actuators(d) {
         '</table>';
 }
 
-function set_actuator () {
+function set_actuator (actuator_name) {
     var x = document.getElementById("set_input");
     var text = x.elements[0].value;
+    console.log(actuator_name);
 
-    console.log(text);
-
-    // document.getElementById('current_set_temp').innerHTML = text;
-    //
-    // // Create a client instance
+    // Create a client instance
     // client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
     // client.startTrace();
     // // set callback handlers
@@ -175,10 +172,8 @@ function set_actuator () {
     //     };
     //     msg_text = JSON.stringify(msg);
     //     message = new Paho.MQTT.Message(msg_text);
-    //     message.destinationName = "commandse2/test";
+    //     message.destinationName = "commandse2/" + actuator_name;
     //     client.publish(message);
-    //
-    //
     //
     // }
     //
