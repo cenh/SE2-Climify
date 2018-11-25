@@ -143,7 +143,7 @@ $(".accordion").on("click","button#deleteRuleBtn", function() {
 });
 
 $("#modalRule").on("click",function () {
-
+    isEdit = false;
     $.get('api/api-get-sensors-from-location.php', {LocationID: rulelocationChosen()})
         .done(function (res) {
             $("#sensorSelect").empty();
@@ -178,7 +178,6 @@ $("#sensorSelect").change(function () {
 });
 
 $("#submitRule").on("click",function () {
-    isEdit = false;
     var Location = rulelocationChosen();
     var sensorID = $('#sensorSelect').val();
     var op = $('#opSelect').val();
