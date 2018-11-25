@@ -76,7 +76,7 @@ var rulelocationChosen = function() {
 };
 
 var getrules = function(){
-    $.get('api/api-get-rules.php', {LocationID: rule_Location})
+    $.get('api/api-get-rules.php', {LocationID: rulelocationChosen()})
         .done(function(res) {
             rules = JSON.parse(res);
         });
@@ -212,8 +212,9 @@ $("#submitRule").on("click",function () {
                     Actuator: actID,
                     Action: setTemp
                 }
-            }).done(function () {
-                alert("updated " +ruleID);
+            }).done(function (res) {
+                alert(res);
+                console.log("updated " +ruleID);
             });
         }
 
