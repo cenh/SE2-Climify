@@ -1,7 +1,6 @@
 <!-- Dashboard -->
 <div class="view view-dashboard">
 	<?php
-	<?php
 		$perms = array_values($permissions);
 		if(in_array("devices", $perms)) {
 			require_once "view-devices.php";
