@@ -64,13 +64,10 @@ function clearAccordion(size){
 }
 
 var rulelocationChosen = function() {
-    console.log($("#sel_location").val());
     return $("#sel_location").val();
 };
 
-
 var getrules = function(){
-
     $.get('api/api-get-rules.php', {LocationID: rule_Location})
         .done(function(res) {
             rules = JSON.parse(res);
