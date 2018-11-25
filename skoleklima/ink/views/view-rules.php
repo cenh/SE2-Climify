@@ -72,38 +72,55 @@ while($row = mysqli_fetch_array($result))
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div id="form-sensor">
-                                <b>If</b>
-                                <select id="sensorSelect">
-                                </select>
+                            <div id="form-sensor" class="row">
+                                <div class="col-sm-6">
+                                    <b>If</b>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select id="sensorSelect">
+                                    </select>
+                                </div>
                             </div>
-                            <div id="form-op">
-                                <b>is</b>
-                                <select id="opSelect">
-                                </select>
-                            </div>
-                            <div>
-                                <b>to/than</b>
-                                <input type="number" id="selectValue" name="value">
+                            <div id="form-op" class="row">
+                                <div class="col-sm-6">
+                                    <b>is</b>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select id="opSelect">
+                                    </select>
+                                </div>
                             </div>
                             <div class="row">
-                            <div class="col">
+                                <div class="col-sm-6">
+                                    <b>to/than</b>
+                                </div>
+                                <div class="col-sm-6">
+                                <input style="padding-right: 40px;text-align: right;" type="number" id="selectValue" name="value"><span id="unit" style="margin-left: -40px;"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-sm-6">
                                 <b>then</b>
-                                <select id="actionSelect">
-                                    <option value="" disabled selected>Select an action</option>
+                                <select id="actuatorSelect">
+                                    <option value="" disabled selected>Select an actuator</option>
                                 </select>
                             </div>
-                            <div class="col" id ="form-action">
-
+                            <div class="col-sm-6" id ="form-action">
+                                <div id="onActionSetTemp"
+                                    <b> to </b><input type="number" name="setTemp" min="4" max="35">
+                                </div>
                             </div>
 
                             </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" id="submitRule" class="btn btn-primary">Save changes</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" id="submitRule" class="btn btn-primary">Save changes</button>
+                            </div>
+
+
+                            </div> <!-- modal body row -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>

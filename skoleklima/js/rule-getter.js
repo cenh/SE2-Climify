@@ -1,5 +1,5 @@
-function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID){
-    var message = "if " +sensor+" is "+operator + " than " +value + " then " + action.toUpperCase();
+function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID,actuator){
+    var message = "if " +sensor+" is "+operator + " than " +value + " then set " + actuator + " to: " + action;
     var header_id = 'heading'+ruleNo;
     var body_id = 'collapse'+ruleNo;
     var html = [
@@ -34,10 +34,11 @@ function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID)
 
 function clearRuleForms() {
     $('#opselect').empty();
-    $('#actionSelect').empty();
+    $('#actuatorSelect').empty();
 }
 
 function generateRuleForms(){
+    clearRuleForms();
     $.get('api/api-get-operators.php')
         .done(function (res) {
             $("#opSelect").append('<option value="" disabled selected>Select operator</option>');
@@ -46,12 +47,13 @@ function generateRuleForms(){
                 $("#opSelect").append("<option value="+opArray[i].Type+">"+opArray[i].Type+"</option>");
             }
         });
-    $.get('api/api-get-actions.php')
+    $.get('api/api-get-actuators-from-location.php', {LocationID: rulelocationChosen()})
         .done(function(res) {
-            $("#actionSelect").append('<option value="" disabled selected>Select Action</option>');
-            actionsArray = JSON.parse(res);
-            for (i=0;i<actionsArray.length; i++){
-                $("#actionSelect").append('<option value="'+actionsArray[i].Action+'">'+actionsArray[i].Action+'</option>');
+            $("#actuatorSelect").append('<option value="" disabled selected>Select Actuator</option>');
+            actuatorArray = JSON.parse(res);
+            console.log(actuatorArray);
+            for (i=0;i<actuatorArray.length; i++){
+                $("#actuatorSelect").append('<option value="'+actuatorArray[i].SensorID+'">'+actuatorArray[i].SensorID+'</option>');
             }
         });
 
@@ -82,14 +84,20 @@ $("#fetch-sensors-for-loc").on("click",function() {
     $.get('api/api-get-rules.php', {LocationID: rule_Location})
         .done(function(res) {
             var rules = JSON.parse(res);
+            console.log(rules);
             var size = rules.length;
             clearAccordion(size);
             for(i=0;i < rules.length;i++){
                 var rule = rules[i];
-                generateDivs(rule.SensorType, rule.Operator, rule.Value, rule.Action,i,size, rule.RuleID);
+                generateDivs(rule.SensorType, rule.Operator, rule.Value, rule.Action,i,size, rule.RuleID,rule.actuatorID);
             }
         });
 });
+
+function getRuleID(attr){
+    return ruleID = $(attr).parent().parent().parent().attr('id');
+
+}
 
 $(".accordion").on("click","button.mybtn", function() {
     var thisRoom = rulelocationChosen();
@@ -121,19 +129,32 @@ $("#modalRule").on("click",function () {
     clearRuleForms();
     generateRuleForms();
 });
+$("#sensorSelect").change(function () {
 
-/*$("#sensorSelect").change(function(){
-    if($("#sensorSelect").val()){
-        generateRuleForms();
+    var sensorID = $('#sensorSelect').val();
+    console.log(sensorID);
+    if (sensorID === "readOutdoorTemperature" || sensorID === "readTemperature") {
+        console.log("t");
+        $('#unit').text('°C');
     }
-});*/
+    else if (sensorID === "readBattery" || sensorID === "readHumidity" ) {
+        $('#unit').text('%');
+    }
+    else if (sensorID === "readCO2") {
+        $('#unit').text('PPM');
+    }
+    else if (sensorID === "MainIndoorStation_Noise") {
+        $('#unit').text('dB');
+    }
+
+});
 
 $("#submitRule").on("click",function () {
     var Location = rulelocationChosen();
     var sensorID = $('#sensorSelect').val();
     var op = $('#opSelect').val();
     var value =  $('#selectValue').val();
-    var action = $('#actionSelect').val();
+    var actID = $('#actuatorSelect').val();
     var setTemp =  $('[name=setTemp]').val();
     $.ajax({
         type: "POST",
@@ -143,16 +164,19 @@ $("#submitRule").on("click",function () {
             SensorID:  sensorID,
             Operator: op,
             Value: value,
-            Action: action,
-            setTemperature: setTemp
+            actuatorID: actID,
+            Action: setTemp
         }
     }).done(function (res) {
         alert(res);
     });
 
 });
-$('#actionSelect').change(function () {
-    if($('#actionSelect').val() === "Set Temperature"){
-        $('#form-action').append('<b> to </b><input type="number" name="setTemp" min="4" max="35">');
+$('#actuatorSelect').change(function () {
+    if($('#actuatorSelect').val() === "setTemperature"){
+        $('#onActionSetTemp').show();
+    }
+    else {
+        $('#onActionSetTemp').hide();
     }
 });
