@@ -1,6 +1,6 @@
 <!-- System data map -->
 <div class="single-view view-control-map">
-    <div class="view-data-top">
+    <div class="view-control-top">
 	<span>
 		<h3>hi</h3>
 		<p>An overview of installed devices</p>
