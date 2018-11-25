@@ -279,3 +279,8 @@ function listen() {
     var roomID = drop.options[drop.selectedIndex].value;
     alert('listen for new devices in room ' + roomID);
 }
+
+$("#select_thing").change(function() {
+    console.log(this.val());
+    refreshTableSensorsAndActuators(this.val());
+});

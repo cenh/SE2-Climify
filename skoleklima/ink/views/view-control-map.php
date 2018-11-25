@@ -50,7 +50,7 @@ while($row = mysqli_fetch_array($result))
     </div>
 
     <div style="height: auto">
-        <select id="select_room" onchange="refreshTableSensorsAndActuators(value)">
+        <select id="select_thing">
             <option value="" disabled selected>Choose Your Room</option>
             <?php echo $options; ?>
         </select>
