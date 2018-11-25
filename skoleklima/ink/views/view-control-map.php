@@ -95,6 +95,7 @@ while($row = mysqli_fetch_array($result))
     <div style="height: auto">
         <select id="select_room_devices" onchange="refreshTableDevices(value)">
             <option value="" disabled selected>Choose Your Room</option>
+            <?php echo $options; ?>
         </select>
         <button id="listen_button" onclick="listen()" disabled>Discover new devices</button>
     </div>
