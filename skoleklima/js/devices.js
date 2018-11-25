@@ -186,9 +186,9 @@ function refreshTableSensorsAndActuators(roomID) {
 
         $.post("api/api-get-last-sensors-data.php", {
             sensors_names: toPush,
-        }, function (data) {
-            var jData = JSON.parse(data);
-            console.table(jData);
+        }, function (data1) {
+            var jData1 = JSON.parse(data1);
+            console.table(jData1);
         });
 
 
