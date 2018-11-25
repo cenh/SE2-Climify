@@ -270,16 +270,11 @@ function refreshTableThings(roomID) {
         sensors_data = [];
         for (var i = 0; i < jData.length; i++) {
             if (jData[i].ReadOnly === 1) {
-                table_sensors.row.add(['', jData[i].Name]).draw(false);
+                table_things.row.add(['', jData[i].Name]).draw(false);
                 sensors.push(jData[i]);
             }
-            else {
-                table_actuators.row.add(['', jData[i].Name]).draw(false);
-                actuators.push(jData[i]);
-            }
         }
-        table_sensors.draw(false);
-        table_actuators.draw(false);
+        table_things.draw(false);
 
         var toPush = [];
 
