@@ -177,15 +177,19 @@ function refreshTableSensorsAndActuators(roomID) {
         }
         table_sensors.draw(false);
         table_actuators.draw(false);
-        console.table(sensors);
-        console.table(actuators);
     });
 
+    var toPush = [];
+
+    for(var sense in sensors) {
+        toPush.push(sense.Name);
+    }
+
     $.post("api/api-get-last-sensors-data.php", {
-        sensor: "readOutdoorTemperature",
+        sensors_names: toPush,
     }, function (data) {
         var jData = JSON.parse(data);
-        console.log(jData.results[0].series[0].values[0][1]);
+        console.table(jData);
     });
 
 

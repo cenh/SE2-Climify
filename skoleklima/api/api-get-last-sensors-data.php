@@ -1,9 +1,13 @@
 <?php
-$body = $_POST["sensor"];
+$names = $_POST["sensors_names"];
 
-// TODO: any more things need to be called from this api?? (Hasn't been tested)
-$data = file_get_contents(   "http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20LAST(*)%20FROM%20".$body);
+$results = array();
 
-echo $data;
+foreach ($names as $name) {
+    $data = file_get_contents("http://localhost:8086/query?u=admin&p=groupc&db=scadb&q=SELECT%20LAST(*)%20FROM%20" . $name);
+    array_push($results, $data);
+}
 
-return $data;
+echo $results;
+
+return $results;
