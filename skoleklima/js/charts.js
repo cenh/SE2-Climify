@@ -460,7 +460,6 @@ function getGraphData(){
             console.log(jData);
             for( var j = 0; j < jData.length; j++){
                 for( var i = 0 ; i < jData[j].length ; i++ ){
-
                     sensorIDs[i]=jData[j][i].SensorID;
                     sensorAlias[i]=jData[j][i].SensorAlias;
                     if((parseFloat(jData[j][i].Humidity) != null))
@@ -474,12 +473,12 @@ function getGraphData(){
                     if(parseFloat(jData[j][i].CO2) != null)
                         if(!isNaN(parseFloat(jData[j][i].CO2)))
                             dataCO2[i]=parseFloat(jData[j][i].CO2);
-
                     //dataTemperature[i]=parseFloat(jData[0][i].value);
-                    var time = jData[1][i].time
-
+                    if(jData[1][i].time != null)
+                      if(!isNaN(jData[1][i].time))
+                        var time = jData[1][i].time;
+                    console.log(i);
                     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
                     h= time.substring(11, 13);
                     if (String(h).length==1){
                         h = "0" +h;
