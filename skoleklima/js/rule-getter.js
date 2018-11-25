@@ -125,16 +125,16 @@ $("#modalRule").on("click",function () {
 $("#sensorSelect").change(function () {
     var sensorID = $('#sensorSelect').val();
 
-    if (sensorID === 1) {
+    if (sensorID === "readOutdoorTemperature" || sensorID === "readTemperature") {
         $('#unit').innerText('°C');
     }
-    else if (sensorID === 2 ) {
+    else if (sensorID === "readBattery" || sensorID === "readHumidity" ) {
         $('#unit').innerText('%');
     }
-    else if (sensorID ===3) {
+    else if (sensorID === "readCO2") {
         $('#unit').innerText('PPM');
     }
-    else if (sensorID === 4) {
+    else if (sensorID === "MainIndoorStation_Noise") {
         $('#unit').innerText('dB');
     }
 
