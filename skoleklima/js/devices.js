@@ -110,7 +110,7 @@ function format_sensors(d) {
         '</tr>' +
         '<tr>' +
         '<td>Last Measurement:</td>' +
-        '<td></td>' +
+        '<td>' + sensors_data[index] + '</td>' +
         '</tr>' +
         '</table>';
 }
@@ -194,8 +194,6 @@ function refreshTableSensorsAndActuators(roomID) {
                 sensors_data.push(JSON.parse(jData1[j]).results[0].series[0].values[0][1]);
             }
         });
-
-        console.log(sensors_data);
     });
 }
 
