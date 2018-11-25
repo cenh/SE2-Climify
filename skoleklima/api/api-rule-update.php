@@ -15,6 +15,7 @@ $SensorID = $_POST['SensorID'];
 $Operator = $_POST['Operator'];
 $Value = $_POST['Value'];
 $Action = $_POST['Action'];
+$ActuatorID = $_POST['Actuator'];
 
 $conn = new mysqli($servername, $username, $password, $databasename);
 if ($conn->connect_error) {
@@ -23,7 +24,7 @@ if ($conn->connect_error) {
   exit;
 }
 
-$q = "UPDATE Rule SET SensorID=$SensorID, Operator=$Operator, Value=$Value, Action=$Action WHERE RuleID=$RuleID";
+$q = "UPDATE Rule SET SensorID='$SensorID', Operator='$Operator', Value=$Value, Action='$Action', ActuatorID='$ActuatorID' WHERE RuleID=$RuleID";
 $result = mysqli_query($conn, $q) or die("Error in Selecting " . mysqli_error($conn));
 
 $conn->close();

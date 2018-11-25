@@ -61,30 +61,6 @@ public class ClimifyMessageHandler extends MessageHandler {
 		}
 	}
 
-	private void executeRule(String SensorID) {
-	    System.out.println("Looking for rules on sensor: " + SensorID);
-		List<List<String>> results = new ArrayList<List<String>>();
-		results = this.mariaDB.getRulesBySensorID(SensorID);
-		for(List<String> result : results) {
-		    System.out.println("Running rule on sensor: " + result.get(0));
-			try {
-				URL url = new URL("http://localhost:80/rules/skoleklima/api/api-rule-execute.php");
-				HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-				httpCon.setDoOutput(true);
-				httpCon.setRequestMethod("POST");
-				PrintStream ps = new PrintStream(httpCon.getOutputStream());
-				ps.print("SensorID=" + result.get(0));
-				ps.print("&Operator=" + result.get(1));
-				ps.print("&Value=" + result.get(2));
-				ps.print("&Action=" + result.get(3));
-				httpCon.getInputStream();
-				ps.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
 	private void executeRule(String SensorID, String SensorValue) throws java.io.IOException,
             org.eclipse.paho.client.mqttv3.MqttPersistenceException, org.eclipse.paho.client.mqttv3.MqttException{
 	    System.out.println("Looking for rules on sensor: " + SensorID);
