@@ -200,6 +200,7 @@ public class MariaDBCommunicator {
         String Operator = "";
         String Value = "";
         String Action = "";
+        String ActuatorID = "";
 		List<List<String>> results = new ArrayList<List<String>>();
 		String sql = "SELECT * FROM Rule WHERE SensorID = ?";
 		try {
@@ -214,10 +215,12 @@ public class MariaDBCommunicator {
 				Operator = result.getString(3);
 				Value = result.getString(4);
 				Action = result.getString(5);
+				ActuatorID = result.getString(6);
 				rs.add(SensorID);
 				rs.add(Operator);
 				rs.add(Value);
 				rs.add(Action);
+				rs.add(ActuatorID);
 				results.add(rs);
             }
         } catch (SQLException e) {

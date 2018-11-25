@@ -55,6 +55,7 @@ function executeRule($sensor, $op, $value, $action) {
   $returnFromIfx = $database->query($q);
   $points = $returnFromIfx->getPoints();
   $sensor_value = array_values($points[0]);
+
   if(empty($returnFromIfx)) {
     // This is actually not bad and an error, just means that we should not execute anything
     echo '{"status":"Result from Influx was empty!"}';

@@ -91,6 +91,12 @@
     <script src="lib/paho.javascript-1.0.3/paho-mqtt.js"></script>
 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
+
+
+    <script type="text/javascript" src="js/devices.js"></script>
+
+
 
 	<?php
 		if ( $currentUserID ) { ?>

@@ -84,7 +84,6 @@ function getTableData() {
         sessionToken: sessionToken,
     }, function (data) {
         var jData = JSON.parse(data);
-        console.table(jData);
         var table = $('#roles_table').DataTable();
         table.clear();
 
