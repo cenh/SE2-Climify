@@ -37,7 +37,7 @@ function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID,
 }
 
 function clearRuleForms() {
-    $('#opselect').empty();
+    $('#opSelect').empty();
     $('#actuatorSelect').empty();
 }
 
