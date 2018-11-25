@@ -94,6 +94,11 @@ $("#fetch-sensors-for-loc").on("click",function() {
         });
 });
 
+function getRuleID(attr){
+    return ruleID = $(attr).parent().parent().parent().attr('id');
+
+}
+
 $(".accordion").on("click","button.mybtn", function() {
     var thisRoom = rulelocationChosen();
     var ruleID = $(this).parent().parent().parent().attr('id');
