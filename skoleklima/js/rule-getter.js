@@ -1,3 +1,5 @@
+var isEdit = false;
+var ruleID = -1;
 
 function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID,actuator){
     var message = "if " +sensor+" is "+operator + " than " +value + " then set " + actuator + " to: " + action;
@@ -82,6 +84,17 @@ var getrules = function(){
 
 };
 
+function getRuleID(attr){
+    return ruleID = $(attr).parent().parent().parent().attr('id');
+
+}
+
+$("#editRuleBtn").on("click", function () {
+    ruleID = (getRuleID(this));
+
+
+});
+
 $("#fetch-sensors-for-loc").on("click",function() {
     var rule_Location = $("#sel_location").val();
 
@@ -98,10 +111,7 @@ $("#fetch-sensors-for-loc").on("click",function() {
         });
 });
 
-function getRuleID(attr){
-    return ruleID = $(attr).parent().parent().parent().attr('id');
 
-}
 
 $(".accordion").on("click","button#deleteRuleBtn", function() {
     var thisRoom = rulelocationChosen();
@@ -121,6 +131,7 @@ $(".accordion").on("click","button#deleteRuleBtn", function() {
 });
 
 $("#modalRule").on("click",function () {
+
     $.get('api/api-get-sensors-from-location.php', {LocationID: rulelocationChosen()})
         .done(function (res) {
             $("#sensorSelect").empty();
@@ -133,6 +144,7 @@ $("#modalRule").on("click",function () {
     clearRuleForms();
     generateRuleForms();
 });
+
 $("#sensorSelect").change(function () {
 
     var sensorID = $('#sensorSelect').val();
@@ -154,26 +166,48 @@ $("#sensorSelect").change(function () {
 });
 
 $("#submitRule").on("click",function () {
+    isEdit = false;
     var Location = rulelocationChosen();
     var sensorID = $('#sensorSelect').val();
     var op = $('#opSelect').val();
     var value =  $('#selectValue').val();
     var actID = $('#actuatorSelect').val();
     var setTemp =  $('[name=setTemp]').val();
-    $.ajax({
-        type: "POST",
-        url: "api/api-rule-save.php",
-        data: {
-            LocationID: Location,
-            SensorID:  sensorID,
-            Operator: op,
-            Value: value,
-            actuatorID: actID,
-            Action: setTemp
+    if(!(isEdit)) {
+        $.ajax({
+            type: "POST",
+            url: "api/api-rule-save.php",
+            data: {
+                LocationID: Location,
+                SensorID:  sensorID,
+                Operator: op,
+                Value: value,
+                actuatorID: actID,
+                Action: setTemp
+            }
+        }).done(function (res) {
+            alert(res);
+        });
+    } else {
+        if(!(isEdit === -1)) {
+            $.ajax({
+                type: "POST",
+                url: "api/api-rule-update.php",
+                data: {
+                    RuleID: ruleID,
+                    SensorID:  sensorID,
+                    Operator: op,
+                    Value: value,
+                    Actuator: actID,
+                    Action: setTemp
+                }
+            }).done(function () {
+                alert("updated " +ruleID);
+            });
         }
-    }).done(function (res) {
-        alert(res);
-    });
+
+    }
+
 
 });
 $('#actuatorSelect').change(function () {
