@@ -8,6 +8,8 @@ foreach ($names as $name) {
     array_push($results, $data);
 }
 
-echo $results;
+$resultsJSON = json_encode( $results , JSON_UNESCAPED_UNICODE );
 
-return $results;
+echo $resultsJSON;
+
+return $resultsJSON;
