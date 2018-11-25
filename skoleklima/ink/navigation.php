@@ -111,8 +111,8 @@
 				{ ?>
 					<li class="menu-link menu-link-control-map" data-go-to="control-map"></i>
 							<a href="#/control-map">
-									<i class="menu-link-ico nav-icon fa fa-times-circle" aria-hidden="true"></i>
-									<p class="menu-link-text">Room X</p>
+									<i class="menu-link-ico nav-icon fa fa-sitemap" aria-hidden="true"></i>
+									<p class="menu-link-text">Control Map</p>
 							</a>
 					</li>
 				<?php }
