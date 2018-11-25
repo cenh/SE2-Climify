@@ -474,10 +474,7 @@ function getGraphData(){
                         if(!isNaN(parseFloat(jData[j][i].CO2)))
                             dataCO2[i]=parseFloat(jData[j][i].CO2);
                     //dataTemperature[i]=parseFloat(jData[0][i].value);
-                    if(jData[1][i].time != null)
-                      if(!isNaN(jData[1][i].time))
-                        var time = jData[1][i].time;
-                    console.log(i);
+                    var time = jData[1][i].time;
                     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                     h= time.substring(11, 13);
                     if (String(h).length==1){
