@@ -181,7 +181,7 @@ function refreshTableSensorsAndActuators(roomID) {
         console.table(actuators);
     });
 
-    $.post("api/api-get-all-sensordata.php", {
+    $.post("api/api-get-last-sensors-data.php", {
         sensor: "readOutdoorTemperature",
     }, function (data) {
         var jData = JSON.parse(data);
