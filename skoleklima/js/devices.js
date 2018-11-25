@@ -14,7 +14,6 @@ $(document).ready(function () {
                 "orderable": false,
                 "data": null,
                 "defaultContent": '',
-                "width": "30px"
             },
             null
         ],
@@ -50,7 +49,6 @@ $(document).ready(function () {
                 "orderable": false,
                 "data": null,
                 "defaultContent": '',
-                "width": "10px"
             },
             null
         ],
@@ -182,6 +180,15 @@ function refreshTableSensorsAndActuators(roomID) {
         console.table(sensors);
         console.table(actuators);
     });
+
+    $.post("api/api-get-all-sensordata.php", {
+        sensor: "readOutdoorTemperature",
+    }, function (data) {
+        var jData = JSON.parse(data);
+        console.table(jData);
+    });
+
+
 }
 
 function refreshTableDevices(roomID) {
