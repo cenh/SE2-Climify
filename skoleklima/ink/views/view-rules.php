@@ -101,12 +101,14 @@ while($row = mysqli_fetch_array($result))
                             <div class="row">
                             <div class="col-sm-6">
                                 <b>then</b>
-                                <select id="actionSelect">
-                                    <option value="" disabled selected>Select an action</option>
+                                <select id="actuatorSelect">
+                                    <option value="" disabled selected>Select an actuator</option>
                                 </select>
                             </div>
                             <div class="col-sm-6" id ="form-action">
-
+                                <div id="onActionSetTemp"
+                                    <b> to </b><input type="number" name="setTemp" min="4" max="35">
+                                </div>
                             </div>
 
                             </div>

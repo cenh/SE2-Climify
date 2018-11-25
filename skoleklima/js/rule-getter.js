@@ -34,7 +34,7 @@ function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID)
 
 function clearRuleForms() {
     $('#opselect').empty();
-    $('#actionSelect').empty();
+    $('#actuatorSelect').empty();
 }
 
 function generateRuleForms(){
@@ -49,10 +49,10 @@ function generateRuleForms(){
         });
     $.get('api/api-get-actions.php')
         .done(function(res) {
-            $("#actionSelect").append('<option value="" disabled selected>Select Action</option>');
+            $("#actuatorSelect").append('<option value="" disabled selected>Select Action</option>');
             actionsArray = JSON.parse(res);
             for (i=0;i<actionsArray.length; i++){
-                $("#actionSelect").append('<option value="'+actionsArray[i].Action+'">'+actionsArray[i].Action+'</option>');
+                $("#actuatorSelect").append('<option value="'+actionsArray[i].Action+'">'+actionsArray[i].Action+'</option>');
             }
         });
 
@@ -123,18 +123,13 @@ $("#modalRule").on("click",function () {
     generateRuleForms();
 });
 
-/*$("#sensorSelect").change(function(){
-    if($("#sensorSelect").val()){
-        generateRuleForms();
-    }
-});*/
 
 $("#submitRule").on("click",function () {
     var Location = rulelocationChosen();
     var sensorID = $('#sensorSelect').val();
     var op = $('#opSelect').val();
     var value =  $('#selectValue').val();
-    var action = $('#actionSelect').val();
+    var action = $('#actuatorSelect').val();
     var setTemp =  $('[name=setTemp]').val();
     $.ajax({
         type: "POST",
@@ -152,8 +147,11 @@ $("#submitRule").on("click",function () {
     });
 
 });
-$('#actionSelect').change(function () {
-    if($('#actionSelect').val() === "Set Temperature"){
-        $('#form-action').append('<b> to </b><input type="number" name="setTemp" min="4" max="35">');
+$('#actuatorSelect').change(function () {
+    if($('#actuatorSelect').val() === "Set Temperature"){
+        $('#onActionSetTemp').show();
+    }
+    else {
+        $('#onActionSetTemp').hide();
     }
 });

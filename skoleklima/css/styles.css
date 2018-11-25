@@ -2510,3 +2510,6 @@ input[type=range]:focus::-webkit-slider-runnable-track {
       padding: 0 10px; } }
 
 /*# sourceMappingURL=styles.css.map */
+#onActionSetTemp {
+  display: none;
+}
