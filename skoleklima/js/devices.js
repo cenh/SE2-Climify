@@ -177,22 +177,22 @@ function refreshTableSensorsAndActuators(roomID) {
         }
         table_sensors.draw(false);
         table_actuators.draw(false);
+
+        var toPush = [];
+
+        for (var j = 0; j < sensors.length; j++) {
+            toPush.push(sensors[j].Name);
+        }
+
+        $.post("api/api-get-last-sensors-data.php", {
+            sensors_names: toPush,
+        }, function (data) {
+            var jData = JSON.parse(data);
+            console.table(jData);
+        });
+
+
     });
-
-    var toPush = [];
-
-    for (var i = 0; i < sensors.length; i++) {
-        toPush.push(sensors[i].Name);
-    }
-
-    $.post("api/api-get-last-sensors-data.php", {
-        sensors_names: toPush,
-    }, function (data) {
-        var jData = JSON.parse(data);
-        console.table(jData);
-    });
-
-
 }
 
 function refreshTableDevices(roomID) {
