@@ -38,7 +38,9 @@ while($row = mysqli_fetch_assoc($result))
   array_push($temparray[SensorID] = $row["SensorID"]);
   array_push($temparray[Operator] = $row["Operator"]);
   array_push($temparray[Value] = $row["Value"]);
-  array_push($temparray[Action] = $row["Action"]);
+  array_push($temparray[setTemp] = $row["Action"]);
+  array_push($temparray[Actuator] = $row["ActuatorID"]);
+
   array_push($emparray, $temparray);
 }
 echo(json_encode($emparray));
