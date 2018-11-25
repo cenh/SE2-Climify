@@ -123,9 +123,11 @@ $("#modalRule").on("click",function () {
     generateRuleForms();
 });
 $("#sensorSelect").change(function () {
-    var sensorID = $('#sensorSelect').val();
 
+    var sensorID = $('#sensorSelect').val();
+    console.log(sensorID);
     if (sensorID === "readOutdoorTemperature" || sensorID === "readTemperature") {
+        console.log("t");
         $('#unit').innerText('°C');
     }
     else if (sensorID === "readBattery" || sensorID === "readHumidity" ) {

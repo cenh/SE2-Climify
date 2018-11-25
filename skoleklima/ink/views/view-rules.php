@@ -95,7 +95,7 @@ while($row = mysqli_fetch_array($result))
                                     <b>to/than</b>
                                 </div>
                                 <div class="col-sm-6">
-                                <input type="number" id="selectValue" name="value"><span style="margin-left: -20px;"><p id="unit"></p></span>
+                                <input style="padding-right: 40px;text-align: right;" type="number" id="selectValue" name="value"><span id="unit" style="margin-left: -40px;"></span>
                                 </div>
                             </div>
                             <div class="row">
