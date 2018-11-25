@@ -1,3 +1,4 @@
+
 function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID,actuator){
     var message = "if " +sensor+" is "+operator + " than " +value + " then set " + actuator + " to: " + action;
     var header_id = 'heading'+ruleNo;
@@ -18,7 +19,10 @@ function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID,
         message,
         '</div>',
         '<div class="col-sm-4">',
-        '<button class="mybtn" style="float:right">',
+        '<button class="mybtn" id="editRuleBtn" style="float:right">',
+        '<i class="fa fa-pencil" aria-hidden="true"></i>',
+        '</button>',
+        '<button class="mybtn" id="deleteRuleBtn" style="float:right">',
         '<i class="fa fa-trash" aria-hidden="true"></i>',
         '</button>',
         '</div>',
@@ -99,7 +103,7 @@ function getRuleID(attr){
 
 }
 
-$(".accordion").on("click","button.mybtn", function() {
+$(".accordion").on("click","button#deleteRuleBtn", function() {
     var thisRoom = rulelocationChosen();
     var ruleID = $(this).parent().parent().parent().attr('id');
     $.ajax({
