@@ -159,7 +159,7 @@ $("#submitRule").on("click",function () {
             Operator: op,
             Value: value,
             actuatorID: actID,
-            setTemperature: setTemp
+            Action: setTemp
         }
     }).done(function (res) {
         alert(res);
