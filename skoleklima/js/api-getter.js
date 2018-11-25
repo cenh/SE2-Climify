@@ -35,6 +35,6 @@ function loadRoomDetails() {
         res = JSON.parse(res);
         var set_latest = res.results[0].series[0].values.slice(-1)[0];
         document.getElementById("current_set_temp").innerHTML = set_latest[1];
-    })
+    });
 
 }

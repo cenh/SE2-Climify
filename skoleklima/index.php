@@ -20,6 +20,8 @@
 	<link rel="stylesheet" href="lib/checkbox/checkbox_style.css">
 	<link rel="stylesheet" type="text/css" href="lib/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="croppie/croppie.css" />
+
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">-->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 
 </head>
@@ -91,6 +93,12 @@
     <script src="lib/paho.javascript-1.0.3/paho-mqtt.js"></script>
 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
+
+
+    <script type="text/javascript" src="js/devices.js"></script>
+
+
 
 	<?php
 		if ( $currentUserID ) { ?>
