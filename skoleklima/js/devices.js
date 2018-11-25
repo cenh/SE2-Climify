@@ -75,7 +75,7 @@ $(document).ready(function () {
     });
 });
 
-$("#set_button").click(function () {
+function set_actuator () {
     console.log("Button Pressed");
     // var x = document.getElementById("temp");
     // var text = x.elements[0].value;
@@ -125,7 +125,7 @@ $("#set_button").click(function () {
     //     msg = JSON.parse(message.payloadString);
     //     console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
     // }
-});
+}
 
 
 
@@ -179,7 +179,7 @@ function format_actuators(d) {
     if(actuators[index].ItemType === "Number"){
         action = '<td><form id="set_input">\n' +
             'Set value: <input type="number"><br>\n' +
-            '<button id="set_button">Set</button>\n' +
+            '<button id="set_button" onclick="set_actuator()">Set</button>\n' +
             '</form></td>';
 
     } else {
