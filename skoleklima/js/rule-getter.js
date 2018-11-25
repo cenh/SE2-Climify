@@ -64,6 +64,7 @@ function clearAccordion(size){
 }
 
 var rulelocationChosen = function() {
+    console.log($("#sel_location").val());
     return $("#sel_location").val();
 };
 

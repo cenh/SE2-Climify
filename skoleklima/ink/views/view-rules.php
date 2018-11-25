@@ -1,6 +1,6 @@
 <?php
 
-$query = "SELECT LocationID FROM Location";
+$query = "SELECT LocationID, LocationName FROM Location";
 
 
 $servername = DB_HOST;
@@ -27,7 +27,7 @@ $emparray = array();
 $options = "";
 while($row = mysqli_fetch_array($result))
 {
-    $options =$options."<option>$row[0]</option>";
+    $options =$options."<option value=\"$row[0]\">$row[1]</option>";
 }
 ?>
 
