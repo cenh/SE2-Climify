@@ -69,7 +69,20 @@ else{
         exit;
     }
 }
-$result = $conn->query("SELECT SensorID FROM SensorInstance WHERE LocationID='$LocationID'");
+
+$q = "SELECT items.* FROM Items as items
+      INNER JOIN RaspberryPis as rp
+      INNER JOIN Things as t
+      INNER JOIN ThingsChannels as tc
+      INNER JOIN Links as links
+      WHERE rp.LocationID = $LocationID
+      AND t.RaspberryPiUID = rp.UID
+      AND tc.ThingUID = t.UID
+      AND links.ChannelUID = tc.ChannelUID
+      AND items.Name = links.ItemName
+      AND items.ReadOnly = 1";
+
+$result = $conn->query($q);
 
 $row_cnt = $result->num_rows;
 
@@ -85,7 +98,7 @@ $to = strtotime($to) * $multi;
 
 while ($currentSensorIDArray = mysqli_fetch_assoc($result)) {
     //LAST() -> newest entry
-  $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["SensorID"] . '"' . 'WHERE time >=' . $from . ' AND time <=' . $to . '');
+  $currentSensorRow = $database->query('SELECT * FROM "' . $currentSensorIDArray["Name"] . '"' . 'WHERE time >=' . $from . ' AND time <=' . $to . '');
 
   $currentPoints = $currentSensorRow ->getPoints();
   array_push($sensors,$currentPoints);
