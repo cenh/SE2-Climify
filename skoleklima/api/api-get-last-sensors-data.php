@@ -9,8 +9,8 @@ foreach ($names as $name) {
     array_push($results, $data);
 }
 
-$resultsJSON = json_encode( $results , JSON_UNESCAPED_UNICODE );
+//$resultsJSON = json_encode( $results , JSON_UNESCAPED_UNICODE );
 
-echo $resultsJSON;
+echo $results;
 
-return $resultsJSON;
+return $results;
