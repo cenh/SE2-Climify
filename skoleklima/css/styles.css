@@ -131,6 +131,27 @@
   font-size: 15px;
 }
 
+.btn-link {
+  color: #000000;
+  background-color: transparent;
+}
+
+.btn-link:hover .btnlink:focus {
+  background-color: transparent; !important;
+}
+
+.mybtn {
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  min-width:unset;
+}
+
+.mybtn:hover{
+  color: #002b61;
+}
+
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
   background-color: #ccc;
@@ -338,17 +359,17 @@ label {
   cursor: pointer; }
 
 button {
-  border-radius: 0% !important;
-  color: #000000 !important;
-  outline: none !important;
-  background-color: #89b2c8 !important;
-  padding: .2em .5em !important;
-  border: 1px solid #4f5567 !important;
+  border-radius: 0% ;
+  color: #000000 ;
+  outline: none ;
+  background-color: #89b2c8 ;
+  padding: .2em .5em ;
+  border: 1px solid #4f5567;
   height: 26px;
   min-width: 140px; }
   button:hover, button:focus {
-    cursor: pointer !important;
-    background-color: #92b2c7 !important; }
+    cursor: pointer;
+}
 
 .delte-button {
   background: #DD6B55 !important; }
@@ -420,7 +441,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 
 /**********************************/
 /**********************************/
-.display-none-element {
+.display-none-element {-
   display: none !important; }
 
 .viewport {
@@ -2489,3 +2510,6 @@ input[type=range]:focus::-webkit-slider-runnable-track {
       padding: 0 10px; } }
 
 /*# sourceMappingURL=styles.css.map */
+#onActionSetTemp {
+  display: none;
+}
