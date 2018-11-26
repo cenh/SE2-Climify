@@ -24,8 +24,8 @@ if ($conn->connect_error) {
   exit;
 }
 
-$q = "UPDATE Rule SET SensorID='$SensorID', Operator='$Operator', Value=$Value, Action='$Action', ActuatorID='$ActuatorID' WHERE RuleID=$RuleID";
+$q="UPDATE Rule SET SensorID='$SensorID', Operator='$Operator', Value=$Value, Action='$Action', ActuatorID='$ActuatorID' WHERE RuleID=$RuleID";
 $result = mysqli_query($conn, $q) or die("Error in Selecting " . mysqli_error($conn));
 
 $conn->close();
-?>
+ ?>

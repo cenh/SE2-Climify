@@ -213,6 +213,7 @@ $("#submitRule").on("click",function () {
                     Action: setTemp
                 }
             }).done(function (res) {
+
                 alert(res);
                 console.log("updated " +ruleID);
             });
