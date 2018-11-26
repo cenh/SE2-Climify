@@ -113,7 +113,6 @@ $("#fetch-sensors-for-loc").on("click",function() {
     $.get('api/api-get-rules.php', {LocationID: rule_Location})
         .done(function(res) {
             var rules = JSON.parse(res);
-            console.log(rules);
             var size = rules.length;
             clearAccordion(size);
             for(i=0;i < rules.length;i++){
