@@ -1,6 +1,6 @@
 <?php
 
-$query = "SELECT LocationID FROM Location";
+$query = "SELECT LocationID, LocationName FROM Location";
 
 
 $servername = DB_HOST;
@@ -27,7 +27,7 @@ $emparray = array();
 $options = "";
 while($row = mysqli_fetch_array($result))
 {
-    $options =$options."<option>$row[0]</option>";
+    $options =$options."<option value=\"$row[0]\">$row[1]</option>";
 }
 ?>
 
@@ -48,24 +48,79 @@ while($row = mysqli_fetch_array($result))
     <button style="display:none;" class="collapsible">
         <span class="ui-button-text"></span>
     </button>
-    <div class="content">
-        <div class="container-fluid">
-            <h2 id="rules-title">Rules for room</h2>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">Rule 1
-                        <p>This rule opens a window when the read outdoor temperature is greater than 24 degrees</p>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="switch">
-                            <input id="rulecheck" type="checkbox">
-                            <span class="slider round"></span>
-                        </label>
+    <div class="accordion" id="accordionExample">
+
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <p id="rule-count"></p>
+            </div>
+            <div class="col-md-4">
+                <button class="link" style="float: right" data-toggle="modal" data-target="#modalCreateRule" id="modalRule">
+                    Create new rule
+                </button>
+            </div>
+            <!-- MODAL -->
+            <div class="modal fade" id="modalCreateRule" tabindex="-1" role="dialog" aria-labelledby="modalCreateRuleTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalCreateRuleTitle">Add a rule</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="form-sensor" class="row">
+                                <div class="col-sm-6">
+                                    <b>If</b>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select id="sensorSelect">
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="form-op" class="row">
+                                <div class="col-sm-6">
+                                    <b>is</b>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select id="opSelect">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <b>to/than</b>
+                                </div>
+                                <div class="col-sm-6">
+                                <input style="padding-right: 40px;text-align: right;" type="number" id="selectValue" name="value"><span id="unit" style="margin-left: -40px;"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                <b>then</b>
+                                <select id="actuatorSelect">
+                                    <option value="" disabled selected>Select an actuator</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6" id ="form-action">
+                                <div id="onActionSetTemp"
+                                    <b> to </b><input type="number" name="setTemp" min="4" max="35">
+                                </div>
+                            </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" id="submitRule" class="btn btn-primary">Save changes</button>
+                            </div>
+
+
+                            </div> <!-- modal body row -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
-</div>

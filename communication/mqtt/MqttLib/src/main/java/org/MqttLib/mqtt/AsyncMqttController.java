@@ -22,7 +22,7 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
  * @author nch
  *
  */
-public class AsyncMqttController implements MqttCallbackExtended {
+public class AsyncMqttController implements MqttCallbackExtended, MessageCallback {
 
 	private int numberOfThreads;
 	private String brokerUrl;
@@ -123,7 +123,7 @@ public class AsyncMqttController implements MqttCallbackExtended {
 	}
 
 
-	protected void publish(String topic, int qos, byte[] payload) throws MqttPersistenceException, MqttException {
+	public void publish(String topic, int qos, byte[] payload) throws MqttPersistenceException, MqttException {
 		MqttMessage message = new MqttMessage(payload);
 		message.setQos(qos);
 
@@ -177,6 +177,7 @@ public class AsyncMqttController implements MqttCallbackExtended {
 	protected void executeTask(Runnable runnable) {
 		threadPool.execute(runnable);
 	}
+
 
 }
 

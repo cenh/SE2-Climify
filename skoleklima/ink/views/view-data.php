@@ -157,7 +157,6 @@
 				<!-- content goes here -->
 			</div>
 			    <button id="btn-get-compare-data">Download data</button>
-
 		</div>
 	</div> <!-- .graph-area-wrapper-2 -->
 </div>

@@ -35,7 +35,6 @@
 </plugin>
   </plugins>
 </build>
-  <groupId>se2.groupc</groupId>
   <artifactId>RaspberryPi</artifactId>
   <name>RaspberryPi</name>  
   <url>http://maven.apache.org</url>
