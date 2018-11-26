@@ -31,7 +31,7 @@
 					<li class="menu-link menu-link-data-map" data-go-to="data-map">
 						<a href="#/sensors">
 							<i class="menu-link-ico nav-icon fa fa-map" aria-hidden="true"></i>
-							<p class="menu-link-text">Sensors</p>
+							<p class="menu-link-text">Devices</p>
 						</a>
 					</li>
 				<?php }
