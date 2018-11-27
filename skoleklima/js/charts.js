@@ -520,6 +520,7 @@ function getGraphData() {
                         if (!isNaN(parseFloat(jData[j][i].CO2)))
                             dataCO2[i] = parseFloat(jData[j][i].CO2);
 
+                    //dataTemperature[i]=parseFloat(jData[0][i].value);
                     var time = jData[0][i].time
 
                     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

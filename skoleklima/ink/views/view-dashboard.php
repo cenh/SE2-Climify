@@ -32,6 +32,9 @@
 		if(in_array("roomX", $perms)) {
 			require_once "view-roomX.php";
 		}
+		if(in_array("control-map", $perms)) {
+			require_once "view-control-map.php";
+		}
 	?>
 	<div class="go-to-top">
 		<a href="<?php echo $company_Website ?>#top-header" target="_self"><i class="ico-go-to-top fa fa-arrow-up link" aria-hidden="true"></i></a>
