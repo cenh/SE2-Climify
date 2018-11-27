@@ -76,6 +76,7 @@ $(document).ready(function () {
     });
 });
 
+// initialize the tables
 $(document).ready(function () {
     var table = $('#table_id3').DataTable({
         "searching": false,
@@ -83,19 +84,38 @@ $(document).ready(function () {
         "info": false,
         "columns": [
             {
-                "className": 'delete',
-                "orderable": false
+                "className": 'details-control',
+                "orderable": false,
+                "data": null,
+                "defaultContent": '',
             },
             null
         ],
         "order": [[1, 'asc']]
     });
 
+    // // Add event listener for opening and closing details
+    // $('#table_id3 tbody').on('click', 'td.delete', function () {
+    //     var tr = $(this).closest('tr');
+    //     var row = table.row(tr);
+    //     alert('Delete ' + row.data()[1]);
+    // });
+
     // Add event listener for opening and closing details
-    $('#table_id3 tbody').on('click', 'td.delete', function () {
+    $('#table_id3 tbody').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
-        alert('Delete ' + row.data()[1]);
+
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child(format_sensors(row.data())).show();
+            tr.addClass('shown');
+        }
     });
 });
 
