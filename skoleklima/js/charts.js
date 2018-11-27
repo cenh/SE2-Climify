@@ -4,15 +4,11 @@
 
 
 $(document).ready(function () {
-
-
     $("#retrunNoSchoolData").html("Choose the following to get data:<br/>" + "<br/><br/>" + "1) institution" + "<br/><br/>" + "2) floorplan" + "<br/><br/>" + "3) location");
-
     $("#retrunNoSchoolGraph2").html("Choose the following to compare locations on a floorplan:<br/>" + "<br/><br/>");
     $("#retrunNoSchoolGraph2Part2").html("1) institution" + "<br/><br/>" + "2) floorplan");
     $("#retrunNoSchoolGraph2").show();
     $("#retrunNoSchoolGraph2").attr('attr', 'visibility:visible');
-
     compareData = {
         dataDates: [],
         dataTemperature: [],
@@ -24,15 +20,11 @@ $(document).ready(function () {
     };
     dateRangePicker2();
     dateRangePicker1();
-
-
 })
-
 
 $("#btn-get-compare-data").click(function () {
     startCompareCharset();
 });
-
 
 $('#check-chart-data-temperature').prop('checked', true);
 $('#check-chart-data-temperature').change(function () {
@@ -48,7 +40,6 @@ $('#check-chart-data-temperature').change(function () {
         }
     }
 });
-
 
 $('#check-chart-data-noiseAvg').change(function () {
     if (enableDataSettings == true) {
@@ -121,18 +112,14 @@ $('#check-chart-data-co2').change(function () {
     }
 });
 
-
 function howToDraw() {
-
     if (numberOfChecked == 1) {
         drawGraphSingle();
     }
     else if (numberOfChecked == 2) {
         drawGraphDouble();
     }
-
 }
-
 
 var graph = {
     icMeterQR: false,
@@ -257,10 +244,8 @@ function showWarningNoSchoolGraph2() {
     } else {
         $("#retrunNoSchoolGraph2").hide();
         $("#retrunNoSchoolGraph2Part2").hide();
-
     }
 }
-
 
 function clearGraphMetaInfo() {
     $(".view-data-control .currentDeciveText h4").text("");
@@ -269,27 +254,17 @@ function clearGraphMetaInfo() {
 
 // Daterangepicker
 function dateRangePicker1() {
-
-
     var start = moment().subtract(1, 'days');
     var end = moment();
 
     function cb(start, end) {
-
-
         $('#reportrange1 span').html(start.format('D. MMMM YYYY') + ' - ' + end.format('D. MMMM YYYY'));
-
-
         startDateReplacement = start.format('YYYY-MM-DD');
         endDateReplacement = end.format('YYYY-MM-DD');
-
-
         if (fetchingDataGraph == false) {
             fetchingDataGraph = true;
             disableGraphSettingsSelections();
         }
-
-
     }
 
     $('#reportrange1').daterangepicker({
@@ -333,19 +308,13 @@ function dateRangePicker1() {
 }
 
 function dateRangePicker2() {
-
-
     var start = moment().subtract(1, 'days');
     var end = moment();
 
     function cb(start, end) {
         $('#reportrange2 span').html(start.format('D. MMMM YYYY') + ' - ' + end.format('D. MMMM YYYY'));
-
-
         startDateReplacement = start.format('YYYY-MM-DD');
         endDateReplacement = end.format('YYYY-MM-DD');
-
-
     }
 
     $('#reportrange2').daterangepicker({
@@ -391,7 +360,6 @@ function GTMtimeRound(time) {
     var coeff = 1000 * 60 * 5;
     var GTMtime = new Date(time);
     var GTMtime = new Date(Math.round(GTMtime.getTime() / coeff) * coeff)
-
     var month;
     switch (GTMtime.getMonth()) {
         case 0:
@@ -430,22 +398,15 @@ function GTMtimeRound(time) {
         case 11:
             month = "December";
     }
-
     var realtime = GTMtime.getDate() + ". " + month + " " + GTMtime.toTimeString().split(' ')[0].slice(0, -3);
     return realtime;
 }
 
-
 function getGraphData() {
-
-
     //hide user "directions/manual"
     $("#retrunNoSchoolData").hide();
-
-
     $("#retrunNoSchoolGraph2").hide();
     $("#retrunNoSchoolGraph2Part2").hide();
-
 
     LocationID = $(".chart-select-location").find('option:selected').attr('id');
     LocationName = $(".chart-select-location").find('option:selected').attr('value');
@@ -463,7 +424,6 @@ function getGraphData() {
     }
 
     graph.autoUpdate = false;
-
     xDataTypeSettings = $('.chart-select-device option:selected').attr('data-xData');
     var templateChekXData = '<span class="canvas-settings-check inline-checkbox xDataCheckbox">\
 <input id="check-chart-data-xData" class="canvas-settings regular-checkbox" type="checkbox" value="false">\
@@ -472,21 +432,17 @@ function getGraphData() {
 </span>';
 
     var sUrl = "api/api-get-graph-data.php";
-
     clearChartData();
     $.post(sUrl, {
         fAY2YfpdKvR: sender,
         LocationID: LocationID,
         from: startDateReplacement + "T00:00:00Z",
         to: endDateReplacement + "T23:59:59Z"
-
     }, function (sData) {
         var jData = JSON.parse(sData);
         //console.log(jData);
         if (jData.status != "nodata" && jData.status != "no sensors retrived") {
-
             var counter = 0;
-
             sensorIDs = [];
             sensorAlias = [];
             dataDates = [];
@@ -496,14 +452,12 @@ function getGraphData() {
             dataCO2 = [];
             dataNoise = [];
             dataNoisePeak = [];
-
             xDataExist = false;
 
             $("btn-download-graph-data").removeClass("button-disabled");
             console.log(jData);
             for (var j = 0; j < jData.length; j++) {
                 for (var i = 0; i < jData[j].length; i++) {
-
                     sensorIDs[i] = jData[j][i].SensorID;
                     sensorAlias[i] = jData[j][i].SensorAlias;
                     if ((parseFloat(jData[j][i].Humidity) != null))
@@ -536,13 +490,16 @@ function getGraphData() {
                     }
 
                     month = months[parseInt(time.substring(5, 7)) - 1];
-
                     date = time.substring(8, 10);
-
                     dataDates[i] = date + ". " + month + " " + h + ":" + m;
                 }
             }
-            console.log(getStats(dataTemperature));
+            // Calculate stats!
+            statsTemperature = getStats(dataTemperature);
+            statsHumidity = getStats(dataHumidity);
+            statsCO2 = getStats(dataCO2);
+            statsNoise = getStats(dataNoise);
+
             enableDataSettings = true;
             $('.canvas-settings').attr('disabled', false);
             $('#chart-fill').attr('disabled', false);
@@ -555,23 +512,15 @@ function getGraphData() {
 
             chart1TryUpdateData = 0;
         }
-
         else {
-
             $('#canvas1').remove();
             $('.chartjs-hidden-iframe').remove();
-
-
             $("#gettingDataWait").hide();
             $("#retrunNoSchoolData").text("There are no data for the chosen location at the specified time interval");
             $("#retrunNoSchoolData").show();
             enableGraphSettingsSelections();
-
-
         }
     });
-
-
 }
 
 function disableGraphSettingsSelections() {
@@ -598,8 +547,6 @@ function enableGraphSettingsSelections() {
 }
 
 function drawGraphDouble() {
-
-
     //choosing yaxes:
     var numAttributes = 0;
 
@@ -609,8 +556,8 @@ function drawGraphDouble() {
     yAxisIDnoiseAvg = 'left-y-axis';
     yAxisIDnoisePeak = 'left-y-axis';
 
-
     if (!graph.dataSetHidden.temperature) {
+        console.log(statsTemperature);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDTemp = 'left-y-axis';
@@ -620,8 +567,8 @@ function drawGraphDouble() {
         }
     }
 
-
     if (!graph.dataSetHidden.humidity) {
+        console.log(statsHumidity);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDHum = 'left-y-axis';
@@ -631,8 +578,8 @@ function drawGraphDouble() {
         }
     }
 
-
     if (!graph.dataSetHidden.co2) {
+        console.log(statsCO2);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDco2 = 'left-y-axis';
@@ -642,8 +589,8 @@ function drawGraphDouble() {
         }
     }
 
-
     if (!graph.dataSetHidden.noiseAvg) {
+        console.log(statsNoise);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDnoiseAvg = 'left-y-axis';
@@ -653,8 +600,8 @@ function drawGraphDouble() {
         }
     }
 
-
     if (!graph.dataSetHidden.noisePeak) {
+        console.log(statsNoise);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDnoisePeak = 'left-y-axis';
@@ -663,7 +610,6 @@ function drawGraphDouble() {
             yAxisIDnoisePeak = 'right-y-axis';
         }
     }
-
 
     if (numAttributes == 2) {
         if (graph.dataSetHidden.temperature) {
@@ -683,15 +629,11 @@ function drawGraphDouble() {
         }
     }
 
-
     if (dataDates.length !== 0) {
-
         $('#canvas1').remove();
         $('.chartjs-hidden-iframe').remove();
         $('.canvas1').append('<canvas id="canvas1" width="2" height="1"></canvas>');
-
         //updateLiveData();
-
         $("#gettingDataWait").hide();
         $("#canvas1").show();
 
@@ -720,8 +662,6 @@ function drawGraphDouble() {
                 labels: dataDates,
                 datasets: [
                     {
-
-
                         label: "Temperature (°C)",
                         fill: graph.chartFill,
                         backgroundColor: graph.dataSetColer2.temperature,
@@ -809,7 +749,6 @@ function drawGraphDouble() {
                 ]
             },
             options: {
-
                 animation: {
                     duration: graph.animationDuration,
                 },
@@ -839,34 +778,44 @@ function drawGraphDouble() {
                         }
                     }]
                 }
-
             }
-
         });
-
         graph.animationDuration = 500;
     }
 }
 
-
 function drawGraphSingle() {
-
     $("#check-chart-data-temperature").removeAttr('disabled');
     $("#check-chart-data-humidity").removeAttr('disabled');
     $("#check-chart-data-co2").removeAttr('disabled');
     $("#check-chart-data-noiseAvg").removeAttr('disabled');
     $("#check-chart-data-noisePeak").removeAttr('disabled');
 
+    if (!graph.dataSetHidden.temperature) {
+        console.log(statsTemperature);
+    }
+
+    if (!graph.dataSetHidden.humidity) {
+        console.log(statsHumidity);
+    }
+
+    if (!graph.dataSetHidden.co2) {
+        console.log(statsCO2);
+    }
+
+    if (!graph.dataSetHidden.noiseAvg) {
+        console.log(statsNoise);
+    }
+
+    if (!graph.dataSetHidden.noisePeak) {
+        console.log(statsNoise);
+    }
 
     if (dataDates.length !== 0) {
-
-
         $('#canvas1').remove();
         $('.chartjs-hidden-iframe').remove();
         $('.canvas1').append('<canvas id="canvas1" width="2" height="1"></canvas>');
-
         //updateLiveData();
-
         $("#gettingDataWait").hide();
         $("#canvas1").show();
 
@@ -889,7 +838,6 @@ function drawGraphSingle() {
         Chart.defaults.global.elements.point.radius = 1;
 
         chart1 = new Chart(context, {
-
             type: graph.chartType,
             data: {
                 labels: dataDates,
@@ -977,7 +925,6 @@ function drawGraphSingle() {
                 ]
             },
             options: {
-
                 animation: {
                     duration: graph.animationDuration,
                 },
@@ -1006,12 +953,9 @@ function drawGraphSingle() {
     }
 }
 
-
 // Select chart content
-
 $('.canvas-settings').attr('disabled', false);
 $('#chart-select-type').attr('disabled', false);
-
 
 // Checkbox compare settings
 $(document).on("click", ".canvas-settings-2-input", function () {
@@ -1059,27 +1003,21 @@ function startCompareCharset() {
     clearCompareGraph();
     getCompareCharsetData();
     disableGraphSettingsSelections();
-
 }
 
 function getCompareCharsetData() {
-
     //Possible old warning should be hidden
     $("#retrunNoDeviceGraph2").hide();
 
-
     var noDataAlert = false;
     var callGraphTimes = 0;
-
 
     LocationIDs = [];
     numberOfLocations = 0;
 
     $(".chart-select-location option").each(function () {
         // Add $(this).val() to your list
-
         //locStand is the standard location option "Choose Location"...
-
         LocID = $(this).attr('id');
         if (!LocationIDs.includes(LocID)) {
             if ($(this).val() != "locStand") {
@@ -1102,12 +1040,9 @@ function getCompareCharsetData() {
         LocationIDs: LocationIDs,
         from: startDateReplacement + "T00:00:00Z",
         to: endDateReplacement + "T23:59:59Z"
-
     }, function (sData) {
-
         clearCompareData();
         clearCompareGraph();
-
         //potential old warning should should disapear
         $("#retrunNoSchoolGraph2").hide();
         $("#retrunNoSchoolGraph2Part2").hide();
@@ -1130,7 +1065,6 @@ function getCompareCharsetData() {
 
             for (var i = 0; i < jData.length; i++) {
                 for (var j = 0; j < jData[i].length; j++) {
-
                     var time = jData[i][j].time;
 
                     if (typeof time != "undefined") {
@@ -1139,7 +1073,6 @@ function getCompareCharsetData() {
                         h = time.substring(11, 13);
                         if (String(h).length == 1) {
                             h = "0" + h;
-
                         }
                         m = time.substring(14, 16);
                         if (String(m).length == 1) {
@@ -1157,18 +1090,13 @@ function getCompareCharsetData() {
                         CO2.push(jData[i][j].CO2);
                         noiseAvg.push(jData[i][j].NoiseAvg);
 
-
                         if (j == 0) {
                             LocID = jData[i][j].LocationID;
                         }
-
                     }
                     else {
-
-
                         $("#retrunNoDeviceGraph2").html("OBS! Some locations didn't have any data for this period.");
                         $("#retrunNoDeviceGraph2").show();
-
                     }
                 }
                 compareData.dataDates = dates;
@@ -1184,24 +1112,14 @@ function getCompareCharsetData() {
                 humidity = [];
                 CO2 = [];
                 noiseAvg = [];
-
-
             }
-
-
             callDrawCompareGraph();
-
-
             if (jData.length != numberOfLocations) {
-
                 $("#retrunNoDeviceGraph2").html("OBS! Some locations didn't have any data for this period.");
                 $("#retrunNoDeviceGraph2").show();
             }
-
         }
-
         else {
-
             $("#gettingCompareDataWait").hide();
             $("#retrunNoSchoolGraph2").text("There are no data for the chosen location at the specified time interval");
             $("#retrunNoSchoolGraph2").show();
@@ -1211,7 +1129,6 @@ function getCompareCharsetData() {
 }
 
 function callDrawCompareGraph() {
-
     drawCompareGraph();
 }
 
@@ -1232,7 +1149,6 @@ function clearCompareGraph() {
 }
 
 function drawCompareGraph() {
-
     $("#gettingCompareDataWait").hide();
     $('.canvas-wrapper-2').append('<div class="canvas-2-3-4-5-type"><i class="fa fa-thermometer-full" aria-hidden="true"></i>Temperatur</div><canvas id="canvas2" width="3" height="1"></canvas>');
     $('.canvas-wrapper-2').append('<div class="canvas-2-3-4-5-type"><i class="fa fa-tint" aria-hidden="true"></i>Luftfugtighed</div><canvas id="canvas3" width="3" height="1"></canvas>');
@@ -1597,7 +1513,6 @@ function drawCompareGraph() {
 }
 
 // Map chart
-
 var dataMapTemp;
 var dataMapHum;
 var dataMapCo2;
@@ -1874,7 +1789,6 @@ function drawMapChart(DiveseSel) {
 }
 
 // Map chart Live
-
 var dataMapLiveTemp;
 var dataMapLiveHum;
 var dataMapLiveCo2;
@@ -2167,12 +2081,10 @@ function drawMapChartDay(DiveseSel) {
                 if (mapShow.monitor.noiseAvg) {
                     dataMapLiveNoi.lineAtIndex = dataLenght.noise;
                     ChartNoiLive.update();
-
                 }
             }
         }
     }
-
     addData();
 }
 
