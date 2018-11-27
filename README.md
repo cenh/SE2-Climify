@@ -58,6 +58,36 @@ Here is a list of the files changed and their changes within the 'communication/
 5. MqttLib/src/main/java/org/MqttLib/openhab/ - Various updates and new files for openHAB usage.
 6. RaspberryPi/src/main/java/org/RaspberryPi/ - Various changes to RaspberryPi communication with MQTT.
 
+
+### Release 3
+#### Skoleklima files changed:
+Since release 2, the list of files changed in 'skoleklima' folder
+
+1. css/styles.css - Edit and delete rules implementation called for updated styling
+2. js/api-getter.js - removed some prints so web console is cleaner
+3. js/charts.js - fixed a bug
+4. js/devices.js - created this file for device page
+5. js/main.js - moved some functions to devices.js
+6. js/rule-getter.js - functions that allow CRUD operations on rules
+7. ink/navigation.php - added new route 'control map' 
+8. ink/views/view-control-map.php - new route
+9. ink/views/view-data-map.php - added the working devices page
+10. ink/views/view-dashboard.php - added the new route 'control' map to appropriate permissions
+11. ink/views/view-data.php - added a mouseover that shows reccomended indicator ranges
+12. ink/views/view-rules.php - added dynamic elements that allow CRUD operations
+
+#### Communication (Java) files changed
+Here is a list of the files changed and their changes within the 'communication/mqtt' folder.
+
+1. Climify/src/main/java/org/Climify/ClimifyMessageHandler.java - Now supports CRUD operations with rules and executes them
+2. Climify/src/main/java/org/Climify/ClimifyMQTTController.java - Handles MQTT messages
+3. Climify/src/main/java/org/Climify/mariaDB/MariaDBCommunicator.java - Now gets rules from MariaDB
+4. MqttLib/src/main/java/org/MqttLib/openhab/Item.java - now contains item description as well.
+5. MqttLib/src/main/java/org/MqttLib/openhab/Option.java - created file for openHAB options
+6. MqttLib/src/main/java/org/MqttLib/openhab/StateDescription.java - defines the description of an item
+7. RaspberryPi/src/main/java/org/RaspberryPi/openhab/RestCommunicator.java - now looks for state description as well
+
+
 # VMs
 
 Information about the VMs
