@@ -62,7 +62,7 @@ while($row = mysqli_fetch_array($result))
             <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
     padding: 8px; float:left;">
-                <table id="table_id3" class="display" style="width: 100%">
+                <table id="table_id1" class="display" style="width: 100%">
                     <thead>
                     <tr>
                         <th></th>
