@@ -61,7 +61,7 @@ public class RestCommunicator {
 	}
 	
 	public String getAllItems() throws IOException {
-        String commandUrl = restBaseUrl + "items/" + "?recursive=false&fields=name%2C%20category";
+        String commandUrl = restBaseUrl + "items/" + "?recursive=false&fields=name%2C%20category%2C%20stateDescription";
         Headers headers = Utilities.getHeaders(HeaderType.JSON);
 
         Request request = new Request.Builder()

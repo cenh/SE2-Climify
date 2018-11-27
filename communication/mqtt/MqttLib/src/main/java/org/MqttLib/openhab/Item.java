@@ -6,6 +6,7 @@ import com.dslplatform.json.CompiledJson;
 public class Item {
 	public String name;
 	public String category;
+	public StateDescription stateDescription;
 	
 	public Item() {
 		
@@ -20,4 +21,5 @@ public class Item {
 	public String toString() {
 		return "name: " + name + " category: " + category;
 	}
+	
 }
