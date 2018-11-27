@@ -552,6 +552,7 @@ function drawGraphDouble() {
     yAxisIDnoisePeak = 'left-y-axis';
 
     if (!graph.dataSetHidden.temperature) {
+        console.log("Temperature stats: " + getStats(dataTemperature));
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDTemp = 'left-y-axis';
@@ -562,6 +563,7 @@ function drawGraphDouble() {
     }
 
     if (!graph.dataSetHidden.humidity) {
+        console.log("Humidity stats: " + getStats(dataHumidity));
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDHum = 'left-y-axis';
@@ -572,6 +574,7 @@ function drawGraphDouble() {
     }
 
     if (!graph.dataSetHidden.co2) {
+        console.log("CO2 stats: " + getStats(dataCO2));
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDco2 = 'left-y-axis';
@@ -582,6 +585,7 @@ function drawGraphDouble() {
     }
 
     if (!graph.dataSetHidden.noiseAvg) {
+      console.log("Noise stats: " + getStats(dataNoise));
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDnoiseAvg = 'left-y-axis';
@@ -592,6 +596,7 @@ function drawGraphDouble() {
     }
 
     if (!graph.dataSetHidden.noisePeak) {
+        console.log("Noise stats: " + getStats(dataNoise));
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDnoisePeak = 'left-y-axis';
