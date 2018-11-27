@@ -196,7 +196,7 @@ $("#submitRule").on("click",function () {
                 Action: setTemp
             }
         }).done(function (res) {
-            alert(res);
+            alert("Saved");
         });
     } else {
         if(!(isEdit === -1)) {
@@ -223,7 +223,7 @@ $("#submitRule").on("click",function () {
 
 });
 $('#actuatorSelect').change(function () {
-    if($('#actuatorSelect').val() === "setTemperature"){
+    if($('#actuatorSelect').val() === "ZWaveNode4LC13LivingConnectZThermostat_SetpointHeating"){
         $('#onActionSetTemp').show();
     }
     else {
