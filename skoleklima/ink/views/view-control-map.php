@@ -125,8 +125,8 @@
 <!--</div>-->
 
 <!-- System data map -->
-<div class="single-view view-control-map">
-    <div class="view-control-top">
+<div class="single-view view-data-map">
+    <div class="view-data-top">
 	<span>
 		<h3>Devices</h3>
 		<p>An overview of installed devices</p>
@@ -168,7 +168,7 @@
                     <thead>
                     <tr>
                         <th></th>
-                        <th>Things</th>
+                        <th>Sensors</th>
                     </tr>
                     </thead>
                 </table>
@@ -240,7 +240,6 @@
             }
         </style>
     </div>
-
 
 
 </div>
