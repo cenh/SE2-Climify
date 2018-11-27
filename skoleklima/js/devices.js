@@ -113,7 +113,7 @@ $(document).ready(function () {
         }
         else {
             // Open this row
-            row.child(format_sensors(row.data())).show();
+            row.child(format_things(row.data())).show();
             tr.addClass('shown');
         }
     });
@@ -210,6 +210,24 @@ function set_actuator () {
         msg = JSON.parse(message.payloadString);
         // console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
     }
+}
+
+// functions for collapsing
+function format_things(d) {
+    // `d` is the original data object for the row
+    var index = sensors.findIndex(function (row) {
+        return row.Name === d[1];
+    });
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<tr>' +
+        '<td>Category:</td>' +
+        '<td>' + things[index].Category + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Last Measurement:</td>' +
+        '<td>' + sensors_data[index] + '</td>' +
+        '</tr>' +
+        '</table>';
 }
 
 
