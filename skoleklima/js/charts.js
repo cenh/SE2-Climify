@@ -494,7 +494,12 @@ function getGraphData() {
                     dataDates[i] = date + ". " + month + " " + h + ":" + m;
                 }
             }
-            console.log(getStats(dataTemperature));
+            // Calculate stats!
+            statsTemperature = getStats(dataTemperature);
+            statsHumidity = getStats(dataHumidity);
+            statsCO2 = getStats(dataCO2);
+            statsNoise = getStats(dataNoise);
+
             enableDataSettings = true;
             $('.canvas-settings').attr('disabled', false);
             $('#chart-fill').attr('disabled', false);
@@ -552,7 +557,7 @@ function drawGraphDouble() {
     yAxisIDnoisePeak = 'left-y-axis';
 
     if (!graph.dataSetHidden.temperature) {
-        console.log("Temperature stats: " + getStats(dataTemperature));
+        console.log(statsTemperature);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDTemp = 'left-y-axis';
@@ -563,7 +568,7 @@ function drawGraphDouble() {
     }
 
     if (!graph.dataSetHidden.humidity) {
-        console.log("Humidity stats: " + getStats(dataHumidity));
+        console.log(statsHumidity);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDHum = 'left-y-axis';
@@ -574,7 +579,7 @@ function drawGraphDouble() {
     }
 
     if (!graph.dataSetHidden.co2) {
-        console.log("CO2 stats: " + getStats(dataCO2));
+        console.log(statsCO2);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDco2 = 'left-y-axis';
@@ -585,7 +590,7 @@ function drawGraphDouble() {
     }
 
     if (!graph.dataSetHidden.noiseAvg) {
-      console.log("Noise stats: " + getStats(dataNoise));
+        console.log(statsNoise);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDnoiseAvg = 'left-y-axis';
@@ -596,7 +601,7 @@ function drawGraphDouble() {
     }
 
     if (!graph.dataSetHidden.noisePeak) {
-        console.log("Noise stats: " + getStats(dataNoise));
+        console.log(statsNoise);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDnoisePeak = 'left-y-axis';
@@ -785,6 +790,26 @@ function drawGraphSingle() {
     $("#check-chart-data-co2").removeAttr('disabled');
     $("#check-chart-data-noiseAvg").removeAttr('disabled');
     $("#check-chart-data-noisePeak").removeAttr('disabled');
+
+    if (!graph.dataSetHidden.temperature) {
+        console.log(statsTemperature);
+    }
+
+    if (!graph.dataSetHidden.humidity) {
+        console.log(statsHumidity);
+    }
+
+    if (!graph.dataSetHidden.co2) {
+        console.log(statsCO2);
+    }
+
+    if (!graph.dataSetHidden.noiseAvg) {
+        console.log(statsNoise);
+    }
+
+    if (!graph.dataSetHidden.noisePeak) {
+        console.log(statsNoise);
+    }
 
     if (dataDates.length !== 0) {
         $('#canvas1').remove();
@@ -1015,7 +1040,6 @@ function getCompareCharsetData() {
         LocationIDs: LocationIDs,
         from: startDateReplacement + "T00:00:00Z",
         to: endDateReplacement + "T23:59:59Z"
-
     }, function (sData) {
         clearCompareData();
         clearCompareGraph();
