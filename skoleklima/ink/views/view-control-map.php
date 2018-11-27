@@ -50,15 +50,15 @@ while($row = mysqli_fetch_array($result))
     </div>
 
     <div style="height: auto">
-        <select id="select_thing">
+        <select id="select_thing" onchange="refreshTableSensorsAndActuators(value)">
             <option value="" disabled selected>Choose Your Room</option>
-            <?php echo $options; ?>
+<!--            --><?php //echo $options; ?>
         </select>
     </div>
 
     <div style="overflow: auto">
 
-        <div style="width: 50%; float:left;">
+        <div style="width: 100%;">
             <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
     padding: 8px; float:left;">
@@ -95,7 +95,7 @@ while($row = mysqli_fetch_array($result))
     <div style="height: auto">
         <select id="select_room_devices" onchange="refreshTableDevices(value)">
             <option value="" disabled selected>Choose Your Room</option>
-            <?php echo $options; ?>
+<!--            --><?php //echo $options; ?>
         </select>
         <button id="listen_button" onclick="listen()" disabled>Discover new devices</button>
     </div>
