@@ -27,8 +27,6 @@ AND links.ChannelUID = tc.ChannelUID
 AND Channels.UID = links.ChannelUID 
 AND items.Name = links.ItemName";
 
-
-
 $stmt = $conn->prepare($query);
 
 $stmt->execute();
