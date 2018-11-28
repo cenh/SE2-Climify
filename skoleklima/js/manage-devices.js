@@ -22,6 +22,7 @@ function refreshDevicesDropdown(roomID) {
 }
 
 function refreshTableChannel(thingID) {
+    console.log(thingID);
     var sUrl = "api/api-get-channels.php";
     $.post(sUrl, {
         thingID: thingID,
