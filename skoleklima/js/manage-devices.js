@@ -20,3 +20,13 @@ function refreshDevicesDropdown(roomID) {
         }
     });
 }
+
+function refreshTableChannel(thingID) {
+    var sUrl = "api/api-get-channels.php";
+    $.post(sUrl, {
+        thingID: thingID,
+    }, function (data) {
+        var jData = JSON.parse(data);
+        console.table(jData);
+    });
+}
