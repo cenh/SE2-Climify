@@ -14,7 +14,8 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM Channels JOIN ThingsChannels WHERE ThingUID = $thingID";
+$query = "SELECT * FROM Channels";
+//JOIN ThingsChannels WHERE ThingUID = $thingID";
 
 $stmt = $conn->prepare($query);
 
