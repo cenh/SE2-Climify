@@ -10,7 +10,8 @@ function refreshDevicesDropdown(roomID) {
         var jData = JSON.parse(data);
         console.table(jData);
         var x = document.getElementById("select_thing_manage_devices");
-        x.options.length = 0;
+        x.options.length = 1;
+        // var option1 = document.createElement("option");
         for (var i = 0; i < jData.length; i++) {
             var option1 = document.createElement("option");
             option1.text = jData[i].Label;
