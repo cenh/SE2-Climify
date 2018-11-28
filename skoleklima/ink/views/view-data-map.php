@@ -19,6 +19,7 @@
 <!--			<button class="btn-show-view-map-info">Show info</button>-->
 <!--		</span>-->
 <!--	</span>-->
+
     </div>
     <hr>
 
