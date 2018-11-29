@@ -67,6 +67,14 @@ function format_channels(d) {
     });
     var channel = channels[index];
 
+    var action;
+
+    if(channel.ItemName != null) {
+        action = 'Currently linked with' + channel.ItemName;
+    } else {
+        action = 'Currently not linked';
+    }
+
 
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
@@ -76,6 +84,8 @@ function format_channels(d) {
         '<tr>' +
         '<td>Item Type: </td>' +
         '<td>' + channel.ItemType + '</td>' +
+        '</tr>' +
+        '<td>' + action + '</td>' +
         '</tr>' +
         '</table>';
 }
