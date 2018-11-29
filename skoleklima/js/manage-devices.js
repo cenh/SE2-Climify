@@ -77,13 +77,18 @@ function format_channels(d) {
 
     } else {
         action = '<tr>' +
-            '<td>Currently not linked</td>' + '<td><button onclick="unlink()">Unlink</button></td>' +
+            '<td>Currently not linked</td>' + '<td><button onclick="link()">Create and Link</button></td>' +
             '</tr>' +
-
+            '<tr>' +
+            '<td>Create a new item:</td>' +
+            '</tr>' +
             '<tr>' + '<td><form>\n' +
             '  New Name:<br>\n' +
             '  <input type="text" name="name">\n' +
             '</form></td>' +
+            '</tr>' +
+            '<tr>' +
+            '<td><button onclick="link()">Create and Link</button></td>' +
             '</tr>';
     }
 
