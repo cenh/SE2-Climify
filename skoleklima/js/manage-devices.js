@@ -70,9 +70,9 @@ function format_channels(d) {
     var action;
 
     if(channel.ItemName != null) {
-        action = 'Currently linked with: ' + channel.ItemName + '<button>Unlink</button>';
+        action = 'Currently linked with: ' + channel.ItemName + '<button onclick="unlink()">Unlink</button>';
     } else {
-        action = 'Currently not linked <button>Link</button>';
+        action = 'Currently not linked <button onclick="link()">Link</button>';
     }
 
 
@@ -88,4 +88,12 @@ function format_channels(d) {
         '<td>' + action + '</td>' +
         '</tr>' +
         '</table>';
+}
+
+function link() {
+    alert('link');
+}
+
+function unlink() {
+    alert('unlink');
 }
