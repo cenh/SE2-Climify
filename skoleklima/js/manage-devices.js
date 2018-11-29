@@ -6,6 +6,24 @@ $(document).ready(function () {
         "paging": false,
         "info": false,
     });
+
+    // Add event listener for opening and closing details
+    $('#table_channels tbody').on('click', 'td', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child(format_channels(row.data())).show();
+            tr.addClass('shown');
+
+        }
+    });
 });
 
 
@@ -40,4 +58,30 @@ function refreshTableChannel(thingID) {
             table_channels.row.add([jData[i].Label]).draw(false);
         }
     });
+}
+
+function format_channels(d) {
+    // `d` is the original data object for the row
+    // var index = actuators.findIndex(function (row) {
+    //     return row.Name === d[1];
+    // });
+    // var action;
+    // if(actuators[index].ItemType === "Number"){
+    //     action = '<td><form id="set_input">\n' +
+    //         'Set value: <input type="number" value="10">\n' +
+    //         '<button id="set_button" onclick="set_actuator() ">Set</button>\n' +
+    //         '</form></td>';
+    //     chosen_actuator = actuators[index].Name;
+    // } else {
+    //     action = '<td>on/off</td>';
+    // }
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<tr>' +
+        '<td>Category:</td>' +
+        '<td>' + '' + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Action:</td>' + '' +
+        '</tr>' +
+        '</table>';
 }
