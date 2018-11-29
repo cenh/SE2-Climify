@@ -17,6 +17,7 @@ function refreshDevicesDropdown(roomID) {
         var jData = JSON.parse(data);
         var x = document.getElementById("select_thing_manage_devices");
         x.options.length = 1;
+        $('#table_channels').DataTable().clear();
         // var option1 = document.createElement("option");
         for (var i = 0; i < jData.length; i++) {
             var option1 = document.createElement("option");
@@ -28,7 +29,6 @@ function refreshDevicesDropdown(roomID) {
 }
 
 function refreshTableChannel(thingID) {
-    console.log(thingID);
     var sUrl = "api/api-get-channels.php";
     $.post(sUrl, {
         thingID: thingID,
