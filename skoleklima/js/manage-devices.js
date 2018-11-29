@@ -1,5 +1,11 @@
 
-var things;
+$(document).ready(function () {
+    var table = $('#table_channels').DataTable({
+        "searching": false,
+        "paging": false,
+        "info": false,
+    });
+});
 
 
 function refreshDevicesDropdown(roomID) {
