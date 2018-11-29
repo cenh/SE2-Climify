@@ -1,3 +1,4 @@
+var channels;
 
 $(document).ready(function () {
     var table = $('#table_channels').DataTable({
@@ -14,7 +15,6 @@ function refreshDevicesDropdown(roomID) {
         roomID: roomID,
     }, function (data) {
         var jData = JSON.parse(data);
-        console.table(jData);
         var x = document.getElementById("select_thing_manage_devices");
         x.options.length = 1;
         // var option1 = document.createElement("option");
@@ -34,6 +34,12 @@ function refreshTableChannel(thingID) {
         thingID: thingID,
     }, function (data) {
         var jData = JSON.parse(data);
-        console.table(jData);
+        channels = jData;
+        var table_channels = $('#table_channels').DataTable();
+        table_channels.clear();
+        for(var i = 0; i < jData.length; i++) {
+            table_channels.row.add([jData[i].Label]).draw(false);
+        }
+
     });
 }
