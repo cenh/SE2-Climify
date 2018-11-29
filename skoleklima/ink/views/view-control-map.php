@@ -9,7 +9,7 @@
     </div>
     <hr>
 
-    <div style="text-align: center; padding-top: 30px">
+    <div style="text-align: center; padding: 30px">
         <h2>Manage Items</h2>
     </div>
 
@@ -24,25 +24,25 @@
     </select>
 
     <!--    channel table-->
-    <div style="width: 100%; height: auto; border: 1px solid #dddddd;
+    <div style="overflow: auto">
+        <div style="width: 100%; height: auto; border: 1px solid #dddddd;
         text-align: left;
         padding: 8px; float:left;">
-        <table id="table_channels" class="display" style="width: 100%">
-            <thead>
-            <tr>
-                <th>Channels</th>
-            </tr>
-            </thead>
-            <tbody>
+            <table id="table_channels" class="display" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>Channels</th>
+                </tr>
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 
-    <hr>
-
-    <div style="text-align: center; padding-top: 30px">
+    <div style="text-align: center; padding: 30px">
         <h2>Manage Things</h2>
     </div>
 
