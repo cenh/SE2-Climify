@@ -75,7 +75,7 @@ function format_channels(d) {
         '</tr>' +
         '<tr>' +
         '<td>Item Type: </td>' +
-        '<td>' + channel.Description + '</td>' +
+        '<td>' + channel.ItemType + '</td>' +
         '</tr>' +
         '</table>';
 }
