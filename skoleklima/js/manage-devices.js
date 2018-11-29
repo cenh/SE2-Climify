@@ -70,9 +70,21 @@ function format_channels(d) {
     var action;
 
     if (channel.ItemName != null) {
-        action = 'Currently linked with: ' + channel.ItemName + '<button onclick="unlink()">Unlink</button>';
+        action = '<tr>' +
+            '<td>Currently linked with: ' + channel.ItemName + '</td>' + '<td><button onclick="unlink()">Unlink</button></td>' +
+            '</tr>';
+
+
     } else {
-        action = 'Currently not linked <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"">Link</button>';
+        action = '<tr>' +
+            '<td>Currently not linked</td>' + '<td><button onclick="unlink()">Unlink</button></td>' +
+            '</tr>' +
+
+            '<tr>' + '<td><form>\n' +
+            '  New Name:<br>\n' +
+            '  <input type="text" name="name">\n' +
+            '</form></td>' +
+            '</tr>';
     }
 
 
@@ -85,8 +97,7 @@ function format_channels(d) {
         '<td>Item Type: </td>' +
         '<td>' + channel.ItemType + '</td>' +
         '</tr>' +
-        '<td>' + action + '</td>' +
-        '</tr>' +
+        action +
         '</table>';
 }
 
