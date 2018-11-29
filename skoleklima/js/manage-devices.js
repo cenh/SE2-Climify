@@ -70,9 +70,9 @@ function format_channels(d) {
     var action;
 
     if(channel.ItemName != null) {
-        action = 'Currently linked with' + channel.ItemName;
+        action = 'Currently linked with: ' + channel.ItemName + '<button>Unlink</button>';
     } else {
-        action = 'Currently not linked';
+        action = 'Currently not linked <button>Link</button>';
     }
 
 
