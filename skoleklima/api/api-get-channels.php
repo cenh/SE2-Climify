@@ -14,7 +14,12 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM Channels INNER JOIN ThingsChannels WHERE ThingsChannels.ThingUID='$thingID' AND Channels.UID = ThingsChannels.ChannelUID";
+$query = "SELECT * FROM Channels 
+INNER JOIN ThingsChannels 
+INNER JOIN Links
+WHERE ThingsChannels.ThingUID='$thingID'
+AND Channels.UID = ThingsChannels.ChannelUID
+AND Links.ChannelUID = Channels.UID";
 
 $stmt = $conn->prepare($query);
 
