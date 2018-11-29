@@ -62,26 +62,19 @@ function refreshTableChannel(thingID) {
 
 function format_channels(d) {
     // `d` is the original data object for the row
-    // var index = actuators.findIndex(function (row) {
-    //     return row.Name === d[1];
-    // });
-    // var action;
-    // if(actuators[index].ItemType === "Number"){
-    //     action = '<td><form id="set_input">\n' +
-    //         'Set value: <input type="number" value="10">\n' +
-    //         '<button id="set_button" onclick="set_actuator() ">Set</button>\n' +
-    //         '</form></td>';
-    //     chosen_actuator = actuators[index].Name;
-    // } else {
-    //     action = '<td>on/off</td>';
-    // }
+    var index = channels.findIndex(function (row) {
+        return row.Label === d[0];
+    });
+    var channel = channels[index];
+
+
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
-        '<td>Category:</td>' +
-        '<td>' + '' + '</td>' +
+        '<td>Description:</td>' +
+        '<td>' + channel.Description + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Action:</td>' + '' +
+        '<td>Item Type</td>' + channel.ItemType +
         '</tr>' +
         '</table>';
 }
