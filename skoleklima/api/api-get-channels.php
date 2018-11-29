@@ -16,9 +16,10 @@ if ($conn->connect_error) {
 
 $query = "SELECT * FROM Channels 
 INNER JOIN ThingsChannels 
+LEFT JOIN Links
 WHERE ThingsChannels.ThingUID='$thingID'
 AND Channels.UID = ThingsChannels.ChannelUID
-UNION SELECT * FROM Links";
+AND Links.ChannelUID = Channels.UID";
 
 $stmt = $conn->prepare($query);
 
@@ -27,6 +28,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 $emparray = array();
+
 while($row = mysqli_fetch_assoc($result))
 {
     $emparray[] = $row;
