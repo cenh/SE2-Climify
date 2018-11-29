@@ -54,7 +54,7 @@ function refreshTableChannel(thingID) {
     }, function (data) {
         var jData = JSON.parse(data);
         channels = jData;
-        for(var i = 0; i < jData.length; i++) {
+        for (var i = 0; i < jData.length; i++) {
             table_channels.row.add([jData[i].Label]).draw(false);
         }
     });
@@ -69,10 +69,10 @@ function format_channels(d) {
 
     var action;
 
-    if(channel.ItemName != null) {
+    if (channel.ItemName != null) {
         action = 'Currently linked with: ' + channel.ItemName + '<button onclick="unlink()">Unlink</button>';
     } else {
-        action = 'Currently not linked <button onclick="link()">Link</button>';
+        action = 'Currently not linked <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"">Link</button>';
     }
 
 
