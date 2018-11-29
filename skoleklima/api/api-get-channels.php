@@ -18,8 +18,7 @@ $query = "SELECT * FROM Channels
 INNER JOIN ThingsChannels 
 INNER JOIN Links
 WHERE ThingsChannels.ThingUID='$thingID'
-AND Channels.UID = ThingsChannels.ChannelUID
-AND Links.ChannelUID = Channels.UID";
+AND Channels.UID = ThingsChannels.ChannelUID";
 
 $stmt = $conn->prepare($query);
 
