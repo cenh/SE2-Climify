@@ -71,24 +71,24 @@ function format_channels(d) {
 
     if (channel.ItemName != null) {
         action = '<tr>' +
-            '<td>Currently linked with: ' + channel.ItemName + '</td>' + '<td><button onclick="unlink()">Unlink</button></td>' +
+            '<td>Already linked with: ' + channel.ItemName + '</td>' + '<td><button onclick="unlink()">Unlink</button></td>' +
             '</tr>';
 
 
     } else {
         action = '<tr>' +
-            '<td>Currently not linked</td>' +
+            '<td>Currently not linked</td>' + '<td></td>' +
             '</tr>' +
             '<tr>' +
-            '<td>Create a new item:</td>' +
+            '<td>Create a new item:</td>' + '<td></td>' +
             '</tr>' +
             '<tr>' + '<td><form>\n' +
-            '  New Name:<br>\n' +
-            '  <input type="text" name="name">\n' +
+            'New Name:<br>\n' +
+            '<input type="text" name="name">\n' +
             '</form></td>' +
             '</tr>' +
             '<tr>' +
-            '<td><button onclick="link()">Create and Link</button></td>' +
+            '<td><button onclick="link()">Create and Link</button></td>' + '<td></td>' +
             '</tr>';
     }
 
