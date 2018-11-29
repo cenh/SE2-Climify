@@ -10,8 +10,7 @@ $(document).ready(function () {
 
 
 function refreshDevicesDropdown(roomID) {
-    var table_channels = $('#table_channels').DataTable();
-    table_channels.clear();
+    $('#table_channels').DataTable().clear().draw(false);
     var sUrl = "api/api-get-things.php";
     $.post(sUrl, {
         roomID: roomID,
@@ -30,8 +29,7 @@ function refreshDevicesDropdown(roomID) {
 }
 
 function refreshTableChannel(thingID) {
-    var table_channels = $('#table_channels').DataTable();
-    table_channels.clear();
+    var table_channels = $('#table_channels').DataTable().clear().draw(false);
     var sUrl = "api/api-get-channels.php";
     $.post(sUrl, {
         thingID: thingID,
@@ -41,6 +39,5 @@ function refreshTableChannel(thingID) {
         for(var i = 0; i < jData.length; i++) {
             table_channels.row.add([jData[i].Label]).draw(false);
         }
-
     });
 }
