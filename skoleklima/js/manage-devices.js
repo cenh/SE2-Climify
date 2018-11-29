@@ -79,12 +79,12 @@ function format_channels(d) {
         action = '<tr>' +
             '<td>Currently not linked</td>' + '<td></td>' +
             '</tr>' +
+            '<tr>Create a new item:</tr>' +
+
             '<tr>' +
-            '<td>Create a new item:</td>' + '<td></td>' +
-            '</tr>' +
-            '<tr>' + '<td><form>\n' +
-            'New Name:<br>\n' +
-            '<input type="text" name="name">\n' +
+            '<td><form>' +
+            'New Name:<br>' +
+            '<input type="text" name="name">' +
             '</form></td>' +
             '</tr>' +
             '<tr>' +
