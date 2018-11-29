@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 
 $query = "SELECT * FROM Channels 
 INNER JOIN ThingsChannels 
-LEFT JOIN Links
+LEFT JOIN Links ON Links.ChannelUID = Channels.UID
 WHERE ThingsChannels.ThingUID='$thingID'
 AND Channels.UID = ThingsChannels.ChannelUID";
 
