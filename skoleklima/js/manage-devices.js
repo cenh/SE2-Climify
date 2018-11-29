@@ -77,7 +77,7 @@ function format_channels(d) {
 
     } else {
         action = '<tr>' +
-            '<td>Currently not linked</td>' + '<td><button onclick="link()">Create and Link</button></td>' +
+            '<td>Currently not linked</td>' +
             '</tr>' +
             '<tr>' +
             '<td>Create a new item:</td>' +
@@ -93,7 +93,7 @@ function format_channels(d) {
     }
 
 
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; width: 100%;">' +
         '<tr>' +
         '<td>Description:</td>' +
         '<td>' + channel.Description + '</td>' +
