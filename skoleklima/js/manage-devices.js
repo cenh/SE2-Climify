@@ -83,7 +83,11 @@ function format_channels(d) {
             '<td>Create a new item:<br><form>' +
             'New Name:<br>' +
             '<input type="text" name="name">' +
-            '</form></td>' +
+            '</form><br>' +
+            '    <select id="select_category">\n' +
+            '        <option value="" disabled selected>Choose Category</option>\n' +
+            '    </select>' +
+            '</td>' + '<td></td>' +
             '</tr>' +
             '<tr>' +
             '<td><button onclick="link()">Create and Link</button></td>' + '<td></td>' +
