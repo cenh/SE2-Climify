@@ -39,6 +39,11 @@
                 </tbody>
             </table>
         </div>
+        <style>
+            #table_channels.td {
+                cursor: pointer;
+            }
+        </style>
     </div>
 
 
