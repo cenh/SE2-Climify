@@ -1,6 +1,7 @@
 <!-- Dashboard -->
 <div class="view view-dashboard">
 	<?php
+	require_once "view-control-map.php";
 	if ($currentUserRole == 1) {
 				require_once "view-devices.php";
 				require_once "view-data.php";
