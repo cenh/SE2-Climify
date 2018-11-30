@@ -784,13 +784,37 @@ function drawGraphDouble() {
 }
 
 function fill_stat_table(table, stats) {
-    for(var i = 0; i < stats.length; i++) {
-        var row = table.insertRow(0);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        cell1.innerHTML = stats[0];
-        cell2.innerHTML = stats[0];
-    }
+
+    var row1 = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = "Mean";
+    cell2.innerHTML = stats.mean;
+
+    var row2 = table.insertRow(0);
+    var cell3 = row.insertCell(0);
+    var cell4 = row.insertCell(1);
+    cell1.innerHTML = "Mean";
+    cell2.innerHTML = stats.mean;
+
+    var row3 = table.insertRow(0);
+    var cell5 = row.insertCell(0);
+    var cell6 = row.insertCell(1);
+    cell1.innerHTML = "Mean";
+    cell2.innerHTML = stats.mean;
+
+    var row4 = table.insertRow(0);
+    var cell7 = row.insertCell(0);
+    var cell8 = row.insertCell(1);
+    cell1.innerHTML = "Mean";
+    cell2.innerHTML = stats.mean;
+
+    var row5 = table.insertRow(0);
+    var cell9 = row.insertCell(0);
+    var cell10 = row.insertCell(1);
+    cell1.innerHTML = "Mean";
+    cell2.innerHTML = stats.mean;
+
 }
 
 function drawGraphSingle() {
@@ -801,7 +825,7 @@ function drawGraphSingle() {
     $("#check-chart-data-noisePeak").removeAttr('disabled');
 
     if (!graph.dataSetHidden.temperature) {
-        console.log(statsTemperature);
+        console.log(statsTemperature.length);
         var table = document.getElementById("stat_single_table");
         fill_stat_table(table, statsTemperature);
     }
@@ -2096,6 +2120,7 @@ function drawMapChartDay(DiveseSel) {
             }
         }
     }
+
     addData();
 }
 
@@ -2146,17 +2171,19 @@ function updateMapChartLine() {
 }
 
 function getStats(numbers) {
-  var mean = getMean(numbers);
-  var median = getMedian(numbers);
-  var max = getMax(numbers);
-  var min = getMin(numbers);
-  var variance = getVariance(numbers);
-  var json = { "mean" : mean,
-                "median" : median,
-                "max" : max,
-                "min" : min,
-                "variance" : variance};
-  return json;
+    var mean = getMean(numbers);
+    var median = getMedian(numbers);
+    var max = getMax(numbers);
+    var min = getMin(numbers);
+    var variance = getVariance(numbers);
+    var json = {
+        "mean": mean,
+        "median": median,
+        "max": max,
+        "min": min,
+        "variance": variance
+    };
+    return json;
 }
 
 function getMean(numbers) {
@@ -2184,18 +2211,18 @@ function getMedian(numbers) {
 }
 
 function getMax(numbers) {
-  return Math.max.apply(null, numbers);
+    return Math.max.apply(null, numbers);
 }
 
 function getMin(numbers) {
-  return Math.min.apply(null, numbers);
+    return Math.min.apply(null, numbers);
 }
 
 function getVariance(numbers) {
-  var mean = getMean(numbers);
-  var v = 0;
-  for (var i = 0; i < numbers.length; i++) {
-      v += Math.pow(numbers[i]-mean, 2);
-  }
-  return v / numbers.length;
+    var mean = getMean(numbers);
+    var v = 0;
+    for (var i = 0; i < numbers.length; i++) {
+        v += Math.pow(numbers[i] - mean, 2);
+    }
+    return v / numbers.length;
 }
