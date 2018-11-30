@@ -559,6 +559,8 @@ function drawGraphDouble() {
     var table_left = document.getElementById("stat_double_table1");
     var table_right = document.getElementById("stat_double_table2");
     var left_filled = false;
+    table_left.innerHTML = "";
+    table_right.innerHTML = "";
 
     //choosing yaxes:
     var numAttributes = 0;
