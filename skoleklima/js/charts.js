@@ -545,7 +545,21 @@ function enableGraphSettingsSelections() {
     disableCompareBtn = false;
 }
 
+function fill_double_table(left, right, data, bool) {
+    if(!bool) {
+        fill_stat_table(left, data);
+        bool = true;
+    } else {
+        fill_stat_table(right, data);
+    }
+}
+
 function drawGraphDouble() {
+    document.getElementById("stat_single_table").innerHTML = "";
+    var table_left = document.getElementById("stat_double_table1").innerHTML = "";
+    var table_right = document.getElementById("stat_double_table2").innerHTML = "";
+    var left_filled = false;
+
     //choosing yaxes:
     var numAttributes = 0;
 
@@ -557,6 +571,7 @@ function drawGraphDouble() {
 
     if (!graph.dataSetHidden.temperature) {
         console.log(statsTemperature);
+        fill_double_table(table_left, table_right, statsTemperature, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDTemp = 'left-y-axis';
@@ -568,6 +583,7 @@ function drawGraphDouble() {
 
     if (!graph.dataSetHidden.humidity) {
         console.log(statsHumidity);
+        fill_double_table(table_left, table_right, statsHumidity, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDHum = 'left-y-axis';
@@ -579,6 +595,7 @@ function drawGraphDouble() {
 
     if (!graph.dataSetHidden.co2) {
         console.log(statsCO2);
+        fill_double_table(table_left, table_right, statsCO2, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDco2 = 'left-y-axis';
@@ -590,6 +607,7 @@ function drawGraphDouble() {
 
     if (!graph.dataSetHidden.noiseAvg) {
         console.log(statsNoise);
+        fill_double_table(table_left, table_right, statsNoise, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDnoiseAvg = 'left-y-axis';
@@ -601,6 +619,7 @@ function drawGraphDouble() {
 
     if (!graph.dataSetHidden.noisePeak) {
         console.log(statsNoise);
+        fill_double_table(table_left, table_right, statsNoise, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDnoisePeak = 'left-y-axis';
@@ -818,6 +837,8 @@ function fill_stat_table(table, stats) {
 
 function drawGraphSingle() {
     var table = document.getElementById("stat_single_table");
+    document.getElementById("stat_double_table1").innerHTML = "";
+    document.getElementById("stat_double_table2").innerHTML = "";
     table.innerHTML = "";
 
 

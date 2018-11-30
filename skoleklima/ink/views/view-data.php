@@ -138,10 +138,10 @@
     </div>
     <div id="stat_double">
         <div id="stat_double1" style="width: 50%;">
-            <table id="stat_single_table" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; width: 100%;"></table>
+            <table id="stat_double_table1" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; width: 100%;"></table>
         </div>
         <div id="stat_double2" style="width: 50%;">
-            <table id="stat_single_table" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; width: 100%;"></table>
+            <table id="stat_double_table2" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; width: 100%;"></table>
         </div>
     </div>
 
