@@ -784,9 +784,6 @@ function drawGraphDouble() {
 }
 
 function fill_stat_table(table, stats) {
-
-    table.innerHTML = "";
-
     var row1 = table.insertRow(0);
     var cell1 = row1.insertCell(0);
     var cell2 = row1.insertCell(1);
@@ -821,6 +818,8 @@ function fill_stat_table(table, stats) {
 
 function drawGraphSingle() {
     var table = document.getElementById("stat_single_table");
+    table.innerHTML = "";
+
 
     $("#check-chart-data-temperature").removeAttr('disabled');
     $("#check-chart-data-humidity").removeAttr('disabled');
