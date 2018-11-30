@@ -786,34 +786,34 @@ function drawGraphDouble() {
 function fill_stat_table(table, stats) {
 
     var row1 = table.insertRow(0);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
+    var cell1 = row1.insertCell(0);
+    var cell2 = row1.insertCell(1);
     cell1.innerHTML = "Mean";
     cell2.innerHTML = stats.mean;
 
-    var row2 = table.insertRow(0);
-    var cell3 = row.insertCell(0);
-    var cell4 = row.insertCell(1);
-    cell1.innerHTML = "Mean";
-    cell2.innerHTML = stats.mean;
-
-    var row3 = table.insertRow(0);
-    var cell5 = row.insertCell(0);
-    var cell6 = row.insertCell(1);
-    cell1.innerHTML = "Mean";
-    cell2.innerHTML = stats.mean;
-
-    var row4 = table.insertRow(0);
-    var cell7 = row.insertCell(0);
-    var cell8 = row.insertCell(1);
-    cell1.innerHTML = "Mean";
-    cell2.innerHTML = stats.mean;
-
-    var row5 = table.insertRow(0);
-    var cell9 = row.insertCell(0);
-    var cell10 = row.insertCell(1);
-    cell1.innerHTML = "Mean";
-    cell2.innerHTML = stats.mean;
+    // var row2 = table.insertRow(0);
+    // var cell3 = row.insertCell(0);
+    // var cell4 = row.insertCell(1);
+    // cell1.innerHTML = "Mean";
+    // cell2.innerHTML = stats.mean;
+    //
+    // var row3 = table.insertRow(0);
+    // var cell5 = row.insertCell(0);
+    // var cell6 = row.insertCell(1);
+    // cell1.innerHTML = "Mean";
+    // cell2.innerHTML = stats.mean;
+    //
+    // var row4 = table.insertRow(0);
+    // var cell7 = row.insertCell(0);
+    // var cell8 = row.insertCell(1);
+    // cell1.innerHTML = "Mean";
+    // cell2.innerHTML = stats.mean;
+    //
+    // var row5 = table.insertRow(0);
+    // var cell9 = row.insertCell(0);
+    // var cell10 = row.insertCell(1);
+    // cell1.innerHTML = "Mean";
+    // cell2.innerHTML = stats.mean;
 
 }
 
