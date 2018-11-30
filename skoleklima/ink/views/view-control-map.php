@@ -40,7 +40,7 @@
             </table>
         </div>
         <style>
-            .tr {
+            tr {
                 cursor: pointer;
             }
         </style>
