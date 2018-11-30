@@ -820,6 +820,8 @@ function fill_stat_table(table, stats) {
 }
 
 function drawGraphSingle() {
+    var table = document.getElementById("stat_single_table");
+
     $("#check-chart-data-temperature").removeAttr('disabled');
     $("#check-chart-data-humidity").removeAttr('disabled');
     $("#check-chart-data-co2").removeAttr('disabled');
@@ -827,25 +829,27 @@ function drawGraphSingle() {
     $("#check-chart-data-noisePeak").removeAttr('disabled');
 
     if (!graph.dataSetHidden.temperature) {
-        console.log(statsTemperature.length);
-        var table = document.getElementById("stat_single_table");
         fill_stat_table(table, statsTemperature);
     }
 
     if (!graph.dataSetHidden.humidity) {
         console.log(statsHumidity);
+        fill_stat_table(table, statsHumidity);
     }
 
     if (!graph.dataSetHidden.co2) {
         console.log(statsCO2);
+        fill_stat_table(table, statsCO2);
     }
 
     if (!graph.dataSetHidden.noiseAvg) {
         console.log(statsNoise);
+        fill_stat_table(table, statsNoise);
     }
 
     if (!graph.dataSetHidden.noisePeak) {
         console.log(statsNoise);
+        fill_stat_table(table, statsNoise);
     }
 
     if (dataDates.length !== 0) {
