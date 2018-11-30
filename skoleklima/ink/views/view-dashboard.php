@@ -33,10 +33,12 @@
 				require_once "view-other-users.php";
 				require_once "view-own-user.php";
 	      require_once "view-roomX.php";
+				require_once "view-control-map.php";
 			} elseif ($currentUserRole == 4) {
 				require_once "view-data.php";
 				require_once "view-data-map.php";
 	      require_once "view-roomX.php";
+				require_once "view-control-map.php";
 			}
 			if($currentPermLogbook == 1 ){
 				require_once "view-communication.php";
