@@ -783,13 +783,13 @@ function drawGraphDouble() {
     }
 }
 
-function fill_stat_table(table) {
-    for(var i = 0; i < table.length; i++) {
+function fill_stat_table(table, stats) {
+    for(var i = 0; i < stats.length; i++) {
         var row = table.insertRow(0);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
-        cell1.innerHTML = table[0];
-        cell2.innerHTML = table[0];
+        cell1.innerHTML = stats[0];
+        cell2.innerHTML = stats[0];
     }
 }
 
@@ -803,7 +803,7 @@ function drawGraphSingle() {
     if (!graph.dataSetHidden.temperature) {
         console.log(statsTemperature);
         var table = document.getElementById("stat_single_table");
-        fill_stat_table(table);
+        fill_stat_table(table, statsTemperature);
     }
 
     if (!graph.dataSetHidden.humidity) {
