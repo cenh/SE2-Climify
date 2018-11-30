@@ -132,6 +132,14 @@
 			</div>
 		</div>
 	</div> <!-- .graph-area-wrapper-1 -->
+    <h4>Statistical Data</h4>
+    <div id="stat_single">
+        <table id="stat_single_table"></table>
+    </div>
+    <div id="stat_double">
+
+    </div>
+
 	<h4>Compare Locations</h4>
 	<div class="graph-area-wrapper-2">
 		<div class="canvas-wrapper canvas-wrapper-2">

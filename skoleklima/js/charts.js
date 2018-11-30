@@ -455,7 +455,6 @@ function getGraphData() {
             xDataExist = false;
 
             $("btn-download-graph-data").removeClass("button-disabled");
-            console.log(jData);
             for (var j = 0; j < jData.length; j++) {
                 for (var i = 0; i < jData[j].length; i++) {
                     sensorIDs[i] = jData[j][i].SensorID;
@@ -784,6 +783,16 @@ function drawGraphDouble() {
     }
 }
 
+function fill_stat_table(table) {
+    for(var i = 0; i < table.length; i++) {
+        var row = table.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.innerHTML = table[0];
+        cell2.innerHTML = table[0];
+    }
+}
+
 function drawGraphSingle() {
     $("#check-chart-data-temperature").removeAttr('disabled');
     $("#check-chart-data-humidity").removeAttr('disabled');
@@ -793,6 +802,8 @@ function drawGraphSingle() {
 
     if (!graph.dataSetHidden.temperature) {
         console.log(statsTemperature);
+        var table = document.getElementById("stat_single_table");
+        fill_stat_table(table);
     }
 
     if (!graph.dataSetHidden.humidity) {
