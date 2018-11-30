@@ -785,6 +785,8 @@ function drawGraphDouble() {
 
 function fill_stat_table(table, stats) {
 
+    table.innerHTML = "";
+
     var row1 = table.insertRow(0);
     var cell1 = row1.insertCell(0);
     var cell2 = row1.insertCell(1);
