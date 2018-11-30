@@ -556,8 +556,8 @@ function fill_double_table(left, right, data, bool) {
 
 function drawGraphDouble() {
     document.getElementById("stat_single_table").innerHTML = "";
-    var table_left = document.getElementById("stat_double_table1").innerHTML = "";
-    var table_right = document.getElementById("stat_double_table2").innerHTML = "";
+    var table_left = document.getElementById("stat_double_table1");
+    var table_right = document.getElementById("stat_double_table2");
     var left_filled = false;
 
     //choosing yaxes:
