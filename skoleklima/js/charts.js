@@ -791,29 +791,29 @@ function fill_stat_table(table, stats) {
     cell1.innerHTML = "Mean";
     cell2.innerHTML = stats.mean;
 
-    // var row2 = table.insertRow(0);
-    // var cell3 = row.insertCell(0);
-    // var cell4 = row.insertCell(1);
-    // cell1.innerHTML = "Mean";
-    // cell2.innerHTML = stats.mean;
-    //
-    // var row3 = table.insertRow(0);
-    // var cell5 = row.insertCell(0);
-    // var cell6 = row.insertCell(1);
-    // cell1.innerHTML = "Mean";
-    // cell2.innerHTML = stats.mean;
-    //
-    // var row4 = table.insertRow(0);
-    // var cell7 = row.insertCell(0);
-    // var cell8 = row.insertCell(1);
-    // cell1.innerHTML = "Mean";
-    // cell2.innerHTML = stats.mean;
-    //
-    // var row5 = table.insertRow(0);
-    // var cell9 = row.insertCell(0);
-    // var cell10 = row.insertCell(1);
-    // cell1.innerHTML = "Mean";
-    // cell2.innerHTML = stats.mean;
+    var row2 = table.insertRow(0);
+    var cell3 = row2.insertCell(0);
+    var cell4 = row2.insertCell(1);
+    cell3.innerHTML = "Median";
+    cell4.innerHTML = stats.median;
+
+    var row3 = table.insertRow(0);
+    var cell5 = row3.insertCell(0);
+    var cell6 = row3.insertCell(1);
+    cell5.innerHTML = "Minimum";
+    cell6.innerHTML = stats.min;
+
+    var row4 = table.insertRow(0);
+    var cell7 = row4.insertCell(0);
+    var cell8 = row4.insertCell(1);
+    cell7.innerHTML = "Maximum";
+    cell8.innerHTML = stats.max;
+
+    var row5 = table.insertRow(0);
+    var cell9 = row5.insertCell(0);
+    var cell10 = row5.insertCell(1);
+    cell9.innerHTML = "Variance";
+    cell10.innerHTML = stats.variance;
 
 }
 

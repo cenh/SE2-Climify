@@ -134,7 +134,7 @@
 	</div> <!-- .graph-area-wrapper-1 -->
     <h4>Statistical Data</h4>
     <div id="stat_single">
-        <table id="stat_single_table"></table>
+        <table id="stat_single_table" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; width: 100%;"></table>
     </div>
     <div id="stat_double">
 
