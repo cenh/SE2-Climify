@@ -40,7 +40,7 @@
             </table>
         </div>
         <style>
-            #table_channels.td {
+            #table_channels.tr {
                 cursor: pointer;
             }
         </style>
