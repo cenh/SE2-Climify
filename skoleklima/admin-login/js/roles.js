@@ -54,7 +54,7 @@ function getTableData() {
         table.clear();
 
         for (var j = 0; j < roles.length; j++) {
-            table.row.add(roles[i]).draw(false);
+            table.row.add([roles[i]]).draw(false);
         }
     });
 }
