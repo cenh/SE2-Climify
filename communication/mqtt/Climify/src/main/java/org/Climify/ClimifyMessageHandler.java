@@ -1,12 +1,18 @@
 package org.Climify;
 
 import java.io.IOException;
+import java.io.PrintStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.Climify.influxDB.InfluxCommunicator;
 import org.Climify.mariaDB.MariaDBCommunicator;
+import org.MqttLib.mqtt.MessageCallback;
 import org.MqttLib.mqtt.MessageHandler;
 import org.MqttLib.mqtt.Topic;
+import org.MqttLib.openhab.Command;
 import org.MqttLib.openhab.DeviceUpdate;
 import org.MqttLib.openhab.InboxDevice;
 import org.MqttLib.openhab.SensorMeasurement;
@@ -16,11 +22,13 @@ public class ClimifyMessageHandler extends MessageHandler {
 	
 	private InfluxCommunicator influx;
 	private MariaDBCommunicator mariaDB;
+	private MessageCallback msgCall;
 
-	public ClimifyMessageHandler(String topic, MqttMessage message, InfluxCommunicator influx, MariaDBCommunicator mariaDB) {
+	public ClimifyMessageHandler(String topic, MqttMessage message, InfluxCommunicator influx, MariaDBCommunicator mariaDB, MessageCallback msgCall) {
 		super(topic, message);
 		this.influx = influx;
 		this.mariaDB = mariaDB;
+		this.msgCall = msgCall;
 	}
 	
 	@Override
@@ -33,7 +41,8 @@ public class ClimifyMessageHandler extends MessageHandler {
 				System.out.println("Inside topic " + topic); 
 				SensorMeasurement measurement = dslJson.deserialize(SensorMeasurement.class, message.getPayload(), message.getPayload().length);
 				influx.saveMeasurement(measurement);
-			} catch (IOException e) {
+				executeRule(measurement.name, measurement.value);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -64,4 +73,90 @@ public class ClimifyMessageHandler extends MessageHandler {
 		}
 	}
 
+	private void executeRule(String SensorID) {
+	    System.out.println("Looking for rules on sensor: " + SensorID);
+		List<List<String>> results = new ArrayList<List<String>>();
+		results = this.mariaDB.getRulesBySensorID(SensorID);
+		for(List<String> result : results) {
+		    System.out.println("Running rule on sensor: " + result.get(0));
+			try {
+				URL url = new URL("http://localhost:80/rules/skoleklima/api/api-rule-execute.php");
+				HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+				httpCon.setDoOutput(true);
+				httpCon.setRequestMethod("POST");
+				PrintStream ps = new PrintStream(httpCon.getOutputStream());
+				ps.print("SensorID=" + result.get(0));
+				ps.print("&Operator=" + result.get(1));
+				ps.print("&Value=" + result.get(2));
+				ps.print("&Action=" + result.get(3));
+				httpCon.getInputStream();
+				ps.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void executeRule(String SensorID, String SensorValue) throws java.io.IOException,
+            org.eclipse.paho.client.mqttv3.MqttPersistenceException, org.eclipse.paho.client.mqttv3.MqttException{
+	    System.out.println("Looking for rules on sensor: " + SensorID);
+		List<List<String>> results = new ArrayList<List<String>>();
+		results = this.mariaDB.getRulesBySensorID(SensorID);
+		String Operator = "";
+		String Value = "";
+		String Action = "";
+		String ActuatorID = "";
+		for(List<String> result : results) {
+		    System.out.println("Running rule on sensor: " + result.get(0));
+			Operator = result.get(1);
+			Value = result.get(2);
+			Action = result.get(3);
+			ActuatorID = result.get(4);
+            System.out.println("Extracted Variables: Operator =  "
+                    + Operator + " Value = " + Value + " Action = " + Action + " ActuatorID = " + ActuatorID);
+
+			Command com  = new Command(Action, ActuatorID);
+			dslJson.serialize(writer, com);
+
+			byte[] payload = writer.getByteBuffer();
+			System.out.println("Created a Command:  " + payload);
+			writer.reset();
+
+			switch (Operator){
+                    case ("GREATER"):
+                        if (Float.parseFloat(SensorValue) > Float.parseFloat(Value)){
+                            System.out.println("Sending the Command");
+                            msgCall.publish(Topic.COMMAND.getTopic(), 2, payload);
+                        }
+
+                        break;
+                    case ("LESS"):
+                        if (Float.parseFloat(SensorValue) < Float.parseFloat(Value)){
+                            System.out.println("Sending the Command");
+                            msgCall.publish(Topic.COMMAND.getTopic(), 2, payload);
+                        }
+                        break;
+                    case ("EQUAL"):
+                        if (Float.parseFloat(SensorValue) == Float.parseFloat(Value)){
+                            System.out.println("Sending the Command");
+                            msgCall.publish(Topic.COMMAND.getTopic(), 2, payload);
+                        }
+                        break;
+                }
+            }
+
+		}
 }
+
+
+//	URL url = new URL("http://localhost:80/rules/skoleklima/api/api-rule-execute.php");
+//				HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+//				httpCon.setDoOutput(true);
+//				httpCon.setRequestMethod("POST");
+//				PrintStream ps = new PrintStream(httpCon.getOutputStream());
+//				ps.print("SensorID=" + result.get(0));
+//				ps.print("&Operator=" + result.get(1));
+//				ps.print("&Value=" + result.get(2));
+//				ps.print("&Action=" + result.get(3));
+//				httpCon.getInputStream();
+//				ps.close();

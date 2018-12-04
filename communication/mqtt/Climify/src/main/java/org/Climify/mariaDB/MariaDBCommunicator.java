@@ -1,10 +1,8 @@
 package org.Climify.mariaDB;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.MqttLib.openhab.Channel;
 import org.MqttLib.openhab.DeviceUpdate;
@@ -21,8 +19,8 @@ import org.MqttLib.openhab.Thing;
 public class MariaDBCommunicator {
 
 	Connection connection;
-	
-	
+
+
 	public void connect() throws SQLException {
 		try {
 			Class.forName( "org.mariadb.jdbc.Driver");
@@ -33,32 +31,32 @@ public class MariaDBCommunicator {
 		Statement statement = connection.createStatement();
 		statement.execute("USE Climafy3");
 	}
-	
+
 
 	public void close() throws SQLException {
 		connection.close();
 	}
-	
+
 	public void saveRaspberryPi(String raspberryPiUID, Integer locationID) {
 		insertRaspberryPi(raspberryPiUID, locationID);
 	}
-	
+
 	public void saveDeviceUpdate(DeviceUpdate deviceUpdate, String raspberryPiUID) {
 		for(Item item: deviceUpdate.getItems()) {
 			insertItem(item);
 		}
-		
+
 		for(Thing thing: deviceUpdate.getThings()) {
 			insertThing(thing, raspberryPiUID);
 		}
-		
+
 		for(Link link: deviceUpdate.getLinks()) {
 			insertLink(link);
 		}
-		
-		
+
+
 	}
-	
+
 	private void insertRaspberryPi(String raspberryPiUID, Integer locationID) {
 		String sql = "INSERT IGNORE INTO RaspberryPis(UID, LocationID)"
 					+ " VALUES(?,?)";
@@ -71,7 +69,7 @@ public class MariaDBCommunicator {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void insertItem(Item item) {
 		String sql = "INSERT INTO Items(Name, Category, Minimum, Maximum, Step, Pattern, ReadOnly) VALUES(?,?,?,?,?,?,?)"
 				     + " ON DUPLICATE KEY UPDATE"
@@ -99,22 +97,22 @@ public class MariaDBCommunicator {
 				ps.setNull(6,java.sql.Types.VARCHAR);
 				ps.setNull(7,java.sql.Types.BOOLEAN);
 			}
-			
+
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		if (item.stateDescription != null) {
 			for (Option option: item.stateDescription.options) {
 				insertItemOption(item.name, option);
 			}
 		}
 	}
-	
+
 	private void insertItemOption(String itemName, Option option) {
 		String sql = "INSERT IGNORE INTO ItemOption(ItemName, Value, Label) VALUES (?,?,?)";
-		
+
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, itemName);
@@ -125,7 +123,7 @@ public class MariaDBCommunicator {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void insertLink(Link link) {
 		String sql = "INSERT IGNORE INTO Links(ItemName, ChannelUID)"
 					+ " VALUES(?,?)";
@@ -137,9 +135,9 @@ public class MariaDBCommunicator {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	private void insertThing(Thing thing, String raspberryPiUID) {
 		String sql = "INSERT IGNORE INTO Things(Label, BridgeUID, UID, ThingTypeUID, Status, StatusDetail, StatusDescription, RaspberryPiUID)"
 					+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
@@ -158,12 +156,12 @@ public class MariaDBCommunicator {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		for (Channel channel: thing.channels) {
 			insertChannel(channel, thing.UID);
 		}
 	}
-	
+
 	private void insertChannel(Channel channel, String thingUID) {
 		String sql = "INSERT IGNORE INTO Channels(UID, ID, ChannelTypeUID, ItemType, Kind, Label, Description)"
 					+ " VALUES(?, ?, ?, ?, ?, ?, ?)";
@@ -180,10 +178,10 @@ public class MariaDBCommunicator {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		insertChannelThingsRelationsship(channel.uid, thingUID);
 	}
-	
+
 	private void insertChannelThingsRelationsship(String channelUID, String thingUID) {
 		String sql = "INSERT IGNORE INTO ThingsChannels(ChannelUID, ThingUID)"
 					+ " VALUES(?, ?)";
@@ -195,5 +193,39 @@ public class MariaDBCommunicator {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public List<List<String>> getRulesBySensorID(String sensorID) {
+        String SensorID = "";
+        String Operator = "";
+        String Value = "";
+        String Action = "";
+        String ActuatorID = "";
+		List<List<String>> results = new ArrayList<List<String>>();
+		String sql = "SELECT * FROM Rule WHERE SensorID = ?";
+		try {
+		    PreparedStatement ps = connection.prepareStatement(sql);
+		    ps.setString(1, sensorID);
+            ResultSet result = ps.executeQuery();
+            while(result.next())
+            {
+            	System.out.println("Found rule with ID: " + result.getString(1));
+            	List<String> rs = new ArrayList<String>();
+            	SensorID = result.getString(2);
+				Operator = result.getString(3);
+				Value = result.getString(4);
+				Action = result.getString(5);
+				ActuatorID = result.getString(6);
+				rs.add(SensorID);
+				rs.add(Operator);
+				rs.add(Value);
+				rs.add(Action);
+				rs.add(ActuatorID);
+				results.add(rs);
+            }
+        } catch (SQLException e) {
+		    e.printStackTrace();
+        }
+        return results;
 	}
 }

@@ -36,6 +36,6 @@ public class ClimifyMqttController extends AsyncMqttController {
 	
 	@Override
 	protected MessageHandler getMessageHandler(String topic, MqttMessage message) {
-		return new ClimifyMessageHandler(topic, message, influx, mariaDB);
+		return new ClimifyMessageHandler(topic, message, influx, mariaDB, this);
 	}
 }

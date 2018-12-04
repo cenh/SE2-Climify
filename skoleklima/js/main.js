@@ -880,35 +880,8 @@ $("#my_button").click(function () {
     }
 });
 
-//added table here
 
-
-
-$(document).ready(function () {
-    $('#table_id1').DataTable();
-    getTableData();
-    refreshTable();
-});
 // RULES FUNCTIONALITY BELOW
-$("#fetch-sensors-for-loc").on("click",function() {
-    if ($("#sel_location").val()==="1") {
-        var room_selected = $("#sel_location").val();
-        console.log(room_selected);
-        $.post('api/api-rules-query.php', {
-            room: room_selected
-        }).done(function (res) {
-            $(".ui-button-text").text("Room: " + res);
-            $("#rules-title").text("Rules for room " + res);
-        });
-        $(".collapsible").show();
-
-    }
-    else if ($("#sel_location").val()==="2") {
-        console.log("2");
-        $(".collapsible").hide();
-        alert("No rules specefied for selected room");
-    }
-});
 $("#rulecheck").click(function(){
     isChecked = $("#rulecheck").is(":checked");
     console.log(isChecked);
@@ -928,36 +901,7 @@ $("#rulecheck").click(function(){
               console.log(data);
               alert(data);
             }
-        })
-    };
+        });
+    }
 
 });
-
-
-
-
-function refreshTable() {
-    setInterval(function () {
-        getTableData();
-    }, 3000);
-}
-
-function getTableData() {
-    $.ajax({
-        type: "GET",
-        url: "api/api-get-sensor-info.php",
-        dataType: "json",
-
-    }).done(function (res) {
-        var names = res.results[0].series[0].values;
-        var table1 = $('#table_id1').DataTable();
-        table1.clear();
-        for(var i = 0; i < names.length; i++) {
-            table1.row.add([names[i]]).draw(false);
-        }
-
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("AJAX call failed: " + textStatus + ", " + errorThrown);
-    });
-
-}
