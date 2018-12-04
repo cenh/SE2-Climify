@@ -104,4 +104,114 @@ public class RestCommunicator {
         
         return response.body().string();
 	}
+	
+	public void startDiscovery(String binding) throws IOException {
+		String discoveryUrl = restBaseUrl + "discovery/bindings/" + binding + "/scan";
+		System.out.println(discoveryUrl);
+
+		Headers headers = Utilities.getHeaders(HeaderType.JSON, HeaderType.TEXTPLAIN);
+
+		RequestBody body = RequestBody.create(null, "");
+
+		Request request = new Request.Builder()
+				.url(discoveryUrl)
+				.headers(headers)
+				.post(body)
+				.build();
+
+		try {
+			Response response = client.newCall(request).execute();
+			System.out.println("Response from startDiscovery on binding " + binding + ": " + response.code() + " " + response.message());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public String removeThing(String thingUID) throws IOException {
+		String thingUrl = restBaseUrl + "things/";
+        Headers headers = Utilities.getHeaders(HeaderType.JSON);
+
+        RequestBody body = RequestBody.create(null, thingUID);
+        
+        Request request = new Request.Builder()
+            .url(thingUrl)
+            .headers(headers)
+            .delete(body)
+            .build();
+
+        Response response = client.newCall(request).execute();
+        
+        return response.body().string();
+	}
+	
+	public String removeItem(String itemName) throws IOException {
+		String itemUrl = restBaseUrl + "items/";
+		
+        Headers headers = Utilities.getHeaders(HeaderType.JSON);
+
+        RequestBody body = RequestBody.create(null, itemName);
+        
+        Request request = new Request.Builder()
+            .url(itemUrl)
+            .headers(headers)
+            .delete(body)
+            .build();
+
+        Response response = client.newCall(request).execute();
+        
+        return response.body().string();
+	}
+	
+	public String removeLink(String itemName, String channelUID) throws IOException {
+		String linkUrl = restBaseUrl + "links/" + itemName + "/" + channelUID;
+		
+        Headers headers = Utilities.getHeaders(HeaderType.JSON);
+
+        Request request = new Request.Builder()
+            .url(linkUrl)
+            .headers(headers)
+            .delete()
+            .build();
+
+        Response response = client.newCall(request).execute();
+        
+        return response.body().string();
+	}
+	
+	public String getInbox() throws IOException {
+		String inboxUrl = restBaseUrl + "inbox/";
+        Headers headers = Utilities.getHeaders(HeaderType.JSON);
+
+        Request request = new Request.Builder()
+            .url(inboxUrl)
+            .headers(headers)
+            .get()
+            .build();
+
+        Response response = client.newCall(request).execute();
+        
+        return response.body().string();
+	}
+	
+	public String approveThing(String thingUID) throws IOException {
+		String thingUrl = restBaseUrl + "things/";
+		
+        Headers headers = Utilities.getHeaders(HeaderType.JSON);
+
+        Request request = new Request.Builder()
+            .url(thingUrl)
+            .headers(headers)
+            .get()
+            .build();
+
+        Response response = client.newCall(request).execute();
+        
+        return response.body().string();
+	}
+	
+	public String addLink(String itemName, String channelUID) {
+		return "";
+	}
+	
 }

@@ -28,6 +28,9 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 	@Override
 	protected void subscribeToTopics() throws MqttException {
 		super.subscribe(Topic.COMMAND.getTopic()+"/#", 2);
+		super.subscribe(Topic.CONTROLTHING.getTopic()+"/#", 2);
+		super.subscribe(Topic.CONTROLITEM.getTopic()+"/#", 2);
+		super.subscribe(Topic.DEVICEDISCOVERY.getTopic()+"/#", 2);
 	}
 	
 	@Override

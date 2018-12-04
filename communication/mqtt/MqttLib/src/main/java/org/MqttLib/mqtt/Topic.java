@@ -5,7 +5,11 @@ public enum Topic {
 	NEWSENSOR("newSensor"), 
 	SENSORDATA("sensorData"),
 	COMMAND("commandse2"),
-	SENSORUPDATE("sensorUpdate");
+	SENSORUPDATE("sensorUpdate"),
+	CONTROLTHING("deviceControl/Thing"),
+	CONTROLITEM("deviceControl/Item"),
+	INBOX("inbox"),
+	DEVICEDISCOVERY("deviceDiscovery");
 	
 	private final String topic;
 	

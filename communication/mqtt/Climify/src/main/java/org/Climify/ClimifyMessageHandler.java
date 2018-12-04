@@ -1,12 +1,14 @@
 package org.Climify;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.Climify.influxDB.InfluxCommunicator;
 import org.Climify.mariaDB.MariaDBCommunicator;
 import org.MqttLib.mqtt.MessageHandler;
 import org.MqttLib.mqtt.Topic;
 import org.MqttLib.openhab.DeviceUpdate;
+import org.MqttLib.openhab.InboxDevice;
 import org.MqttLib.openhab.SensorMeasurement;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
@@ -27,6 +29,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 		
 		if (topic.startsWith(Topic.SENSORDATA.getTopic())) {
 			try {
+				//TODO: Get the RaspberryPiUID
 				System.out.println("Inside topic " + topic); 
 				SensorMeasurement measurement = dslJson.deserialize(SensorMeasurement.class, message.getPayload(), message.getPayload().length);
 				influx.saveMeasurement(measurement);
@@ -47,6 +50,17 @@ public class ClimifyMessageHandler extends MessageHandler {
 				e.printStackTrace();
 			}
 			
+		}
+		
+		if (topic.startsWith(Topic.INBOX.getTopic())) {
+			System.out.println("Got sent new inbox!");
+			try {
+				List<InboxDevice> inbox = dslJson.deserializeList(InboxDevice.class, message.getPayload(), message.getPayload().length);
+				System.out.println(inbox.toString());
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
