@@ -68,6 +68,7 @@ function format_roles(d) {
     // Do AJAX and phase link to api
     $.post(sUrl, {
         roleID: roleID,
+        sessionToken: sessionToken,
     }, function (data) {
         var jData = JSON.parse(data);
         console.table(jData);
