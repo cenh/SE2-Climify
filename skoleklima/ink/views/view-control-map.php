@@ -69,7 +69,7 @@
         </table>
         <style>
             td.delete {
-                background-color: #b70404;
+                /*background-color: #b70404;*/
                 cursor: pointer;
             }
         </style>
