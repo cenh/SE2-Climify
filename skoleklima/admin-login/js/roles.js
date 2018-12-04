@@ -64,7 +64,16 @@ function format_roles(d) {
 
     var roleID = roles[index].RoleID;
 
-    console.log(roleID);
+    var sUrl = "api/api-get-permissions.php";
+    // Do AJAX and phase link to api
+    $.post(sUrl, {
+        roleID: roleID,
+    }, function (data) {
+        var jData = JSON.parse(data);
+        console.table(jData);
+    });
+
+    // console.log(roleID);
 
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
