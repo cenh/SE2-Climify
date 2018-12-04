@@ -47,6 +47,9 @@ function getTableData() {
         roles = jData;
         console.table(roles);
 
+        var table = $('#roles_table').DataTable();
+        table.clear();
+
         for (var j = 0; j < roles.length; j++) {
             table.row.add([roles[j].RoleName]).draw(false);
         }
