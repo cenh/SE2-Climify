@@ -47,7 +47,7 @@ function getTableData() {
         permissions = jData;
         tmp = [];
         for(var i = 0; i < permissions.length; i++) {
-            tmp.push(permissions.RoleName);
+            tmp.push(permissions[i].RoleName);
         }
         roles = Array.from(new Set(tmp));
         var table = $('#roles_table').DataTable();
