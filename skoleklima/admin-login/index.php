@@ -38,6 +38,7 @@
 	<script src="../lib/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="js/main.js?v=<?php echo $system_version ?>"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="js/roles.js"></script>
 
     <script>
         [
