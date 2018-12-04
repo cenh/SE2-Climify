@@ -5,6 +5,7 @@ require_once "../admin-meta.php";
 require_once "../session.php";
 
 $phaseSessionToken = clean($_POST[sessionToken]);
+$roleID = clean($_POST[roleID]);
 
 if (!$systemAccess) {
     echo '{"status":"systemAccess error"}';
@@ -35,7 +36,8 @@ if ($conn->connect_error) {
 
 //$query = "SELECT RoleName, PermDescription FROM Role r JOIN RolePermission rp ON r.RoleID = rp.RoleID
 //        JOIN Permission p ON p.PermID = rp.PermID";
-$query = "SELECT * FROM Permission";
+$query = "SELECT * FROM Permission r LEFT JOIN RolePermission rp 
+          ON p.PermID = rp.PermID WHERE rp.RoleID = $roleID";
 //RolePermission;
 //Permission;
 
