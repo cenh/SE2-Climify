@@ -45,7 +45,7 @@ function getTableData() {
     }, function (data) {
         var jData = JSON.parse(data);
         permissions = jData;
-        tmp = [];
+        var tmp = [];
         for(var i = 0; i < permissions.length; i++) {
             tmp.push(permissions[i].RoleName);
         }
