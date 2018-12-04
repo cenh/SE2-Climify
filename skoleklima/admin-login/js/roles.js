@@ -13,7 +13,7 @@ $(document).ready(function () {
     refreshTable();
 
     // Add event listener for opening and closing details
-    $('#table_channels tbody').on('click', 'td', function () {
+    $('#roles_table tbody').on('click', 'td', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
 
