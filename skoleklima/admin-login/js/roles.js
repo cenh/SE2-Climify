@@ -46,17 +46,10 @@ function getTableData() {
         var jData = JSON.parse(data);
         roles = jData;
         console.table(roles);
-        // var tmp = [];
-        // for(var i = 0; i < permissions.length; i++) {
-        //     tmp.push(permissions[i].RoleName);
-        // }
-        // roles = Array.from(new Set(tmp));
-        // var table = $('#roles_table').DataTable();
-        // table.clear();
-        //
-        // for (var j = 0; j < roles.length; j++) {
-        //     table.row.add([roles[j]]).draw(false);
-        // }
+
+        for (var j = 0; j < roles.length; j++) {
+            table.row.add([roles[j].RoleName]).draw(false);
+        }
     });
 }
 
