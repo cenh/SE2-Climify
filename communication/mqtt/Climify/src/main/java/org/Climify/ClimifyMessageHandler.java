@@ -1,9 +1,6 @@
 package org.Climify;
 
 import java.io.IOException;
-import java.io.PrintStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,19 +13,21 @@ import org.MqttLib.openhab.Command;
 import org.MqttLib.openhab.DeviceUpdate;
 import org.MqttLib.openhab.InboxDevice;
 import org.MqttLib.openhab.SensorMeasurement;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 
 public class ClimifyMessageHandler extends MessageHandler {
 	
 	private InfluxCommunicator influx;
 	private MariaDBCommunicator mariaDB;
-	private MessageCallback msgCall;
+	private MessageCallback messageCallback;
 
-	public ClimifyMessageHandler(String topic, MqttMessage message, InfluxCommunicator influx, MariaDBCommunicator mariaDB, MessageCallback msgCall) {
+	public ClimifyMessageHandler(String topic, MqttMessage message, InfluxCommunicator influx, MariaDBCommunicator mariaDB, MessageCallback messageCallback) {
 		super(topic, message);
 		this.influx = influx;
 		this.mariaDB = mariaDB;
-		this.msgCall = msgCall;
+		this.messageCallback = messageCallback;
 	}
 	
 	@Override
@@ -73,35 +72,10 @@ public class ClimifyMessageHandler extends MessageHandler {
 		}
 	}
 
-	private void executeRule(String SensorID) {
+	private void executeRule(String SensorID, String SensorValue) throws IOException, MqttPersistenceException, MqttException {
 	    System.out.println("Looking for rules on sensor: " + SensorID);
 		List<List<String>> results = new ArrayList<List<String>>();
-		results = this.mariaDB.getRulesBySensorID(SensorID);
-		for(List<String> result : results) {
-		    System.out.println("Running rule on sensor: " + result.get(0));
-			try {
-				URL url = new URL("http://localhost:80/rules/skoleklima/api/api-rule-execute.php");
-				HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-				httpCon.setDoOutput(true);
-				httpCon.setRequestMethod("POST");
-				PrintStream ps = new PrintStream(httpCon.getOutputStream());
-				ps.print("SensorID=" + result.get(0));
-				ps.print("&Operator=" + result.get(1));
-				ps.print("&Value=" + result.get(2));
-				ps.print("&Action=" + result.get(3));
-				httpCon.getInputStream();
-				ps.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	private void executeRule(String SensorID, String SensorValue) throws java.io.IOException,
-            org.eclipse.paho.client.mqttv3.MqttPersistenceException, org.eclipse.paho.client.mqttv3.MqttException{
-	    System.out.println("Looking for rules on sensor: " + SensorID);
-		List<List<String>> results = new ArrayList<List<String>>();
-		results = this.mariaDB.getRulesBySensorID(SensorID);
+		results = mariaDB.getRulesBySensorID(SensorID);
 		String Operator = "";
 		String Value = "";
 		String Action = "";
@@ -126,20 +100,20 @@ public class ClimifyMessageHandler extends MessageHandler {
                     case ("GREATER"):
                         if (Float.parseFloat(SensorValue) > Float.parseFloat(Value)){
                             System.out.println("Sending the Command");
-                            msgCall.publish(Topic.COMMAND.getTopic(), 2, payload);
+                            messageCallback.publish(Topic.COMMAND.getTopic(), 2, payload);
                         }
 
                         break;
                     case ("LESS"):
                         if (Float.parseFloat(SensorValue) < Float.parseFloat(Value)){
                             System.out.println("Sending the Command");
-                            msgCall.publish(Topic.COMMAND.getTopic(), 2, payload);
+                            messageCallback.publish(Topic.COMMAND.getTopic(), 2, payload);
                         }
                         break;
                     case ("EQUAL"):
                         if (Float.parseFloat(SensorValue) == Float.parseFloat(Value)){
                             System.out.println("Sending the Command");
-                            msgCall.publish(Topic.COMMAND.getTopic(), 2, payload);
+                            messageCallback.publish(Topic.COMMAND.getTopic(), 2, payload);
                         }
                         break;
                 }
@@ -147,16 +121,3 @@ public class ClimifyMessageHandler extends MessageHandler {
 
 		}
 }
-
-
-//	URL url = new URL("http://localhost:80/rules/skoleklima/api/api-rule-execute.php");
-//				HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-//				httpCon.setDoOutput(true);
-//				httpCon.setRequestMethod("POST");
-//				PrintStream ps = new PrintStream(httpCon.getOutputStream());
-//				ps.print("SensorID=" + result.get(0));
-//				ps.print("&Operator=" + result.get(1));
-//				ps.print("&Value=" + result.get(2));
-//				ps.print("&Action=" + result.get(3));
-//				httpCon.getInputStream();
-//				ps.close();
