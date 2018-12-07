@@ -65,18 +65,14 @@ function format_roles(d) {
     }, function (data) {
         var jData = JSON.parse(data);
         console.table(jData);
+        for(var i = 0; i < jData.length; i++) {
+            rows += '<tr>' + '<td>'+ jData[i].PermDescription +'</td>' + '<tr>';
+        }
     });
 
     // console.log(roleID);
 
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        '<tr>' +
-        '<td>Category:</td>' +
-        '<td>' + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Action:</td>' +
-
-        '</tr>' +
+        rows +
         '</table>';
 }
