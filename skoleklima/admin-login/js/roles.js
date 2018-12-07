@@ -70,4 +70,7 @@ function format_roles(d) {
             rows +
             '</table>';
     });
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        rows +
+        '</table>';
 }
