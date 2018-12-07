@@ -317,6 +317,7 @@ function updateCompanyList(search) {
 <div class="user-meta-subusers">\
 <h4>Associated Project Managers</h4>\
 <div class="create-subuser-wrapper">\
+<button class="btn-create-user-company" data-toggle="modal" data-target="#roleDropdown">Select Role</button>\
 <p>New users will automatically be assigned to the administrator role</p>\
 <span>\
 <div class="modal fade" id="roleDropdown"  tabindex="-1" role="dialog" aria-labelledby="roleDropdownTitle" aria-hidden="true">\
@@ -341,7 +342,6 @@ function updateCompanyList(search) {
 <input type="text" class="inp-system-create-user inp-system-create-user-firstname" placeholder="First Name">\
 <input type="text" class="inp-system-create-user inp-system-create-user-lastname" placeholder="Last Name">\
 <input type="email" class="inp-system-create-user inp-system-create-user-email" placeholder="E-mail">\
-<button class="btn-create-user-company" data-toggle="modal" data-target="#roleDropdown">Select Role</button>\
 </span>\
 </div>\
 <div class="user-meta-subusers-userlist">\
