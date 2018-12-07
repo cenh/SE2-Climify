@@ -49,7 +49,7 @@
                         </div>
                         <div class="user-meta-subusers-userlist">
                         </div>
-<!--                        <div class="modal fade" id="roleDropdown"  tabindex="-1" role="dialog" aria-labelledby="roleDropdownTitle" aria-hidden="true">>
+                        <div class="modal fade" id="roleDropdown"  tabindex="-1" role="dialog" aria-labelledby="roleDropdownTitle" aria-hidden="true">>
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
                         </div>
-                    </div>-->
+                    </div>
                 </div>
             </div>
         </div>
