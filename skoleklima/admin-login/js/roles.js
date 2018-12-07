@@ -66,7 +66,7 @@ function format_roles(d) {
         var jData = JSON.parse(data);
         console.table(jData);
         for(var i = 0; i < jData.length; i++) {
-            rows += '<tr>' + '<td>'+ jData[i].PermDescription +'</td>' + '<tr>';
+            rows += '<tr>' + '<td>'+ jData[i].PermDescription +'</td>' + '</tr>';
         }
         console.log(rows);
     });
@@ -74,13 +74,6 @@ function format_roles(d) {
     // console.log(roleID);
 
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        '<tr>' +
-        '<td>Description:</td>' +
-        '<td>' + 'bla' + '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Item Type: </td>' +
-        '<td>' + 'bla' + '</td>' +
-        '</tr>' +
+        rows +
         '</table>';
 }
