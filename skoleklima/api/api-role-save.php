@@ -15,9 +15,6 @@ $databasename = DB_NAME;
 $rolename = $_POST['RoleName'];
 $permissions = $_POST['Permissions'];
 
-
-
-
 $conn = new mysqli($servername, $username, $password, $databasename);
 if ($conn->connect_error) {
   echo '{"status":"Connection died"}';
