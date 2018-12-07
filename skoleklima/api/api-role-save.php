@@ -37,7 +37,7 @@ else {
 
 $roleid += 1;
 
-$q = "INSERT INTO Role(RoleID, RoleName) VALUES ($roleid,$rolename)";
+$q = "INSERT INTO Role(RoleID, RoleName) VALUES ($roleid,'$rolename')";
 mysqli_query($conn, $q) or die("Error in Inserting " . mysqli_error($conn));
 
 
