@@ -9,7 +9,6 @@ $(document).ready(function () {
     });
 
     getTableData();
-    refreshTable();
 
     // Add event listener for opening and closing details
     $('#roles_table tbody').on('click', 'td', function () {
@@ -29,12 +28,6 @@ $(document).ready(function () {
         }
     });
 });
-
-function refreshTable() {
-    setInterval(function () {
-        getTableData();
-    }, 30000);
-}
 
 function getTableData() {
     var sUrl = "api/api-get-roles.php";

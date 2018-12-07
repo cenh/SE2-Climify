@@ -36,7 +36,7 @@ if ($conn->connect_error) {
 
 //$query = "SELECT RoleName, PermDescription FROM Role r JOIN RolePermission rp ON r.RoleID = rp.RoleID
 //        JOIN Permission p ON p.PermID = rp.PermID";
-$query = "SELECT * FROM Permission LEFT JOIN RolePermission ON RolePermission.PermID = Permission.PermID AND RolePermission.RoleID = $roleID";
+$query = "SELECT PermID, PermDescription, RoleID FROM Permission LEFT JOIN RolePermission ON RolePermission.PermID = Permission.PermID AND RolePermission.RoleID = $roleID";
 //RolePermission;
 //Permission;
 
