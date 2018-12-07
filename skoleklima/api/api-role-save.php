@@ -31,7 +31,7 @@ if($result->num_rows==1){
   }
 }
 else {
-  echo '{"status":"More than one Rule was returned, only expected one"}';
+  echo '{"status":"More than one Role was returned, only expected one"}';
   exit;
 }
 

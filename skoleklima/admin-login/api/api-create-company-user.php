@@ -23,6 +23,7 @@ $phaseUsername = clean(strtolower($_POST["username"]));
 $phaseUserFirstName = clean($_POST["firstname"]);
 $phaseUserLastName = clean($_POST["lastname"]);
 $phaseUserEmail = clean($_POST["email"]);
+$phaseRole = clean($_POST['role']);
 $setUserSchool = "";
 $setUserRole = "1";
 $setUserBlock = "1";
@@ -88,14 +89,13 @@ if ($stmt->execute()) {
     */
 
     $nul=0;
-    $RoleName = 1; //Project Manager
     $LastLogin=null;
     $Blocked=1;
 
 
 
     $stmt = $conn->prepare("INSERT INTO Person VALUES (?,?,?,?,?,?,?,?,?)");
-    $stmt->bind_param("issssisis",$nul,$phaseUsername,$phaseUserFirstName,$phaseUserLastName,$phaseUserEmail,$RoleName,$encryptedPass,$Blocked,$null);
+    $stmt->bind_param("issssisis",$nul,$phaseUsername,$phaseUserFirstName,$phaseUserLastName,$phaseUserEmail,$phaseRole,$encryptedPass,$Blocked,$null);
     if ($stmt->execute()) {
         echo '{"status":"ok","userID":"'.$userId.'", "pass":"'.$setUserPass.'"}';
         $UserID = $conn->insert_id;

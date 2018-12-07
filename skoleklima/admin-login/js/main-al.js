@@ -147,7 +147,8 @@ $(document).on("click", ".btn-create-user-company", function () {
         }, 2000);
     } else {
         var thisInput = $(this).parent().find(".inp-system-create-user");
-        requestCreateUser(thisInput, companyID, username, firstName, lastName, email)
+        var role; // assign role here
+        requestCreateUser(thisInput, companyID, username, firstName, lastName, email, role);
     }
 });
 
@@ -738,7 +739,7 @@ function requestCompanyDTUManager(){
 
 // Create company user
 
-function requestCreateUser(thisInput, companyID, username, firstName, lastName, email) {
+function requestCreateUser(thisInput, companyID, username, firstName, lastName, email, role) {
     var sUrl = "api/api-create-company-user.php";
     var temp = '<div class="single-company-user" data-company-user-id="{{userID}}">\
 <p>'+ username.toLowerCase() +'</p>\
@@ -762,6 +763,7 @@ function requestCreateUser(thisInput, companyID, username, firstName, lastName, 
         firstname: firstName,
         lastname: lastName,
         email: email,
+        role: role,
     }, function (data) {
         var jData = JSON.parse(data);
         if (jData.status == "ok") {
