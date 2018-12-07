@@ -235,6 +235,8 @@ $("#imp-search-company").keyup(function (event) {
     }
 });
 
+
+
 function updateCompanyList(search) {
     var userBlock = $("#inp-serch-block").val();
     $(".header-text-wrapper h4").text("");
@@ -321,7 +323,7 @@ function updateCompanyList(search) {
 <input type="text" class="inp-system-create-user inp-system-create-user-firstname" placeholder="First Name">\
 <input type="text" class="inp-system-create-user inp-system-create-user-lastname" placeholder="Last Name">\
 <input type="email" class="inp-system-create-user inp-system-create-user-email" placeholder="E-mail">\
-<button class="btn-create-user-company">Create user</button>\
+<button class="btn-create-user-company">Select Role</button>\
 </span>\
 </div>\
 <div class="user-meta-subusers-userlist">\
