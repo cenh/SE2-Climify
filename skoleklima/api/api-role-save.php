@@ -41,7 +41,7 @@ $q = "INSERT INTO Role(RoleID, RoleName) VALUES ($roleid,$rolename)";
 mysqli_query($conn, $q) or die("Error in Inserting " . mysqli_error($conn));
 
 
-for($i = 0; &i < count($permissions); $i++){
+for($i = 0; $i < count($permissions); $i++){
     $q = "INSERT INTO RolePermission(RoleID, PermID, InstID) VALUES ($roleid,$permissions[$i], $InstID)";
     mysqli_query($conn, $q) or die("Error in Inserting " . mysqli_error($conn));
 }
