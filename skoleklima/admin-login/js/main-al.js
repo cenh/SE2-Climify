@@ -337,7 +337,6 @@ function updateCompanyList(search) {
 </div>\
 </div>\
 </div>\
-
 <input type="text" class="inp-system-create-user inp-system-create-user-username" placeholder="Username (4-8 character)">\
 <input type="text" class="inp-system-create-user inp-system-create-user-firstname" placeholder="First Name">\
 <input type="text" class="inp-system-create-user inp-system-create-user-lastname" placeholder="Last Name">\
@@ -345,7 +344,6 @@ function updateCompanyList(search) {
 <button class="btn-create-user-company" data-toggle="modal" data-target="#roleDropdown">Select Role</button>\
 </span>\
 </div>\
-
 <div class="user-meta-subusers-userlist">\
 </div>\
 </div>\
