@@ -74,6 +74,13 @@ function format_roles(d) {
     // console.log(roleID);
 
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        // rows +
+        '<tr>' +
+        '<td>Description:</td>' +
+        '<td>' + 'bla' + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Item Type: </td>' +
+        '<td>' + 'bla' + '</td>' +
+        '</tr>' +
         '</table>';
 }
