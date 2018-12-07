@@ -42,9 +42,7 @@ mysqli_query($conn, $q) or die("Error in Inserting " . mysqli_error($conn));
 
 
 for($i = 0; $i < count($permissions); $i++){
-    //error_log($permissions[$i], 0);
     $q = "INSERT INTO RolePermission(RoleID, PermID, InstID) VALUES ($roleid, $permissions[$i], 1)";
-    error_log($q, 0);
     mysqli_query($conn, $q) or die("Error in Inserting " . mysqli_error($conn));
 }
 
