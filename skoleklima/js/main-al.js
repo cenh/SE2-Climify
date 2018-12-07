@@ -970,18 +970,32 @@ $('#icn-close-data-map-info').click(function () {
 });
 
 $(".btn-show-view-map-info").click(function () {
-    if (showInfoDivecesMap == false) {
-        $("html, body").animate({
-            scrollTop: 0
-        }, 1000);
-        $(".data-map-info-wrapper").slideDown();
-        $(".btn-show-view-map-info").text("Skjul info");
-        showInfoDivecesMap = true;
-    } else {
-        $(".data-map-info-wrapper").slideUp();
-        $(".btn-show-view-map-info").text("Vis info");
-        showInfoDivecesMap = false;
-    }
+    // if (showInfoDivecesMap == false) {
+    //     $("html, body").animate({
+    //         scrollTop: 0
+    //     }, 1000);
+    //     $(".data-map-info-wrapper").slideDown();
+    //     $(".btn-show-view-map-info").text("Skjul info");
+    //     showInfoDivecesMap = true;
+    // } else {
+    //     $(".data-map-info-wrapper").slideUp();
+    //     $(".btn-show-view-map-info").text("Vis info");
+    //     showInfoDivecesMap = false;
+    // }
+
+    var rolename = "TestRole";
+    var perm = [1,2,3];
+    $.ajax({
+        type:"POST",
+        url:"api/api-role-save.php",
+        data:{
+            RoleName: rolename,
+            Permissions: perm
+        },
+        success: function(data){
+            console.log(data);
+        }
+    });
 });
 
 $('#icn-close-devices-wrapper').click(function () {
