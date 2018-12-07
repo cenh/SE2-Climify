@@ -47,10 +47,9 @@ function getTableData() {
     });
 }
 
-var toadd;
-
 function format_roles(d) {
     // `d` is the original data object for the row
+    var toadd;
     var rows = '';
     var index = roles.findIndex(function (row) {
         return row.RoleName === d[0];
