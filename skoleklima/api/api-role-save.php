@@ -22,7 +22,7 @@ if ($conn->connect_error) {
   exit;
 }
 
-$q = "SELECT RoleID FROM Role ORDER BY RoleID DESC LIMIT 1"
+$q = "SELECT RoleID FROM Role ORDER BY RoleID DESC LIMIT 1";
 $result = mysqli_query($conn, $q) or die("Error in Selecting " . mysqli_error($conn));
 
 if($result->num_rows==1){
