@@ -68,6 +68,7 @@ function format_roles(d) {
         for(var i = 0; i < jData.length; i++) {
             rows += '<tr>' + '<td>'+ jData[i].PermDescription +'</td>' + '</tr>';
         }
+        console.log(rows);
     });
 
     // console.log(roleID);
