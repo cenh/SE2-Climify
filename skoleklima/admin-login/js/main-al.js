@@ -319,6 +319,25 @@ function updateCompanyList(search) {
 <div class="create-subuser-wrapper">\
 <p>New users will automatically be assigned to the administrator role</p>\
 <span>\
+<div class="modal fade" id="roleDropdown"  tabindex="-1" role="dialog" aria-labelledby="roleDropdownTitle" aria-hidden="true">\
+<div class="modal-dialog modal-dialog-centered" role="document">\
+<div class="modal-content">\
+<div class="modal-header">\
+<h5 class="modal-title" id="roleDropdownTitle"</h5>\
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">\
+<span aria-hidden="true">&times;</span>\
+</button>\
+</div>\
+<div class="modal-body">\
+<form id="newUserRole"></form>\
+</div>\
+<div class="modal-footer">\
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>\
+<button type="button" id="SaveRole" class="btn btn-primary">Save changes</button>\
+</div>\
+</div>\
+</div>\
+
 <input type="text" class="inp-system-create-user inp-system-create-user-username" placeholder="Username (4-8 character)">\
 <input type="text" class="inp-system-create-user inp-system-create-user-firstname" placeholder="First Name">\
 <input type="text" class="inp-system-create-user inp-system-create-user-lastname" placeholder="Last Name">\
@@ -326,6 +345,7 @@ function updateCompanyList(search) {
 <button class="btn-create-user-company" data-toggle="modal" data-target="#roleDropdown">Select Role</button>\
 </span>\
 </div>\
+
 <div class="user-meta-subusers-userlist">\
 </div>\
 </div>\
