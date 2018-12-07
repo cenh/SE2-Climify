@@ -49,7 +49,7 @@ function getTableData() {
 
 function format_roles(d) {
     // `d` is the original data object for the row
-    var rows = "";
+    var rows = '';
     var permissions;
     var index = roles.findIndex(function (row) {
         return row.RoleName === d[0];
@@ -68,12 +68,20 @@ function format_roles(d) {
         for(var i = 0; i < jData.length; i++) {
             rows += '<tr>' + '<td>'+ jData[i].PermDescription +'</td>' + '</tr>';
         }
-        console.log(rows);
     });
 
     // console.log(roleID);
+    console.log(rows);
 
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<tr>' +
+        '<td>Description:</td>' +
+        '<td>' + 'bla' + '</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Item Type: </td>' +
+        '<td>' + 'bla' + '</td>' +
+        '</tr>' +
         rows +
         '</table>';
 }
