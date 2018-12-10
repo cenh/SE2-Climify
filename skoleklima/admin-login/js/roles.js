@@ -67,13 +67,13 @@ function format_roles(d) {
         permissions = jData;
     });
 
-    // for(var i = 0; i < jData.length; i++) {
-    //     rows += '<tr><td>'+ jData[i].PermDescription +'</td></tr>';
-    // }
+    for(var i = 0; i < permissions.length; i++) {
+        rows += '<tr><td>'+ permissions[i].PermDescription +'</td></tr>';
+    }
 
 
 
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        toadd +
+        rows +
         '</table>';
 }
