@@ -15,8 +15,8 @@ $(document).ready(function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
 
-        var index = roles.findIndex(function (row) {
-            return row.RoleName === row.data()[0];
+        var index = roles.findIndex(function (r) {
+            return r.RoleName === row.data()[0];
         });
         var roleID = roles[index].RoleID;
 
