@@ -348,14 +348,15 @@ function updateCompanyList(search) {
 ';
 
 
-$(document).on("change", "#NewUsername" "#NewFName", "#NewLName", "#NewEmail",function () {
-    if($('#NewUsername').val() != "" && $('#NewFName').val() != '' && $('#NewLName').val() != "" && $('#NewEmail').val() != ""){
+$(document).on("change", "#NewUsername" "#NewFName", "#NewLName", "#NewEmail", function () {
+
+    if($('#NewUsername').val() != "" && $('#NewFName').val() != "" && $('#NewLName').val() != "" && $('#NewEmail').val() != ""){
         document.getElementById("isValidForm").disabled = false
     }
     else {
         document.getElementById("isValidForm").disabled = true
     }
-})
+});
 
     /*
 var manTemp =  '<div class="user-meta-man">\
