@@ -14,7 +14,7 @@ public abstract class InfluxQuery {
 	}
 
 	public static Query getSensors(String db){
-		Query query =  new Query("SELECT * FROM MEASUREMENTS", db);
+		Query query =  new Query("SHOW Measurements", db);
 		return query;
 	}
 
