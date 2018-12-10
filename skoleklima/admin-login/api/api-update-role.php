@@ -15,6 +15,7 @@ $databasename = DB_NAME;
 
 $roleid = $_POST['RoleID'];
 $permissions = $_POST['Permissions'];
+error_log($roleid,0);
 
 
 $conn = new mysqli($servername, $username, $password, $databasename);
@@ -25,9 +26,10 @@ if ($conn->connect_error) {
 }
 
 $q = "DELETE FROM RolePermission WHERE RoleID=$roleid";
+error_log($q,0);
 mysqli_query($conn, $q) or die("Error in Selecting " . mysqli_error($conn));
 
-error_log($q,0);
+
 
 for($i = 0; $i < count($permissions); $i++){
     $q = "INSERT INTO RolePermission(RoleID, PermID, InstID) VALUES ($roleid, $permissions[$i], 1)";
