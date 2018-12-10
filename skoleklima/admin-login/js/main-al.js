@@ -792,6 +792,7 @@ function requestCreateUser(thisInput, companyID, username, firstName, lastName, 
         role: role,
     }, function (data) {
         var jData = JSON.parse(data);
+        console.log(jData);
         if (jData.status == "ok") {
             var pass = jData.pass;
             var replaceTemp = temp;
