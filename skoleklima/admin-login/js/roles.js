@@ -72,13 +72,13 @@ function format_roles(d, callback) {
         if (rows === '')
             rows = '<tr><td>There is no permissions for this role</td></tr>';
         var table = '<table cellspacing="0" border="0" style="padding-left:10px; width: 100%;">' +
-            rows + '<tr><td><button onclick="choose_permissions()">Edit</button></td></tr>' +
+            rows + '<tr><td><button onclick="choose_permissions('+roleID+')">Edit</button></td></tr>' +
             '</table>';
         callback(table);
     });
 }
 
-function choose_permissions() {
+function choose_permissions(roleID) {
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
     modal.style.display = "block";
