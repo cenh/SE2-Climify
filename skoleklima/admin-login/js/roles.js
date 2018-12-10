@@ -67,8 +67,11 @@ function format_roles(d, callback) {
         var jData = JSON.parse(data);
         console.table(jData);
         for(var i = 0; i < jData.length; i++) {
-            rows += '<tr><td>'+ jData[i].PermDescription +'</td></tr>';
+            if(jData[i].RoleID === roleID)
+                rows += '<tr><td>'+ jData[i].PermDescription +'</td></tr>';
         }
+        if(rows === '')
+            rows = '<tr><td>There is no permissions for this role</td></tr>';
         callback(rows);
     });
 }
