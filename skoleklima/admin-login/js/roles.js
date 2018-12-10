@@ -121,6 +121,8 @@ function change_permissions(roleID) {
         if(checks[i].checked === true)
             perms.push(checks[i].value);
     }
+    console.log(perms);
+    console.log(roleID);
 
     $.post("api/api-update-role.php", {
        RoleID: roleID,
