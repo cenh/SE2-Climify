@@ -1,5 +1,6 @@
 //roles table
 var roles = [];
+var permissions = [];
 
 $(document).ready(function () {
     var table = $('#roles_table').DataTable({
@@ -22,7 +23,10 @@ $(document).ready(function () {
         }
         else {
             // Open this row
-            row.child(format_roles(row.data(), addrows)).show();
+
+            format_roles(row.data(), function (rows) {
+                row.child(format_roles(rows)).show();
+            });
             tr.addClass('shown');
 
         }
@@ -47,7 +51,7 @@ function getTableData() {
     });
 }
 
-function format_roles(d, addrows) {
+function format_roles(d, callback) {
     // `d` is the original data object for the row
     var rows = '';
     var index = roles.findIndex(function (row) {
@@ -67,11 +71,5 @@ function format_roles(d, addrows) {
             rows += '<tr><td>'+ jData[i].PermDescription +'</td></tr>';
         }
     });
-    return addrows(rows);
-}
-
-function addrows(rows) {
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        rows +
-        '</table>';
+    callback(rows);
 }
