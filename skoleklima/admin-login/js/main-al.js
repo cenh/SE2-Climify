@@ -134,7 +134,7 @@ $(document).on("change", ".inp-system", function(){
 
 // Create company user button
 $(document).on("click", ".btn-create-user-company", function () {
-    var companyID = $(this).parent().parent().parent().parent().parent().attr("data-company-id");
+    var companyID = $(this).parent().parent().parent().parent().attr("data-company-id");
     console.log(companyID);
     var username = $('#NewUsername').val();
     var firstName = $(this).parent().find(".inp-system-create-user-firstname").val();
@@ -837,7 +837,7 @@ function requestCreateUser(thisInput, companyID, username, firstName, lastName, 
 // Delete company
 
 $(document).on("click", ".btn-delete-sel-company", function () {
-    var selCompanyId = $(this).parent().parent().parent().parent().attr("data-company-id");
+    var selCompanyId = $(this).parent().parent().parent().parent().parent().attr("data-company-id");
     swal({
         title: "",
         text: 'Are you sure you want to delete this user, as well as any affiliates, permanently?',
