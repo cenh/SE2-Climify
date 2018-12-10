@@ -320,6 +320,7 @@ function updateCompanyList(search) {
 <button class="btn-create-user-company" data-toggle="modal" data-target="#roleDropdown">Select Role</button>\
 <p>New users will automatically be assigned to the administrator role</p>\
 <span>\
+<input type="text" class="inp-system-create-user inp-system-create-user-username" placeholder="Username (4-8 character)">\n<input type="text" class="inp-system-create-user inp-system-create-user-firstname" placeholder="First Name">\n<input type="text" class="inp-system-create-user inp-system-create-user-lastname" placeholder="Last Name">\n<input type="email" class="inp-system-create-user inp-system-create-user-email" placeholder="E-mail">
 <div class="modal fade" id="roleDropdown"  tabindex="-1" role="dialog" aria-labelledby="roleDropdownTitle" aria-hidden="true">\
 <div class="modal-dialog modal-dialog-centered" role="document">\
 <div class="modal-content">\
