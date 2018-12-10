@@ -119,8 +119,6 @@ function change_permissions(roleID) {
         if(checks[i].checked === true)
             perms.push(parseInt(checks[i].value));
     }
-    console.log(perms);
-    console.log(roleID);
 
     $.post("api/api-update-role.php", {
        RoleID: roleID,
@@ -132,12 +130,15 @@ function change_permissions(roleID) {
     var modal = document.getElementById('myModal');
     modal.style.display = "none";
     table = $('#roles_table').DataTable().draw();
-    table.rows().eq(0).each( function ( idx ) {
-        var row = table.row( idx );
 
-        if ( row.child.isShown() ) {
-            row.child.close();
+    table.rows().every(function(){
+        // If row has details expanded
+        if(this.child.isShown()){
+            // Collapse row details
+            this.child.hide();
+            $(this.node()).removeClass('shown');
         }
-    } );
+    });
+
     alert('Changes Saved');
 }
