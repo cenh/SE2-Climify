@@ -5,6 +5,7 @@ import org.influxdb.dto.Point;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
@@ -48,8 +49,10 @@ public class InfluxCommunicator {
 //		values=[[MainIndoorStation_Noise], [ZWaveNode4LC13LivingConnectZThermostat_SetpointHeating], [readBattery],
 //		[readCO2], [readHumidity], [readOutdoorTemperature], [readTemperature], [setTemperature]]]], error=null]], error=null]
 
-		System.out.println(result.getResults().get(0).getSeries().get(0).getValues());
-
+		List<List<Object>> sensors = result.getResults().get(0).getSeries().get(0).getValues();
+		for(int i = 0; i < sensors.size(); i++){
+			System.out.println(sensors.get(i).get(0));
+		}
 
 	}
 
