@@ -67,7 +67,7 @@ function format_roles(d, addrows) {
             rows += '<tr><td>'+ jData[i].PermDescription +'</td></tr>';
         }
     });
-    addrows(rows);
+    return addrows(rows);
 }
 
 function addrows(rows) {
