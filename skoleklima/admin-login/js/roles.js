@@ -84,7 +84,7 @@ function choose_permissions(roleID) {
     var perms = document.getElementById("form_wrapper");
     perms.innerHTML = "";
 
-    var form = '<form>';
+    var form = '<form id="permissions_form">';
 
     modal.style.display = "block";
     span.onclick = function() {
@@ -104,10 +104,22 @@ function choose_permissions(roleID) {
             var checked = '';
             if(jData[i].RoleID != null)
                 checked = 'checked';
-            form += '<input type="checkbox" style="margin-right: 5px"' + checked + '>' + jData[i].PermDescription + '<br>';
+            form += '<input type="checkbox" style="margin-right: 5px"' + checked + ' ' +
+                'value="' + jData[i].PermID + '">' + jData[i].PermDescription + '<br>';
         }
-        form += '<input type="button" value="Save Changes">';
+        form += '<input type="button" value="Save Changes" name="perm" onclick="change_permissions(' + roleID +')"></form>';
         perms.innerHTML = form;
     });
 
+
+
+}
+
+function change_permissions(roleID) {
+    var form = document.getElementById('permissions_form');
+    perms = [];
+    $("input:checkbox[name=perm]:checked").each(function(){
+        perms.push($(this).val());
+    });
+    console.log(perms);
 }
