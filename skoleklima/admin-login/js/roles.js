@@ -85,4 +85,16 @@ function choose_permissions() {
     span.onclick = function() {
         modal.style.display = "none";
     };
+
+    var sUrl = "api/api-get-permissions.php";
+    // Do AJAX and phase link to api
+    $.post(sUrl, {
+        roleID: roleID,
+        sessionToken: sessionToken,
+    }, function (data) {
+        var jData = JSON.parse(data);
+        console.table(jData);
+    });
+
+
 }
