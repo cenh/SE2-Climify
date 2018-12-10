@@ -10,11 +10,11 @@ require_once "../session.php";
 $phaseSessionToken = clean($_POST[sessionToken]);
 
 if( $phaseSessionToken != $adminSessionToken ){
-    echo '{"status":"error"}';
+    echo '{"status":"error_token"}';
     exit;
 }
 if (!$systemAccess) {
-    echo '{"status":"error"}';
+    echo '{"status":"error_access"}';
     exit;
 }
 
@@ -29,11 +29,11 @@ $setUserRole = "1";
 $setUserBlock = "1";
 
 if ($phaseCompanyID == "") {
-    echo '{"status":"error"}';
+    echo '{"status":"error_companyId"}';
     exit;
 }
 if( strlen($phaseUsername) < 4 || strlen($phaseUsername) > 8 || preg_match('/\s/',$phaseUsername)){
-    echo '{"status":"error"}';
+    echo '{"status":"error_length"}';
     exit;
 }
 
@@ -59,7 +59,7 @@ $stmt = $conn->prepare("SELECT * FROM Person WHERE UserName = ?");
 $stmt->bind_param("s", $phaseUsername);
 if (!$stmt->execute()) {
     //echo '{"status":"error"}';
-    echo '{"status":"success"}';
+    echo '{"status":"error_bind"}';
     $stmt->close();
     $conn->close();
     exit;

@@ -810,7 +810,7 @@ function requestCreateUser(thisInput, companyID, username, firstName, lastName, 
             });
             thisInput.val("");
         } else {
-            if (jData.message = "userOcupied") {
+            if (jData.message === "userOcupied") {
                 swal({
                     title: "",
                     text: 'Username is occupied',
