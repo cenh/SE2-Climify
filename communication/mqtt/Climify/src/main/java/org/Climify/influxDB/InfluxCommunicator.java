@@ -48,7 +48,7 @@ public class InfluxCommunicator {
 		List<List<Object>> sensors = result.getResults().get(0).getSeries().get(0).getValues();
 		System.out.println(sensors);
 
-		List<String> times = null;
+		List<String> times = new ArrayList<String>();
 
 
 		for(int i = 0; i < sensors.size(); i++){
