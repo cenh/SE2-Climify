@@ -548,8 +548,11 @@ var manTemp =  '<div class="user-meta-man">\
 
     // Get roles for dropdown
 
-    $.post('api/api-get-allroles.php', function (data) {
+    $.post('api/api-get-allroles.php',{
+        sessionToken: sessionToken
+        }, function (data) {
         var jData = JSON.parse(data);
+        console.log(jData)
         if (jData.length > 0) {
             for (i = 0; i < jData.length; i++){
                 $("#roleSelect").append("<option value="+jData[i].roleID+">"+jData[i].RoleName+"</option>");
