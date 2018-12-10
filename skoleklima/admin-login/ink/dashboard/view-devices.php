@@ -84,6 +84,7 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <p>Some text in the Modal..</p>
+        <table id="permissions_table"></table>
     </div>
 
 </div>

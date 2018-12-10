@@ -81,6 +81,9 @@ function format_roles(d, callback) {
 function choose_permissions(roleID) {
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
+    var table = document.getElementsByClassName("permissions_table");
+    table.innerHTML = "";
+
     modal.style.display = "block";
     span.onclick = function() {
         modal.style.display = "none";
@@ -94,6 +97,12 @@ function choose_permissions(roleID) {
     }, function (data) {
         var jData = JSON.parse(data);
         console.table(jData);
+
+        for(var i = 0; i < jData.length; i++) {
+            var row = table.insertRow(0);
+            row.innerHTML = jData[i].PermDescription;
+        }
+
     });
 
 
