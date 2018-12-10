@@ -149,6 +149,7 @@ $(document).on("click", ".btn-create-user-company", function () {
         }, 2000);
     } else {
         var thisInput = $(this).parent().find(".inp-system-create-user");
+        console.log(thisInput);
         requestCreateUser(thisInput, companyID, username, firstName, lastName, email, role);
     }
 });

@@ -69,7 +69,7 @@ if (!$stmt->execute()) {
 
 $result = $stmt->get_result();
 if ($result->num_rows!=0){
-    echo '{"status":"error", "message": "userOcupied"}';
+    echo json_encode($result);
     $conn->close();
     exit;
 }
