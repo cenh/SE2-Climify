@@ -45,13 +45,12 @@ public class InfluxCommunicator {
 	public void printSensors() {
 		QueryResult result = influxDB.query(InfluxQuery.getSensors(influxName));
 
-//		QueryResult [results=[Result [series=[Series [name=measurements, tags=null, columns=[name],
-//		values=[[MainIndoorStation_Noise], [ZWaveNode4LC13LivingConnectZThermostat_SetpointHeating], [readBattery],
-//		[readCO2], [readHumidity], [readOutdoorTemperature], [readTemperature], [setTemperature]]]], error=null]], error=null]
+
 
 		List<List<Object>> sensors = result.getResults().get(0).getSeries().get(0).getValues();
 		for(int i = 0; i < sensors.size(); i++){
-			System.out.println(sensors.get(i).get(0));
+			Object sensor = sensors.get(i).get(0);
+			System.out.println(InfluxQuery.getRecentTime(influxName, (String)sensor));
 		}
 
 	}

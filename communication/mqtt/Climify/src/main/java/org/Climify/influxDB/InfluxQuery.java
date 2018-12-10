@@ -18,4 +18,9 @@ public abstract class InfluxQuery {
 		return query;
 	}
 
+	public  static Query getRecentTime(String db, String sensor){
+		Query query = new Query("SELECT * FROM " + sensor + " ORDER BY time DESC LIMIT 1", db);
+		return query;
+	}
+
 }
