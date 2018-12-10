@@ -23,9 +23,8 @@ $(document).ready(function () {
         }
         else {
             // Open this row
-
             format_roles(row.data(), function (rows) {
-                row.child(format_roles(rows)).show();
+                row.child(rows).show();
             });
             tr.addClass('shown');
 
@@ -70,6 +69,6 @@ function format_roles(d, callback) {
         for(var i = 0; i < jData.length; i++) {
             rows += '<tr><td>'+ jData[i].PermDescription +'</td></tr>';
         }
+        callback(rows);
     });
-    callback(rows);
 }
