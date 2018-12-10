@@ -104,10 +104,10 @@ function choose_permissions(roleID) {
             var checked = '';
             if(jData[i].RoleID != null)
                 checked = 'checked';
-            form += '<input type="checkbox" style="margin-right: 5px"' + checked + ' ' +
+            form += '<input type="checkbox" class="perm" style="margin-right: 5px"' + checked + ' ' +
                 'value="' + jData[i].PermID + '">' + jData[i].PermDescription + '<br>';
         }
-        form += '<input type="button" value="Save Changes" class="perm" onclick="change_permissions(' + roleID +')"></form>';
+        form += '<input type="button" value="Save Changes" onclick="change_permissions(' + roleID +')"></form>';
         perms.innerHTML = form;
     });
 
