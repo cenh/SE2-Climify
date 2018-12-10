@@ -140,6 +140,8 @@ $(document).on("click", ".btn-create-user-company", function () {
     var firstName = $(this).parent().find(".inp-system-create-user-firstname").val();
     var lastName = $(this).parent().find(".inp-system-create-user-lastname").val();
     var email = $(this).parent().find(".inp-system-create-user-email").val();
+    var role = $(this).parent().find("#roleSelect").val();
+
     if (username.length < 4 || username.length > 8) {
         $(this).parent().find(".inp-system-create-user-username").addClass("wrong-input");
         setTimeout(() => {
@@ -147,7 +149,6 @@ $(document).on("click", ".btn-create-user-company", function () {
         }, 2000);
     } else {
         var thisInput = $(this).parent().find(".inp-system-create-user");
-        var role; // assign role here
         requestCreateUser(thisInput, companyID, username, firstName, lastName, email, role);
     }
 });
@@ -1004,13 +1005,16 @@ function requestResetUserPass(id) {
     });
 }
 // Button disable or enable depending on input
-$(document).on("change", "#NewUsername, #NewFName, #NewLName, #NewEmail", function () {
-    console.log()
+$(document).on("change", "#NewUsername, #NewFName, #NewLName, #NewEmail, #roleSelect", function () {
 
-    if($('#NewUsername').val() != "" && $('#NewFName').val() != "" && $('#NewLName').val() != "" && $('#NewEmail').val() != ""){
-        document.getElementById("isValidForm").disabled = false
+    if($('#NewUsername').val() != "" && $('#NewFName').val() != "" && $('#NewLName').val() != "" && $('#NewEmail').val() != "" && $('#roleSelect').val!= ""){
+        document.getElementById("isValidForm").disabled = false;
+        console.log("False");
+
     }
     else {
-        document.getElementById("isValidForm").disabled = true
+        document.getElementById("isValidForm").disabled = true;
+        console.log("true");
+
     }
 });
