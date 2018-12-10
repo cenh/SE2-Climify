@@ -81,7 +81,7 @@ function format_roles(d, callback) {
 function choose_permissions(roleID) {
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
-    var table = document.getElementsById("permissions_table");
+    var table = document.getElementById("permissions_table");
     table.innerHTML = "";
 
     modal.style.display = "block";
