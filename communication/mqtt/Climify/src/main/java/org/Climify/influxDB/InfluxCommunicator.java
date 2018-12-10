@@ -50,7 +50,7 @@ public class InfluxCommunicator {
 
 		List<List<Object>> sensors = result.getResults().get(0).getSeries().get(0).getValues();
 		System.out.println(sensors);
-		
+
 		for(int i = 0; i < sensors.size(); i++){
 			String sensor = (String)sensors.get(i).get(0);
 //			QueryResult [results=[Result [series=[Series [name=MainIndoorStation_Noise, tags=null, columns=[time, Noise],
@@ -59,7 +59,7 @@ public class InfluxCommunicator {
 			QueryResult measurement = influxDB.query(InfluxQuery.getRecentTime(influxName, sensor));
 			String time = (String)measurement.getResults().get(0).getSeries().get(0).getValues().get(0).get(0);
 			String date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX")
-					.format(new Date());
+					.format(new Date(time));
 
 			System.out.println(date);
 		}
