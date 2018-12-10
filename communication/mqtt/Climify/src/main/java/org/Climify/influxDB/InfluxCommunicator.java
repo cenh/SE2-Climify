@@ -20,6 +20,7 @@ import org.influxdb.InfluxDB;
 public class InfluxCommunicator {
 
 	private InfluxDB influxDB;
+	private String influxName = "scadb";
 
 	public void saveMeasurement(SensorMeasurement measurement) {
 		//TODO: Should check to make sure there is a category - otherwise we will end up writing to NULL field with the new structure
@@ -37,7 +38,7 @@ public class InfluxCommunicator {
 		influxDB.close();
 	}
 
-	public void printSensors() {System.out.println(influxDB.query(InfluxQuery.getSensors()));}
+	public void printSensors() {System.out.println(influxDB.query(InfluxQuery.getSensors(influxName)));}
 
 	//Taken from the Msc. Project 
 	private Long fdate(String time)

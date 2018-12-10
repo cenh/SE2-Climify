@@ -24,6 +24,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 	private MariaDBCommunicator mariaDB;
 	private MessageCallback msgCall;
 
+
 	public ClimifyMessageHandler(String topic, MqttMessage message, InfluxCommunicator influx, MariaDBCommunicator mariaDB, MessageCallback msgCall) {
 		super(topic, message);
 		this.influx = influx;
