@@ -27,10 +27,13 @@ if ($conn->connect_error) {
 $q = "DELETE FROM RolePermission WHERE RoleID=$roleid";
 mysqli_query($conn, $q) or die("Error in Selecting " . mysqli_error($conn));
 
+error_log($q,0);
 
 for($i = 0; $i < count($permissions); $i++){
     $q = "INSERT INTO RolePermission(RoleID, PermID, InstID) VALUES ($roleid, $permissions[$i], 1)";
     mysqli_query($conn, $q) or die("Error in Inserting " . mysqli_error($conn));
+    error_log($q,0);
+
 }
 
 $conn->close();
