@@ -46,8 +46,10 @@ public class InfluxCommunicator {
 		QueryResult result = influxDB.query(InfluxQuery.getSensors(influxName));
 
 		List<List<Object>> sensors = result.getResults().get(0).getSeries().get(0).getValues();
+		System.out.println(sensors);
 		for(int i = 0; i < sensors.size(); i++){
 			Object sensor = sensors.get(i).get(0);
+
 			System.out.println(InfluxQuery.getRecentTime(influxName, (String)sensor));
 		}
 
