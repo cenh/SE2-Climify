@@ -1,6 +1,5 @@
 //roles table
 var roles = [];
-var permissions = [];
 
 $(document).ready(function () {
     var table = $('#roles_table').DataTable({
@@ -23,7 +22,7 @@ $(document).ready(function () {
         }
         else {
             // Open this row
-            row.child(format_roles(row.data())).show();
+            row.child(format_roles(row.data(), addrows)).show();
             tr.addClass('shown');
 
         }
@@ -48,7 +47,7 @@ function getTableData() {
     });
 }
 
-function format_roles(d) {
+function format_roles(d, addrows) {
     // `d` is the original data object for the row
     var rows = '';
     var index = roles.findIndex(function (row) {
@@ -64,15 +63,14 @@ function format_roles(d) {
     }, function (data) {
         var jData = JSON.parse(data);
         console.table(jData);
-        permissions = jData;
+        for(var i = 0; i < jData.length; i++) {
+            rows += '<tr><td>'+ jData[i].PermDescription +'</td></tr>';
+        }
     });
+    addrows(rows);
+}
 
-    for(var i = 0; i < permissions.length; i++) {
-        rows += '<tr><td>'+ permissions[i].PermDescription +'</td></tr>';
-    }
-
-
-
+function addrows(rows) {
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         rows +
         '</table>';
