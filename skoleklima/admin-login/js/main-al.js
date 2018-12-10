@@ -348,7 +348,7 @@ function updateCompanyList(search) {
 ';
 
 
-$(document).on("change", "#NewUsername" "#NewFName", "#NewLName", "#NewEmail", function () {
+$(document).on("change", "#NewUsername, #NewFName, #NewLName, #NewEmail", function () {
 
     if($('#NewUsername').val() != "" && $('#NewFName').val() != "" && $('#NewLName').val() != "" && $('#NewEmail').val() != ""){
         document.getElementById("isValidForm").disabled = false
