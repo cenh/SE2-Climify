@@ -792,6 +792,7 @@ function requestCreateUser(thisInput, companyID, username, firstName, lastName, 
         email: email,
         role: role,
     }, function (data) {
+        console.log("x: " + data);
         var jData = JSON.parse(data);
         console.log(jData);
         if (jData.status == "ok") {
