@@ -18,7 +18,7 @@ if (!$systemAccess) {
     exit;
 }
 
-$phaseCompanyID = clean($_POST["companyid"]);
+$phaseCompanyID = clean($_POST["companyID"]);
 $phaseUsername = clean(strtolower($_POST["username"]));
 $phaseUserFirstName = clean($_POST["firstname"]);
 $phaseUserLastName = clean($_POST["lastname"]);
