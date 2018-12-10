@@ -49,8 +49,12 @@ public class InfluxCommunicator {
 		System.out.println(sensors);
 		for(int i = 0; i < sensors.size(); i++){
 			String sensor = (String)sensors.get(i).get(0);
+//			QueryResult [results=[Result [series=[Series [name=MainIndoorStation_Noise, tags=null, columns=[time, Noise],
+//			values=[[2018-11-30T09:18:19.07Z, 35 dB]]]], error=null]], error=null]
 
-			System.out.println(influxDB.query(InfluxQuery.getRecentTime(influxName, sensor)));
+			QueryResult measurement = influxDB.query(InfluxQuery.getRecentTime(influxName, sensor));
+
+			System.out.println(measurement.getResults().get(0).getSeries().get(0).getValues().get(0).get(0));
 		}
 
 	}
