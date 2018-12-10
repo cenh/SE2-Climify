@@ -786,7 +786,7 @@ function requestCreateUser(thisInput, companyID, username, firstName, lastName, 
 ';
     $.post(sUrl, {
         sessionToken: sessionToken,
-        companyid: companyID,
+        companyID: companyID,
         username: username,
         firstname: firstName,
         lastname: lastName,
