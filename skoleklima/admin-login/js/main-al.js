@@ -135,11 +135,13 @@ $(document).on("change", ".inp-system", function(){
 // Create company user button
 $(document).on("click", ".btn-create-user-company", function () {
     var companyID = $(this).parent().parent().parent().parent().parent().attr("data-company-id");
-
-    var username = $(this).parent().find(".inp-system-create-user-username").val();
+    var username = $('#NewUsername').val();
     var firstName = $(this).parent().find(".inp-system-create-user-firstname").val();
     var lastName = $(this).parent().find(".inp-system-create-user-lastname").val();
     var email = $(this).parent().find(".inp-system-create-user-email").val();
+    var role = $(this).parent().find("#roleSelect").val();
+    console.log(username);
+    console.log(role);
     if (username.length < 4 || username.length > 8) {
         $(this).parent().find(".inp-system-create-user-username").addClass("wrong-input");
         setTimeout(() => {
@@ -147,7 +149,7 @@ $(document).on("click", ".btn-create-user-company", function () {
         }, 2000);
     } else {
         var thisInput = $(this).parent().find(".inp-system-create-user");
-        requestCreateUser(thisInput, companyID, username, firstName, lastName, email)
+        requestCreateUser(thisInput, companyID, username, firstName, lastName, email, role);
     }
 });
 
@@ -234,6 +236,8 @@ $("#imp-search-company").keyup(function (event) {
     }
 });
 
+
+
 function updateCompanyList(search) {
     var userBlock = $("#inp-serch-block").val();
     $(".header-text-wrapper h4").text("");
@@ -314,21 +318,26 @@ function updateCompanyList(search) {
 <div class="user-meta-subusers">\
 <h4>Associated Project Managers</h4>\
 <div class="create-subuser-wrapper">\
+<button class="btn-create-user-company" data-toggle="modal" id="isValidForm" data-target="#roleDropdown">Select Role</button>\
 <p>New users will automatically be assigned to the administrator role</p>\
 <span>\
-<input type="text" class="inp-system-create-user inp-system-create-user-username" placeholder="Username (4-8 character)">\
-<input type="text" class="inp-system-create-user inp-system-create-user-firstname" placeholder="First Name">\
-<input type="text" class="inp-system-create-user inp-system-create-user-lastname" placeholder="Last Name">\
-<input type="email" class="inp-system-create-user inp-system-create-user-email" placeholder="E-mail">\
-<button class="btn-create-user-company">Create user</button>\
+<input id="NewUsername" type="text" class="inp-system-create-user inp-system-create-user-username" placeholder="Username (4-8 character)">\
+<input id="NewFName" type="text" class="inp-system-create-user inp-system-create-user-firstname" placeholder="First Name">\
+<input id="NewLName" type="text" class="inp-system-create-user inp-system-create-user-lastname" placeholder="Last Name">\
+<input id="NewEmail" type="email" class="inp-system-create-user inp-system-create-user-email" placeholder="E-mail">\
+<select id="roleSelect">\
+<option value="" disabled selected>Select role</option>\
+</select>\
 </span>\
-</div>\
 <div class="user-meta-subusers-userlist">\
 </div>\
 </div>\
 </div>\
-</div >\
+</div>\
 ';
+
+
+
 
     /*
 var manTemp =  '<div class="user-meta-man">\
@@ -521,6 +530,21 @@ var manTemp =  '<div class="user-meta-man">\
 
     $("#outerDiv").load("ink/managers.php");
 
+
+    // Get roles for dropdown
+
+    $.post('api/api-get-allroles.php',{
+        sessionToken: sessionToken
+        }, function (data) {
+        var jData = JSON.parse(data);
+        console.log(jData)
+        if (jData.length > 0) {
+            for (i = 0; i < jData.length; i++){
+                $("#roleSelect").append("<option value="+jData[i].roleID+">"+jData[i].RoleName+"</option>");
+
+            }
+        }
+    });
 
 }
 
@@ -736,9 +760,12 @@ function requestCompanyDTUManager(){
 
 
 
+
+
+
 // Create company user
 
-function requestCreateUser(thisInput, companyID, username, firstName, lastName, email) {
+function requestCreateUser(thisInput, companyID, username, firstName, lastName, email, role) {
     var sUrl = "api/api-create-company-user.php";
     var temp = '<div class="single-company-user" data-company-user-id="{{userID}}">\
 <p>'+ username.toLowerCase() +'</p>\
@@ -762,8 +789,10 @@ function requestCreateUser(thisInput, companyID, username, firstName, lastName, 
         firstname: firstName,
         lastname: lastName,
         email: email,
+        role: role,
     }, function (data) {
         var jData = JSON.parse(data);
+        console.log(jData);
         if (jData.status == "ok") {
             var pass = jData.pass;
             var replaceTemp = temp;
@@ -795,6 +824,11 @@ function requestCreateUser(thisInput, companyID, username, firstName, lastName, 
         }
     });
 };
+
+
+// Enable submit button
+
+
 
 // Delete company
 
@@ -959,3 +993,17 @@ function requestResetUserPass(id) {
         }
     });
 }
+// Button disable or enable depending on input
+$(document).on("change", "#NewUsername, #NewFName, #NewLName, #NewEmail, #roleSelect", function () {
+
+    if($('#NewUsername').val() != "" && $('#NewFName').val() != "" && $('#NewLName').val() != "" && $('#NewEmail').val() != "" && $('#roleSelect').val!= ""){
+        document.getElementById("isValidForm").disabled = false;
+        console.log("False");
+
+    }
+    else {
+        document.getElementById("isValidForm").disabled = true;
+        console.log("true");
+
+    }
+});

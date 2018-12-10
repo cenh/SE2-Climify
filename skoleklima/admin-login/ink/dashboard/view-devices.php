@@ -49,7 +49,6 @@
                         </div>
                         <div class="user-meta-subusers-userlist">
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
