@@ -79,5 +79,10 @@ function format_roles(d, callback) {
 }
 
 function choose_permissions() {
-    alert('choosing permissions');
+    var modal = document.getElementById('myModal');
+    var span = document.getElementsByClassName("close")[0];
+    modal.style.display = "block";
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
 }
