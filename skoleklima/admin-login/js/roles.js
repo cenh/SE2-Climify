@@ -1,5 +1,6 @@
 //roles table
 var roles = [];
+var permissions = [];
 
 $(document).ready(function () {
     var table = $('#roles_table').DataTable({
@@ -15,22 +16,6 @@ $(document).ready(function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
 
-        var index = roles.findIndex(function (r) {
-            return r.RoleName === row.data()[0];
-        });
-        var roleID = roles[index].RoleID;
-
-        var sUrl = "api/api-get-permissions.php";
-        // Do AJAX and phase link to api
-        var permissions = [];
-        $.post(sUrl, {
-            roleID: roleID,
-            sessionToken: sessionToken,
-        }, function (data) {
-            var jData = JSON.parse(data);
-            permissions = jData;
-        });
-
         if (row.child.isShown()) {
             // This row is already open - close it
             row.child.hide();
@@ -38,7 +23,7 @@ $(document).ready(function () {
         }
         else {
             // Open this row
-            row.child(format_roles(row.data(), permissions)).show();
+            row.child(format_roles(row.data())).show();
             tr.addClass('shown');
 
         }
@@ -63,17 +48,32 @@ function getTableData() {
     });
 }
 
-function format_roles(d, permissions) {
+function format_roles(d) {
     // `d` is the original data object for the row
     var rows = '';
-    console.log(permissions);
+    var index = roles.findIndex(function (row) {
+        return row.RoleName === d[0];
+    });
+    var roleID = roles[index].RoleID;
+
+    var sUrl = "api/api-get-permissions.php";
+    // Do AJAX and phase link to api
+    $.post(sUrl, {
+        roleID: roleID,
+        sessionToken: sessionToken,
+    }, function (data) {
+        var jData = JSON.parse(data);
+        console.table(jData);
+        permissions = jData;
+    });
+
+    // for(var i = 0; i < jData.length; i++) {
+    //     rows += '<tr><td>'+ jData[i].PermDescription +'</td></tr>';
+    // }
 
 
-    for (var i = 0; i < permissions.length; i++) {
-        rows += '<tr><td>' + permissions[i].PermDescription + '</td></tr>';
-    }
 
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        rows +
+        toadd +
         '</table>';
 }
