@@ -1,7 +1,7 @@
 <!-- View dahsboard -->
 
 <div class="viewport">
-    <div class="viewport-dashboard"> 
+    <div class="viewport-dashboard">
         <div class="top-btn-wrapper">
             <span>
                 <input id="imp-search-company" type="text" placeholder="Search specific user">
@@ -30,10 +30,9 @@
             <!-- Content goes here -->
 
 
-
             <div class="user-list-single-header" style="display:flex;margin-left:10px;">
                 <p>DTU Managers</p>
-                <i class="ico-show-meta fa fa-plus link" style = "margin-left:17px"></i>
+                <i class="ico-show-meta fa fa-plus link" style="margin-left:17px"></i>
                 <i class="ico-hide-meta fa fa-minus link" style="display:none;margin-left:17px"></i>
             </div>
             <div class="user-list-single-wrapper">
@@ -42,7 +41,8 @@
                         <div class="create-subuser-wrapper">
                             <p>Create New DTU Manager</p>
                             <span>
-                            <input type="text" class="inp-system-create-user inp-system-create-user-username" placeholder="Username (4-8 character)">
+                            <input type="text" class="inp-system-create-user inp-system-create-user-username"
+                                   placeholder="Username (4-8 character)">
                             <input type="password" class="inp-system-password" placeholder="Password">
                             <button id="btn-create-manager">Create user</button>
                         </span>
@@ -59,7 +59,8 @@
 
 <div style="height: auto">
     <div style="width: 100%; text-align: center;
-         font-weight: bold; font-size: 150%;"> Roles </div>
+         font-weight: bold; font-size: 150%;"> Roles
+    </div>
 
     <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
@@ -84,52 +85,48 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <div id="form_wrapper"></div>
-        <div style="background-color: #2c9601 position: relative;
-top: 50%;
-transform: translateY(-50%); ">Changes saved!</div>
+
+
     </div>
 
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
 
-</div>
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 400px;
+        }
 
-<style>
-    /* The Modal (background) */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-    /* Modal Content */
-    .modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 400px;
-    }
-
-    /* The Close Button */
-    .close {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-</style>
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 

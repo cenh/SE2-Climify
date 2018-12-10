@@ -127,7 +127,5 @@ function change_permissions(roleID) {
 
     //here call api
 
-    var modal = document.getElementById('myModal');
-
-    modal.append()
+    alert('Changes Saved');
 }
