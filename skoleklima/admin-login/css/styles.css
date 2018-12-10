@@ -18,10 +18,10 @@
   display: flex; }
 
 .p {
-  margin:0;
+  margin-bottom: 0 !important;
 }
 .modal-footer.btn {
-  padding:0;
+  padding:0 ;
 }
 
 .button.close:hover {
