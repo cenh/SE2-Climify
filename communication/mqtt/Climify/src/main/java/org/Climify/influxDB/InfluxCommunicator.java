@@ -11,6 +11,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.MqttLib.openhab.SensorMeasurement;
 import org.influxdb.InfluxDB;
+import org.influxdb.dto.QueryResult;
+
+import javax.management.QueryEval;
 
 /**
  * Responsible for communicating with the Influx Database on the VM
@@ -38,7 +41,17 @@ public class InfluxCommunicator {
 		influxDB.close();
 	}
 
-	public void printSensors() {System.out.println(influxDB.query(InfluxQuery.getSensors(influxName)));}
+	public void printSensors() {
+		QueryResult result = influxDB.query(InfluxQuery.getSensors(influxName));
+
+//		QueryResult [results=[Result [series=[Series [name=measurements, tags=null, columns=[name],
+//		values=[[MainIndoorStation_Noise], [ZWaveNode4LC13LivingConnectZThermostat_SetpointHeating], [readBattery],
+//		[readCO2], [readHumidity], [readOutdoorTemperature], [readTemperature], [setTemperature]]]], error=null]], error=null]
+
+		System.out.println(result.getResults().get(0).getSeries().get(0).getValues());
+
+
+	}
 
 	//Taken from the Msc. Project 
 	private Long fdate(String time)
