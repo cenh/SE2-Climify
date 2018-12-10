@@ -59,7 +59,7 @@ $stmt = $conn->prepare("SELECT * FROM Person WHERE UserName = ?");
 $stmt->bind_param("s", $phaseUsername);
 if (!$stmt->execute()) {
     //echo '{"status":"error"}';
-    echo '{"status":"success"}'
+    echo '{"status":"success"}';
     $stmt->close();
     $conn->close();
     exit;
