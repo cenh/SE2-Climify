@@ -317,13 +317,13 @@ function updateCompanyList(search) {
 <div class="user-meta-subusers">\
 <h4>Associated Project Managers</h4>\
 <div class="create-subuser-wrapper">\
-<button class="btn-create-user-company" data-toggle="modal" data-target="#roleDropdown">Select Role</button>\
+<button class="btn-create-user-company" data-toggle="modal" id="isValidForm" data-target="#roleDropdown">Select Role</button>\
 <p>New users will automatically be assigned to the administrator role</p>\
 <span>\
-<input type="text" class="inp-system-create-user inp-system-create-user-username" placeholder="Username (4-8 character)">\
-<input type="text" class="inp-system-create-user inp-system-create-user-firstname" placeholder="First Name">\
-<input type="text" class="inp-system-create-user inp-system-create-user-lastname" placeholder="Last Name">\
-<input type="email" class="inp-system-create-user inp-system-create-user-email" placeholder="E-mail">\
+<input id="NewUsername" type="text" class="inp-system-create-user inp-system-create-user-username" placeholder="Username (4-8 character)">\
+<input id="NewFName" type="text" class="inp-system-create-user inp-system-create-user-firstname" placeholder="First Name">\
+<input id="NewLName" type="text" class="inp-system-create-user inp-system-create-user-lastname" placeholder="Last Name">\
+<input id="NewEmail" type="email" class="inp-system-create-user inp-system-create-user-email" placeholder="E-mail">\
 </span>\
 <div class="user-meta-subusers-userlist">\
 </div>\
@@ -346,6 +346,15 @@ function updateCompanyList(search) {
 </div>\
 </div>\
 ';
+
+$(document).on("change", "#NewUsername" "#NewFName", "#NewLName", "#NewEmail",function () {
+    if($('#NewUsername').val() != "" && $('#NewFName').val() != '' && $('#NewLName').val() != "" && $('#NewEmail').val() != ""){
+        document.getElementById("isValidForm").disabled = false
+    }
+    else {
+        document.getElementById("isValidForm").disabled = true
+    }
+})
 
     /*
 var manTemp =  '<div class="user-meta-man">\
@@ -813,6 +822,12 @@ function requestCreateUser(thisInput, companyID, username, firstName, lastName, 
         }
     });
 };
+
+
+// Enable submit button
+
+$(document).on("change", )
+
 
 // Delete company
 
