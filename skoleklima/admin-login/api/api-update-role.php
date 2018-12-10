@@ -2,10 +2,10 @@
 
 require_once "../admin-meta.php";
 
-if($currentUserID == ""){
-  echo '{"status":"No UserID"}';
-	exit;
-}
+//if($currentUserID == ""){
+//  echo '{"status":"No UserID"}';
+//	exit;
+//}
 
 $servername = DB_HOST;
 $username = DB_USER;
