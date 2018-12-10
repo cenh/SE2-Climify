@@ -65,12 +65,15 @@ function format_roles(d, callback) {
         sessionToken: sessionToken,
     }, function (data) {
         var jData = JSON.parse(data);
-        for(var i = 0; i < jData.length; i++) {
-            if(jData[i].RoleID === roleID)
-                rows += '<tr><td>'+ jData[i].PermDescription +'</td></tr>';
+        for (var i = 0; i < jData.length; i++) {
+            if (jData[i].RoleID === roleID)
+                rows += '<tr><td>' + jData[i].PermDescription + '</td></tr>';
         }
-        if(rows === '')
+        if (rows === '')
             rows = '<tr><td>There is no permissions for this role</td></tr>';
-        callback(rows);
+        var table = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; width: 100%;">' +
+            rows +
+            '</table>';
+        callback(table);
     });
 }
