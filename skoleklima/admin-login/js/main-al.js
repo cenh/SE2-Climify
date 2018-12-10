@@ -329,7 +329,7 @@ function updateCompanyList(search) {
 </div>\
 </div>\
 </div>\
-<div class="modal fade" id="roleDropdown"  tabindex="-1" role="dialog" aria-labelledby="roleDropdownTitle" aria-hidden="true">\\
+<div class="modal fade" id="roleDropdown"  tabindex="-1" role="dialog" aria-labelledby="roleDropdownTitle" aria-hidden="true">\
 <div class="modal-dialog modal-dialog-centered" role="document">\
 <div class="modal-content">\n<div class="modal-header">\
 <h5 class="modal-title" id="roleDropdownTitle"</h5>\
@@ -344,7 +344,7 @@ function updateCompanyList(search) {
 </div>\
 </div>\
 </div>\
-</div >\
+</div>\
 ';
 
     /*
