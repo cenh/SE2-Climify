@@ -101,7 +101,10 @@ function choose_permissions(roleID) {
         console.table(jData);
 
         for(var i = 0; i < jData.length; i++) {
-            form += '<input type="checkbox" style="margin-right: 5px">' + jData[i].PermDescription + '<br>';
+            var checked = '';
+            if(jData[i].RoleID != null)
+                checked = 'checked';
+            form += '<input type="checkbox" style="margin-right: 5px"' + checked + '>' + jData[i].PermDescription + '<br>';
         }
         form += '<input type="button" value="Save Changes">';
         perms.innerHTML = form;
