@@ -50,7 +50,7 @@ public class InfluxCommunicator {
 		for(int i = 0; i < sensors.size(); i++){
 			String sensor = (String)sensors.get(i).get(0);
 
-			System.out.println(InfluxQuery.getRecentTime(influxName, sensor));
+			System.out.println(influxDB.query(InfluxQuery.getRecentTime(influxName, sensor)));
 		}
 
 	}
