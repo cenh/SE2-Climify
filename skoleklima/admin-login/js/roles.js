@@ -110,8 +110,6 @@ function choose_permissions(roleID) {
         perms.innerHTML = form;
     });
 
-
-
 }
 
 function change_permissions(roleID) {
@@ -133,6 +131,13 @@ function change_permissions(roleID) {
 
     var modal = document.getElementById('myModal');
     modal.style.display = "none";
-    $('#roles_table').DataTable().draw();
+    table = $('#roles_table').DataTable().draw();
+    table.rows().eq(0).each( function ( idx ) {
+        var row = table.row( idx );
+
+        if ( row.child.isShown() ) {
+            row.child.close();
+        }
+    } );
     alert('Changes Saved');
 }
