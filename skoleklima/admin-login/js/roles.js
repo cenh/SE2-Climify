@@ -98,7 +98,6 @@ function choose_permissions(roleID) {
         sessionToken: sessionToken,
     }, function (data) {
         var jData = JSON.parse(data);
-        console.table(jData);
 
         for(var i = 0; i < jData.length; i++) {
             var checked = '';
@@ -127,5 +126,8 @@ function change_permissions(roleID) {
 
     //here call api
 
+    var modal = document.getElementById('myModal');
+    modal.style.display = "none";
+    $('#roles_table').DataTable().draw(false);
     alert('Changes Saved');
 }
