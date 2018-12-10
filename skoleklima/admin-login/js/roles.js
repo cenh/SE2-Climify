@@ -101,7 +101,7 @@ function choose_permissions(roleID) {
         console.table(jData);
 
         for(var i = 0; i < jData.length; i++) {
-            form += '<input type="checkbox">' + jData[i].PermDescription + '<br>';
+            form += '<input type="checkbox" style="padding: 5px">' + jData[i].PermDescription + '<br>';
         }
         perms.innerHTML = form;
     });
