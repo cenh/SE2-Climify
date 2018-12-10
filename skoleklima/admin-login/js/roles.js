@@ -119,7 +119,7 @@ function change_permissions(roleID) {
     perms = [];
     for(var i = 0; i < checks.length; i++) {
         if(checks[i].checked === true)
-            perms.push(checks[i].value);
+            perms.push(parseInt(checks[i].value));
     }
     console.log(perms);
     console.log(roleID);
