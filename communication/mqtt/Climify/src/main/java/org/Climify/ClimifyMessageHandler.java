@@ -116,7 +116,6 @@ public class ClimifyMessageHandler extends MessageHandler {
                             System.out.println("Sending the Command");
                             msgCall.publish(Topic.COMMAND.getTopic(), 2, payload);
                         }
-
                         break;
                     case ("LESS"):
                         if (Float.parseFloat(SensorValue) < Float.parseFloat(Value)){

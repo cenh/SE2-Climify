@@ -37,6 +37,8 @@ public class InfluxCommunicator {
 		influxDB.close();
 	}
 
+	public void printSensors() {System.out.println(influxDB.query(InfluxQuery.getSensors()));}
+
 	//Taken from the Msc. Project 
 	private Long fdate(String time)
 	{

@@ -10,4 +10,10 @@ public abstract class InfluxQuery {
 					   " DEFAULT"; 
 		return query;
 	}
+
+	public static String getSensors(){
+		String query = "SELECT * FROM MEASUREMENTS";
+		return query;
+	}
+
 }
