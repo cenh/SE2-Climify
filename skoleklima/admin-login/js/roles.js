@@ -15,6 +15,23 @@ $(document).ready(function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
 
+        var index = roles.findIndex(function (row) {
+            return row.RoleName === row.data()[0];
+        });
+        var roleID = roles[index].RoleID;
+
+        var sUrl = "api/api-get-permissions.php";
+        // Do AJAX and phase link to api
+        var permissions = [];
+        $.post(sUrl, {
+            roleID: roleID,
+            sessionToken: sessionToken,
+        }, function (data) {
+            var jData = JSON.parse(data);
+            console.table(jData);
+            permissions = jData;
+        });
+
         if (row.child.isShown()) {
             // This row is already open - close it
             row.child.hide();
@@ -22,7 +39,7 @@ $(document).ready(function () {
         }
         else {
             // Open this row
-            row.child(format_roles(row.data())).show();
+            row.child(format_roles(row.data(), permissions)).show();
             tr.addClass('shown');
 
         }
@@ -47,32 +64,16 @@ function getTableData() {
     });
 }
 
-function format_roles(d) {
+function format_roles(d, permissions) {
     // `d` is the original data object for the row
-    var toadd;
     var rows = '';
-    var index = roles.findIndex(function (row) {
-        return row.RoleName === d[0];
-    });
-    var roleID = roles[index].RoleID;
-
-    var sUrl = "api/api-get-permissions.php";
-    // Do AJAX and phase link to api
-    $.post(sUrl, {
-        roleID: roleID,
-        sessionToken: sessionToken,
-    }, function (data) {
-        var jData = JSON.parse(data);
-        console.table(jData);
-        for(var i = 0; i < jData.length; i++) {
-            rows += '<tr><td>'+ jData[i].PermDescription +'</td></tr>';
-        }
-        toadd = rows;
-    });
 
 
+    for (var i = 0; i < permissions.length; i++) {
+        rows += '<tr><td>' + permissions[i].PermDescription + '</td></tr>';
+    }
 
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        toadd +
+        rows +
         '</table>';
 }
