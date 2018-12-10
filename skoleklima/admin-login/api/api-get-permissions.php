@@ -18,9 +18,6 @@ if( $phaseSessionToken != $adminSessionToken ){
     exit;
 }
 
-$phaseStatus=clean($_POST["status"]); //Blocked
-$phaseSearch=clean($_POST["search"]);
-
 
 
 $servername = DB_HOST;
