@@ -83,7 +83,7 @@
     <!-- Modal content -->
     <div class="modal-content">
         <span class="close">&times;</span>
-        <table id="permissions_table"></table>
+        <div id="form_wrapper"></div>
     </div>
 
 </div>

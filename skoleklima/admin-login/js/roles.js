@@ -81,8 +81,10 @@ function format_roles(d, callback) {
 function choose_permissions(roleID) {
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
-    var table = document.getElementById("permissions_table");
-    table.innerHTML = "";
+    var perms = document.getElementById("form_wrapper");
+    perms.innerHTML = "";
+
+    var form = '<form>';
 
     modal.style.display = "block";
     span.onclick = function() {
@@ -99,11 +101,9 @@ function choose_permissions(roleID) {
         console.table(jData);
 
         for(var i = 0; i < jData.length; i++) {
-            var row = table.insertRow(0);
-            row.innerHTML = jData[i].PermDescription;
+            form += '<input type="checkbox">' + jData[i].PermDescription + '<br>';
         }
-
+        perms.innerHTML = form;
     });
-
 
 }
