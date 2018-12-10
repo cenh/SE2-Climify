@@ -347,6 +347,7 @@ function updateCompanyList(search) {
 </div>\
 ';
 
+
 $(document).on("change", "#NewUsername" "#NewFName", "#NewLName", "#NewEmail",function () {
     if($('#NewUsername').val() != "" && $('#NewFName').val() != '' && $('#NewLName').val() != "" && $('#NewEmail').val() != ""){
         document.getElementById("isValidForm").disabled = false
@@ -826,7 +827,6 @@ function requestCreateUser(thisInput, companyID, username, firstName, lastName, 
 
 // Enable submit button
 
-$(document).on("change", )
 
 
 // Delete company
