@@ -128,6 +128,6 @@ function change_permissions(roleID) {
 
     var modal = document.getElementById('myModal');
     modal.style.display = "none";
-    $('#roles_table').DataTable().draw(false);
+    $('#roles_table').DataTable().draw();
     alert('Changes Saved');
 }
