@@ -87,6 +87,9 @@ function format_channels(d) {
             '    <select id="select_category">\n' +
             '        <option value="" disabled selected>Choose Category</option>\n' +
             '    </select>' +
+            '    <select id="select_type">\n' +
+            '        <option value="" disabled selected>Choose Type</option>\n' +
+            '    </select>' +
             '</td>' + '<td><button onclick="link()">Create and Link</button></td>' + '<td></td>' +
             '</tr>';
     }
