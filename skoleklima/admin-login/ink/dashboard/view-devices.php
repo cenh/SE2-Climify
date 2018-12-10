@@ -85,6 +85,9 @@
         <span class="close">&times;</span>
         <div id="form_wrapper"></div>
     </div>
+    <div style="background-color: #2c9601 position: relative;
+top: 50%;
+transform: translateY(-50%); ">Changes saved!</div>
 
 </div>
 

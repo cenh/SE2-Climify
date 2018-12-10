@@ -124,4 +124,10 @@ function change_permissions(roleID) {
     }
     console.log(perms);
     console.log(roleID);
+
+    //here call api
+
+    var modal = document.getElementById('myModal');
+
+    modal.append()
 }
