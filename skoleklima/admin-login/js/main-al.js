@@ -135,6 +135,7 @@ $(document).on("change", ".inp-system", function(){
 // Create company user button
 $(document).on("click", ".btn-create-user-company", function () {
     var companyID = $(this).parent().parent().parent().parent().parent().attr("data-company-id");
+    console.log(companyID);
     var username = $('#NewUsername').val();
     var firstName = $(this).parent().find(".inp-system-create-user-firstname").val();
     var lastName = $(this).parent().find(".inp-system-create-user-lastname").val();
