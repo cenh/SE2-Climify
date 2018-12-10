@@ -324,6 +324,7 @@ function updateCompanyList(search) {
 <input id="NewFName" type="text" class="inp-system-create-user inp-system-create-user-firstname" placeholder="First Name">\
 <input id="NewLName" type="text" class="inp-system-create-user inp-system-create-user-lastname" placeholder="Last Name">\
 <input id="NewEmail" type="email" class="inp-system-create-user inp-system-create-user-email" placeholder="E-mail">\
+<select id="roleSelect"></select>\
 </span>\
 <div class="user-meta-subusers-userlist">\
 </div>\
@@ -754,6 +755,20 @@ function requestCompanyDTUManager(){
 
 };
 
+// Get roles for dropdown
+
+$.post('api/api-get-allroles.php', function (data) {
+    $("#roleSelect").append('<option value="" disabled selected>Select role</option>');
+    var jData = JSON.parse(data);
+    if (jData.length > 0) {
+        for (i = 0; i < jData.length; i++){
+            $("#roleSelect").append("<option value="+jData[i].roleID+">"+jData[i].RoleName+"</option>");
+
+        }
+    }
+});
+
+
 
 
 // Create company user
@@ -987,6 +1002,7 @@ function requestResetUserPass(id) {
 }
 // Button disable or enable depending on input
 $(document).on("change", "#NewUsername, #NewFName, #NewLName, #NewEmail", function () {
+    console.log()
 
     if($('#NewUsername').val() != "" && $('#NewFName').val() != "" && $('#NewLName').val() != "" && $('#NewEmail').val() != ""){
         document.getElementById("isValidForm").disabled = false
