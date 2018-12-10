@@ -28,7 +28,6 @@ $(document).ready(function () {
             sessionToken: sessionToken,
         }, function (data) {
             var jData = JSON.parse(data);
-            console.table(jData);
             permissions = jData;
         });
 
@@ -67,6 +66,7 @@ function getTableData() {
 function format_roles(d, permissions) {
     // `d` is the original data object for the row
     var rows = '';
+    console.log(permissions);
 
 
     for (var i = 0; i < permissions.length; i++) {
