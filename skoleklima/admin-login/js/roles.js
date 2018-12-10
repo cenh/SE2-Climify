@@ -71,7 +71,7 @@ function format_roles(d, callback) {
         }
         if (rows === '')
             rows = '<tr><td>There is no permissions for this role</td></tr>';
-        var table = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; width: 100%;">' +
+        var table = '<table cellspacing="0" border="0" style="padding-left:10px; width: 100%;">' +
             rows +
             '</table>';
         callback(table);
