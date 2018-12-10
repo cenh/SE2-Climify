@@ -17,17 +17,8 @@
   display: -webkit-flex;
   display: flex; }
 
-.p {
-  margin-bottom: 0 !important;
-}
-.modal-footer.btn {
-  padding:0 ;
-}
 
-.button.close:hover {
-  background-color: transparent;
 
-}
 
 /*
     Flex direction
@@ -183,6 +174,19 @@ textarea {
 .viewport {
   width: 100vw; }
 
+p {
+  margin-bottom: 0 !important;
+}
+
+.modal-footer button {
+  padding:0 ;
+}
+
+button.close:hover {
+  background-color:transparent;
+
+}
+
 button {
   border-radius: 2px !important;
   color: #000000 !important;
@@ -216,6 +220,8 @@ button {
 
 .wrong-input {
   border: 1px solid #DD6B55 !important; }
+
+
 
 /**********************************/
 /**********************************/
