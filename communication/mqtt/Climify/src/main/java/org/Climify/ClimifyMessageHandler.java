@@ -41,6 +41,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 				SensorMeasurement measurement = dslJson.deserialize(SensorMeasurement.class, message.getPayload(), message.getPayload().length);
 				influx.saveMeasurement(measurement);
 				executeRule(measurement.name, measurement.value);
+				influx.printSensors();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
