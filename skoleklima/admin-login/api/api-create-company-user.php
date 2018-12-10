@@ -69,7 +69,7 @@ if (!$stmt->execute()) {
 
 $result = $stmt->get_result();
 if ($result->num_rows!=0){
-    echo json_encode($result);
+    echo $phaseUsername;
     $conn->close();
     exit;
 }
