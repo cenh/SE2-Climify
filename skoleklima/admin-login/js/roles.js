@@ -65,7 +65,6 @@ function format_roles(d, callback) {
         sessionToken: sessionToken,
     }, function (data) {
         var jData = JSON.parse(data);
-        console.table(jData);
         for(var i = 0; i < jData.length; i++) {
             if(jData[i].RoleID === roleID)
                 rows += '<tr><td>'+ jData[i].PermDescription +'</td></tr>';
