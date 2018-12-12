@@ -3,6 +3,7 @@ var sensors = [];
 var actuators = [];
 var sensors_data = [];
 var chosen_actuator;
+var things = [];
 
 // initialize the tables
 $(document).ready(function () {
@@ -100,12 +101,51 @@ $(document).ready(function () {
     $('#table_id3 tbody').on('click', 'td.delete', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
-        delete_thing(row.data()[1]);
+        var uid = things[row.index()];
+        delete_thing(uid);
     });
 });
 
-function delete_thing(thing_name) {
-    alert(thing_name);
+function delete_thing(uid) {
+    console.log(uid);
+    // client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
+    // client.startTrace();
+    // // set callback handlers
+    // client.onConnectionLost = onConnectionLost;
+    // //client.onMessageArrived = onMessageArrived;
+    // // connect the client
+    // client.connect({
+    //     onSuccess: onConnect,
+    //     useSSL: true
+    // });
+    //
+    // // called when the client connects
+    // function onConnect() {
+    //     // Once a connection has been made, make a subscription and send a message.
+    //     // console.log("onConnect");
+    //     //client.subscribe("testse2");
+    //     msg = {
+    //         name: chosen_actuator,
+    //         uid: thing_name
+    //     };
+    //     msg_text = JSON.stringify(msg);
+    //     message = new Paho.MQTT.Message(msg_text);
+    //     message.destinationName = "commandse2/" + chosen_actuator;
+    //     client.publish(message);
+    // }
+    //
+    // // called when the client loses its connection
+    // function onConnectionLost(responseObject) {
+    //     if (responseObject.errorCode !== 0) {
+    //         // console.log("onConnectionLost:" + responseObject.errorMessage);
+    //     }
+    // }
+    //
+    // // called when a message arrives
+    // function onMessageArrived(message) {
+    //     msg = JSON.parse(message.payloadString);
+    //     // console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
+    // }
 }
 
 
@@ -281,6 +321,7 @@ function refreshTableSensorsAndActuators(roomID) {
 
 
 function refreshTableDevices(roomID) {
+    things = [];
     var sUrl = "api/api-get-things.php";
     $.post(sUrl, {
         roomID: roomID,
@@ -288,6 +329,7 @@ function refreshTableDevices(roomID) {
         var jData = JSON.parse(data);
         var table_devices = $('#table_id3').DataTable();
         table_devices.clear();
+        things = jData;
         for (var i = 0; i < jData.length; i++) {
             table_devices.row.add(['DELETE', jData[i].Label]).draw(false);
         }
