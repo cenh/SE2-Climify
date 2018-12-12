@@ -100,9 +100,14 @@ $(document).ready(function () {
     $('#table_id3 tbody').on('click', 'td.delete', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
-        alert('Delete ' + row.data()[1]);
+        delete_thing(row.data()[1]);
     });
 });
+
+function delete_thing(thing_name) {
+    alert(thing_name);
+}
+
 
 // functions for collapsing
 function format_sensors(d) {
@@ -149,6 +154,9 @@ function format_actuators(d) {
         '</table>';
 }
 
+function set_actuator_on_off() {
+
+}
 
 
 function set_actuator_number () {
@@ -266,7 +274,6 @@ function refreshTableSensorsAndActuators(roomID) {
                 } else {
                     sensors_data.push('No data recorded');
                 }
-                // sensors_data.push(JSON.parse(jData1[j]).results[0].series[0].values[0][1]);
             }
         });
     });
