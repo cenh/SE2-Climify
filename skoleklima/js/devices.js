@@ -115,7 +115,7 @@ function delete_thing(ting_uid, rp_uid) {
     client.startTrace();
     // set callback handlers
     client.onConnectionLost = onConnectionLost;
-    //client.onMessageArrived = onMessageArrived;
+    client.onMessageArrived = onMessageArrived;
     // connect the client
     client.connect({
         onSuccess: onConnect,
@@ -147,7 +147,7 @@ function delete_thing(ting_uid, rp_uid) {
     // called when a message arrives
     function onMessageArrived(message) {
         msg = JSON.parse(message.payloadString);
-        // console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
+        console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
     }
 }
 
@@ -181,10 +181,10 @@ function format_actuators(d) {
             'Set value: <input type="number" value="10">\n' +
             '<button id="set_button" onclick="set_actuator_number()">Set</button>\n' +
             '</form></td>';
-        chosen_actuator = actuators[index].Name;
     } else {
         action = '<td>on/off</td>';
     }
+    chosen_actuator = actuators[index].Name;
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
         '<td>Category:</td>' +
