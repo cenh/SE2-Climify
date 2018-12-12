@@ -98,6 +98,8 @@ if ($RoleName == 1 || $RoleName == 15) {
 }
 
 $sPasswordDBDecrypted = decrypt($UserPassword, ENCRYPTION_KEY);
+error_log("DecryptedDB:".$sPasswordDBDecrypted, 0);
+error_log("phaseDecrypted:".$phasePasswordDecrypt, 0);
 if ($sPasswordDBDecrypted === $phasePasswordDecrypt) {
     if ($Blocked == 1) {
         // Store user-info from variables in sessions
