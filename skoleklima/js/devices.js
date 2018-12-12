@@ -101,7 +101,7 @@ $(document).ready(function () {
     $('#table_id3 tbody').on('click', 'td.delete', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
-        var uid = things[row.index()];
+        var uid = things[row.index()].UID;
         delete_thing(uid);
     });
 });
