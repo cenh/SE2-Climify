@@ -147,7 +147,7 @@ function delete_thing(ting_uid, rp_uid) {
     // called when a message arrives
     function onMessageArrived(message) {
         msg = JSON.parse(message.payloadString);
-        console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
+        console.log("MessageArrived\n" + "Message id: " + msg['controlType'] + " message text: " + msg['text']);
     }
 }
 
@@ -342,11 +342,26 @@ function refreshTableDevices(roomID) {
 }
 
 // listen for new devices in a chosen room
+
+
+
 function listen() {
     var drop = document.getElementById("select_room_devices");
     var roomID = drop.options[drop.selectedIndex].value;
     alert('listen for new devices in room ' + roomID);
+
+    var sUrl = "api/api-get-rpID.php";
+    $.post(sUrl, {
+        roomID: roomID,
+    }, function (data) {
+        var jData = JSON.parse(data);
+        console.log(jData);
+    });
 }
+
+
+
+
 
 $("#select_thing").change(function() {
     var x = $(this).val();
