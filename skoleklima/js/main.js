@@ -293,7 +293,7 @@ if (browserIsIE == false) {
                 right: '-40vw'
             }, 1000, "swing", function () {
                 console.log("RELOADED!");
-                //location.reload();
+                location.reload();
             });
         } else {
             location.reload();
