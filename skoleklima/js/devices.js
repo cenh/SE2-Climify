@@ -101,13 +101,15 @@ $(document).ready(function () {
     $('#table_id3 tbody').on('click', 'td.delete', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
-        var uid = things[row.index()].UID;
-        delete_thing(uid);
+        var ting_uid = things[row.index()].UID;
+        var rp_uid = things[row.index()].RaspberryPiUID;
+        delete_thing(ting_uid, rp_uid);
+
     });
 });
 
-function delete_thing(uid) {
-    console.log(uid);
+function delete_thing(ting_uid, rp_uid) {
+    console.log(ting_uid, rp_uid);
     // client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
     // client.startTrace();
     // // set callback handlers
@@ -125,12 +127,12 @@ function delete_thing(uid) {
     //     // console.log("onConnect");
     //     //client.subscribe("testse2");
     //     msg = {
-    //         name: chosen_actuator,
-    //         uid: thing_name
+    //         controlType: 'REMOVE',
+    //         uid: uid
     //     };
     //     msg_text = JSON.stringify(msg);
     //     message = new Paho.MQTT.Message(msg_text);
-    //     message.destinationName = "commandse2/" + chosen_actuator;
+    //     message.destinationName = "deviceControl/Thing/" + rp_uid;
     //     client.publish(message);
     // }
     //
