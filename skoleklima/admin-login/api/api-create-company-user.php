@@ -114,7 +114,7 @@ $stmt->close();
 
 
 
-if($phaseRole == 1){
+if($phaseRole == 1 || $phaseRole == 15){
     $stmt = $conn->prepare("INSERT INTO ProjectManager VALUES (?,?)");
     $stmt->bind_param("ii",$UserID,$phaseCompanyID);
     $stmt->execute();
