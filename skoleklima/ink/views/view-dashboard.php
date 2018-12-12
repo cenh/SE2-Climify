@@ -20,21 +20,21 @@
 		//if(in_array("other-users", $perms)) {
 			require_once "view-other-users.php";
 		//}
-		if(in_array("permissions", $perms)) {
+		//if(in_array("permissions", $perms)) {
 			require_once "view-permissions.php";
-		}
-		if(in_array("own-users", $perms)) {
+		//}
+		//if(in_array("own-users", $perms)) {
 			require_once "view-own-user.php";
-		}
-		if(in_array("system-settings", $perms)) {
+		//}
+		//if(in_array("system-settings", $perms)) {
 			require_once "view-system-settings.php";
-		}
-		if(in_array("roomX", $perms)) {
+		//}
+		//if(in_array("roomX", $perms)) {
 			require_once "view-roomX.php";
-		}
-		if(in_array("control-map", $perms)) {
+		//}
+		//if(in_array("control-map", $perms)) {
 			require_once "view-control-map.php";
-		}
+		//}
 	?>
 	<div class="go-to-top">
 		<a href="<?php echo $company_Website ?>#top-header" target="_self"><i class="ico-go-to-top fa fa-arrow-up link" aria-hidden="true"></i></a>

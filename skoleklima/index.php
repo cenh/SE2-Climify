@@ -99,6 +99,7 @@
 
 
 	<?php
+		error_log("currentUser:".$currentUserID,0);
 		if ( $currentUserID ) { ?>
 
 			<script>

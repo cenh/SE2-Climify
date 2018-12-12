@@ -264,11 +264,9 @@ if (browserIsIE == false) {
                     console.log(jData);
                     if (jData.status == "approve") {
                         console.log("Approved");
-                        console.log(typedUserName);
                         $.cookie("username", typedUserName, {
                             expires: 10
                         });
-                        console.log(passEncrypt);
                         $.cookie("password", passEncrypt, {
                             expires: 10
                         });
