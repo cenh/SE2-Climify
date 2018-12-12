@@ -264,9 +264,11 @@ if (browserIsIE == false) {
                     console.log(jData);
                     if (jData.status == "approve") {
                         console.log("Approved");
+                        console.log(typedUserName);
                         $.cookie("username", typedUserName, {
                             expires: 10
                         });
+                        console.log(passEncrypt);
                         $.cookie("password", passEncrypt, {
                             expires: 10
                         });
@@ -293,7 +295,7 @@ if (browserIsIE == false) {
                 right: '-40vw'
             }, 1000, "swing", function () {
                 console.log("RELOADED!");
-                //location.reload();
+                location.reload();
             });
         } else {
             location.reload();
