@@ -1,7 +1,7 @@
 <?php
 
 //************************************************
-//	Create Companye Users
+//	Create Company Users
 //************************************************
 
 require_once "../admin-meta.php";
@@ -27,6 +27,7 @@ $phaseRole = clean($_POST['role']);
 $setUserSchool = "";
 $setUserRole = "1";
 $setUserBlock = "1";
+
 
 if ($phaseCompanyID == "") {
     echo '{"status":"error"}';
@@ -106,13 +107,18 @@ if ($stmt->execute()) {
 
 $stmt->close();
 
+$stmt = $conn->prepare("INSERT INTO InstUser VALUES (?,?)");
+$stmt->bind_param("ii", $UserID, $phaseCompanyID);
+$stmt->execute();
+$stmt->close();
 
-$stmt = $conn->prepare("INSERT INTO ProjectManager VALUES (?,?)");
+
+
+if($phaseRole == 1){
+    $stmt = $conn->prepare("INSERT INTO ProjectManager VALUES (?,?)");
     $stmt->bind_param("ii",$UserID,$phaseCompanyID);
     $stmt->execute();
-
-
-
+}
 
 $conn->close();
 ?>
