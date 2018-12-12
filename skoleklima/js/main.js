@@ -259,7 +259,8 @@ if (browserIsIE == false) {
                 var sUrl = "api/api-user-login.php?fAY2YfpdKvR=" + sender_first + "&username=" + typedUserName + "&password=" + passEncrypt;
                 // Do AJAX and pahse
                 $.get(sUrl, function (sData) {
-                    if (jData.status == "ok") {
+                    var jData = JSON.parse(sData);
+                    if (jData.status == "approve") {
                         $.cookie("username", typedUserName, {
                             expires: 10
                         });
