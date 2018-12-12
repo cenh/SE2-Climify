@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.MqttLib.openhab.Channel;
+import org.MqttLib.openhab.ControlType;
 import org.MqttLib.openhab.DeviceUpdate;
+import org.MqttLib.openhab.DidControlItem;
+import org.MqttLib.openhab.DidControlThing;
+import org.MqttLib.openhab.InboxDevice;
 import org.MqttLib.openhab.Item;
 import org.MqttLib.openhab.Link;
 import org.MqttLib.openhab.Option;
@@ -55,6 +59,61 @@ public class MariaDBCommunicator {
 		}
 
 
+	}
+	
+	public void saveInbox(List<InboxDevice> inboxDevices, String raspberryPiUID) {
+		for (InboxDevice inboxDevice: inboxDevices) {
+			insertInboxDevice(inboxDevice, raspberryPiUID);
+		}
+	}
+	
+	public void clearInbox(String raspberryPiUID) {
+		removeInbox(raspberryPiUID);
+	}
+	
+	public void handleControlItem(DidControlItem didControlItem, String raspberryPiUID) {
+		if (didControlItem.controlType == ControlType.ADD) {
+			insertItem(didControlItem.item);
+			insertLink(new Link(didControlItem.uid, didControlItem.channelUID));
+		}
+		else {
+			removeItem(didControlItem.uid);
+		}
+	}
+	
+	public void handleControlThing(DidControlThing didControlThing, String raspberryPiUID) {
+		if (didControlThing.controlType == ControlType.ADD) {
+			insertThing(didControlThing.thing, raspberryPiUID);
+		}
+		else {
+			//Order is important.
+			removeItemsFromThing(didControlThing.uid);
+			removeChannelsFromThing(didControlThing.uid);
+			removeThing(didControlThing.uid);
+		}
+	}
+	
+	public List<String> getItemNamesFromThing(String thingUID) {
+		String sql = "SELECT items.Name FROM Items as items  INNER JOIN Things as t  INNER JOIN ThingsChannels as tc  INNER JOIN Links as links  WHERE t.UID = ? AND tc.ThingUID = t.UID  AND links.ChannelUID = tc.ChannelUID  AND items.Name = links.ItemName";
+		
+		List<String> itemNames = new ArrayList<String>();
+		
+		try {
+		    PreparedStatement ps = connection.prepareStatement(sql);
+		    ps.setString(1, thingUID);
+            ResultSet result = ps.executeQuery();
+            while(result.next())
+            {
+            	System.out.println("Found getItemNames: " + result.getString(1));
+            	
+            	String itemName = result.getString("Name");
+            	itemNames.add(itemName);
+            }
+        } catch (SQLException e) {
+		    e.printStackTrace();
+        }
+		
+		return itemNames;
 	}
 
 	private void insertRaspberryPi(String raspberryPiUID, Integer locationID) {
@@ -194,6 +253,85 @@ public class MariaDBCommunicator {
 			e.printStackTrace();
 		}
 	}
+
+	private void insertInboxDevice(InboxDevice inboxDevice, String raspberryPiUID) {
+		String sql = "INSERT IGNORE INTO Inbox(BridgeUID, Flag, Label, ThingUID, ThingTypeUID, RaspberryPiUID)"
+				+ " VALUES(?, ?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, inboxDevice.bridgeUID);
+			ps.setString(2, inboxDevice.flag);
+			ps.setString(3, inboxDevice.label);
+			ps.setString(4, inboxDevice.thingUID);
+			ps.setString(5, inboxDevice.thingTypeUID);
+			ps.setString(6, raspberryPiUID);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void removeInbox(String raspberryPiUID) {
+		String sql = "DELETE FROM Inbox WHERE RaspberryPiUID = ?";
+		
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, raspberryPiUID);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void removeThing(String uid) {
+		String sql = "DELETE FROM Things WHERE Things.UID = ?";
+		
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, uid);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void removeChannelsFromThing(String thingUID) {
+		String sql = "DELETE Channels FROM Channels INNER JOIN ThingsChannels WHERE ThingsChannels.ThingUID = ? AND Channels.UID = ThingsChannels.ChannelUID";
+	
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, thingUID);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void removeItemsFromThing(String thingUID) {
+		String sql = "DELETE items FROM Items as items INNER JOIN Things as t INNER JOIN ThingsChannels as tc INNER JOIN Links as links WHERE t.UID = ? AND tc.ThingUID = t.UID AND links.ChannelUID = tc.ChannelUID AND items.Name = links.ItemName";
+	
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, thingUID);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void removeItem(String itemName) {
+		String sql = "DELETE Items from Items WHERE Items.Name = ?";
+		
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, itemName);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 
 	public List<List<String>> getRulesBySensorID(String sensorID) {
         String SensorID = "";

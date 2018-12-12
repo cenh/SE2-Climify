@@ -10,7 +10,10 @@ import org.MqttLib.mqtt.MessageCallback;
 import org.MqttLib.mqtt.MessageHandler;
 import org.MqttLib.mqtt.Topic;
 import org.MqttLib.openhab.Command;
+import org.MqttLib.openhab.ControlType;
 import org.MqttLib.openhab.DeviceUpdate;
+import org.MqttLib.openhab.DidControlItem;
+import org.MqttLib.openhab.DidControlThing;
 import org.MqttLib.openhab.InboxDevice;
 import org.MqttLib.openhab.SensorMeasurement;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -47,13 +50,13 @@ public class ClimifyMessageHandler extends MessageHandler {
 		}
 		
 		if (topic.startsWith(Topic.SENSORUPDATE.getTopic())) {
-			String id = topic.substring(Topic.SENSORUPDATE.getTopic().length()+1);
-			System.out.println("SENSORUPDATE ID = " + id);
-			mariaDB.saveRaspberryPi(id, null);
+			String raspberryPiUID = topic.substring(Topic.SENSORUPDATE.getTopic().length()+1);
+			System.out.println("SENSORUPDATE ID = " + raspberryPiUID);
+			mariaDB.saveRaspberryPi(raspberryPiUID, null);
 			try {
 				DeviceUpdate deviceUpdate = dslJson.deserialize(DeviceUpdate.class, message.getPayload(), message.getPayload().length);
 				System.out.println(deviceUpdate.toString());
-				mariaDB.saveDeviceUpdate(deviceUpdate, id);
+				mariaDB.saveDeviceUpdate(deviceUpdate, raspberryPiUID);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -62,9 +65,48 @@ public class ClimifyMessageHandler extends MessageHandler {
 		
 		if (topic.startsWith(Topic.INBOX.getTopic())) {
 			System.out.println("Got sent new inbox!");
+			String raspberryPiUID = topic.substring(Topic.INBOX.getTopic().length()+1);
 			try {
 				List<InboxDevice> inbox = dslJson.deserializeList(InboxDevice.class, message.getPayload(), message.getPayload().length);
 				System.out.println(inbox.toString());
+				mariaDB.clearInbox(raspberryPiUID);
+				mariaDB.saveInbox(inbox, raspberryPiUID);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if (topic.startsWith(Topic.DIDCONTROLITEM.getTopic())) {
+			System.out.println("Got sent control item confirmation!");
+			String raspberryPiUID = topic.substring(Topic.DIDCONTROLITEM.getTopic().length()+1);
+			try {
+				DidControlItem didControlItem = dslJson.deserialize(DidControlItem.class, message.getPayload(), message.getPayload().length);
+				mariaDB.handleControlItem(didControlItem, raspberryPiUID);
+				
+				if (didControlItem.controlType == ControlType.REMOVE) {
+					influx.removeSensor(didControlItem.uid);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if (topic.startsWith(Topic.DIDCONTROLTHING.getTopic())) {
+			System.out.println("Got sent control thing confirmation!");
+			String raspberryPiUID = topic.substring(Topic.DIDCONTROLTHING.getTopic().length()+1);
+			try {
+				DidControlThing didControlThing = dslJson.deserialize(DidControlThing.class, message.getPayload(), message.getPayload().length);
+				
+				if (didControlThing.controlType == ControlType.REMOVE) {
+					//All items associated with the thing we are about to remove
+					List<String> itemNames = mariaDB.getItemNamesFromThing(didControlThing.uid);
+					
+					for (String itemName: itemNames) {
+						influx.removeSensor(itemName);
+					}
+				}
+				
+				mariaDB.handleControlThing(didControlThing, raspberryPiUID);
 				
 			} catch (IOException e) {
 				e.printStackTrace();

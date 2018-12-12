@@ -9,7 +9,12 @@ public enum Topic {
 	CONTROLTHING("deviceControl/Thing"),
 	CONTROLITEM("deviceControl/Item"),
 	INBOX("inbox"),
-	DEVICEDISCOVERY("deviceDiscovery");
+	DEVICEDISCOVERY("deviceDiscovery"),
+	
+	//Confirmation topics
+	DIDCONTROLTHING("didDeviceControl/Thing"),
+	DIDCONTROLITEM("didDeviceControl/Item");
+	
 	
 	private final String topic;
 	

@@ -2,6 +2,7 @@ package org.Climify.influxDB;
 
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.Point;
+import org.influxdb.dto.Query;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,13 +21,22 @@ import org.influxdb.InfluxDB;
 public class InfluxCommunicator {
 
 	private InfluxDB influxDB;
+	private String dbName = "scadb";
 
 	public void saveMeasurement(SensorMeasurement measurement) {
 		//TODO: Should check to make sure there is a category - otherwise we will end up writing to NULL field with the new structure
 		Point point = Point.measurement(measurement.name)
 				.time(fdate(measurement.time), TimeUnit.MILLISECONDS)
 				.addField(measurement.category, measurement.value).build();
-		influxDB.write("scadb", "defaultPolicy", point);
+		influxDB.write(dbName, "defaultPolicy", point);
+	}
+	
+	public void removeSensor(String sensorID) {
+		executeQuery(InfluxQuery.removeSensor(sensorID, dbName));
+	}
+	
+	private void executeQuery(Query query) {
+		influxDB.query(query);
 	}
 
 	public void connect() {

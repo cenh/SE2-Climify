@@ -8,8 +8,3 @@ public class ControlThing {
 	public ControlType controlType;
 	public String uid; 
 }
-
-enum ControlThingType {
-	APPROVE, REMOVE
-}
-

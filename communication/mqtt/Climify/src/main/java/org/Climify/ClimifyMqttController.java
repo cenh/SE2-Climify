@@ -32,6 +32,8 @@ public class ClimifyMqttController extends AsyncMqttController {
 		super.subscribe(Topic.SENSORDATA.getTopic()+"/#", 2);
 		super.subscribe(Topic.SENSORUPDATE.getTopic()+"/#", 2);
 		super.subscribe(Topic.INBOX.getTopic()+"/#", 2);
+		super.subscribe(Topic.DIDCONTROLITEM.getTopic()+"/#", 2);
+		super.subscribe(Topic.DIDCONTROLTHING.getTopic()+"/#", 2);	
 	}
 	
 	@Override

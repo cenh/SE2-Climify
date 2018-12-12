@@ -8,8 +8,8 @@ public class ControlItem {
 	public ControlType controlType;
 	public String uid;
 	public String channelUID;
-}
-
-enum ControlItemType {
-	LINK, UNLINK
+	
+	//When linking an item further information should be specified
+	public CreateItem createItem;
+	
 }

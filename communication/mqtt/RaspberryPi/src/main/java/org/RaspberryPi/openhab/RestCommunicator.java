@@ -1,8 +1,11 @@
 package org.RaspberryPi.openhab;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.MqttLib.openhab.Command;
+import org.MqttLib.openhab.CreateItem;
 import org.MqttLib.openhab.HeaderType;
 import org.MqttLib.openhab.Utilities;
 
@@ -52,6 +55,20 @@ public class RestCommunicator {
 
         Request request = new Request.Builder()
             .url(commandUrl)
+            .headers(headers)
+            .get()
+            .build();
+        
+		Response response = client.newCall(request).execute();
+		return response.body().string();
+	}
+	
+	public String getThing(String thing) throws IOException {
+		String thingUrl = restBaseUrl + "things/" + thing;
+		Headers headers = Utilities.getHeaders(HeaderType.JSON);
+
+        Request request = new Request.Builder()
+            .url(thingUrl)
             .headers(headers)
             .get()
             .build();
@@ -195,14 +212,14 @@ public class RestCommunicator {
 	}
 	
 	public String approveThing(String thingUID) throws IOException {
-		String thingUrl = restBaseUrl + "things/";
+		String thingUrl = restBaseUrl + "inbox/" + thingUID + "/approve";
 		
         Headers headers = Utilities.getHeaders(HeaderType.JSON);
 
         Request request = new Request.Builder()
             .url(thingUrl)
             .headers(headers)
-            .get()
+            .put(null)
             .build();
 
         Response response = client.newCall(request).execute();
@@ -210,8 +227,43 @@ public class RestCommunicator {
         return response.body().string();
 	}
 	
-	public String addLink(String itemName, String channelUID) {
-		return "";
+	public String addLink(String itemName, String channelUID) throws IOException {
+		String linkUrl = restBaseUrl + "links/" + itemName + "/" + channelUID;
+		
+        Headers headers = Utilities.getHeaders(HeaderType.JSON);
+
+        Request request = new Request.Builder()
+            .url(linkUrl)
+            .headers(headers)
+            .put(null)
+            .build();
+
+        Response response = client.newCall(request).execute();
+        
+        return response.body().string();
 	}
 	
+	public String addItem(CreateItem createItem) throws IOException {
+		String itemUrl = restBaseUrl + "items/" + createItem.name;
+		
+        Headers headers = Utilities.getHeaders(HeaderType.JSON);
+        
+        Map<String, String> values = new HashMap<String, String>();
+        values.put("name", createItem.name);
+        values.put("type", createItem.type);
+        values.put("category", createItem.category);
+        values.put("label", createItem.label);
+        
+        RequestBody body = RequestBody.create(null, Utilities.createJSON(values));
+        
+        Request request = new Request.Builder()
+            .url(itemUrl)
+            .headers(headers)
+            .put(body)
+            .build();
+
+        Response response = client.newCall(request).execute();
+        
+        return response.body().string();
+	}
 }

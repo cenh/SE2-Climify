@@ -35,7 +35,7 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 	
 	@Override
 	protected MessageHandler getMessageHandler(String topic, MqttMessage message) {
-		return new RaspberryPiMessageHandler(topic, message);
+		return new RaspberryPiMessageHandler(topic, message, this);
 	}
 	
 	@Override
