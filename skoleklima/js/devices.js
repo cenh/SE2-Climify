@@ -256,7 +256,7 @@ function refreshTableSensorsAndActuators(roomID) {
             var jData1 = JSON.parse(data1);
             for (j = 0; j < jData1.length; j++) {
                 var measurment = JSON.parse(jData1[j]);
-                if(measurment.results[0].hasOwnProperty){
+                if(measurment.results[0].hasOwnProperty('series')){
                     sensors_data.push(measurment.results[0].series[0].values[0][1]);
                 } else {
                     sensors_data.push('No data recorded');
