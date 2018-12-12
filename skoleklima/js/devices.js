@@ -68,6 +68,11 @@ $(document).ready(function () {
             tr.removeClass('shown');
         }
         else {
+
+            if ( table.row( '.shown' ).length ) {
+                $('.details-control', table.row( '.shown' ).node()).click();
+            }
+
             // Open this row
             row.child(format_actuators(row.data())).show();
             tr.addClass('shown');
@@ -126,7 +131,7 @@ function format_actuators(d) {
     if(actuators[index].ItemType === "Number"){
         action = '<td><form id="set_input">\n' +
             'Set value: <input type="number" value="10">\n' +
-            '<button id="set_button" onclick="set_actuator()">Set</button>\n' +
+            '<button id="set_button" onclick="set_actuator_number()">Set</button>\n' +
             '</form></td>';
         chosen_actuator = actuators[index].Name;
     } else {
@@ -146,7 +151,7 @@ function format_actuators(d) {
 
 
 
-function set_actuator () {
+function set_actuator_number () {
     var x = document.getElementById("set_input");
     var text = x.elements[0].value;
     // Create a client instance
