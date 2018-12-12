@@ -125,8 +125,8 @@ function delete_thing(ting_uid, rp_uid) {
     // called when the client connects
     function onConnect() {
         // Once a connection has been made, make a subscription and send a message.
-        // console.log("onConnect");
-        //client.subscribe("testse2");
+        console.log("onConnect");
+        client.subscribe("deviceControl/Thing/" + rp_uid);
         msg = {
             controlType: 'REMOVE',
             uid: uid
