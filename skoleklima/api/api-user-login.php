@@ -85,7 +85,9 @@ $sPasswordDBDecrypted = decrypt($UserPassword, ENCRYPTION_KEY);
 error_log("DecryptedDB:".$sPasswordDBDecrypted, 0);
 error_log("phaseDecrypted:".$phasePasswordDecrypt, 0);
 if ($sPasswordDBDecrypted === $phasePasswordDecrypt) {
+    error_log("Passwords are equal", 0);
     if ($Blocked == 1) {
+        error_log("User is not blocked", 0);
         // Store user-info from variables in sessions
         $_SESSION['userID'] = $UserID;
         $_SESSION['userName'] = $phaseUsername;
