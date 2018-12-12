@@ -10,12 +10,14 @@
 	<meta name="author" content="Magnus Bachalarz">
 	<meta name="description" content="Se aktuel status på indendørsklima på folkeskoler i Danmark – Copyright © <?php echo date("Y") . " " . $company_Name; ?>">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  	<link rel="shortcut icon" type="image/png" href="../img/logo/favicon.png?v=<?php echo $system_version ?>"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="../img/logo/favicon.png?v=<?php echo $system_version ?>"/>
 	<link rel="stylesheet" type="text/css" href="css/styles.css?v=<?php echo $system_version ?>">
 	<link href="https://fonts.googleapis.com/css?family=Arimo:400,400i,700|Poppins:500|Raleway:500i" rel="stylesheet">
 	<link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../lib/sweetalert/dist/sweetalert.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
 </head>
 <body>
 
@@ -30,12 +32,20 @@
             require_once "ink/dashboard.php";
         }
     ?>
-
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="../lib/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
 	<script src="js/main.js?v=<?php echo $system_version ?>"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
