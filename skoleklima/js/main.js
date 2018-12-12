@@ -282,14 +282,17 @@ if (browserIsIE == false) {
     }
 
     function correctLogin() {
+      console.log("Correct login");
         $(".login-input").val("");
         if (window.matchMedia('(min-width: 800px)').matches) {
+            console.log("Matches");
             $(".img-con").animate({
                 left: '-100vw'
             }, 1000, "swing");
             $(".login-con").animate({
                 right: '-40vw'
             }, 1000, "swing", function () {
+                console.log("RELOADED!");
                 location.reload();
             });
         } else {
