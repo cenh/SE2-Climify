@@ -376,7 +376,7 @@ function listen() {
             // console.log("onConnect");
             //client.subscribe("testse2");
             msg = {
-                binding: "zwave"
+                binding: "ZWAVE"
             };
             msg_text = JSON.stringify(msg);
             message = new Paho.MQTT.Message(msg_text);
