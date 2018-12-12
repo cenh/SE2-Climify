@@ -129,7 +129,7 @@ function delete_thing(ting_uid, rp_uid) {
         client.subscribe("deviceControl/Thing/" + rp_uid);
         msg = {
             controlType: 'REMOVE',
-            uid: uid
+            uid: ting_uid
         };
         msg_text = JSON.stringify(msg);
         message = new Paho.MQTT.Message(msg_text);
