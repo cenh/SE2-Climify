@@ -2,24 +2,24 @@
 <div class="view view-dashboard">
 	<?php
 		$perms = array_values($permissions);
-		if(in_array("devices", $perms)) {
+		//if(in_array("devices", $perms)) {
 			require_once "view-devices.php";
-		}
-		if(in_array("data-map", $perms)) {
+		//}
+		//if(in_array("data-map", $perms)) {
 			require_once "view-data-map.php";
-		}
-		if(in_array("data", $perms)) {
+		//}
+		//if(in_array("data", $perms)) {
 			require_once "view-data.php";
-		}
-		if(in_array("rules", $perms)) {
+		//}
+		//if(in_array("rules", $perms)) {
 			require_once "view-rules.php";
-		}
-		if(in_array("communication", $perms)) {
+		//}
+		//if(in_array("communication", $perms)) {
 			require_once "view-communication.php";
-		}
-		if(in_array("other-users", $perms)) {
+		//}
+		//if(in_array("other-users", $perms)) {
 			require_once "view-other-users.php";
-		}
+		//}
 		if(in_array("permissions", $perms)) {
 			require_once "view-permissions.php";
 		}
