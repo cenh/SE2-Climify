@@ -126,7 +126,7 @@ function format_actuators(d) {
     if(actuators[index].ItemType === "Number"){
         action = '<td><form id="set_input">\n' +
             'Set value: <input type="number" value="10">\n' +
-            '<button id="set_button" onclick="set_actuator() ">Set</button>\n' +
+            '<button id="set_button" onclick="set_actuator()">Set</button>\n' +
             '</form></td>';
         chosen_actuator = actuators[index].Name;
     } else {
@@ -175,7 +175,6 @@ function set_actuator () {
         message = new Paho.MQTT.Message(msg_text);
         message.destinationName = "commandse2/" + chosen_actuator;
         client.publish(message);
-
     }
 
     // called when the client loses its connection
@@ -256,7 +255,13 @@ function refreshTableSensorsAndActuators(roomID) {
         }, function (data1) {
             var jData1 = JSON.parse(data1);
             for (j = 0; j < jData1.length; j++) {
-                sensors_data.push(JSON.parse(jData1[j]).results[0].series[0].values[0][1]);
+                var measurment = JSON.parse(jData1[j]);
+                if(measurment.results[0].hasOwnProperty){
+                    sensors_data.push(measurment.results[0].series[0].values[0][1]);
+                } else {
+                    sensors_data.push('No data recorded');
+                }
+                // sensors_data.push(JSON.parse(jData1[j]).results[0].series[0].values[0][1]);
             }
         });
     });
