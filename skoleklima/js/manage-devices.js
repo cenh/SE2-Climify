@@ -53,6 +53,31 @@ $(document).ready(function () {
 });
 
 
+$(document).ready(function () {
+    var table = $('#table_id_listening').DataTable({
+        "searching": false,
+        "paging": false,
+        "info": false,
+        "columns": [
+            {
+                "className": 'approve',
+                "orderable": false
+            },
+            null
+        ],
+        "order": [[1, 'asc']]
+    });
+
+    // Add event listener for opening and closing details
+    $('#table_id3 tbody').on('click', 'td.approve', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+        console.log('approve');
+    });
+});
+
+
+
 function refreshDevicesDropdown(roomID) {
     $('#table_channels').DataTable().clear().draw(false);
     var sUrl = "api/api-get-things.php";
