@@ -39,10 +39,7 @@ function delete_thing(thing_uid, rp_uid) {
     //     console.log("MessageArrived\n" + "Message id: " + msg['controlType'] + " message text: " + msg['text']);
     // }
 
-    e = document.getElementById('select_room_devices');
-    var value = e.options[e.selectedIndex].value;
-
-    refreshTableDevices(value);
+    refreshThingsTableWithButton();
 
     alert('Thing has been removed');
 }

@@ -109,8 +109,6 @@ $(document).ready(function () {
 });
 
 
-
-
 // functions for collapsing
 function format_sensors(d) {
     // `d` is the original data object for the row
@@ -170,9 +168,6 @@ function set_actuator_on_off() {
         console.log('OFF', chosen_actuator);
     }
 }
-
-
-
 
 
 // dropdown with rooms
@@ -267,5 +262,3 @@ function refreshTableDevices(roomID) {
     });
     document.getElementById("listen_button").disabled = false;
 }
-
-

@@ -115,3 +115,9 @@ function link() {
 function unlink() {
     alert('unlink');
 }
+
+function refreshThingsTableWithButton() {
+    e = document.getElementById('select_room_devices');
+    var value = e.options[e.selectedIndex].value;
+    refreshTableDevices(value);
+}
