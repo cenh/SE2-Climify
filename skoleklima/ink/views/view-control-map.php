@@ -87,7 +87,9 @@
         </div>
         <div style="height: auto">
             <select id="select_room_devices_listen">
-                <option value="" disabled selected>Choose Your Room</option>
+                <option value="" disabled selected onchange="function f() {
+                      document.getElementById("listen_button").disabled = false;
+                }">Choose Your Room</option>
             </select>
             <button id="listen_button" onclick="listen()" disabled>Discover new devices</button>
         </div>

@@ -184,7 +184,6 @@ function refreshTableDevices(roomID) {
         }
         table_devices.draw(false);
     });
-    document.getElementById("listen_button").disabled = false;
 }
 
 function refreshDevicesTableWithButton() {
