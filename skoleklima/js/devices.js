@@ -101,16 +101,16 @@ $(document).ready(function () {
     $('#table_id3 tbody').on('click', 'td.delete', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
-        var ting_uid = things[row.index()].UID;
+        var thing_uid = things[row.index()].UID;
         var rp_uid = things[row.index()].RaspberryPiUID;
-        delete_thing(ting_uid, rp_uid);
+        delete_thing(thing_uid, rp_uid);
 
     });
 });
 
-function delete_thing(ting_uid, rp_uid) {
+function delete_thing(thing_uid, rp_uid) {
     alert('Thing has been removed');
-
+    console.log(thing_uid, rp_uid);
     client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
     client.startTrace();
     // set callback handlers
@@ -129,7 +129,7 @@ function delete_thing(ting_uid, rp_uid) {
         client.subscribe("deviceControl/Thing/" + rp_uid);
         msg = {
             controlType: 'REMOVE',
-            uid: ting_uid
+            uid: thing_uid
         };
         msg_text = JSON.stringify(msg);
         message = new Paho.MQTT.Message(msg_text);
@@ -342,7 +342,6 @@ function refreshTableSensorsAndActuators(roomID) {
 function refreshTableDevices(roomID) {
     things = [];
     var sUrl = "api/api-get-things.php";
-    console.log(roomID);
     $.post(sUrl, {
         roomID: roomID,
     }, function (data) {
