@@ -57,58 +57,61 @@
         <button id="refresh_things_table_button" onclick="refreshDevicesTableWithButton()">Refresh</button>
     </div>
 
-    <div style="width: 100%; height: auto; border: 1px solid #dddddd;
+    <div style="overflow: auto">
+        <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
     padding: 8px; float:left;">
-        <table id="table_id3" class="display" style="width: 100%">
-            <thead>
-            <tr>
-                <th></th>
-                <th>Devices</th>
-            </tr>
-            </thead>
-            <tbody>
+            <table id="table_id3" class="display" style="width: 100%">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Devices</th>
+                </tr>
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
-        <style>
-            td.delete {
-                /*background-color: #b70404;*/
-                cursor: pointer;
-            }
-        </style>
+                </tbody>
+            </table>
+            <style>
+                td.delete {
+                    /*background-color: #b70404;*/
+                    cursor: pointer;
+                }
+            </style>
+        </div>
     </div>
 
-
-    <div style="text-align: center; padding: 30px; margin-top: 30px">
-        <h4>Find New Things</h4>
-    </div>
-    <div style="height: auto">
-        <select id="select_room_devices_listen">
-            <option value="" disabled selected>Choose Your Room</option>
-        </select>
-        <button id="listen_button" onclick="listen()" disabled>Discover new devices</button>
-    </div>
-    <div style="width: 100%; height: auto; border: 1px solid #dddddd;
+    <div style="overflow: auto">
+        <div style="text-align: center; padding: 30px;">
+            <h4>Find New Things</h4>
+        </div>
+        <div style="height: auto">
+            <select id="select_room_devices_listen">
+                <option value="" disabled selected>Choose Your Room</option>
+            </select>
+            <button id="listen_button" onclick="listen()" disabled>Discover new devices</button>
+        </div>
+        <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
     padding: 8px; float:left;">
-        <table id="table_listening" class="display" style="width: 100%">
-            <thead>
-            <tr>
-                <th></th>
-                <th>Found Devices</th>
-            </tr>
-            </thead>
-            <tbody>
+            <table id="table_listening" class="display" style="width: 100%">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Found Devices</th>
+                </tr>
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
-        <style>
-            td.delete {
-                /*background-color: #b70404;*/
-                cursor: pointer;
-            }
-        </style>
+                </tbody>
+            </table>
+            <style>
+                td.delete {
+                    /*background-color: #b70404;*/
+                    cursor: pointer;
+                }
+            </style>
+        </div>
     </div>
 
 </div>
