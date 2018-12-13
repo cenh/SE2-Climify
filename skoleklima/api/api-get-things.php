@@ -14,7 +14,8 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM RaspberryPis JOIN Things WHERE RaspberryPis.LocationID = $roomID";
+$query = "SELECT * FROM Things LEFT JOIN RaspberryPis ON 
+RaspberryPis.LocationID = $roomID  AND Things.RaspberryPiUID = RaspberryPis.UID";
 
 $stmt = $conn->prepare($query);
 
@@ -23,12 +24,11 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 $emparray = array();
-while($row = mysqli_fetch_assoc($result))
-{
+while ($row = mysqli_fetch_assoc($result)) {
     $emparray[] = $row;
 }
 
-$messages = json_encode( $emparray , JSON_UNESCAPED_UNICODE );
+$messages = json_encode($emparray, JSON_UNESCAPED_UNICODE);
 echo $messages;
 
 $stmt->close();
