@@ -192,3 +192,7 @@ function refreshDevicesTableWithButton() {
     if(value !== "")
         refreshTableDevices(value);
 }
+
+function unlock_listening() {
+    document.getElementById("listen_button").disabled = false;
+}
