@@ -182,7 +182,10 @@ function format_actuators(d) {
             '<button id="set_button" onclick="set_actuator_number()">Set</button>\n' +
             '</form></td>';
     } else {
-        action = '<td>Turn on/off<input type="checkbox" id="set_on_off" onclick="set_actuator_on_off()"></td>';
+        action = '<td>Turn on/off<label class="switch">\n' +
+            '  <input type="checkbox" id="set_on_off" onclick="set_actuator_on_off()">\n' +
+            '  <span class="slider"></span>\n' +
+            '</label></td>';
     }
     chosen_actuator = actuators[index].Name;
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
