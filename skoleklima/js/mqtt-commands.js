@@ -1,11 +1,10 @@
 function delete_thing(thing_uid, rp_uid) {
-    alert('Thing has been removed');
     console.log(thing_uid, rp_uid);
     client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
     client.startTrace();
     // set callback handlers
-    client.onConnectionLost = onConnectionLost;
-    client.onMessageArrived = onMessageArrived;
+    // client.onConnectionLost = onConnectionLost;
+    // client.onMessageArrived = onMessageArrived;
     // connect the client
     client.connect({
         onSuccess: onConnect,
@@ -28,22 +27,24 @@ function delete_thing(thing_uid, rp_uid) {
     }
 
     // called when the client loses its connection
-    function onConnectionLost(responseObject) {
-        if (responseObject.errorCode !== 0) {
-            // console.log("onConnectionLost:" + responseObject.errorMessage);
-        }
-    }
+    // function onConnectionLost(responseObject) {
+    //     if (responseObject.errorCode !== 0) {
+    //         // console.log("onConnectionLost:" + responseObject.errorMessage);
+    //     }
+    // }
 
     // called when a message arrives
-    function onMessageArrived(message) {
-        msg = JSON.parse(message.payloadString);
-        console.log("MessageArrived\n" + "Message id: " + msg['controlType'] + " message text: " + msg['text']);
-    }
+    // function onMessageArrived(message) {
+    //     msg = JSON.parse(message.payloadString);
+    //     console.log("MessageArrived\n" + "Message id: " + msg['controlType'] + " message text: " + msg['text']);
+    // }
 
     e = document.getElementById('select_room_devices');
     var value = e.options[e.selectedIndex].value;
 
     refreshTableDevices(value);
+
+    alert('Thing has been removed');
 }
 
 
