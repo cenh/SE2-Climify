@@ -51,7 +51,7 @@
             <option value="" disabled selected>Choose Your Room</option>
         </select>
         <button id="listen_button" onclick="listen()" disabled>Discover new devices</button>
-        <button id="refresh_things_table_button" onclick="refreshThingsTableWithButton()">Refresh</button>
+        <button id="refresh_things_table_button" onclick="refreshDevicesTableWithButton()">Refresh</button>
     </div>
 
     <div style="width: 100%; height: auto; border: 1px solid #dddddd;

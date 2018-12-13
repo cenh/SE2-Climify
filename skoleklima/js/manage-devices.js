@@ -26,6 +26,32 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    var table = $('#table_id3').DataTable({
+        "searching": false,
+        "paging": false,
+        "info": false,
+        "columns": [
+            {
+                "className": 'delete',
+                "orderable": false
+            },
+            null
+        ],
+        "order": [[1, 'asc']]
+    });
+
+    // Add event listener for opening and closing details
+    $('#table_id3 tbody').on('click', 'td.delete', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+        var thing_uid = things[row.index()].UID;
+        var rp_uid = things[row.index()].RaspberryPiUID;
+        delete_thing(thing_uid, rp_uid);
+
+    });
+});
+
 
 function refreshDevicesDropdown(roomID) {
     $('#table_channels').DataTable().clear().draw(false);
@@ -116,8 +142,28 @@ function unlink() {
     alert('unlink');
 }
 
-function refreshThingsTableWithButton() {
+
+function refreshTableDevices(roomID) {
+    things = [];
+    var sUrl = "api/api-get-things.php";
+    $.post(sUrl, {
+        roomID: roomID,
+    }, function (data) {
+        var jData = JSON.parse(data);
+        var table_devices = $('#table_id3').DataTable();
+        table_devices.clear();
+        things = jData;
+        for (var i = 0; i < jData.length; i++) {
+            table_devices.row.add(['DELETE', jData[i].Label]).draw(false);
+        }
+        table_devices.draw(false);
+    });
+    document.getElementById("listen_button").disabled = false;
+}
+
+function refreshDevicesTableWithButton() {
     e = document.getElementById('select_room_devices');
     var value = e.options[e.selectedIndex].value;
-    refreshTableDevices(value);
+    if(value !== "")
+        refreshTableDevices(value);
 }
