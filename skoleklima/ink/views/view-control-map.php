@@ -86,8 +86,8 @@
             <h4>Find New Things</h4>
         </div>
         <div style="height: auto">
-            <select id="select_room_devices_listen">
-                <option value="" disabled selected onchange="unlock_listening()">Choose Your Room</option>
+            <select id="select_room_devices_listen" onchange="unlock_listening()">
+                <option value="" disabled selected>Choose Your Room</option>
             </select>
             <button id="listen_button" onclick="listen()" disabled>Discover new devices</button>
         </div>
