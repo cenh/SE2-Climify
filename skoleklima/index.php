@@ -104,6 +104,7 @@
 
     <script type="text/javascript" src="js/devices.js"></script>
     <script type="text/javascript" src="js/manage-devices.js"></script>
+    <script type="text/javascript" src="js/mqtt-commands.js"></script>
 
 
     <?php
