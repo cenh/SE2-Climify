@@ -126,7 +126,7 @@ public class RestCommunicator {
 		String discoveryUrl = restBaseUrl + "discovery/bindings/" + binding + "/scan";
 		System.out.println(discoveryUrl);
 
-		Headers headers = Utilities.getHeaders(HeaderType.JSON, HeaderType.TEXTPLAIN);
+		Headers headers = Utilities.getHeaders(HeaderType.TEXTPLAIN);
 
 		RequestBody body = RequestBody.create(null, "");
 

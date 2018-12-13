@@ -1,11 +1,18 @@
 package org.MqttLib.openhab;
 
+import com.dslplatform.json.CompiledJson;
+import com.dslplatform.json.CompiledJson.Behavior;
+
 /**
  * Confirmation message when a thing has been removed/approved
  * @author nch
  *
  */
-public class DidControlThing extends ControlThing {
+@CompiledJson(onUnknown = Behavior.DEFAULT)
+public class DidControlThing {
+	public ControlType controlType;
+	public String uid; 
+	
 	//Thing will be null if the thing is removed.
 	public Thing thing;
 	

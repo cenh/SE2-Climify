@@ -1,6 +1,13 @@
 package org.MqttLib.openhab;
 
-public class DidControlItem extends ControlItem {
+import com.dslplatform.json.CompiledJson;
+import com.dslplatform.json.CompiledJson.Behavior;
+
+@CompiledJson(onUnknown = Behavior.DEFAULT)
+public class DidControlItem {
+	public ControlType controlType;
+	public String uid;
+	public String channelUID;
 	public Item item;
 	
 	public DidControlItem(ControlType controlType, String uid, String channelUID, Item item) {

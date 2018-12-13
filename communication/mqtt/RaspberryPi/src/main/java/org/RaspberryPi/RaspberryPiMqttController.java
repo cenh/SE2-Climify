@@ -63,6 +63,7 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 			List<Link> links = dslJson.deserializeList(Link.class, linksData, linksData.length);
 			
 			DeviceUpdate deviceUpdate = new DeviceUpdate(things, items, links);
+			deviceUpdate.removeControllers();
 			dslJson.serialize(writer, deviceUpdate);
 			
 			super.publish(Topic.SENSORUPDATE.getTopic()+"/"+"testID", 2, writer.getByteBuffer());
