@@ -14,8 +14,8 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM Things LEFT JOIN RaspberryPis ON 
-RaspberryPis.LocationID = $roomID  AND Things.RaspberryPiUID = RaspberryPis.UID";
+$query = "SELECT * FROM Things LEFT JOIN RaspberryPis ON RaspberryPis.LocationID = $roomID AND Things.RaspberryPiUID = RaspberryPis.UID";
+
 
 $stmt = $conn->prepare($query);
 
