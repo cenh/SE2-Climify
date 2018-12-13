@@ -177,12 +177,12 @@ function format_actuators(d) {
     });
     var action;
     if(actuators[index].ItemType === "Number"){
-        action = '<td><form id="set_input">\n' +
+        action = '<td><form id="set_input_number">\n' +
             'Set value: <input type="number" value="10">\n' +
             '<button id="set_button" onclick="set_actuator_number()">Set</button>\n' +
             '</form></td>';
     } else {
-        action = '<td>on/off</td>';
+        action = '<td>Turn on/off<input type="checkbox" onclick="set_actuator_on_off('+this.checked+')"></td>';
     }
     chosen_actuator = actuators[index].Name;
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
@@ -197,13 +197,17 @@ function format_actuators(d) {
         '</table>';
 }
 
-function set_actuator_on_off() {
-
+function set_actuator_on_off(isChecked) {
+    if(isChecked) {
+        console.log('ON', chosen_actuator);
+    } else {
+        console.log('OFF', chosen_actuator);
+    }
 }
 
 
 function set_actuator_number () {
-    var x = document.getElementById("set_input");
+    var x = document.getElementById("set_input_number");
     var text = x.elements[0].value;
     // Create a client instance
     client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
@@ -356,7 +360,6 @@ function listen() {
         var jData = JSON.parse(data);
         rp = jData[0].UID;
 
-
         // Create a client instance
         client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
         client.startTrace();
@@ -397,13 +400,7 @@ function listen() {
             // console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
         }
 
-
-
-
-
     });
-
-
 
 }
 
