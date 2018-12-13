@@ -342,6 +342,7 @@ function refreshTableSensorsAndActuators(roomID) {
 function refreshTableDevices(roomID) {
     things = [];
     var sUrl = "api/api-get-things.php";
+    console.log(roomID);
     $.post(sUrl, {
         roomID: roomID,
     }, function (data) {
