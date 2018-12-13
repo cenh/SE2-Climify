@@ -149,9 +149,17 @@ function listen() {
     // });
 
     var i = 12;
-    setInterval( function() {
+    var interval = setInterval( function() {
         console.log(i);
         i--;
+        if(i<0) {
+            clearInterval(interval);
+            refresh_table_approval();
+        }
     }, 1000);
 
+}
+
+function refresh_table_approval() {
+    console.log('refresh');
 }
