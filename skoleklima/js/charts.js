@@ -455,6 +455,9 @@ function getGraphData() {
             xDataExist = false;
 
             $("btn-download-graph-data").removeClass("button-disabled");
+            for(var k = 0; k<jData.length; k++){
+                console.log(jData[k].length);
+            }
             for (var j = 0; j < jData.length; j++) {
                 for (var i = 0; i < jData[j].length; i++) {
                     sensorIDs[i] = jData[j][i].SensorID;
