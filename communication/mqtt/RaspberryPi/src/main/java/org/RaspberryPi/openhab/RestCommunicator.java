@@ -146,15 +146,15 @@ public class RestCommunicator {
 	}
 	
 	public String removeThing(String thingUID) throws IOException {
-		String thingUrl = restBaseUrl + "things/";
+		String thingUrl = restBaseUrl + "things/" + thingUID;
         Headers headers = Utilities.getHeaders(HeaderType.JSON);
 
-        RequestBody body = RequestBody.create(null, thingUID);
+        //RequestBody body = RequestBody.create(null, thingUID);
         
         Request request = new Request.Builder()
             .url(thingUrl)
             .headers(headers)
-            .delete(body)
+            .delete()
             .build();
 
         Response response = client.newCall(request).execute();
@@ -163,16 +163,14 @@ public class RestCommunicator {
 	}
 	
 	public String removeItem(String itemName) throws IOException {
-		String itemUrl = restBaseUrl + "items/";
+		String itemUrl = restBaseUrl + "items/" + itemName;
 		
         Headers headers = Utilities.getHeaders(HeaderType.JSON);
-
-        RequestBody body = RequestBody.create(null, itemName);
         
         Request request = new Request.Builder()
             .url(itemUrl)
             .headers(headers)
-            .delete(body)
+            .delete()
             .build();
 
         Response response = client.newCall(request).execute();

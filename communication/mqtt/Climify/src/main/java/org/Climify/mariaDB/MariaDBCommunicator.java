@@ -84,6 +84,7 @@ public class MariaDBCommunicator {
 	public void handleControlThing(DidControlThing didControlThing, String raspberryPiUID) {
 		if (didControlThing.controlType == ControlType.ADD) {
 			insertThing(didControlThing.thing, raspberryPiUID);
+			removeThingFromInbox(raspberryPiUID, didControlThing.uid);
 		}
 		else {
 			//Order is important.
@@ -277,6 +278,19 @@ public class MariaDBCommunicator {
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, raspberryPiUID);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void removeThingFromInbox(String raspberryPiUID, String thingUID) {
+		String sql = "DELETE FROM Inbox WHERE Inbox.ThingUID = ? AND Inbox.RaspberryPiUID = ?";
+		
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, thingUID);
+			ps.setString(2, raspberryPiUID);
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

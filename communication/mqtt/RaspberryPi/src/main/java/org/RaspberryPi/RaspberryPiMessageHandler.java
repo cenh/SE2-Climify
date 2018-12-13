@@ -124,13 +124,13 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 					Thing thing = dslJson.deserialize(Thing.class, thingBytes, thingBytes.length);
 					for (Channel channel: thing.channels) {
 						for (String item: channel.linkedItems) {
-							rest.removeLink(item, channel.uid);
-							rest.removeItem(item);
+							System.out.println("Deleting link: " + rest.removeLink(item, channel.uid));
+							System.out.println("Deleting item: " + rest.removeItem(item));
 						}
 					}
 
-					rest.removeThing(controlThing.uid);
-
+					String response = rest.removeThing(controlThing.uid);
+					System.out.println("Deleting thing: " + response);
 					//Prepare the message
 					didControlThing = new DidControlThing(controlThing.controlType, controlThing.uid, null);
 				}
