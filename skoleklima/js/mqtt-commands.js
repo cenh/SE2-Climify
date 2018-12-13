@@ -149,6 +149,8 @@ function listen() {
     // });
 
     var i = 12;
+    document.getElementById("listen_button").disabled = true;
+    document.getElementById("listen_button").style.opacity = "0.3";
     var interval = setInterval( function() {
         console.log(i);
         i--;
@@ -161,5 +163,7 @@ function listen() {
 }
 
 function refresh_table_approval() {
+    document.getElementById("listen_button").disabled = false;
+    document.getElementById("listen_button").style.opacity = "0";
     console.log('refresh');
 }

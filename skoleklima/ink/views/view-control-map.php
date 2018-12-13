@@ -89,7 +89,7 @@
             <select id="select_room_devices_listen" onchange="unlock_listening()">
                 <option value="" disabled selected>Choose Your Room</option>
             </select>
-            <button id="listen_button" onclick="listen()" disabled>Discover new devices</button>
+            <button id="listen_button" onclick="listen()" disabled style="opacity: 0.3">Discover new devices</button>
         </div>
         <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
