@@ -80,7 +80,7 @@
     </div>
 
 
-    <div style="text-align: center; padding: 30px">
+    <div style="text-align: center; padding: 30px; margin-top: 30px">
         <h4>Find New Things</h4>
     </div>
     <div style="height: auto">
