@@ -89,7 +89,7 @@
             <thead>
             <tr>
                 <th></th>
-                <th>Devices</th>
+                <th>Found Devices</th>
             </tr>
             </thead>
             <tbody>

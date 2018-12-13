@@ -54,7 +54,7 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    var table = $('#table_id_listening').DataTable({
+    var table = $('#table_listening').DataTable({
         "searching": false,
         "paging": false,
         "info": false,
