@@ -182,7 +182,7 @@ function format_actuators(d) {
             '<button id="set_button" onclick="set_actuator_number()">Set</button>\n' +
             '</form></td>';
     } else {
-        action = '<td>Turn on/off<input type="checkbox" onclick="set_actuator_on_off()"></td>';
+        action = '<td>Turn on/off<input type="checkbox" id="set_on_off" onclick="set_actuator_on_off()"></td>';
     }
     chosen_actuator = actuators[index].Name;
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
@@ -198,7 +198,8 @@ function format_actuators(d) {
 }
 
 function set_actuator_on_off() {
-    if(this.checked) {
+    var x = document.getElementById("set_on_off");
+    if(x.checked) {
         console.log('ON', chosen_actuator);
     } else {
         console.log('OFF', chosen_actuator);
