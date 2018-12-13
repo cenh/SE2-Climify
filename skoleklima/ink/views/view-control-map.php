@@ -46,6 +46,10 @@
         <h2>Manage Things</h2>
     </div>
 
+    <div style="text-align: center; padding: 30px">
+        <h4>Delete Things</h4>
+    </div>
+
     <div style="height: auto">
         <select id="select_room_devices" onchange="refreshTableDevices(value)">
             <option value="" disabled selected>Choose Your Room</option>
@@ -76,6 +80,9 @@
     </div>
 
 
+    <div style="text-align: center; padding: 30px">
+        <h4>Find New Things</h4>
+    </div>
     <div style="height: auto">
         <select id="select_room_devices_listen">
             <option value="" disabled selected>Choose Your Room</option>
