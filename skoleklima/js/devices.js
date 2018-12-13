@@ -149,6 +149,11 @@ function delete_thing(ting_uid, rp_uid) {
         msg = JSON.parse(message.payloadString);
         console.log("MessageArrived\n" + "Message id: " + msg['controlType'] + " message text: " + msg['text']);
     }
+
+    e = document.getElementById('select_room_devices');
+    var value = e.options[e.selectedIndex].value;
+
+    refreshTableDevices(value);
 }
 
 
@@ -410,13 +415,3 @@ function listen() {
     });
 
 }
-
-
-
-
-
-$("#select_thing").change(function() {
-    var x = $(this).val();
-    refreshTableThings(x);
-    console.log(x);
-});

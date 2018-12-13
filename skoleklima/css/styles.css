@@ -10,6 +10,71 @@
 /*
     Display
  */
+
+/*switch*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+
 .flex, .viewport, .view, .menu-link, .menu-link-ico, .menu-link-text, .menu-link a, .menu-link-ico a, .menu-link-text a, .inline-checkbox, .view-login .login-con .login-from span, .view-login .login-con .login-from span div, .view-login .login-con, .view-login .overner-info, .view-login .view-signup .view-signup-inner-wrapper .view-signup-body, .view-login .view-signup .view-signup-inner-wrapper .view-signup-body .view-signup-body-right .recaptcha-wrapper, .view-login .view-limited-signup .view-signup-inner-wrapper .view-signup-body, .view-login .view-limited-signup .view-signup-inner-wrapper .view-signup-body .view-signup-body-right .recaptcha-wrapper, #top-header .header-content, #btn-sign-out, .view-dashboard .cookie-info-outer-wrapper, .view-dashboard .cookie-info-outer-wrapper .cookie-info-wrapper, .view-dashboard .cookie-info-outer-wrapper .cookie-info-wrapper div, .create-user-wrapper, .view-system-settings .system-admin-top, .view-system-settings .system-admin-top span, .view-system-settings .other-admin-edit, .view-system-settings .list-other-admin-users-create, .view-system-settings .admin-user, .view-system-settings .other-admin-edit span, .view-system-settings .active-schools-list span, .view-system-settings .settings-user-company-info-wrapper .company-contant-info-wrapper, .view-system-settings .settings-user-profil-info-wrapper .status-ok span, .view-system-settings .building-list-header, .view-system-settings .building-list-body, .view-system-settings .building-list-body #building-list-wapper .building-single, .view-system-settings .building-list-body .building-detail-wapper .building-detail-innerwapper, .view-system-settings .building-list-body .building-detail-wapper .building-detail-innerwapper .building-detail-wapper-left, .view-own-user .user-info-input, .view-own-user .user-info-input .change-own-pass, .view-own-user .user-info-input span, .view-own-user .user-info-input .btn-update-own-user-wrapper, .view-other-users .other-users-top, .view-other-users span:nth-child(2), .view-other-users .other-users-create, .view-other-users .other-users-create span, .view-other-users .other-users-list .other-users-list-wrapper, .view-other-users .other-users-list .other-users-list-wrapper .school-user, .view-other-users .other-users-list .other-users-list-wrapper .school-user span, .view-other-users .unactivated-users-list .unactivated-users-list-wrapper, .view-other-users .unactivated-users-list .unactivated-users-list-wrapper .unactivated-school-user, .view-other-users .unactivated-users-list .unactivated-users-list-wrapper .unactivated-school-user span, .view-permissions .permissions-top, .view-permissions span:nth-child(2), .view-permissions .permissions-list .permissions-list-wrapper, .view-permissions .permissions-list .permissions-list-wrapper .permission, .view-permissions .permissions-list .permissions-list-wrapper .permission span, .view-devices .view-devices-top, .view-devices .view-devices-top span:nth-child(2), .view-devices .list-all-devices-wrapper, .view-devices .list-all-devices-wrapper .view-devices-type-list-wrapper, .view-devices .list-all-devices-wrapper .view-devices-list-wrapper, .view-devices .list-all-devices-wrapper .ic-meter-device, .graph-area-wrapper-1, .graph-area-wrapper-1 .canvas1, .graph-area-wrapper-1 .canvas-1-settings .canvas-settings-look, .graph-area-wrapper-1 .canvas-1-settings .canvas-settings-look span, .graph-area-wrapper-1 .canvas-1-settings .canvas-settings-look .chart-fill, .graph-area-wrapper-1 .canvas-1-settings .canvas-settings-download, .graph-area-wrapper-1 .canvas-1-settings .canvas-settings-download .canvas-settings-download-head, .graph-area-wrapper-2, .graph-area-wrapper-2 .canvas-wrapper-2, .reportrange, .view-communication .view-data-top, .view-communication .view-data-top span:nth-child(2), .view-communication .data-communication-wrapper .communication-area-wrapper-1, .view-communication .data-communication-wrapper .communication-area-wrapper-1 .flow-communication-wrapper .add-communication-wrapper, .view-communication .data-communication-wrapper .communication-area-wrapper-1 .flow-communication-wrapper .add-communication-wrapper .select-communication-type-wrapper, .view-communication .data-communication-wrapper .communication-area-wrapper-1 .flow-communication-wrapper .add-communication-wrapper .select-communication-type-wrapper .inner-wrapper, .view-communication .data-communication-wrapper .communication-area-wrapper-1 .flow-communication-wrapper .add-communication-wrapper .select-communication-sub, .view-communication .data-communication-wrapper .communication-area-wrapper-1 .flow-communication-wrapper .add-communication-wrapper .select-communication-sub .inner-wrapper, .view-communication .data-communication-wrapper .communication-area-wrapper-1 .flow-communication-wrapper .add-communication-wrapper .button-communication-wrapper, .view-data .view-data-top, .view-data .view-data-top span:nth-child(2), .view-data .view-data-info-box, .view-data .view-data-map, .view-data .view-data-control, .view-data .view-data-control span, .view-data .view-data-control .view-live-data-wrapper, .view-data-map .view-data-top, .view-data-map .view-data-top span:nth-child(2), .view-data-map .data-map-info-wrapper .info-map-wrapper, .view-data-map .data-map-info-wrapper .info-map-wrapper .left-info-wrapper span, .map-wrapper, .map-wrapper .map-location, .data-map-charts-wrapper, .data-map-charts-wrapper-live, .data-map-charts-wrapper .map-settings, .data-map-charts-wrapper .map-setting-live, .data-map-charts-wrapper .map-suggestions, .data-map-charts-wrapper-live .map-settings, .data-map-charts-wrapper-live .map-setting-live, .data-map-charts-wrapper-live .map-suggestions, .data-map-charts-wrapper .map-settings span, .data-map-charts-wrapper .map-setting-live span, .data-map-charts-wrapper .map-suggestions span, .data-map-charts-wrapper-live .map-settings span, .data-map-charts-wrapper-live .map-setting-live span, .data-map-charts-wrapper-live .map-suggestions span, .map-settings-show .map-selection-btn-wrapper, .map-settings-show .map-selection-btn-wrapper #btn-map-show-live-data, .map-settings-show .map-settings-set-date-time-wrapper, .map-settings-show .map-settings-show-info .map-settings-show-info-live, .map-settings-show .map-settings-show-info .map-settings-show-info-date, .ic-meter-ico-meta .ic-meter-ico-meta-name-wrapper, .map-wrapper .map-settings .add-remove-map-wrapper, .map-wrapper .map-settings #place-devices-list .device-on-place-list, .map-wrapper .map-settings .upload-map-selection .upload-map-label-wrapper, .crop-img-admin .crop-img-control-wrapper, .crop-img-admin .crop-img-control-wrapper .crop-img-control-inner-wrapper {
   display: -webkit-box;
   display: -moz-box;
