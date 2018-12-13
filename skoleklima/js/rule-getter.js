@@ -97,10 +97,14 @@ $(".accordion").on("click","button#editRuleBtn", function () {
     $.get('api/api-get-sensors-from-location.php', {LocationID: rulelocationChosen()})
         .done(function (res) {
             $("#sensorSelect").empty();
+            $("#sensorType").empty();
             results = JSON.parse(res);
             $("#sensorSelect").append('<option value="" disabled selected>Select a sensor</option>');
+            $("#sensorType").append('<option value="" disabled selected>Select a sensor</option>');
             for (i=0;i < results.length; i++){
                 $("#sensorSelect").append("<option value="+results[i].SensorID+">"+results[i].SensorID+"</option>");
+                $("#sensorType").append("<option value="+results[i].SensorTypeName+">"+results[i].SensorTypeName+"</option>");
+
             }
         });
     clearRuleForms();
@@ -157,20 +161,20 @@ $("#modalRule").on("click",function () {
 });
 
 $("#sensorSelect").change(function () {
-
+    var SensorType = $('#sensorType').val();
     var sensorID = $('#sensorSelect').val();
     console.log(sensorID);
-    if (sensorID === "readOutdoorTemperature" || sensorID === "readTemperature") {
+    if (sensorType === "Temperature") {
         console.log("t");
         $('#unit').text('°C');
     }
-    else if (sensorID === "readBattery" || sensorID === "readHumidity" ) {
+    else if (sensorType ===  "Battery" || sensorType === "Humidity" ) {
         $('#unit').text('%');
     }
-    else if (sensorID === "readCO2") {
+    else if (sensorType === "CO2") {
         $('#unit').text('PPM');
     }
-    else if (sensorID === "MainIndoorStation_Noise") {
+    else if (sensorType === "Noise") {
         $('#unit').text('dB');
     }
 

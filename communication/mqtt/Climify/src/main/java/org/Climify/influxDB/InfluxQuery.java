@@ -10,4 +10,5 @@ public abstract class InfluxQuery {
 					   " DEFAULT"; 
 		return query;
 	}
+	
 }

@@ -45,7 +45,7 @@ public class InfluxCommunicator {
 		format.setTimeZone(TimeZone.getTimeZone("UTC"));
 
 		try {
-			return  format.parse(time).getTime();
+			return  format.parse(time).getTime();	
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return System.currentTimeMillis();
