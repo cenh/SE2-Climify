@@ -56,10 +56,13 @@ function generateRuleForms(){
     $.get('api/api-get-actuators-from-location.php', {LocationID: rulelocationChosen()})
         .done(function(res) {
             $("#actuatorSelect").append('<option value="" disabled selected>Select Actuator</option>');
+            $("#actuatorType").append('<option value="" disabled selected>Select Actuator</option>');
+
             actuatorArray = JSON.parse(res);
             console.log(actuatorArray);
             for (i=0;i<actuatorArray.length; i++){
                 $("#actuatorSelect").append('<option value="'+actuatorArray[i].SensorID+'">'+actuatorArray[i].SensorID+'</option>');
+                $("#actuatorType").append('<option value="'+actuatorArray[i].Category+'">'+actuatorArray[i].Category+'</option>');
             }
         });
 
@@ -161,7 +164,7 @@ $("#modalRule").on("click",function () {
 });
 
 $("#sensorSelect").change(function () {
-    var SensorType = $('#sensorType').val();
+    var sensorType = $('#sensorType').val();
     var sensorID = $('#sensorSelect').val();
     console.log(sensorID);
     if (sensorType === "Temperature") {
@@ -227,7 +230,7 @@ $("#submitRule").on("click",function () {
 
 });
 $('#actuatorSelect').change(function () {
-    if($('#actuatorSelect').val() === "ZWaveNode4LC13LivingConnectZThermostat_SetpointHeating"){
+    if($('#actuatorType').val() === "Temperature"){
         $('#onActionSetTemp').show();
     }
     else {
