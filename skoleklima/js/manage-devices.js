@@ -195,4 +195,5 @@ function refreshDevicesTableWithButton() {
 
 function unlock_listening() {
     document.getElementById("listen_button").disabled = false;
+    document.getElementById("listen_button").style.opacity = "1";
 }

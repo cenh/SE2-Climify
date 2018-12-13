@@ -164,6 +164,6 @@ function listen() {
 
 function refresh_table_approval() {
     document.getElementById("listen_button").disabled = false;
-    document.getElementById("listen_button").style.opacity = "0";
+    document.getElementById("listen_button").style.opacity = "1";
     console.log('refresh');
 }
