@@ -141,7 +141,6 @@ function set_actuator_on_off() {
     } else {
         on_off = 'OFF';
     }
-    console.log(on_off);
     // Create a client instance
     client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
     client.startTrace();
