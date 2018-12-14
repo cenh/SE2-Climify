@@ -5,9 +5,12 @@ import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.Climify.influxDB.InfluxCommunicator;
+import org.Climify.influxDB.InfluxQuery;
 import org.Climify.mariaDB.MariaDBCommunicator;
 import org.MqttLib.mqtt.MessageCallback;
 import org.MqttLib.mqtt.MessageHandler;
@@ -18,10 +21,13 @@ import org.MqttLib.openhab.DidSynchronize;
 import org.MqttLib.openhab.SensorMeasurement;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.influxdb.annotation.Measurement;
+import org.influxdb.dto.Query;
+import org.influxdb.dto.QueryResult;
 
 public class ClimifyMessageHandler extends MessageHandler {
 	
 	private InfluxCommunicator influx;
+	private String influxName = "scadb";
 	private MariaDBCommunicator mariaDB;
 	private MessageCallback msgCall;
 
@@ -41,9 +47,18 @@ public class ClimifyMessageHandler extends MessageHandler {
 			try {
 				System.out.println("Inside topic " + topic);
 				SensorMeasurement measurement = dslJson.deserialize(SensorMeasurement.class, message.getPayload(), message.getPayload().length);
-				influx.saveMeasurement(measurement);
-				executeRule(measurement.name, measurement.value);
+//				influx.saveMeasurement(measurement);
+//				executeRule(measurement.name, measurement.value);
 
+
+				//getCategory test
+				QueryResult QR = influx.getMeasurementFields("readTemperature");
+
+				List<List<Object>> fields = QR.getResults().get(0).getSeries().get(0).getValues();
+
+				String category = fields.get(0).get(0).toString();
+
+				System.out.println(category);
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -71,7 +86,22 @@ public class ClimifyMessageHandler extends MessageHandler {
 			try {
 				DidSynchronize didSynchronize = dslJson.deserialize(DidSynchronize.class, message.getPayload(), message.getPayload().length);
 				System.out.println(didSynchronize.toString());
-				//Save to influx
+
+				Iterator it = didSynchronize.measurements.entrySet().iterator();
+				while (it.hasNext()) {
+					Map.Entry pair = (Map.Entry)it.next();
+
+					QueryResult QR = influx.getMeasurementFields((String)pair.getKey());
+
+					List<List<Object>> fields = QR.getResults().get(0).getSeries().get(0).getValues();
+
+					String category = fields.get(0).get(0).toString();
+
+					influx.saveBatchMeasurements((String)pair.getKey(), category, (List<List<Object>>)pair.getValue());
+
+					it.remove(); // avoids a ConcurrentModificationException
+				}
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

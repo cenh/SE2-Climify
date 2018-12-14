@@ -98,6 +98,23 @@ public class InfluxCommunicator {
 
 	}
 
+	public QueryResult getMeasurementFields(String sensor){
+        QueryResult fields = influxDB.query(InfluxQuery.getMeasurementFields(influxName, sensor));
+        return fields;
+    }
+
+    public void saveBatchMeasurements(String sensor,String category, List<List<Object>> measurements){
+
+		influxDB.enableBatch(measurements.size(), 100, TimeUnit.MILLISECONDS);
+		for(int i = 0; i < measurements.size(); i++){
+			String value = (String)measurements.get(i).get(1);
+			String time = (String)measurements.get(i).get(0);
+			SensorMeasurement sensorMeasurement = new SensorMeasurement(sensor, category, value, time);
+			saveMeasurement(sensorMeasurement);
+		}
+		influxDB.flush();
+	}
+
 	//Taken from the Msc. Project 
 	private Long fdate(String time)
 	{
