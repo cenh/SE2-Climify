@@ -266,10 +266,16 @@ function refreshTableDevices(roomID) {
 }
 
 function refreshDevicesTableWithButton() {
-    e = document.getElementById('select_room_devices');
+    var e = document.getElementById('select_room_devices');
     var value = e.options[e.selectedIndex].value;
     if(value !== "")
         refreshTableDevices(value);
+    var table_channles = $('#table_channels').DataTable();
+    table_channles.clear();
+    var e1 = document.getElementById('select_room_manage_devices');
+    var roomID = e1.options[e1.selectedIndex].value;
+    refreshDevicesDropdown(roomID);
+
 }
 
 function refreshDevicesTableListenWithButton() {
