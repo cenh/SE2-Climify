@@ -278,7 +278,7 @@ public class MariaDBCommunicator {
 		return RPiSensors;
 	}
 
-	public List<List<String	>> getSesorsForRaspberryPis(){
+	public List<List<String	>> getSensorsForRaspberryPis(){
 
 		List<List<String>> sensors = new ArrayList<List<String>>();
 
