@@ -35,6 +35,12 @@ $(document).ready(function () {
             tr.removeClass('shown');
         }
         else {
+
+            table.rows().eq(0).each( function ( idx ) {
+                var row = table.row( idx );
+                row.child.hide();
+            } );
+
             // Open this row
             row.child(format_sensors(row.data())).show();
             tr.addClass('shown');
