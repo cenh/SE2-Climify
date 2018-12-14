@@ -83,7 +83,7 @@
 
     <div style="overflow: auto">
         <div style="text-align: center; padding-top: 30px;">
-            <h4>Connect New Devices</h4>
+            <h4>Connect New Things</h4>
         </div>
         <div style="height: auto">
             <select id="select_room_devices_listen" onchange="unlock_listening()">

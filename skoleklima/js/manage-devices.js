@@ -62,7 +62,8 @@ $(document).ready(function () {
         "columns": [
             {
                 "className": 'approve',
-                "orderable": false
+                "orderable": false,
+                "width": "50px"
             },
             null
         ],
