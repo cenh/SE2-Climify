@@ -20,7 +20,7 @@ $(document).ready(function () {
         }
         else {
             if ( table.row( '.shown' ).length ) {
-                $('.details-control', table.row( '.shown' ).node()).click();
+                $('.td', table.row( '.shown' ).node()).click();
             }
             // Open this row
             row.child(format_channels(row.data())).show();
