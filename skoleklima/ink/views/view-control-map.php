@@ -15,7 +15,7 @@
 
     <!--    room dropdown-->
     <select id="select_room_manage_devices" onchange="refreshDevicesDropdown(value)">
-        <option value="" selected>Choose Your Room</option>
+        <option value="" disabled selected>Choose Your Room</option>
     </select>
 
     <!--things dropdown-->
