@@ -1,4 +1,5 @@
 var channels;
+var in_inbox;
 
 $(document).ready(function () {
     var table = $('#table_channels').DataTable({
@@ -199,4 +200,32 @@ function unlock_listening() {
     var e = document.getElementById("select_room_devices_listen");
     var roomID = e.options[e.selectedIndex].value;
     fill_table_listening(roomID);
+}
+
+function refresh_table_listening() {
+    document.getElementById("p_countdown").innerHTML = "";
+    document.getElementById("listen_button").disabled = false;
+    document.getElementById("listen_button").style.opacity = "1";
+
+    var e = document.getElementById("select_room_devices_listen");
+    var roomID = e.options[e.selectedIndex].value;
+    fill_table_listening(roomID);
+}
+
+function fill_table_listening(roomID) {
+    var sUrl = "api/api-get-inbox.php";
+    in_inbox = [];
+    $.post(sUrl, {
+        roomID: roomID
+    }, function (data) {
+        var jData = JSON.parse(data);
+        in_inbox = jData;
+        var table_listening = $('#table_listening').DataTable();
+        table_listening.clear();
+        things = jData;
+        for (var i = 0; i < jData.length; i++) {
+            table_listening.row.add(['APPROVE', jData[i].Label]).draw(false);
+        }
+        table_listening.draw(false);
+    });
 }

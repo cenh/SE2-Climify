@@ -157,36 +157,8 @@ function listen() {
         i--;
         if(i<0) {
             clearInterval(interval);
-            refresh_table_approval();
+            refresh_table_listening();
         }
     }, 1000);
 
-}
-
-function refresh_table_approval() {
-    document.getElementById("p_countdown").innerHTML = "";
-    document.getElementById("listen_button").disabled = false;
-    document.getElementById("listen_button").style.opacity = "1";
-
-    var e = document.getElementById("select_room_devices_listen");
-    var roomID = e.options[e.selectedIndex].value;
-    fill_table_listening(roomID);
-}
-
-function fill_table_listening(roomID) {
-    var sUrl = "api/api-get-inbox.php";
-    $.post(sUrl, {
-        roomID: roomID
-    }, function (data) {
-        var jData = JSON.parse(data);
-        console.table(jData);
-
-        var table_listening = $('#table_listening').DataTable();
-        table_listening.clear();
-        things = jData;
-        for (var i = 0; i < jData.length; i++) {
-            table_listening.row.add(['APPROVE', jData[i].Label]).draw(false);
-        }
-        table_listening.draw(false);
-    });
 }
