@@ -151,8 +151,9 @@ function listen() {
     var i = 12;
     document.getElementById("listen_button").disabled = true;
     document.getElementById("listen_button").style.opacity = "0.3";
+    var label = document.getElementById("p_countdown");
     var interval = setInterval( function() {
-        console.log(i);
+        label.innerHTML = "Listening for new devices... " + i;
         i--;
         if(i<0) {
             clearInterval(interval);
@@ -163,7 +164,16 @@ function listen() {
 }
 
 function refresh_table_approval() {
+    document.getElementById("p_countdown").innerHTML = "";
     document.getElementById("listen_button").disabled = false;
     document.getElementById("listen_button").style.opacity = "1";
-    console.log('refresh');
+
+
+    var sUrl = "api/api-get-inbox.php";
+    $.post(sUrl, {
+
+    }, function (data) {
+        var jData = JSON.parse(data);
+        console.table(jData);
+    });
 }
