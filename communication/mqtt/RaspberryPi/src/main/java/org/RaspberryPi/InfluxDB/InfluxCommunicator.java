@@ -37,8 +37,8 @@ public class InfluxCommunicator {
 		influxDB.close();
 	}
 
-	public void getMeasurementsSince(String time) {
-		Map<String, List<String>> measurements = new HashMap<String, List<String>>();
+	public Map<String, List<List<Object>>> getMeasurementsSince(String time) {
+		Map<String, List<List<Object>>> measurements = new HashMap<>();
 		
 		Long timeInMillis = fdate(time);
 
@@ -50,15 +50,12 @@ public class InfluxCommunicator {
 
 			QueryResult values =  influxDB.query(InfluxQuery.getMeasurementsSince(influxName, sensor, timeInMillis));
 
-			System.out.println("Query Results for " + sensor);
-
-
 			List<List<Object>> vals =  values.getResults().get(0).getSeries().get(0).getValues();
 
-			System.out.println(vals);
+			measurements.put(sensor, vals);
 
 		}
-
+		return measurements;
 	}
 
 	//Taken from the Msc. Project 
