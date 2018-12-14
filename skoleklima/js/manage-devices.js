@@ -76,6 +76,7 @@ $(document).ready(function () {
         console.log('approve');
         var thing_uid = in_inbox[row.index()].UID;
         var rp_uid = in_inbox[row.index()].RaspberryPiUID;
+        console.log(thing_uid, rp_uid);
         approve_thing(thing_uid, rp_uid);
     });
 });
