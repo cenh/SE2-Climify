@@ -68,8 +68,12 @@ public class InfluxCommunicator {
 
 		List<String> times = new ArrayList<String>();
 		for(int i = 0; i < RPisSensors.size(); i++){
-			String time = getTimeBySensors(RPisSensors.get(i));
-			times.add(time);
+			List<String> s = RPisSensors.get(i);
+			String time = "";
+			if(!s.isEmpty()){
+				time = getTimeBySensors(s);
+				times.add(time);
+			}
 			System.out.println("Max time for RPI no: " + i + " is " + time);
 		}
 		return times;
