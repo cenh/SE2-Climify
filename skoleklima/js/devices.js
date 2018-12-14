@@ -122,6 +122,8 @@ function format_actuators(d) {
         '<tr>' +
         '<td>Category:</td>' +
         '<td>' + actuators[index].Category + '</td>' +
+        '</tr>' +
+        '<tr>' +
         '<td>Current Value:</td>' +
         '<td>' + 'blabla' + '</td>' +
         '</tr>' +
