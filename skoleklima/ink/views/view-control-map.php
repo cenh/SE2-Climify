@@ -40,13 +40,13 @@
             </table>
         </div>
     </div>
-
+    <hr>
 
     <div style="text-align: center; padding: 30px">
         <h2>Manage Things</h2>
     </div>
 
-    <div style="text-align: center; padding: 30px">
+    <div style="text-align: center">
         <h4>Delete Things</h4>
     </div>
 
@@ -82,7 +82,7 @@
     </div>
 
     <div style="overflow: auto">
-        <div style="text-align: center; padding: 30px;">
+        <div style="text-align: center; padding-top: 30px;">
             <h4>Connect New Devices</h4>
         </div>
         <div style="height: auto">
