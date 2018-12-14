@@ -39,9 +39,8 @@ function delete_thing(thing_uid, rp_uid) {
     //     console.log("MessageArrived\n" + "Message id: " + msg['controlType'] + " message text: " + msg['text']);
     // }
 
-    refreshDevicesTableWithButton();
-
     alert('Thing has been removed');
+    refreshDevicesTableWithButton();
 }
 
 function approve_thing(thing_uid, rp_uid) {
@@ -83,6 +82,9 @@ function approve_thing(thing_uid, rp_uid) {
     //     msg = JSON.parse(message.payloadString);
     //     console.log("MessageArrived\n" + "Message id: " + msg['controlType'] + " message text: " + msg['text']);
     // }
+
+    alert('The thing was added');
+    refreshDevicesTableListenWithButton();
 }
 
 

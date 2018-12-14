@@ -201,6 +201,14 @@ function refreshDevicesTableWithButton() {
         refreshTableDevices(value);
 }
 
+function refreshDevicesTableListenWithButton() {
+    e = document.getElementById('select_room_devices_listen');
+    var value = e.options[e.selectedIndex].value;
+    if(value !== "") {
+        fill_table_listening(value);
+    }
+}
+
 function unlock_listening() {
     document.getElementById("listen_button").disabled = false;
     document.getElementById("listen_button").style.opacity = "1";
