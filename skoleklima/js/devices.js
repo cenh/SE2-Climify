@@ -200,6 +200,8 @@ function refreshTableSensorsAndActuators(roomID) {
         }
         table_sensors.draw(false);
         table_actuators.draw(false);
+        table_sensors.columns.adjust().draw();
+        table_actuators.columns.adjust().draw();
 
         var toPush = [];
 
