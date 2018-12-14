@@ -293,7 +293,7 @@ function refreshChannelsTableWithButton() {
     e = document.getElementById('select_thing_manage_devices');
     var thingID = e.options[e.selectedIndex].value;
     if(e.selectedIndex !== 0){
-        console.log('refresh' + thingID);
+        refreshTableChannel(thingID);
     }
 
 }
