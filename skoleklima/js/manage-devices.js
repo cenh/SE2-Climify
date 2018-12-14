@@ -26,10 +26,10 @@ $(document).ready(function () {
         else {
             // Open this row
 
-            // table.rows().eq(0).each( function ( idx ) {
-            //     var row = table.row( idx );
-            //     row.child.hide();
-            // } );
+            table.rows().eq(0).each( function ( idx ) {
+                var row = table.row( idx );
+                row.child.hide();
+            } );
 
             row.child(format_channels(row.data())).show();
             tr.addClass('shown');
