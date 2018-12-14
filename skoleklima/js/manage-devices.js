@@ -168,16 +168,33 @@ function format_channels(d) {
         '</table>';
 }
 
-function link() {
-    alert('link');
+function fill_category_and_type() {
+    var categories = [];
+    var types = [];
+    $.post("api/api-get-categories.php", function (data) {
+        categories = JSON.parse(data);
+        $.post("api/api-get-types.php", function (data) {
+            types = JSON.parse(data);
+            var drop_categories = document.getElementById("select_category");
+            var drop_types = document.getElementById("select_type");
+            for(var i = 0; i < categories.length; i++) {
+                var option1 = document.createElement("option");
+                option1.text = categories[i].category;
+                option1.value = categories[i].categoryID;
+                drop_categories.add(option1);
+            }
+            for(var j = 0; j < types.length; j++) {
+                var option2 = document.createElement("option");
+                option2.text = types[i].type;
+                option2.value = types[i].typeID;
+                drop_types.add(option2);
+            }
+        });
+    });
 }
 
-function fill_category_and_type() {
-    var sUrl = "api/api-get-categories.php";
-    $.post(sUrl, function (data) {
-        var jData = JSON.parse(data);
-        console.table(jData);
-    });
+function link() {
+    alert('link');
 }
 
 function unlink() {
