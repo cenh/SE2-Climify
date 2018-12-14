@@ -22,6 +22,7 @@ $(document).ready(function () {
             // Open this row
             row.child(format_channels(row.data())).show();
             tr.addClass('shown');
+            fill_category_and_type();
 
         }
     });
@@ -160,7 +161,7 @@ function format_channels(d) {
         '<td>' + channel.Description + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Item Type: </td>' +
+        '<td>Item Type:</td>' +
         '<td>' + channel.ItemType + '</td>' +
         '</tr>' +
         action +
@@ -169,6 +170,10 @@ function format_channels(d) {
 
 function link() {
     alert('link');
+}
+
+function fill_category_and_type() {
+    console.log('call api');
 }
 
 function unlink() {
