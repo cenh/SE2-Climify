@@ -220,52 +220,52 @@ function link_channel_with_item(itemName, channelUID, category, type, channelLab
 
         console.log(type, category, itemName, channelUID, channelLabel, rp);
 
-        // // Create a client instance
-        // client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
-        // client.startTrace();
-        // // set callback handlers
-        // client.onConnectionLost = onConnectionLost;
-        // //client.onMessageArrived = onMessageArrived;
-        // // connect the client
-        // client.connect({
-        //     onSuccess: onConnect,
-        //     useSSL: true
-        // });
-        // // console.log("attempting to connect...");
-        // // called when the client connects
-        // function onConnect() {
-        //     // Once a connection has been made, make a subscription and send a message.
-        //     // console.log("onConnect");
-        //     //client.subscribe("testse2");
-        //     msg = {
-        //         controlType: 'Add',
-        //         uid: itemName,
-        //         channelUID: channelUID,
-        //         createItem: {
-        //             name: itemName,
-        //             category: category,
-        //             type: type,
-        //             label: channelLabel
-        //         }
-        //     };
-        //     msg_text = JSON.stringify(msg);
-        //     message = new Paho.MQTT.Message(msg_text);
-        //     message.destinationName = "deviceControl/Item/" + rp;
-        //     client.publish(message);
-        // }
-        //
-        // // called when the client loses its connection
-        // function onConnectionLost(responseObject) {
-        //     if (responseObject.errorCode !== 0) {
-        //         // console.log("onConnectionLost:" + responseObject.errorMessage);
-        //     }
-        // }
-        //
-        // // called when a message arrives
-        // function onMessageArrived(message) {
-        //     msg = JSON.parse(message.payloadString);
-        //     // console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
-        // }
+        // Create a client instance
+        client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
+        client.startTrace();
+        // set callback handlers
+        client.onConnectionLost = onConnectionLost;
+        //client.onMessageArrived = onMessageArrived;
+        // connect the client
+        client.connect({
+            onSuccess: onConnect,
+            useSSL: true
+        });
+        // console.log("attempting to connect...");
+        // called when the client connects
+        function onConnect() {
+            // Once a connection has been made, make a subscription and send a message.
+            // console.log("onConnect");
+            //client.subscribe("testse2");
+            msg = {
+                controlType: 'Add',
+                uid: itemName,
+                channelUID: channelUID,
+                createItem: {
+                    name: itemName,
+                    category: category,
+                    type: type,
+                    label: channelLabel
+                }
+            };
+            msg_text = JSON.stringify(msg);
+            message = new Paho.MQTT.Message(msg_text);
+            message.destinationName = "deviceControl/Item/" + rp;
+            client.publish(message);
+        }
+
+        // called when the client loses its connection
+        function onConnectionLost(responseObject) {
+            if (responseObject.errorCode !== 0) {
+                // console.log("onConnectionLost:" + responseObject.errorMessage);
+            }
+        }
+
+        // called when a message arrives
+        function onMessageArrived(message) {
+            msg = JSON.parse(message.payloadString);
+            // console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
+        }
     });
 
 }
