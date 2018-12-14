@@ -23,7 +23,7 @@ $(document).ready(function () {
                 var other_row = table.row( idx );
 
                 if ( other_row.child.isShown() && other_row !== row) {
-                    other_row.child.close();
+                    other_row.child.hide();
                 }
             } );
             // Open this row
