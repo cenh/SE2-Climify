@@ -175,6 +175,13 @@ $(document).ready(function () {
     });
 });
 
+function refreshTableSensorsAndActuatorsWithButton() {
+    var e = document.getElementById('select_room');
+    var value = e.options[e.selectedIndex].value;
+    if (e.selectedIndex !== 0)
+        refreshTableDevices(value);
+}
+
 // put rows into tables
 function refreshTableSensorsAndActuators(roomID) {
     var sUrl = "api/api-get-items.php";

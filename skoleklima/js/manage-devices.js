@@ -272,7 +272,7 @@ function refreshTableDevices(roomID) {
 function refreshDevicesTableWithButton() {
     var e = document.getElementById('select_room_devices');
     var value = e.options[e.selectedIndex].value;
-    if (value !== "")
+    if (e.selectedIndex !== 0)
         refreshTableDevices(value);
     var table_channles = $('#table_channels').DataTable();
     table_channles.clear();
@@ -283,9 +283,9 @@ function refreshDevicesTableWithButton() {
 }
 
 function refreshDevicesTableListenWithButton() {
-    e = document.getElementById('select_room_devices_listen');
+    var e = document.getElementById('select_room_devices_listen');
     var value = e.options[e.selectedIndex].value;
-    if (value !== "")
+    if (e.selectedIndex !== 0)
         fill_table_listening(value);
     var table_channles = $('#table_channels').DataTable();
     table_channles.clear();
@@ -295,7 +295,7 @@ function refreshDevicesTableListenWithButton() {
 }
 
 function refreshChannelsTableWithButton() {
-    e = document.getElementById('select_thing_manage_devices');
+    var e = document.getElementById('select_thing_manage_devices');
     var thingID = e.options[e.selectedIndex].value;
     if(e.selectedIndex !== 0){
         refreshTableChannel(thingID);

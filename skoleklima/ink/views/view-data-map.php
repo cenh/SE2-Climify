@@ -31,6 +31,7 @@
         <select id="select_room" onchange="refreshTableSensorsAndActuators(value)">
             <option value="" disabled selected>Choose Your Room</option>
         </select>
+        <button onclick="refreshTableSensorsAndActuatorsWithButton()">Refresh</button>
     </div>
 
     <div style="overflow: auto">
