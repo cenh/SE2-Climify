@@ -282,8 +282,10 @@ public class MariaDBCommunicator {
 
 		List<List<String>> sensors = new ArrayList<List<String>>();
 
+		System.out.println("Getting the list of RPis");
 		List<String> RPis = getRaspberryPis();
 		for(int i = 0; i < RPis.size(); i++){
+			System.out.println("Adding sensors to the list for RPi no " + i);
 			sensors.add(getSensorsByRaspberryPi(RPis.get(i)));
 		}
 
