@@ -39,7 +39,7 @@ function delete_thing(thing_uid, rp_uid) {
     //     console.log("MessageArrived\n" + "Message id: " + msg['controlType'] + " message text: " + msg['text']);
     // }
 
-    refreshThingsTableWithButton();
+    refreshDevicesTableWithButton();
 
     alert('Thing has been removed');
 }
