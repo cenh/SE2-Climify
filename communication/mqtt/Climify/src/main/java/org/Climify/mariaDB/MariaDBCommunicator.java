@@ -258,11 +258,11 @@ public class MariaDBCommunicator {
 				"INNER JOIN Things as t " +
 				"INNER JOIN ThingsChannels as tc " +
 				"INNER JOIN Links as links " +
-				"WHERE" +
+				"WHERE " +
 				"t.RaspberryPiUID = rp.UID " +
 				"AND tc.ThingUID = t.UID " +
 				"AND links.ChannelUID = tc.ChannelUID " +
-				"AND items.Name = links.ItemName" +
+				"AND items.Name = links.ItemName " +
 				"AND t.RaspberryPiUID = ?";
 
 		PreparedStatement ps2 = connection.prepareStatement(sql2);
