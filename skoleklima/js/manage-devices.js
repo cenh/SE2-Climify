@@ -200,26 +200,40 @@ function link() {
 
     var itemName = document.getElementById("name_textbox").value;
     if(itemName === ""){
-        alert_message += "New Name ";
+        alert_message += "New Name; ";
     }
 
     var e = document.getElementById("select_type");
     var type = e.options[e.selectedIndex].text;
     if(e.selectedIndex === 0){
-        alert_message+="Type ";
+        alert_message+="Type; ";
     }
 
     var e1 = document.getElementById("select_category");
     var category = e1.options[e1.selectedIndex].text;
     if(e1.selectedIndex === 0){
-        alert_message+="Category ";
+        alert_message+="Category; ";
     }
 
     var channelUID = chosen_channel.UID;
     var chanelLabel = chosen_channel.Label;
 
     if(alert_message === "") {
-        console.log(type, category, itemName, channelUID, chanelLabel);
+
+        var sUrl = "api/api-check-item-name.php";
+        $.post(sUrl, {
+            item_name: itemName
+        }, function (data) {
+            var result = JSON.parse(data);
+            console.log(result);
+
+            if(result.length > 0){
+                alert("The name is already occupied");
+            } else {
+                console.log(type, category, itemName, channelUID, chanelLabel);
+            }
+        });
+
     } else {
         alert("Please provide: " + alert_message);
     }
