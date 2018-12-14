@@ -43,6 +43,7 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 
 		try {
 			sendDeviceUpdate();
+			influx.connect();
 			influx.getMeasurementsSince("2018-14-10T13:21:22.851Z");
 		} catch (MqttPersistenceException e) {
 			e.printStackTrace();
