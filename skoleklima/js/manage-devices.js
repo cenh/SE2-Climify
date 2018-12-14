@@ -196,20 +196,35 @@ function fill_category_and_type() {
 
 
 function link() {
+    var alert_message = "";
+
+    var itemName = document.getElementById("name_textbox").value;
+    if(itemName === ""){
+        alert_message += "New Name ";
+    }
+
     var e = document.getElementById("select_type");
     var type = e.options[e.selectedIndex].text;
+    if(e.selectedIndex === 0){
+        alert_message+="Type ";
+    }
 
     var e1 = document.getElementById("select_category");
     var category = e1.options[e1.selectedIndex].text;
-
-    var itemName = document.getElementById("name_textbox").value;
-
-
+    if(e1.selectedIndex === 0){
+        alert_message+="Category ";
+    }
 
     var channelUID = chosen_channel.UID;
     var chanelLabel = chosen_channel.Label;
 
-    console.log(type, category, itemName, channelUID, chanelLabel);
+    if(alert_message === "") {
+        console.log(type, category, itemName, channelUID, chanelLabel);
+    } else {
+        alert("Please provide: " + alert_message);
+    }
+
+
 }
 
 function unlink() {
