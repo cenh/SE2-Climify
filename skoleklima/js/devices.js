@@ -172,8 +172,7 @@ function refreshTableSensorsAndActuatorsWithButton() {
     var value = e.options[e.selectedIndex].value;
 
     if (e.selectedIndex !== 0) {
-        refreshTableDevices(value);
-        console.log('refresh');
+        refreshTableSensorsAndActuators(value);
     }
 
 }
