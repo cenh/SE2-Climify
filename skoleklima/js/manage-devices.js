@@ -11,26 +11,34 @@ $(document).ready(function () {
     table.columns.adjust().draw();
     // Add event listener for opening and closing details
     $('#table_channels tbody').on('click', 'td', function () {
-        var tr = $(this).closest('tr');
+        //var tr = $(this).closest('tr');
+        var tr = $(this).parents('tr');
         var row = table.row(tr);
+        var idx = $.inArray( tr.attr('id'), detailRows );
 
         if (row.child.isShown()) {
             // This row is already open - close it
+            tr.remobeClass('details');
             row.child.hide();
-            //row.child.close();
-            tr.removeClass('shown');
+            detailRows.splice(idx, 1);
+            //tr.removeClass('shown');
         }
         else {
             // Open this row
 
+            tr.addClass( 'details' );
+            row.child( formatEmployeeTable( row.data() ) ).show();
+            // Add to the 'open' array
+            if ( idx === -1 ) {
+                detailRows.push( tr.attr('id') );
+            }
 
-
-            row.child(format_channels(row.data())).show();
-            tr.addClass('shown');
-
-
-            fill_category_and_type();
-            chosen_channel = channels[row.index()];
+            // row.child(format_channels(row.data())).show();
+            // tr.addClass('shown');
+            //
+            //
+            // fill_category_and_type();
+            // chosen_channel = channels[row.index()];
         }
     });
 });
