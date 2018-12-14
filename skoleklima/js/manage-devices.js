@@ -290,7 +290,12 @@ function refreshDevicesTableListenWithButton() {
 }
 
 function refreshChannelsTableWithButton() {
-    console.log('refresh');
+    e = document.getElementById('select_thing_manage_devices');
+    var thingID = e.options[e.selectedIndex].value;
+    if(e.selectedIndex !== 0){
+        console.log('refresh' + thingID);
+    }
+
 }
 
 function unlock_listening() {
