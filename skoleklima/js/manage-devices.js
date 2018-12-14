@@ -185,8 +185,8 @@ function fill_category_and_type() {
             }
             for(var j = 0; j < types.length; j++) {
                 var option2 = document.createElement("option");
-                option2.text = types[i].type;
-                option2.value = types[i].typeID;
+                option2.text = types[j].type;
+                option2.value = types[j].typeID;
                 drop_types.add(option2);
             }
         });
