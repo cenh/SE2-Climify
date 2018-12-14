@@ -9,12 +9,12 @@ $(document).ready(function () {
         "info": false,
         "columns": [
             {
-                "className": 'details-control'
+                "className": 'details-ctrl'
             }]
     });
     table.columns.adjust().draw();
     // Add event listener for opening and closing details
-    $('#table_channels tbody').on('click', 'td.details-control', function () {
+    $('#table_channels tbody').on('click', 'td.details-ctrl', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
 
