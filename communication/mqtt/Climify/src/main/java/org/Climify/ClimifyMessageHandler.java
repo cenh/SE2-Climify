@@ -44,12 +44,6 @@ public class ClimifyMessageHandler extends MessageHandler {
 				executeRule(measurement.name, measurement.value);
 
 
-				//Sync test
-				List<String> RPis = mariaDB.getRaspberryPis();
-				List<List<String>> RPiSensors = mariaDB.getSensorsForRaspberryPis();
-				influx.getTimesForRPis(RPis, RPiSensors);
-
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
