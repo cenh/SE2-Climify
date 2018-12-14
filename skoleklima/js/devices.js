@@ -111,10 +111,11 @@ function format_actuators(d) {
             '</form></td>';
     } else {
         var is_checked = '';
-        console.log(actuators[index]);
+        if(actuator_data === 'ON')
+            is_checked = 'checked';
 
         action = '<td>Turn on/off<label class="switch" style="margin-left: 10px">\n' +
-            '  <input type="checkbox" id="set_on_off" onclick="set_actuator_on_off()">\n' +
+            '  <input type="checkbox" id="set_on_off" onclick="set_actuator_on_off()"' + is_checked + '>\n' +
             '  <span class="slider round"></span>\n' +
             '</label></td>';
     }
