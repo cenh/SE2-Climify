@@ -19,11 +19,13 @@ $(document).ready(function () {
             tr.removeClass('shown');
         }
         else {
+            if ( table.row( '.shown' ).length ) {
+                $('.details-control', table.row( '.shown' ).node()).click();
+            }
             // Open this row
             row.child(format_channels(row.data())).show();
             tr.addClass('shown');
             fill_category_and_type();
-
         }
     });
 });
@@ -191,14 +193,6 @@ function fill_category_and_type() {
             }
         });
     });
-}
-
-function link() {
-    alert('link');
-}
-
-function unlink() {
-    alert('unlink');
 }
 
 
