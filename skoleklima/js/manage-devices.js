@@ -173,7 +173,11 @@ function link() {
 }
 
 function fill_category_and_type() {
-    console.log('call api');
+    var sUrl = "api/api-get-categories.php";
+    $.post(sUrl, function (data) {
+        var jData = JSON.parse(data);
+        console.table(jData);
+    });
 }
 
 function unlink() {
