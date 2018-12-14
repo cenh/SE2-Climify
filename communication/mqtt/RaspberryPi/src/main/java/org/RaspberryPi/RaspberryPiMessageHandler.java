@@ -109,12 +109,14 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 
 				DidControlThing didControlThing;
 				if (controlThing.controlType == ControlType.ADD) {
-					rest.approveThing(controlThing.uid);
-
+					System.out.println("ControlThing.UID = " + controlThing.uid);
+					String approveThingResult = rest.approveThing(controlThing.uid);
+					System.out.println("Did Approve Thing = " + approveThingResult);
+					
 					//Get the approved Thing in openHAB
 					byte[] thingJSONBytes = rest.getThing(controlThing.uid).getBytes("UTF-8");
 					Thing thing = dslJson.deserialize(Thing.class, thingJSONBytes, thingJSONBytes.length);
-
+					System.out.println("Found thing : " + thing.UID);
 					//Prepare the message
 					didControlThing = new DidControlThing(controlThing.controlType, controlThing.uid, thing);
 				}

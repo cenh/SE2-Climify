@@ -212,12 +212,14 @@ public class RestCommunicator {
 	public String approveThing(String thingUID) throws IOException {
 		String thingUrl = restBaseUrl + "inbox/" + thingUID + "/approve";
 		
-        Headers headers = Utilities.getHeaders(HeaderType.JSON);
+        Headers headers = Utilities.getHeaders(HeaderType.TEXTPLAIN, HeaderType.JSON);
 
+        RequestBody body = RequestBody.create(null, "");
+        
         Request request = new Request.Builder()
             .url(thingUrl)
             .headers(headers)
-            .put(null)
+            .post(body)
             .build();
 
         Response response = client.newCall(request).execute();
