@@ -16,8 +16,8 @@ $(document).ready(function () {
 
         if (row.child.isShown()) {
             // This row is already open - close it
-            //row.child.hide();
-            row.child.close();
+            row.child.hide();
+            //row.child.close();
             tr.removeClass('shown');
         }
         else {
