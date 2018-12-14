@@ -14,7 +14,7 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM Inbox JOIN RaspberryPis WHERE RaspberryPis.LocationID = $roomID";
+$query = "SELECT * FROM Inbox JOIN RaspberryPis WHERE RaspberryPis.LocationID = $roomID AND Inbox.RaspberryPiUID = RaspberryPis.UID";
 
 $stmt = $conn->prepare($query);
 
