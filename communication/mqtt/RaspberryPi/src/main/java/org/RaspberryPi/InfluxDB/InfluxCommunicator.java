@@ -5,6 +5,7 @@ import org.MqttLib.openhab.Synchronize;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.Point;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -50,7 +51,11 @@ public class InfluxCommunicator {
 			QueryResult values =  influxDB.query(InfluxQuery.getMeasurementsSince(influxName, sensor, timeInMillis));
 
 			System.out.println("Query Results for " + sensor);
-			System.out.println(values.getResults().get(0).getSeries());
+
+
+			List<List<Object>> vals =  values.getResults().get(0).getSeries().get(0).getValues();
+
+			System.out.println(vals);
 
 		}
 
