@@ -281,9 +281,13 @@ function refreshDevicesTableWithButton() {
 function refreshDevicesTableListenWithButton() {
     e = document.getElementById('select_room_devices_listen');
     var value = e.options[e.selectedIndex].value;
-    if(value !== "") {
+    if(value !== "")
         fill_table_listening(value);
-    }
+    var table_channles = $('#table_channels').DataTable();
+    table_channles.clear();
+    var e1 = document.getElementById('select_room_manage_devices');
+    var roomID = e1.options[e1.selectedIndex].value;
+    refreshDevicesDropdown(roomID);
 }
 
 function unlock_listening() {
