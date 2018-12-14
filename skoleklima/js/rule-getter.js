@@ -167,6 +167,7 @@ $("#sensorSelect").change(function () {
     var sensorType = $('#sensorType').val();
     var sensorID = $('#sensorSelect').val();
     console.log(sensorID);
+    console.log(sensorType);
     if (sensorType === "Temperature") {
         console.log("t");
         $('#unit').text('°C');
