@@ -238,7 +238,7 @@ function link_channel_with_item(itemName, channelUID, category, type, channelLab
             console.log("onConnect");
             //client.subscribe("testse2");
             msg = {
-                controlType: 'Add',
+                controlType: 'ADD',
                 uid: itemName,
                 channelUID: channelUID,
                 createItem: {
