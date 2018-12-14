@@ -69,16 +69,16 @@ public class InfluxCommunicator {
 
 		}
 		if(times.isEmpty()) return "";
-		
+
 		String maxTime = Collections.max(times);
 		System.out.println("Max time :" + maxTime);
 
 		return maxTime;
 	}
 
-	public List<String> getTimesForRPis(List<List<String>> RPisSensors){
+	public Map<String, String> getTimesForRPis(List<String> RPis, List<List<String>> RPisSensors){
 
-		List<String> times = new ArrayList<String>();
+		Map<String, String> times = new HashMap<String, String>();
 		for(int i = 0; i < RPisSensors.size(); i++){
 			List<String> s = RPisSensors.get(i);
 			String time = "";
@@ -88,9 +88,10 @@ public class InfluxCommunicator {
 				System.out.println("No measurements for RPi no " + i);
 			}
 			else{
-				times.add(time);
+
 				System.out.println("Max time for RPI no: " + i + " is " + time);
 			}
+			times.put(RPis.get(i),time);
 
 		}
 		return times;
