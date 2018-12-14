@@ -1,6 +1,5 @@
 package org.Climify;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
@@ -42,6 +41,7 @@ public class ClimifyMqttController extends AsyncMqttController {
 	protected void subscribeToTopics() throws MqttException {
 		super.subscribe(Topic.SENSORDATA.getTopic()+"/#", 2);
 		super.subscribe(Topic.SENSORUPDATE.getTopic()+"/#", 2);
+		super.subscribe(Topic.DIDSYNCHRONIZE.getTopic()+"/#", 2);
 	}
 	
 	@Override

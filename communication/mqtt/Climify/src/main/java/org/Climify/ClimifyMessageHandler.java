@@ -14,6 +14,7 @@ import org.MqttLib.mqtt.MessageHandler;
 import org.MqttLib.mqtt.Topic;
 import org.MqttLib.openhab.Command;
 import org.MqttLib.openhab.DeviceUpdate;
+import org.MqttLib.openhab.DidSynchronize;
 import org.MqttLib.openhab.SensorMeasurement;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.influxdb.annotation.Measurement;
@@ -57,6 +58,20 @@ public class ClimifyMessageHandler extends MessageHandler {
 				DeviceUpdate deviceUpdate = dslJson.deserialize(DeviceUpdate.class, message.getPayload(), message.getPayload().length);
 				System.out.println(deviceUpdate.toString());
 				mariaDB.saveDeviceUpdate(deviceUpdate, id);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		if (topic.startsWith(Topic.DIDSYNCHRONIZE.getTopic())) {
+			String id = topic.substring(Topic.SENSORUPDATE.getTopic().length()+1);
+			System.out.println("DIDSYNCHRONIZE ID = " + id);
+			
+			try {
+				DidSynchronize didSynchronize = dslJson.deserialize(DidSynchronize.class, message.getPayload(), message.getPayload().length);
+				System.out.println(didSynchronize.toString());
+				//Save to influx
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
