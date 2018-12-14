@@ -230,6 +230,7 @@ function link() {
                 alert("The name is already occupied");
             } else {
                 link_channel_with_item(itemName, channelUID, category, type, channelLabel);
+                alert("The item is now linked");
             }
         });
 
@@ -239,7 +240,10 @@ function link() {
 }
 
 function unlink() {
-    alert('unlink');
+    var itemName = chosen_channel.ItemName;
+    var channelUID = chosen_channel.UID;
+    unlink_channel_with_item(itemName, channelUID);
+    alert("The item is now unlinked");
 }
 
 
