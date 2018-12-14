@@ -1,5 +1,6 @@
 var channels;
 var in_inbox;
+var chosen_channel;
 
 $(document).ready(function () {
     var table = $('#table_channels').DataTable({
@@ -19,17 +20,11 @@ $(document).ready(function () {
             tr.removeClass('shown');
         }
         else {
-            table.rows().eq(0).each( function ( idx ) {
-                var other_row = table.row( idx );
-
-                if ( other_row.child.isShown() && other_row !== row) {
-                    other_row.child.hide();
-                }
-            } );
             // Open this row
             row.child(format_channels(row.data())).show();
             tr.addClass('shown');
             fill_category_and_type();
+            chosen_channel = channels[row.index()];
         }
     });
 });
@@ -148,7 +143,7 @@ function format_channels(d) {
             '<tr>' +
             '<td>Create a new item:<br><form>' +
             'New Name:<br>' +
-            '<input type="text" name="name">' +
+            '<input id="name_textbox" type="text" name="name">' +
             '</form><br>' +
             '    <select id="select_category">\n' +
             '        <option value="" disabled selected>Choose Category</option>\n' +
@@ -197,6 +192,28 @@ function fill_category_and_type() {
             }
         });
     });
+}
+
+
+function link() {
+    var e = document.getElementById("select_type");
+    var type = e.options[e.selectedIndex].text;
+
+    var e1 = document.getElementById("select_category");
+    var category = e1.options[e1.selectedIndex].text;
+
+    var itemName = document.getElementById("name_textbox").value;
+
+
+
+    var channelUID = chosen_channel.UID;
+    var chanelLabel = chosen_channel.Label;
+
+    console.log(type, category, itemName, channelUID, chanelLabel);
+}
+
+function unlink() {
+    alert('unlink');
 }
 
 

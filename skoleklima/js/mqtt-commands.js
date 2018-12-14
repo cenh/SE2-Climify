@@ -205,11 +205,3 @@ function listen() {
     }, 1000);
 
 }
-
-function link() {
-    alert('link');
-}
-
-function unlink() {
-    alert('unlink');
-}

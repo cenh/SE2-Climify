@@ -70,10 +70,6 @@ $(document).ready(function () {
         }
         else {
 
-            if ( table.row( '.shown' ).length ) {
-                $('.details-control', table.row( '.shown' ).node()).click();
-            }
-
             // Open this row
             row.child(format_actuators(row.data())).show();
             tr.addClass('shown');
