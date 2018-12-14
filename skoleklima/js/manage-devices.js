@@ -10,7 +10,7 @@ $(document).ready(function () {
         "columns": [
             {
                 "className": 'details-control'
-            }
+            }]
     });
     table.columns.adjust().draw();
     // Add event listener for opening and closing details
