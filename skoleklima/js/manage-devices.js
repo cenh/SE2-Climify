@@ -279,7 +279,8 @@ function refreshDevicesTableWithButton() {
     table_channles.clear();
     var e1 = document.getElementById('select_room_manage_devices');
     var roomID = e1.options[e1.selectedIndex].value;
-    refreshDevicesDropdown(roomID);
+    if (e1.selectedIndex !== 0)
+        refreshDevicesDropdown(roomID);
 
 }
 
@@ -292,7 +293,8 @@ function refreshDevicesTableListenWithButton() {
     table_channles.clear();
     var e1 = document.getElementById('select_room_manage_devices');
     var roomID = e1.options[e1.selectedIndex].value;
-    refreshDevicesDropdown(roomID);
+    if (e1.selectedIndex !== 0)
+        refreshDevicesDropdown(roomID);
 }
 
 function refreshChannelsTableWithButton() {
