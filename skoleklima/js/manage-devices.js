@@ -238,8 +238,6 @@ function link() {
     } else {
         alert("Please provide: " + alert_message);
     }
-
-
 }
 
 function unlink() {

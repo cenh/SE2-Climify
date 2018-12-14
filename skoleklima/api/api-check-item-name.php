@@ -8,13 +8,12 @@ $databasename = DB_NAME;
 
 $item_name = clean($_POST[item_name]);
 
-
 $conn = new mysqli($servername, $username, $password, $databasename);
 if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM Items WHERE Items.Name = $item_name";
+$query = "SELECT * FROM Items WHERE Items.Name = '$item_name'";
 
 $stmt = $conn->prepare($query);
 
