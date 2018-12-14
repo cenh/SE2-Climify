@@ -19,9 +19,13 @@ $(document).ready(function () {
             tr.removeClass('shown');
         }
         else {
-            if ( table.row( '.shown' ).length ) {
-                $('.td', table.row( '.shown' ).node()).click();
-            }
+            table.rows().eq(0).each( function ( idx ) {
+                var other_row = table.row( idx );
+
+                if ( other_row.child.isShown() && other_row !== row) {
+                    other_row.child.close();
+                }
+            } );
             // Open this row
             row.child(format_channels(row.data())).show();
             tr.addClass('shown');
