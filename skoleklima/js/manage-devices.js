@@ -7,10 +7,11 @@ $(document).ready(function () {
         "searching": false,
         "paging": false,
         "info": false,
+        "className": 'details-control',
     });
     table.columns.adjust().draw();
     // Add event listener for opening and closing details
-    $('#table_channels tbody').on('click', 'td', function () {
+    $('#table_channels tbody').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
 
@@ -22,10 +23,10 @@ $(document).ready(function () {
         else {
             // Open this row
 
-            table.rows().eq(0).each( function ( idx ) {
-                var row = table.row( idx );
-                row.child.hide();
-            } );
+            // table.rows().eq(0).each( function ( idx ) {
+            //     var row = table.row( idx );
+            //     row.child.hide();
+            // } );
 
             row.child(format_channels(row.data())).show();
             tr.addClass('shown');
