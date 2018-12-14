@@ -1,6 +1,7 @@
 package org.RaspberryPi.InfluxDB;
 
 import org.MqttLib.openhab.Link;
+import org.MqttLib.openhab.Synchronize;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.Point;
 
@@ -36,12 +37,23 @@ public class InfluxCommunicator {
 	}
 
 	public void getMeasurementsSince(String time) {
-		Map<String, String> measurements = new HashMap<String, String>();
+		Map<String, List<String>> measurements = new HashMap<String, List<String>>();
 		
 		Long timeInMillis = fdate(time);
-		
-		
-		influxDB.query(InfluxQuery.getMeasurementsSince(influxName, "", timeInMillis));
+
+		QueryResult result = influxDB.query(InfluxQuery.getSensors(influxName));
+
+		List<List<Object>> sensors = result.getResults().get(0).getSeries().get(0).getValues();
+		for(int i = 0; i < sensors.size(); i++) {
+			String sensor = (String)sensors.get(i).get(0);
+
+			QueryResult values =  influxDB.query(InfluxQuery.getMeasurementsSince(influxName, sensor, timeInMillis));
+
+			System.out.println("Query Results for " + sensor);
+			System.out.println(values.getResults().get(0).getSeries());
+
+		}
+
 	}
 
 	//Taken from the Msc. Project 

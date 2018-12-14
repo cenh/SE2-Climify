@@ -10,6 +10,7 @@ import org.MqttLib.openhab.DeviceUpdate;
 import org.MqttLib.openhab.Item;
 import org.MqttLib.openhab.Link;
 import org.MqttLib.openhab.Thing;
+import org.RaspberryPi.InfluxDB.InfluxCommunicator;
 import org.RaspberryPi.openhab.RestCommunicator;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -24,7 +25,7 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 	RestCommunicator rest = new RestCommunicator();
 	DslJson<Object> dslJson = new DslJson<>(Settings.withRuntime().allowArrayFormat(true).includeServiceLoader());
 	JsonWriter writer = dslJson.newWriter();
-	
+	InfluxCommunicator influx = new InfluxCommunicator();
 	@Override
 	protected void subscribeToTopics() throws MqttException {
 		super.subscribe(Topic.COMMAND.getTopic()+"/#", 2);
@@ -42,6 +43,7 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 
 		try {
 			sendDeviceUpdate();
+			influx.getMeasurementsSince("2018-14-10T13:21:22.851Z");
 		} catch (MqttPersistenceException e) {
 			e.printStackTrace();
 		} catch (MqttException e) {
