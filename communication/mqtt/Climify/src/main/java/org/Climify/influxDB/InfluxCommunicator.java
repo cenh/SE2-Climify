@@ -58,14 +58,18 @@ public class InfluxCommunicator {
 				time = (String)measurement.getResults().get(0).getSeries().get(0).getValues().get(0).get(0);
 
 			}catch (NullPointerException e){
-				System.out.println("No measurements for sensor no" + i);
+				System.out.println("No measurements for sensor no " + i);
 				time = "";
 			}
-			Instant instant = Instant.parse(time);
-			times.add(instant.toString());
-			System.out.println(instant);
+			if(time != "") {
+				Instant instant = Instant.parse(time);
+				times.add(instant.toString());
+				System.out.println(instant);
+			}
 
 		}
+		if(times.isEmpty()) return "";
+		
 		String maxTime = Collections.max(times);
 		System.out.println("Max time :" + maxTime);
 
