@@ -14,7 +14,7 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT Name FROM Items WHERE Items.Name = $item_name";
+$query = "SELECT * FROM Items WHERE Items.Name = $item_name";
 
 $stmt = $conn->prepare($query);
 
