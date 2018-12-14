@@ -74,7 +74,7 @@ $(document).ready(function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
         console.log('approve');
-        var thing_uid = in_inbox[row.index()].UID;
+        var thing_uid = in_inbox[row.index()].ThingUID;
         var rp_uid = in_inbox[row.index()].RaspberryPiUID;
         console.log(thing_uid, rp_uid);
         approve_thing(thing_uid, rp_uid);
