@@ -7,7 +7,10 @@ $(document).ready(function () {
         "searching": false,
         "paging": false,
         "info": false,
-        "className": 'details-control',
+        "columns": [
+            {
+                "className": 'details-control'
+            }
     });
     table.columns.adjust().draw();
     // Add event listener for opening and closing details
