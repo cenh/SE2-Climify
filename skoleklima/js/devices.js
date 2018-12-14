@@ -136,15 +136,6 @@ function format_actuators(d) {
         '</table>';
 }
 
-function set_actuator_on_off() {
-    var x = document.getElementById("set_on_off");
-    if (x.checked) {
-        console.log('ON', chosen_actuator);
-    } else {
-        console.log('OFF', chosen_actuator);
-    }
-}
-
 
 // dropdown with rooms
 $(document).ready(function () {
