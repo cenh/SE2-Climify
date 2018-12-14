@@ -24,7 +24,7 @@ public abstract class InfluxQuery {
 	}
 
 	public static Query getMeasurementFields(String db, String sensor){
-		Query query = new Query("SHOW FIELD KEYS ON" +  db +  " FROM "+ sensor, db);
+		Query query = new Query("SHOW FIELD KEYS ON " +  db +  " FROM "+ sensor, db);
 		return query;
 	}
 
