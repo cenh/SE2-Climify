@@ -111,7 +111,7 @@ function format_actuators(d) {
             '</form></td>';
     } else {
         var is_checked = '';
-        if(actuator_data === 'ON')
+        if(actuator_data[index] === 'ON')
             is_checked = 'checked';
 
         action = '<td>Turn on/off<label class="switch" style="margin-left: 10px">\n' +
@@ -170,9 +170,12 @@ $(document).ready(function () {
 function refreshTableSensorsAndActuatorsWithButton() {
     var e = document.getElementById('select_room');
     var value = e.options[e.selectedIndex].value;
-    console.log('refresh');
-    if (e.selectedIndex !== 0)
+
+    if (e.selectedIndex !== 0) {
         refreshTableDevices(value);
+        console.log('refresh');
+    }
+
 }
 
 // put rows into tables
