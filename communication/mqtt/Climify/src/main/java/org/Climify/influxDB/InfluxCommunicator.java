@@ -71,6 +71,7 @@ public class InfluxCommunicator {
 			List<String> s = RPisSensors.get(i);
 			String time = "";
 			if(!s.isEmpty()){
+				System.out.println("The sensor list is not empty for RPi no" + i);
 				time = getTimeBySensors(s);
 				times.add(time);
 			}
