@@ -71,6 +71,11 @@ $(document).ready(function () {
         }
         else {
 
+            table.rows().eq(0).each( function ( idx ) {
+                var row = table.row( idx );
+                row.child.hide();
+            } );
+
             // Open this row
             row.child(format_actuators(row.data())).show();
             tr.addClass('shown');
