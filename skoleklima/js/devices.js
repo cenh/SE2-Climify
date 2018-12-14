@@ -2,6 +2,7 @@
 var sensors = [];
 var actuators = [];
 var sensors_data = [];
+var actuator_data = [];
 var chosen_actuator;
 var things = [];
 
@@ -125,7 +126,7 @@ function format_actuators(d) {
         '</tr>' +
         '<tr>' +
         '<td>Current Value:</td>' +
-        '<td>' + 'blabla' + '</td>' +
+        '<td>' + actuator_data[index] + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Action:</td>' +
@@ -188,6 +189,7 @@ function refreshTableSensorsAndActuators(roomID) {
         sensors = [];
         actuators = [];
         sensors_data = [];
+        actuator_data = [];
         for (var i = 0; i < jData.length; i++) {
             if (jData[i].ReadOnly === 1) {
                 table_sensors.row.add(['', jData[i].Name]).draw(false);
@@ -203,14 +205,14 @@ function refreshTableSensorsAndActuators(roomID) {
         table_sensors.columns.adjust().draw();
         table_actuators.columns.adjust().draw();
 
-        var toPush = [];
+        var toPushSensors = [];
 
         for (var j = 0; j < sensors.length; j++) {
-            toPush.push(sensors[j].Name);
+            toPushSensors.push(sensors[j].Name);
         }
 
         $.post("api/api-get-last-sensors-data.php", {
-            sensors_names: toPush,
+            sensors_names: toPushSensors,
         }, function (data1) {
             var jData1 = JSON.parse(data1);
             for (j = 0; j < jData1.length; j++) {
@@ -222,5 +224,26 @@ function refreshTableSensorsAndActuators(roomID) {
                 }
             }
         });
+
+        var toPushActuators = [];
+        for (var k = 0; k < actuators.length; k++) {
+            toPushActuators.push(actuators[k].Name);
+        }
+
+        $.post("api/api-get-last-actuator-data.php", {
+            actuators_names: toPushActuators,
+        }, function (data2) {
+            var jData2 = JSON.parse(data2);
+            for (k = 0; k < jData2.length; k++) {
+                var measurment = JSON.parse(jData2[k]);
+                if (measurment.results[0].hasOwnProperty('series')) {
+                    actuator_data.push(measurment.results[0].series[0].values[0][1]);
+                } else {
+                    actuator_data.push('No data recorded');
+                }
+            }
+        });
+
+
     });
 }
