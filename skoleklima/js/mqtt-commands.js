@@ -168,14 +168,15 @@ function refresh_table_approval() {
     document.getElementById("listen_button").disabled = false;
     document.getElementById("listen_button").style.opacity = "1";
 
-    fill_table_listening();
-
+    var e = document.getElementById("select_room_devices_listen");
+    var roomID = e.options[e.selectedIndex].value;
+    fill_table_listening(roomID);
 }
 
-function fill_table_listening() {
+function fill_table_listening(roomID) {
     var sUrl = "api/api-get-inbox.php";
     $.post(sUrl, {
-
+        roomID: roomID
     }, function (data) {
         var jData = JSON.parse(data);
         console.table(jData);

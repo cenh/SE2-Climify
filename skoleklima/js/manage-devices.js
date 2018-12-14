@@ -69,14 +69,11 @@ $(document).ready(function () {
     });
 
     // Add event listener for opening and closing details
-    $('#table_id3 tbody').on('click', 'td.approve', function () {
+    $('#table_listening tbody').on('click', 'td.approve', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
         console.log('approve');
     });
-
-    fill_table_listening();
-
 });
 
 
@@ -199,4 +196,7 @@ function refreshDevicesTableWithButton() {
 function unlock_listening() {
     document.getElementById("listen_button").disabled = false;
     document.getElementById("listen_button").style.opacity = "1";
+    var e = document.getElementById("select_room_devices_listen");
+    var roomID = e.options[e.selectedIndex].value;
+    fill_table_listening(roomID);
 }
