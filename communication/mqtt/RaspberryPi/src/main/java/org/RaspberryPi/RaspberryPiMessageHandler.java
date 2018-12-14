@@ -30,6 +30,9 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 			}
 		}
 		
-		
+		if (topic.startsWith(Topic.SYNCHRONIZE.getTopic())) {
+			//Get the stuff from influx
+			//Send back to VM
+		}
 	}
 }
