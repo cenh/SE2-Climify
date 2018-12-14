@@ -170,6 +170,7 @@ $(document).ready(function () {
 function refreshTableSensorsAndActuatorsWithButton() {
     var e = document.getElementById('select_room');
     var value = e.options[e.selectedIndex].value;
+    console.log('refresh');
     if (e.selectedIndex !== 0)
         refreshTableDevices(value);
 }
