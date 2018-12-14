@@ -74,8 +74,8 @@ $(document).ready(function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
         console.log('approve');
-        var thing_uid = things[row.index()].UID;
-        var rp_uid = things[row.index()].RaspberryPiUID;
+        var thing_uid = in_inbox[row.index()].UID;
+        var rp_uid = in_inbox[row.index()].RaspberryPiUID;
         approve_thing(thing_uid, rp_uid);
     });
 });
