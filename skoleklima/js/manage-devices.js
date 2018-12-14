@@ -17,13 +17,15 @@ $(document).ready(function () {
         if (row.child.isShown()) {
             // This row is already open - close it
             row.child.hide();
-            //row.child.close();
             tr.removeClass('shown');
         }
         else {
             // Open this row
 
-
+            table.rows().eq(0).each( function ( idx ) {
+                var row = table.row( idx );
+                row.child.hide();
+            } );
 
             row.child(format_channels(row.data())).show();
             tr.addClass('shown');
