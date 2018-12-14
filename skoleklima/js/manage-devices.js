@@ -35,7 +35,8 @@ $(document).ready(function () {
         "columns": [
             {
                 "className": 'delete',
-                "orderable": false
+                "orderable": false,
+                "width": "50px"
             },
             null
         ],

@@ -74,8 +74,9 @@
             </table>
             <style>
                 td.delete {
-                    /*background-color: #b70404;*/
+                    background-color: #b70404;
                     cursor: pointer;
+                    color: white;
                 }
             </style>
         </div>
@@ -108,8 +109,9 @@
             </table>
             <style>
                 td.approve {
-                    /*background-color: #b70404;*/
+                    background-color: #00b700;
                     cursor: pointer;
+
                 }
             </style>
         </div>
