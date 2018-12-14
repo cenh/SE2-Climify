@@ -7,7 +7,7 @@ $(document).ready(function () {
         "paging": false,
         "info": false,
     });
-
+    table.columns.adjust().draw();
     // Add event listener for opening and closing details
     $('#table_channels tbody').on('click', 'td', function () {
         var tr = $(this).closest('tr');
@@ -41,7 +41,7 @@ $(document).ready(function () {
         ],
         "order": [[1, 'asc']]
     });
-
+    table.columns.adjust().draw();
     // Add event listener for opening and closing details
     $('#table_id3 tbody').on('click', 'td.delete', function () {
         var tr = $(this).closest('tr');
@@ -49,7 +49,6 @@ $(document).ready(function () {
         var thing_uid = things[row.index()].UID;
         var rp_uid = things[row.index()].RaspberryPiUID;
         delete_thing(thing_uid, rp_uid);
-
     });
 });
 
@@ -69,7 +68,7 @@ $(document).ready(function () {
         ],
         "order": [[1, 'asc']]
     });
-
+    table.columns.adjust().draw();
     // Add event listener for opening and closing details
     $('#table_listening tbody').on('click', 'td.approve', function () {
         var tr = $(this).closest('tr');
@@ -115,6 +114,7 @@ function refreshTableChannel(thingID) {
         for (var i = 0; i < jData.length; i++) {
             table_channels.row.add([jData[i].Label]).draw(false);
         }
+        table_channels.columns.adjust().draw();
     });
 }
 
@@ -189,6 +189,7 @@ function refreshTableDevices(roomID) {
             table_devices.row.add(['DELETE', jData[i].Label]).draw(false);
         }
         table_devices.draw(false);
+        table_devices.columns.adjust().draw();
     });
 }
 
@@ -232,5 +233,6 @@ function fill_table_listening(roomID) {
             table_listening.row.add(['APPROVE', jData[i].Label]).draw(false);
         }
         table_listening.draw(false);
+        table_listening.columns.adjust().draw();
     });
 }
