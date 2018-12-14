@@ -5,7 +5,9 @@ public enum Topic {
 	NEWSENSOR("newSensor"), 
 	SENSORDATA("sensorData"),
 	COMMAND("commandse2"),
-	SENSORUPDATE("sensorUpdate");
+	SENSORUPDATE("sensorUpdate"),
+	SYNCHRONIZE("sync"),
+	DIDSYNCHRONIZE("didSync");
 	
 	private final String topic;
 	
