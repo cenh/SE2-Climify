@@ -103,7 +103,7 @@ function format_actuators(d) {
         return row.Name === d[1];
     });
     var action;
-    if(actuators[index].ItemType === "Number"){
+    if (actuators[index].ItemType === "Number") {
         action = '<td><form id="set_input_number">\n' +
             'Set value: <input type="number" value="10">\n' +
             '<button id="set_button" onclick="set_actuator_number()">Set</button>\n' +
@@ -132,7 +132,7 @@ function format_actuators(d) {
 
 function set_actuator_on_off() {
     var x = document.getElementById("set_on_off");
-    if(x.checked) {
+    if (x.checked) {
         console.log('ON', chosen_actuator);
     } else {
         console.log('OFF', chosen_actuator);
@@ -211,7 +211,7 @@ function refreshTableSensorsAndActuators(roomID) {
             var jData1 = JSON.parse(data1);
             for (j = 0; j < jData1.length; j++) {
                 var measurment = JSON.parse(jData1[j]);
-                if(measurment.results[0].hasOwnProperty('series')){
+                if (measurment.results[0].hasOwnProperty('series')) {
                     sensors_data.push(measurment.results[0].series[0].values[0][1]);
                 } else {
                     sensors_data.push('No data recorded');

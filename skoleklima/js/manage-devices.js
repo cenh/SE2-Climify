@@ -85,7 +85,6 @@ $(document).ready(function () {
 });
 
 
-
 function refreshDevicesDropdown(roomID) {
     $('#table_channels').DataTable().clear().draw(false);
     var sUrl = "api/api-get-things.php";
@@ -178,13 +177,13 @@ function fill_category_and_type() {
             types = JSON.parse(data);
             var drop_categories = document.getElementById("select_category");
             var drop_types = document.getElementById("select_type");
-            for(var i = 0; i < categories.length; i++) {
+            for (var i = 0; i < categories.length; i++) {
                 var option1 = document.createElement("option");
                 option1.text = categories[i].category;
                 option1.value = categories[i].categoryID;
                 drop_categories.add(option1);
             }
-            for(var j = 0; j < types.length; j++) {
+            for (var j = 0; j < types.length; j++) {
                 var option2 = document.createElement("option");
                 option2.text = types[j].type;
                 option2.value = types[j].typeID;
@@ -199,26 +198,26 @@ function link() {
     var alert_message = "";
 
     var itemName = document.getElementById("name_textbox").value;
-    if(itemName === ""){
+    if (itemName === "") {
         alert_message += "New Name; ";
     }
 
     var e = document.getElementById("select_type");
     var type = e.options[e.selectedIndex].text;
-    if(e.selectedIndex === 0){
-        alert_message+="Type; ";
+    if (e.selectedIndex === 0) {
+        alert_message += "Type; ";
     }
 
     var e1 = document.getElementById("select_category");
     var category = e1.options[e1.selectedIndex].text;
-    if(e1.selectedIndex === 0){
-        alert_message+="Category; ";
+    if (e1.selectedIndex === 0) {
+        alert_message += "Category; ";
     }
 
     var channelUID = chosen_channel.UID;
     var channelLabel = chosen_channel.Label;
 
-    if(alert_message === "") {
+    if (alert_message === "") {
 
         var sUrl = "api/api-check-item-name.php";
         $.post(sUrl, {
@@ -226,7 +225,7 @@ function link() {
         }, function (data) {
             var result = JSON.parse(data);
 
-            if(result.length > 0){
+            if (result.length > 0) {
                 alert("The name is already occupied");
             } else {
                 link_channel_with_item(itemName, channelUID, category, type, channelLabel);
@@ -268,7 +267,7 @@ function refreshTableDevices(roomID) {
 function refreshDevicesTableWithButton() {
     var e = document.getElementById('select_room_devices');
     var value = e.options[e.selectedIndex].value;
-    if(value !== "")
+    if (value !== "")
         refreshTableDevices(value);
     var table_channles = $('#table_channels').DataTable();
     table_channles.clear();
@@ -281,13 +280,17 @@ function refreshDevicesTableWithButton() {
 function refreshDevicesTableListenWithButton() {
     e = document.getElementById('select_room_devices_listen');
     var value = e.options[e.selectedIndex].value;
-    if(value !== "")
+    if (value !== "")
         fill_table_listening(value);
     var table_channles = $('#table_channels').DataTable();
     table_channles.clear();
     var e1 = document.getElementById('select_room_manage_devices');
     var roomID = e1.options[e1.selectedIndex].value;
     refreshDevicesDropdown(roomID);
+}
+
+function refreshChannelsTableWithButton() {
+    console.log('refresh');
 }
 
 function unlock_listening() {

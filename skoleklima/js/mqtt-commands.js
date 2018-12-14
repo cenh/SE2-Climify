@@ -88,7 +88,7 @@ function approve_thing(thing_uid, rp_uid) {
 }
 
 
-function set_actuator_number () {
+function set_actuator_number() {
     var x = document.getElementById("set_input_number");
     var text = x.elements[0].value;
     // Create a client instance
@@ -135,7 +135,6 @@ function set_actuator_number () {
 
 
 // listen for new devices in a chosen room
-
 
 
 function listen() {
@@ -195,10 +194,10 @@ function listen() {
     document.getElementById("listen_button").disabled = true;
     document.getElementById("listen_button").style.opacity = "0.3";
     var label = document.getElementById("p_countdown");
-    var interval = setInterval( function() {
+    var interval = setInterval(function () {
         label.innerHTML = "Listening for new devices... " + i;
         i--;
-        if(i<0) {
+        if (i < 0) {
             clearInterval(interval);
             refresh_table_listening();
         }
@@ -231,6 +230,7 @@ function link_channel_with_item(itemName, channelUID, category, type, channelLab
             useSSL: true
         });
         console.log("attempting to connect...");
+
         // called when the client connects
         function onConnect() {
             // Once a connection has been made, make a subscription and send a message.
@@ -293,6 +293,7 @@ function unlink_channel_with_item(itemName, channelUID) {
             useSSL: true
         });
         console.log("attempting to connect...");
+
         // called when the client connects
         function onConnect() {
             // Once a connection has been made, make a subscription and send a message.

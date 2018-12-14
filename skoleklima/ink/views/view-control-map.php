@@ -23,6 +23,8 @@
         <option value="" disabled selected>Choose Your Device</option>
     </select>
 
+    <button onclick="refreshChannelsTableWithButton()">Refresh</button>
+
     <!--    channel table-->
     <div style="overflow: auto">
         <div style="width: 100%; height: auto; border: 1px solid #dddddd;
