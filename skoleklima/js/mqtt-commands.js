@@ -44,6 +44,47 @@ function delete_thing(thing_uid, rp_uid) {
     alert('Thing has been removed');
 }
 
+function approve_thing(thing_uid, rp_uid) {
+    client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
+    client.startTrace();
+    // set callback handlers
+    // client.onConnectionLost = onConnectionLost;
+    // client.onMessageArrived = onMessageArrived;
+    // connect the client
+    client.connect({
+        onSuccess: onConnect,
+        useSSL: true
+    });
+
+    // called when the client connects
+    function onConnect() {
+        // Once a connection has been made, make a subscription and send a message.
+        console.log("onConnect");
+        client.subscribe("deviceControl/Thing/" + rp_uid);
+        msg = {
+            controlType: 'ADD',
+            uid: thing_uid
+        };
+        msg_text = JSON.stringify(msg);
+        message = new Paho.MQTT.Message(msg_text);
+        message.destinationName = "deviceControl/Thing/" + rp_uid;
+        client.publish(message);
+    }
+
+    // called when the client loses its connection
+    // function onConnectionLost(responseObject) {
+    //     if (responseObject.errorCode !== 0) {
+    //         // console.log("onConnectionLost:" + responseObject.errorMessage);
+    //     }
+    // }
+
+    // called when a message arrives
+    // function onMessageArrived(message) {
+    //     msg = JSON.parse(message.payloadString);
+    //     console.log("MessageArrived\n" + "Message id: " + msg['controlType'] + " message text: " + msg['text']);
+    // }
+}
+
 
 function set_actuator_number () {
     var x = document.getElementById("set_input_number");
