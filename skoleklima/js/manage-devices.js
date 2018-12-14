@@ -221,6 +221,7 @@ function link() {
     if(alert_message === "") {
 
         var sUrl = "api/api-check-item-name.php";
+        console.log(itemName);
         $.post(sUrl, {
             item_name: itemName
         }, function (data) {
