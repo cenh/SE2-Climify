@@ -216,22 +216,20 @@ function link() {
     }
 
     var channelUID = chosen_channel.UID;
-    var chanelLabel = chosen_channel.Label;
+    var channelLabel = chosen_channel.Label;
 
     if(alert_message === "") {
 
         var sUrl = "api/api-check-item-name.php";
-        console.log(itemName);
         $.post(sUrl, {
             item_name: itemName
         }, function (data) {
             var result = JSON.parse(data);
-            console.log(result);
 
             if(result.length > 0){
                 alert("The name is already occupied");
             } else {
-                console.log(type, category, itemName, channelUID, chanelLabel);
+                link_channel_with_item(itemName, channelUID, category, type, channelLabel);
             }
         });
 

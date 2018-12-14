@@ -205,3 +205,7 @@ function listen() {
     }, 1000);
 
 }
+
+function link_channel_with_item(itemName, channelUID, category, type, channelLabel) {
+    console.log(type, category, itemName, channelUID, channelLabel);
+}
