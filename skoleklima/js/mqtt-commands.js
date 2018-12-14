@@ -168,12 +168,24 @@ function refresh_table_approval() {
     document.getElementById("listen_button").disabled = false;
     document.getElementById("listen_button").style.opacity = "1";
 
+    fill_table_listening();
 
+}
+
+function fill_table_listening() {
     var sUrl = "api/api-get-inbox.php";
     $.post(sUrl, {
 
     }, function (data) {
         var jData = JSON.parse(data);
         console.table(jData);
+
+        var table_listening = $('#table_listening').DataTable();
+        table_listening.clear();
+        things = jData;
+        for (var i = 0; i < jData.length; i++) {
+            table_listening.row.add(['APPROVE', jData[i].Label]).draw(false);
+        }
+        table_listening.draw(false);
     });
 }

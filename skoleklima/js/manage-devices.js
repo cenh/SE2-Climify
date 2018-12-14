@@ -74,6 +74,9 @@ $(document).ready(function () {
         var row = table.row(tr);
         console.log('approve');
     });
+
+    fill_table_listening();
+
 });
 
 
