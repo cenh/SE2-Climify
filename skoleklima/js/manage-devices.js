@@ -21,8 +21,13 @@ $(document).ready(function () {
         }
         else {
             // Open this row
+
+
+
             row.child(format_channels(row.data())).show();
             tr.addClass('shown');
+
+
             fill_category_and_type();
             chosen_channel = channels[row.index()];
         }
