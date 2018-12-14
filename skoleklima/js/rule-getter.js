@@ -56,13 +56,10 @@ function generateRuleForms(){
     $.get('api/api-get-actuators-from-location.php', {LocationID: rulelocationChosen()})
         .done(function(res) {
             $("#actuatorSelect").append('<option value="" disabled selected>Select Actuator</option>');
-            $("#actuatorType").append('<option value="" disabled selected>Select Actuator</option>');
-
             actuatorArray = JSON.parse(res);
             console.log(actuatorArray);
             for (i=0;i<actuatorArray.length; i++){
                 $("#actuatorSelect").append('<option value="'+actuatorArray[i].SensorID+'">'+actuatorArray[i].SensorID+'</option>');
-                $("#actuatorType").append('<option value="'+actuatorArray[i].Category+'">'+actuatorArray[i].Category+'</option>');
             }
         });
 
@@ -100,14 +97,10 @@ $(".accordion").on("click","button#editRuleBtn", function () {
     $.get('api/api-get-sensors-from-location.php', {LocationID: rulelocationChosen()})
         .done(function (res) {
             $("#sensorSelect").empty();
-            $("#sensorType").empty();
             results = JSON.parse(res);
             $("#sensorSelect").append('<option value="" disabled selected>Select a sensor</option>');
-            $("#sensorType").append('<option value="" disabled selected>Select a sensor</option>');
             for (i=0;i < results.length; i++){
                 $("#sensorSelect").append("<option value="+results[i].SensorID+">"+results[i].SensorID+"</option>");
-                $("#sensorType").append("<option value="+results[i].SensorTypeName+">"+results[i].SensorTypeName+"</option>");
-
             }
         });
     clearRuleForms();
@@ -164,21 +157,20 @@ $("#modalRule").on("click",function () {
 });
 
 $("#sensorSelect").change(function () {
-    var sensorType = $('#sensorType').val();
+
     var sensorID = $('#sensorSelect').val();
     console.log(sensorID);
-    console.log(sensorType);
-    if (sensorType === "Temperature") {
+    if (sensorID === "readOutdoorTemperature" || sensorID === "readTemperature") {
         console.log("t");
         $('#unit').text('°C');
     }
-    else if (sensorType ===  "Battery" || sensorType === "Humidity" ) {
+    else if (sensorID === "readBattery" || sensorID === "readHumidity" ) {
         $('#unit').text('%');
     }
-    else if (sensorType === "CO2") {
+    else if (sensorID === "readCO2") {
         $('#unit').text('PPM');
     }
-    else if (sensorType === "Noise") {
+    else if (sensorID === "MainIndoorStation_Noise") {
         $('#unit').text('dB');
     }
 
@@ -231,7 +223,7 @@ $("#submitRule").on("click",function () {
 
 });
 $('#actuatorSelect').change(function () {
-    if($('#actuatorType').val() === "Temperature"){
+    if($('#actuatorSelect').val() === "ZWaveNode4LC13LivingConnectZThermostat_SetpointHeating"){
         $('#onActionSetTemp').show();
     }
     else {
