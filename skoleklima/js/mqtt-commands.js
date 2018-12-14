@@ -218,24 +218,24 @@ function link_channel_with_item(itemName, channelUID, category, type, channelLab
         var jData = JSON.parse(data);
         var rp = jData[0].UID;
 
-        console.log(type, category, itemName, channelUID, channelLabel, rp);
+        // console.log(type, category, itemName, channelUID, channelLabel, rp);
 
         // Create a client instance
         client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
         client.startTrace();
         // set callback handlers
         client.onConnectionLost = onConnectionLost;
-        //client.onMessageArrived = onMessageArrived;
+        client.onMessageArrived = onMessageArrived;
         // connect the client
         client.connect({
             onSuccess: onConnect,
             useSSL: true
         });
-        // console.log("attempting to connect...");
+        console.log("attempting to connect...");
         // called when the client connects
         function onConnect() {
             // Once a connection has been made, make a subscription and send a message.
-            // console.log("onConnect");
+            console.log("onConnect");
             //client.subscribe("testse2");
             msg = {
                 controlType: 'Add',
@@ -257,14 +257,14 @@ function link_channel_with_item(itemName, channelUID, category, type, channelLab
         // called when the client loses its connection
         function onConnectionLost(responseObject) {
             if (responseObject.errorCode !== 0) {
-                // console.log("onConnectionLost:" + responseObject.errorMessage);
+                console.log("onConnectionLost:" + responseObject.errorMessage);
             }
         }
 
         // called when a message arrives
         function onMessageArrived(message) {
             msg = JSON.parse(message.payloadString);
-            // console.log("MessageArrived\n" + "Message id: " + msg['id'] + " message text: " + msg['text']);
+            console.log("MessageArrived\n" + "Message id: " + msg['uid'] + " message text: " + msg['channelUID']);
         }
     });
 
