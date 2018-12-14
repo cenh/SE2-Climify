@@ -228,4 +228,67 @@ public class MariaDBCommunicator {
         }
         return results;
 	}
+
+	public  List<String> getRaspberryPis(){
+		String sql1 = "SELECT RaspberryPis.UID FROM RaspberryPis";
+		List<String> RPis = new ArrayList<String>();
+		try {
+			PreparedStatement ps1 = connection.prepareStatement(sql1);
+			ResultSet result1 = ps1.executeQuery();
+
+			while(result1.next()) {
+				String RPiID = result1.getString(1);
+				RPis.add(RPiID);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return RPis;
+
+	}
+
+
+	public List<String> getSensorsByRaspberryPi(String RPi) {
+
+		List<String> RPiSensors = new ArrayList<String>();
+
+		try {
+		String sql2 = "SELECT items.Name FROM Items as items " +
+				"INNER JOIN RaspberryPis as rp " +
+				"INNER JOIN Things as t " +
+				"INNER JOIN ThingsChannels as tc " +
+				"INNER JOIN Links as links " +
+				"WHERE" +
+				"t.RaspberryPiUID = rp.UID " +
+				"AND tc.ThingUID = t.UID " +
+				"AND links.ChannelUID = tc.ChannelUID " +
+				"AND items.Name = links.ItemName" +
+				"AND t.RaspberryPiUID = ?";
+
+		PreparedStatement ps2 = connection.prepareStatement(sql2);
+		ps2.setString(1, RPi);
+		ResultSet result2 = ps2.executeQuery();
+
+		while(result2.next()) RPiSensors.add(result2.getString(1));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return RPiSensors;
+	}
+
+	public List<List<String	>> getSesorsForRaspberryPis(){
+
+		List<List<String>> sensors = new ArrayList<List<String>>();
+
+		List<String> RPis = getRaspberryPis();
+		for(int i = 0; i < RPis.size(); i++){
+			sensors.add(getSensorsByRaspberryPi(RPis.get(i)));
+		}
+
+		return sensors;
+	}
+
+
 }

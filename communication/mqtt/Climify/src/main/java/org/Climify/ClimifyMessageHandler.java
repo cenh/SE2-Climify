@@ -42,7 +42,13 @@ public class ClimifyMessageHandler extends MessageHandler {
 				SensorMeasurement measurement = dslJson.deserialize(SensorMeasurement.class, message.getPayload(), message.getPayload().length);
 				influx.saveMeasurement(measurement);
 				executeRule(measurement.name, measurement.value);
-				influx.printSensors();
+
+
+				//Sync test
+				List<List<String>> RPiSensors = mariaDB.getSesorsForRaspberryPis();
+				influx.getTimesForRPis(RPiSensors);
+
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

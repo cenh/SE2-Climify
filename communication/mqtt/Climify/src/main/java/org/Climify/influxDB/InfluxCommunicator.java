@@ -1,5 +1,6 @@
 package org.Climify.influxDB;
 
+import org.MqttLib.openhab.Link;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.Point;
 
@@ -42,19 +43,14 @@ public class InfluxCommunicator {
 		influxDB.close();
 	}
 
-	public void printSensors() {
-		QueryResult result = influxDB.query(InfluxQuery.getSensors(influxName));
-
-		List<List<Object>> sensors = result.getResults().get(0).getSeries().get(0).getValues();
+	public String getTimeBySensors(List<String> sensors) {
 		System.out.println(sensors);
 
 		List<String> times = new ArrayList<String>();
 
 
 		for(int i = 0; i < sensors.size(); i++){
-			String sensor = (String)sensors.get(i).get(0);
-//			QueryResult [results=[Result [series=[Series [name=MainIndoorStation_Noise, tags=null, columns=[time, Noise],
-//			values=[[2018-11-30T09:18:19.07Z, 35 dB]]]], error=null]], error=null]
+			String sensor = sensors.get(i);
 
 			QueryResult measurement = influxDB.query(InfluxQuery.getRecentTime(influxName, sensor));
 			String time = (String)measurement.getResults().get(0).getSeries().get(0).getValues().get(0).get(0);
@@ -63,7 +59,20 @@ public class InfluxCommunicator {
 			System.out.println(instant);
 		}
 		String maxTime = Collections.max(times);
-		System.out.println(maxTime);
+		System.out.println("Max time :" + maxTime);
+
+		return maxTime;
+	}
+
+	public List<String> getTimesForRPis(List<List<String>> RPisSensors){
+
+		List<String> times = new ArrayList<String>();
+		for(int i = 0; i < RPisSensors.size(); i++){
+			String time = getTimeBySensors(RPisSensors.get(i));
+			times.add(time);
+			System.out.println("Max time for RPI no: " + i + " is " + time);
+		}
+		return times;
 
 	}
 
