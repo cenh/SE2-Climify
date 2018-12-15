@@ -1,3 +1,9 @@
+/**
+ * @author Ciok
+ */
+
+
+
 function delete_thing(thing_uid, rp_uid) {
     console.log(thing_uid, rp_uid);
     client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");

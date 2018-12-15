@@ -1,3 +1,8 @@
+/**
+* @author Ciok
+*/
+
+
 <!-- System data map -->
 <div class="single-view view-control-map">
     <div class="view-control-top">

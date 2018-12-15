@@ -1,3 +1,8 @@
+/**
+* @author Ciok
+*/
+// this api gets permissions for a given role ID
+
 <?php
 
 

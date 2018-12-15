@@ -1,3 +1,9 @@
+/**
+ * @author Ciok
+ */
+
+
+
 // arrays for displayed items
 var sensors = [];
 var actuators = [];
