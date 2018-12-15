@@ -1,3 +1,8 @@
+/**
+ * @author Ciok
+ */
+
+
 var channels;
 var in_inbox;
 var chosen_channel;
