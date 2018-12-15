@@ -36,22 +36,10 @@ $(document).on("click", ".ico-show-meta", function(){
 });
 
 // Get database information
-/*
+
 function requestDBInfo(id){
     var companyID = id.parent().parent().attr("data-company-id");
-    var sUrl = "api/api-get-db-info.php";
-    $.post(sUrl, {
-        sessionToken: sessionToken,
-        id: companyID
-    }, function (data) {
-        var jData = JSON.parse(data);
-        if (jData.status == "ok") {
-            id.parent().parent().find(".inp-system-db-meta-name").val(jData.dbName);
-            id.parent().parent().find(".inp-system-db-meta-user").val(jData.dbUser);
-            id.parent().parent().find(".inp-system-db-meta-pass").val(jData.dbPass);
-        }
-    });
-}*/
+}
 
 $(document).on("click", ".ico-hide-meta", function () {
     $(this).parent().parent().parent().css('border-width', '0');
