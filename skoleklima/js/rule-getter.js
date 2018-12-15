@@ -159,7 +159,7 @@ $("#modalRule").on("click",function () {
 $("#sensorSelect").change(function () {
     var sensorID = $('#sensorSelect').val();
     $.get('api/api-get-sensor-type.php', {SensorName: sensorID})
-      .done(function (res)) {
+      .done(function (res) {
         results = JSON.parse(res);
         var type = results[0].Category;
         console.log(sensorID);
