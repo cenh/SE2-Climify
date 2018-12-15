@@ -83,6 +83,8 @@ public class ClimifyMessageHandler extends MessageHandler {
 				DidSynchronize didSynchronize = dslJson.deserialize(DidSynchronize.class, message.getPayload(), message.getPayload().length);
 				System.out.println(didSynchronize.toString());
 
+				System.out.println("DidSynchronize object deserialized");
+
 				Iterator it = didSynchronize.measurements.entrySet().iterator();
 				while (it.hasNext()) {
 					Map.Entry pair = (Map.Entry)it.next();
@@ -92,6 +94,8 @@ public class ClimifyMessageHandler extends MessageHandler {
 					List<List<Object>> fields = QR.getResults().get(0).getSeries().get(0).getValues();
 
 					String category = fields.get(0).get(0).toString();
+
+					System.out.println("Saving Measurements for " + pair.getKey());
 
 					influx.saveBatchMeasurements((String)pair.getKey(), category, (List<List<Object>>)pair.getValue());
 
