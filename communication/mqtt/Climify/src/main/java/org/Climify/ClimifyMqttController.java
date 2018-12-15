@@ -27,7 +27,6 @@ public class ClimifyMqttController extends AsyncMqttController {
 	
 	@Override
 	public void start() {
-		super.start();
 		
 		influx.connect();
 		try {
@@ -35,6 +34,7 @@ public class ClimifyMqttController extends AsyncMqttController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		super.start();
 	}
 	
 	@Override
