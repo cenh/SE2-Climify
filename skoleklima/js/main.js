@@ -253,7 +253,6 @@ if (browserIsIE == false) {
 
         $.get(sUrl, function (sData) {
             var jData = JSON.parse(sData);
-            console.log(jData);
             if (jData.status == "ok") {
                 var passEncrypt = jData.encrypt;
                 // Store link to api and phase userinput
@@ -261,7 +260,6 @@ if (browserIsIE == false) {
                 // Do AJAX and pahse
                 $.get(sUrl, function (sData) {
                     var jData = JSON.parse(sData);
-                    console.log(jData);
                     if (jData.status == "approve") {
                         console.log("Approved");
                         $.cookie("username", typedUserName, {

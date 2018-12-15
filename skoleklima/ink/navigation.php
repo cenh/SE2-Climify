@@ -112,7 +112,7 @@
 					<li class="menu-link menu-link-control-map" data-go-to="control-map"></i>
 							<a href="#/control-map">
 									<i class="menu-link-ico nav-icon fa fa-sitemap" aria-hidden="true"></i>
-									<p class="menu-link-text">Control Map</p>
+									<p class="menu-link-text">Manage Devices</p>
 							</a>
 					</li>
 				<?php }

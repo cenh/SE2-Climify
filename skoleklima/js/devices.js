@@ -201,14 +201,19 @@ $(document).ready(function () {
         for (var i = 0; i < jData.length; i++) {
             var x = document.getElementById("select_room");
             var x_devices = document.getElementById("select_room_devices");
+            var x_manage_devices = document.getElementById("select_room_manage_devices");
             var option1 = document.createElement("option");
             var option2 = document.createElement("option");
+            var option3 = document.createElement("option");
             option1.text = jData[i].LocationName;
             option1.value = jData[i].LocationID;
             option2.text = jData[i].LocationName;
             option2.value = jData[i].LocationID;
+            option3.text = jData[i].LocationName;
+            option3.value = jData[i].LocationID;
             x.add(option1);
             x_devices.add(option2);
+            x_manage_devices.add(option3);
         }
     });
 });
@@ -257,41 +262,6 @@ function refreshTableSensorsAndActuators(roomID) {
     });
 }
 
-function refreshTableThings(roomID) {
-    var sUrl = "api/api-get-items.php";
-    $.post(sUrl, {
-        roomID: roomID,
-    }, function (data) {
-        var jData = JSON.parse(data);
-        var table_things = $('#table_id4').DataTable();
-        table_things.clear();
-        sensors = [];
-        actuators = [];
-        sensors_data = [];
-        for (var i = 0; i < jData.length; i++) {
-            if (jData[i].ReadOnly === 1) {
-                table_things.row.add(['', jData[i].Name]).draw(false);
-                sensors.push(jData[i]);
-            }
-        }
-        table_things.draw(false);
-
-        var toPush = [];
-
-        for (var j = 0; j < sensors.length; j++) {
-            toPush.push(sensors[j].Name);
-        }
-
-        $.post("api/api-get-last-sensors-data.php", {
-            sensors_names: toPush,
-        }, function (data1) {
-            var jData1 = JSON.parse(data1);
-            for (j = 0; j < jData1.length; j++) {
-                sensors_data.push(JSON.parse(jData1[j]).results[0].series[0].values[0][1]);
-            }
-        });
-    });
-}
 
 function refreshTableDevices(roomID) {
     var sUrl = "api/api-get-things.php";

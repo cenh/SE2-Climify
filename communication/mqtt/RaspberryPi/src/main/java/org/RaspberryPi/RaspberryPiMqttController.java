@@ -28,11 +28,14 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 	@Override
 	protected void subscribeToTopics() throws MqttException {
 		super.subscribe(Topic.COMMAND.getTopic()+"/#", 2);
+		super.subscribe(Topic.CONTROLTHING.getTopic()+"/#", 2);
+		super.subscribe(Topic.CONTROLITEM.getTopic()+"/#", 2);
+		super.subscribe(Topic.DEVICEDISCOVERY.getTopic()+"/#", 2);
 	}
 	
 	@Override
 	protected MessageHandler getMessageHandler(String topic, MqttMessage message) {
-		return new RaspberryPiMessageHandler(topic, message);
+		return new RaspberryPiMessageHandler(topic, message, this);
 	}
 	
 	@Override
@@ -60,6 +63,7 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 			List<Link> links = dslJson.deserializeList(Link.class, linksData, linksData.length);
 			
 			DeviceUpdate deviceUpdate = new DeviceUpdate(things, items, links);
+			deviceUpdate.removeControllers();
 			dslJson.serialize(writer, deviceUpdate);
 			
 			super.publish(Topic.SENSORUPDATE.getTopic()+"/"+"testID", 2, writer.getByteBuffer());

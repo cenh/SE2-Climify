@@ -455,7 +455,10 @@ function getGraphData() {
             xDataExist = false;
 
             $("btn-download-graph-data").removeClass("button-disabled");
-            console.log(jData);
+            var idx = 0;
+            for(var k = 0; k<jData.length; k++){
+                if(jData[idx].length < jData[k].length) idx = k;
+            }
             for (var j = 0; j < jData.length; j++) {
                 for (var i = 0; i < jData[j].length; i++) {
                     sensorIDs[i] = jData[j][i].SensorID;
@@ -475,7 +478,7 @@ function getGraphData() {
                             dataCO2[i] = parseFloat(jData[j][i].CO2);
 
                     //dataTemperature[i]=parseFloat(jData[0][i].value);
-                    var time = jData[0][i].time
+                    var time = jData[idx][i].time
 
                     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -546,7 +549,23 @@ function enableGraphSettingsSelections() {
     disableCompareBtn = false;
 }
 
+function fill_double_table(left, right, data, bool) {
+    if(!bool) {
+        fill_stat_table(left, data);
+        return true;
+    } else {
+        fill_stat_table(right, data);
+    }
+}
+
 function drawGraphDouble() {
+    document.getElementById("stat_single_table").innerHTML = "";
+    var table_left = document.getElementById("stat_double_table1");
+    var table_right = document.getElementById("stat_double_table2");
+    var left_filled = false;
+    table_left.innerHTML = "";
+    table_right.innerHTML = "";
+
     //choosing yaxes:
     var numAttributes = 0;
 
@@ -558,6 +577,7 @@ function drawGraphDouble() {
 
     if (!graph.dataSetHidden.temperature) {
         console.log(statsTemperature);
+        left_filled = fill_double_table(table_left, table_right, statsTemperature, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDTemp = 'left-y-axis';
@@ -569,6 +589,7 @@ function drawGraphDouble() {
 
     if (!graph.dataSetHidden.humidity) {
         console.log(statsHumidity);
+        left_filled = fill_double_table(table_left, table_right, statsHumidity, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDHum = 'left-y-axis';
@@ -580,6 +601,7 @@ function drawGraphDouble() {
 
     if (!graph.dataSetHidden.co2) {
         console.log(statsCO2);
+        left_filled = fill_double_table(table_left, table_right, statsCO2, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDco2 = 'left-y-axis';
@@ -591,6 +613,7 @@ function drawGraphDouble() {
 
     if (!graph.dataSetHidden.noiseAvg) {
         console.log(statsNoise);
+        left_filled = fill_double_table(table_left, table_right, statsNoise, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDnoiseAvg = 'left-y-axis';
@@ -602,6 +625,7 @@ function drawGraphDouble() {
 
     if (!graph.dataSetHidden.noisePeak) {
         console.log(statsNoise);
+        left_filled = fill_double_table(table_left, table_right, statsNoise, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDnoisePeak = 'left-y-axis';
@@ -784,7 +808,46 @@ function drawGraphDouble() {
     }
 }
 
+function fill_stat_table(table, stats) {
+    var row1 = table.insertRow(0);
+    var cell1 = row1.insertCell(0);
+    var cell2 = row1.insertCell(1);
+    cell1.innerHTML = "Mean";
+    cell2.innerHTML = stats.mean;
+
+    var row2 = table.insertRow(1);
+    var cell3 = row2.insertCell(0);
+    var cell4 = row2.insertCell(1);
+    cell3.innerHTML = "Median";
+    cell4.innerHTML = stats.median;
+
+    var row3 = table.insertRow(2);
+    var cell5 = row3.insertCell(0);
+    var cell6 = row3.insertCell(1);
+    cell5.innerHTML = "Minimum";
+    cell6.innerHTML = stats.min;
+
+    var row4 = table.insertRow(3);
+    var cell7 = row4.insertCell(0);
+    var cell8 = row4.insertCell(1);
+    cell7.innerHTML = "Maximum";
+    cell8.innerHTML = stats.max;
+
+    var row5 = table.insertRow(4);
+    var cell9 = row5.insertCell(0);
+    var cell10 = row5.insertCell(1);
+    cell9.innerHTML = "Variance";
+    cell10.innerHTML = stats.variance;
+
+}
+
 function drawGraphSingle() {
+    var table = document.getElementById("stat_single_table");
+    document.getElementById("stat_double_table1").innerHTML = "";
+    document.getElementById("stat_double_table2").innerHTML = "";
+    table.innerHTML = "";
+
+
     $("#check-chart-data-temperature").removeAttr('disabled');
     $("#check-chart-data-humidity").removeAttr('disabled');
     $("#check-chart-data-co2").removeAttr('disabled');
@@ -792,23 +855,27 @@ function drawGraphSingle() {
     $("#check-chart-data-noisePeak").removeAttr('disabled');
 
     if (!graph.dataSetHidden.temperature) {
-        console.log(statsTemperature);
+        fill_stat_table(table, statsTemperature);
     }
 
     if (!graph.dataSetHidden.humidity) {
         console.log(statsHumidity);
+        fill_stat_table(table, statsHumidity);
     }
 
     if (!graph.dataSetHidden.co2) {
         console.log(statsCO2);
+        fill_stat_table(table, statsCO2);
     }
 
     if (!graph.dataSetHidden.noiseAvg) {
         console.log(statsNoise);
+        fill_stat_table(table, statsNoise);
     }
 
     if (!graph.dataSetHidden.noisePeak) {
         console.log(statsNoise);
+        fill_stat_table(table, statsNoise);
     }
 
     if (dataDates.length !== 0) {
@@ -2085,6 +2152,7 @@ function drawMapChartDay(DiveseSel) {
             }
         }
     }
+
     addData();
 }
 
@@ -2135,17 +2203,19 @@ function updateMapChartLine() {
 }
 
 function getStats(numbers) {
-  var mean = getMean(numbers);
-  var median = getMedian(numbers);
-  var max = getMax(numbers);
-  var min = getMin(numbers);
-  var variance = getVariance(numbers);
-  var json = { "mean" : mean,
-                "median" : median,
-                "max" : max,
-                "min" : min,
-                "variance" : variance};
-  return json;
+    var mean = getMean(numbers);
+    var median = getMedian(numbers);
+    var max = getMax(numbers);
+    var min = getMin(numbers);
+    var variance = getVariance(numbers);
+    var json = {
+        "mean": mean,
+        "median": median,
+        "max": max,
+        "min": min,
+        "variance": variance
+    };
+    return json;
 }
 
 function getMean(numbers) {
@@ -2173,18 +2243,18 @@ function getMedian(numbers) {
 }
 
 function getMax(numbers) {
-  return Math.max.apply(null, numbers);
+    return Math.max.apply(null, numbers);
 }
 
 function getMin(numbers) {
-  return Math.min.apply(null, numbers);
+    return Math.min.apply(null, numbers);
 }
 
 function getVariance(numbers) {
-  var mean = getMean(numbers);
-  var v = 0;
-  for (var i = 0; i < numbers.length; i++) {
-      v += Math.pow(numbers[i]-mean, 2);
-  }
-  return v / numbers.length;
+    var mean = getMean(numbers);
+    var v = 0;
+    for (var i = 0; i < numbers.length; i++) {
+        v += Math.pow(numbers[i] - mean, 2);
+    }
+    return v / numbers.length;
 }
