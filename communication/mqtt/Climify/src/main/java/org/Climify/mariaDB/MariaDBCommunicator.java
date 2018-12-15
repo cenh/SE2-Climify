@@ -484,7 +484,7 @@ public class MariaDBCommunicator {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, sensor);
 			ResultSet result = ps.executeQuery();
-			System.out.println("Category Query Result: " + result);
+			System.out.println("Category Query Result: " + result.getString(0));
 			category = result.getString(1);
 		}catch (SQLException e) {
 			e.printStackTrace();
