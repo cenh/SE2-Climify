@@ -107,8 +107,9 @@
 
 
 
-    <?php
-    if ($currentUserID) { ?>
+	<?php
+		error_log("currentUser:".$currentUserID,0);
+		if ( $currentUserID ) { ?>
 
         <script>
             [
@@ -130,5 +131,5 @@
         </script>
     <?php } ?>
 
-    </body>
-    </html>
+</body>
+</html>
