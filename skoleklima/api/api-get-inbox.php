@@ -1,3 +1,6 @@
+<!--@author ciok-->
+<!--get pending things from inbox for a room-->
+
 <?php
 require_once "../meta.php";
 

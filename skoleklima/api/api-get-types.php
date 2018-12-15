@@ -1,3 +1,6 @@
+<!--@author ciok-->
+<!--get all types-->
+
 <?php
 require_once "../meta.php";
 

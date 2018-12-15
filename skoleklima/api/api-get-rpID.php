@@ -1,3 +1,6 @@
+<!--@author ciok-->
+<!--get raspberry pi id for a room-->
+
 <?php
 require_once "../meta.php";
 

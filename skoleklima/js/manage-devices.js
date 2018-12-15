@@ -1,12 +1,14 @@
 /**
  * @author Ciok
  */
+// here mainly channels and things behaviour
 
 
 var channels;
 var in_inbox;
 var chosen_channel;
 
+// initialize channels table
 $(document).ready(function () {
     var table = $('#table_channels').DataTable({
         "searching": false,
@@ -47,6 +49,8 @@ $(document).ready(function () {
     });
 });
 
+
+// initialize deleting things table
 $(document).ready(function () {
     var table = $('#table_id3').DataTable({
         "searching": false,
@@ -73,7 +77,7 @@ $(document).ready(function () {
     });
 });
 
-
+// initialize adding things table
 $(document).ready(function () {
     var table = $('#table_listening').DataTable({
         "searching": false,
@@ -102,7 +106,7 @@ $(document).ready(function () {
     });
 });
 
-
+// fill dropdown with things
 function refreshDevicesDropdown(roomID) {
     $('#table_channels').DataTable().clear().draw(false);
     var sUrl = "api/api-get-things.php";
@@ -123,6 +127,7 @@ function refreshDevicesDropdown(roomID) {
     });
 }
 
+// fill channels table
 function refreshTableChannel(thingID) {
     var table_channels = $('#table_channels').DataTable().clear().draw(false);
     var sUrl = "api/api-get-channels.php";
@@ -138,6 +143,7 @@ function refreshTableChannel(thingID) {
     });
 }
 
+// format collabsing row for channels
 function format_channels(d) {
     // `d` is the original data object for the row
     var index = channels.findIndex(function (row) {
@@ -186,6 +192,8 @@ function format_channels(d) {
         '</table>';
 }
 
+
+// fill dropdowns for channel linking
 function fill_category_and_type() {
     var categories = [];
     var types = [];
@@ -211,7 +219,7 @@ function fill_category_and_type() {
     });
 }
 
-
+// action for button when linking item with channel
 function link() {
     var alert_message = "";
 
@@ -256,6 +264,7 @@ function link() {
     }
 }
 
+// action for button unlinking channel and
 function unlink() {
     var itemName = chosen_channel.ItemName;
     var channelUID = chosen_channel.UID;
@@ -263,7 +272,7 @@ function unlink() {
     alert("The item is now unlinked");
 }
 
-
+// fill delete things table
 function refreshTableDevices(roomID) {
     things = [];
     var sUrl = "api/api-get-things.php";
@@ -282,6 +291,7 @@ function refreshTableDevices(roomID) {
     });
 }
 
+// button action for refreshing deleting things table
 function refreshDevicesTableWithButton() {
     var e = document.getElementById('select_room_devices');
     var value = e.options[e.selectedIndex].value;
@@ -296,6 +306,7 @@ function refreshDevicesTableWithButton() {
 
 }
 
+// button action for refreshing adding things table
 function refreshDevicesTableListenWithButton() {
     var e = document.getElementById('select_room_devices_listen');
     var value = e.options[e.selectedIndex].value;
@@ -309,6 +320,7 @@ function refreshDevicesTableListenWithButton() {
         refreshDevicesDropdown(roomID);
 }
 
+// button action for refreshing channels table
 function refreshChannelsTableWithButton() {
     var e = document.getElementById('select_thing_manage_devices');
     var thingID = e.options[e.selectedIndex].value;
@@ -318,6 +330,7 @@ function refreshChannelsTableWithButton() {
 
 }
 
+// unlock button for listening for new devices
 function unlock_listening() {
     document.getElementById("listen_button").disabled = false;
     document.getElementById("listen_button").style.opacity = "1";
@@ -326,6 +339,7 @@ function unlock_listening() {
     fill_table_listening(roomID);
 }
 
+// refresh table for adding things after countdown is done
 function refresh_table_listening() {
     document.getElementById("p_countdown").innerHTML = "";
     document.getElementById("listen_button").disabled = false;
@@ -336,6 +350,8 @@ function refresh_table_listening() {
     fill_table_listening(roomID);
 }
 
+
+// fill table for adding new things
 function fill_table_listening(roomID) {
     var sUrl = "api/api-get-inbox.php";
     in_inbox = [];

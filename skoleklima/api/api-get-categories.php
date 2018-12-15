@@ -1,3 +1,6 @@
+<!--@author ciok-->
+<!--get all categories-->
+
 <?php
 require_once "../meta.php";
 

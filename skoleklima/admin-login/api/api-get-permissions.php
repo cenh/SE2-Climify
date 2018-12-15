@@ -1,3 +1,6 @@
+<!--@author ciok-->
+<!--get permission for a role-->
+
 <?php
 
 

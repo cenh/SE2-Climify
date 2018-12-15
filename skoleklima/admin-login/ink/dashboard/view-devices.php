@@ -49,83 +49,87 @@
                         </div>
                         <div class="user-meta-subusers-userlist">
                         </div>
+                    </div>
                 </div>
             </div>
+
+        </div>
+    </div>
+
+
+    <!--@author ciok-->
+
+<!--    table for displaying and modifying roles-->
+    <div style="height: auto">
+        <div style="width: 100%; text-align: center;
+         font-weight: bold; font-size: 150%;"> Roles
         </div>
 
-    </div>
-</div>
-
-<div style="height: auto">
-    <div style="width: 100%; text-align: center;
-         font-weight: bold; font-size: 150%;"> Roles
-    </div>
-
-    <div style="width: 100%; height: auto; border: 1px solid #dddddd;
+        <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
     padding: 8px; float:left;">
-        <table id="roles_table" class="display">
-            <thead>
-            <tr>
-                <th>Role Name</th>
-            </tr>
-            </thead>
-            <tbody>
+            <table id="roles_table" class="display">
+                <thead>
+                <tr>
+                    <th>Role Name</th>
+                </tr>
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div id="form_wrapper"></div>
-
-
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <style>
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0, 0, 0); /* Fallback color */
-            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-        }
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
 
-        /* Modal Content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 400px;
-        }
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="form_wrapper"></div>
 
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
 
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
+        </div>
+
+        <style>
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 100px; /* Location of the box */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0, 0, 0); /* Fallback color */
+                background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+            }
+
+            /* Modal Content */
+            .modal-content {
+                background-color: #fefefe;
+                margin: auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 400px;
+            }
+
+            /* The Close Button */
+            .close {
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        </style>
 

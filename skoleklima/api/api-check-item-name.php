@@ -1,3 +1,6 @@
+<!--@author ciok-->
+<!--check if the name is already in the db-->
+
 <?php
 require_once "../meta.php";
 

@@ -1,6 +1,9 @@
+<!--@author ciok-->
+<!--get last measurements for a list of sensors from inlux-->
+
+
 <?php
 $names = $_POST['sensors_names'];
-//$names = array_unique(json_decode($_POST['sensors_names']));
 
 $results = array();
 

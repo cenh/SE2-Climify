@@ -1,3 +1,6 @@
+<!--@author ciok-->
+<!--get all channels for a given thing-->
+
 <?php
 require_once "../meta.php";
 

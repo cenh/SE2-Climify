@@ -1,4 +1,7 @@
-<!-- System data map -->
+<!--@author ciok-->
+<!--overview of sensors and actuators-->
+
+
 <div class="single-view view-data-map">
     <div class="view-data-top">
 	<span>
@@ -34,8 +37,9 @@
         <button onclick="refreshTableSensorsAndActuatorsWithButton()">Refresh</button>
     </div>
 
-    <div style="overflow: auto">
 
+<!--sensors table-->
+    <div style="overflow: auto">
         <div style="width: 50%; float:left;">
             <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
@@ -50,6 +54,7 @@
             </div>
         </div>
 
+<!--actuators table-->
         <div style="width: 50%; float:right;">
             <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;

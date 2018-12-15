@@ -1,3 +1,6 @@
+<!--@author ciok-->
+<!--get all things from a given room-->
+
 <?php
 require_once "../meta.php";
 
