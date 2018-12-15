@@ -55,8 +55,9 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
     exit;
 }
-
-$stmt = $conn->prepare("SELECT * FROM Person WHERE UserName = ?");
+$q = "SELECT * FROM Person WHERE UserName = ?";
+$stmt = $conn->prepare($q);
+error_log($q, 0);
 $stmt->bind_param("s", $phaseUsername);
 if (!$stmt->execute()) {
     echo '{"status":"error"}';
@@ -66,7 +67,6 @@ if (!$stmt->execute()) {
 }
 
 //echo "username " . $phaseUsername . " EncryptedPass " . $encryptedPass;
-
 
 $result = $stmt->get_result();
 if ($result->num_rows!=0){
