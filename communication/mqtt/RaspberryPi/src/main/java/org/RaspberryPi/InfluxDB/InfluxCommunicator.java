@@ -4,6 +4,7 @@ import org.MqttLib.openhab.Link;
 import org.MqttLib.openhab.Synchronize;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.Point;
+import org.influxdb.dto.Query;
 
 import java.lang.reflect.Array;
 import java.text.ParseException;
@@ -35,6 +36,14 @@ public class InfluxCommunicator {
 
 	public void close() {
 		influxDB.close();
+	}
+	
+	public void removeSensor(String sensorID) {
+		executeQuery(InfluxQuery.removeSensor(sensorID, influxName));
+	}
+
+	private void executeQuery(Query query) {
+		influxDB.query(query);
 	}
 
 	public Map<String, List<List<String>>> getMeasurementsSince(String time) {

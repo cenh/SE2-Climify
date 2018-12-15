@@ -90,7 +90,8 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 				else {
 					rest.removeLink(controlItem.uid, controlItem.channelUID);
 					rest.removeItem(controlItem.uid);
-
+					influx.removeSensor(controlItem.uid);
+					
 					//Prepare the message
 					didControlItem = new DidControlItem(controlItem.controlType, controlItem.uid, controlItem.channelUID, null);
 				}
@@ -136,6 +137,7 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 						for (String item: channel.linkedItems) {
 							System.out.println("Deleting link: " + rest.removeLink(item, channel.uid));
 							System.out.println("Deleting item: " + rest.removeItem(item));
+							influx.removeSensor(item);
 						}
 					}
 

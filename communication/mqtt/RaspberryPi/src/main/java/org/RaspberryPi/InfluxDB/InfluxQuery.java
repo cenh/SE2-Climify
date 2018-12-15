@@ -27,5 +27,10 @@ public abstract class InfluxQuery {
 		Query query = new Query("SELECT * FROM " + sensor + " WHERE time > " + time, db);
 		return query;
 	}
+	
+	public static Query removeSensor(String sensorID, String dbName) {
+		Query query = new Query("DROP MEASUREMENT " + sensorID, dbName, true);
+		return query;
+	}
 
 }
