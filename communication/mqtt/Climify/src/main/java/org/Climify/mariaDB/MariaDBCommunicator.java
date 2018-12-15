@@ -486,6 +486,7 @@ public class MariaDBCommunicator {
 			ResultSet result = ps.executeQuery();
 			result.next();
 			category = result.getString(1);
+			System.out.println("Fetched Category " + category);
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
