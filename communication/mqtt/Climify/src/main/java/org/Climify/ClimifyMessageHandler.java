@@ -1,16 +1,12 @@
 package org.Climify;
 
 import java.io.IOException;
-import java.io.PrintStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.Climify.influxDB.InfluxCommunicator;
-import org.Climify.influxDB.InfluxQuery;
 import org.Climify.mariaDB.MariaDBCommunicator;
 import org.MqttLib.mqtt.MessageCallback;
 import org.MqttLib.mqtt.MessageHandler;
@@ -23,12 +19,7 @@ import org.MqttLib.openhab.DidControlItem;
 import org.MqttLib.openhab.DidControlThing;
 import org.MqttLib.openhab.InboxDevice;
 import org.MqttLib.openhab.SensorMeasurement;
-import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.influxdb.annotation.Measurement;
-import org.influxdb.dto.Query;
-import org.influxdb.dto.QueryResult;
-import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 
 public class ClimifyMessageHandler extends MessageHandler {
 	
@@ -37,7 +28,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 	private MessageCallback messageCallback;
 
 
-	public ClimifyMessageHandler(String topic, MqttMessage message, InfluxCommunicator influx, MariaDBCommunicator mariaDB, MessageCallback msgCall) {
+	public ClimifyMessageHandler(String topic, MqttMessage message, InfluxCommunicator influx, MariaDBCommunicator mariaDB, MessageCallback messageCallback) {
 		super(topic, message);
 		this.influx = influx;
 		this.mariaDB = mariaDB;

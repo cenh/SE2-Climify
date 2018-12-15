@@ -1,19 +1,12 @@
 package org.Climify;
 
 import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
-import com.dslplatform.json.DslJson;
-import com.dslplatform.json.JsonWriter;
-import com.dslplatform.json.runtime.Settings;
 import org.Climify.influxDB.InfluxCommunicator;
 import org.Climify.mariaDB.MariaDBCommunicator;
 import org.MqttLib.mqtt.AsyncMqttController;
 import org.MqttLib.mqtt.MessageHandler;
 import org.MqttLib.mqtt.Topic;
-import org.MqttLib.openhab.Synchronize;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
@@ -21,9 +14,6 @@ public class ClimifyMqttController extends AsyncMqttController {
 	
 	private InfluxCommunicator influx = new InfluxCommunicator();
 	private MariaDBCommunicator mariaDB = new MariaDBCommunicator();
-
-	private DslJson<Object> dslJson = new DslJson<>(Settings.withRuntime().allowArrayFormat(true).includeServiceLoader());
-	private JsonWriter writer = dslJson.newWriter();
 
 	@Override
 	public void start() {

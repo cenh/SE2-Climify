@@ -7,8 +7,6 @@ import org.influxdb.dto.Query;
  * @author nch and KacperZyla
  */
 
-import org.influxdb.dto.Query;
-
 public abstract class InfluxQuery {
 	
 	public static String createRetentionPolicy(String name, String db, String duration) {

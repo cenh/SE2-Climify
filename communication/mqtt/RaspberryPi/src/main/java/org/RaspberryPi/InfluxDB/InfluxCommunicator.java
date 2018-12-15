@@ -1,24 +1,15 @@
 package org.RaspberryPi.InfluxDB;
 
-import org.MqttLib.openhab.Link;
-import org.MqttLib.openhab.Synchronize;
 import org.influxdb.InfluxDBFactory;
-import org.influxdb.dto.Point;
 import org.influxdb.dto.Query;
 
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
-import org.MqttLib.openhab.SensorMeasurement;
 import org.influxdb.InfluxDB;
 import org.influxdb.dto.QueryResult;
 
-import javax.management.QueryEval;
 
 /**
  * Responsible for communicating with the Influx Database on the VM
