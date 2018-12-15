@@ -144,10 +144,8 @@ public class InfluxCommunicator {
 			System.out.println("Value no " + i + " is: " + value);
 			String time = measurements.get(i).get(0);
 			System.out.println("Time no " + i + " is: " + time);
-			SensorMeasurement sensorMeasurement = new SensorMeasurement(sensor, category, value, time);
-			System.out.println("Sensor Measurement: Name: " + sensorMeasurement.name + " Value: "
-					+ sensorMeasurement.value + " Time: " + sensorMeasurement.time
-					+ " Category " + sensorMeasurement.category + " Type: " + sensorMeasurement.type);
+			SensorMeasurement sensorMeasurement = new SensorMeasurement(sensor, "", value, time);
+			sensorMeasurement.setCategory(category);
 			saveMeasurement(sensorMeasurement);
 		}
 		influxDB.flush();
