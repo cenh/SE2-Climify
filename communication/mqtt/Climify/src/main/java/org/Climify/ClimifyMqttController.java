@@ -53,7 +53,7 @@ public class ClimifyMqttController extends AsyncMqttController {
 	public void connectComplete(boolean reconnect, String serverURI){
 		super.connectComplete(reconnect,serverURI);
 
-		List<String> RPis = mariaDB.getRaspberryPis();
+		List<String> RPis = mariaDB.getRaspberryPies();
 		List<List<String>> RPiSensors = mariaDB.getSensorsForRaspberryPis();
 		Map<String, String> RPisTimes =  influx.getTimesForRPis(RPis, RPiSensors);
 

@@ -43,6 +43,16 @@ public class InfluxCommunicator {
 		influxDB.close();
 	}
 
+	/**
+	 *  Below section is responsible for InfluxDB part of data synchronization in case of lost connection
+	 * @author KacperZyla
+	 *
+	 */
+
+	/**
+	 *	Gets most recent measurement time among all the sensors specified by sensors
+	 */
+
 	public String getTimeBySensors(List<String> sensors) {
 		System.out.println(sensors);
 
@@ -76,6 +86,10 @@ public class InfluxCommunicator {
 		return maxTime;
 	}
 
+	/**
+	 *	Uses getTimeBySensors to get most recent measurement time for all RaspberryPies specified by RPis
+	 */
+
 	public Map<String, String> getTimesForRPis(List<String> RPis, List<List<String>> RPisSensors){
 
 		Map<String, String> times = new HashMap<String, String>();
@@ -98,12 +112,21 @@ public class InfluxCommunicator {
 
 	}
 
+	/**
+	 *	Executes query on influxDB to get the fields of the measurement
+	 */
+
 	public QueryResult getMeasurementFields(String sensor){
         QueryResult fields = influxDB.query(InfluxQuery.getMeasurementFields(influxName, sensor));
         return fields;
     }
 
-    public void saveBatchMeasurements(String sensor,String category, List<List<Object>> measurements){
+
+	/**
+	 * Saves measurement into influxDB in batches
+	 */
+
+	public void saveBatchMeasurements(String sensor,String category, List<List<Object>> measurements){
 
 		influxDB.enableBatch(measurements.size(), 100, TimeUnit.MILLISECONDS);
 		for(int i = 0; i < measurements.size(); i++){

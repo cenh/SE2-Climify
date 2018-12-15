@@ -47,18 +47,9 @@ public class ClimifyMessageHandler extends MessageHandler {
 			try {
 				System.out.println("Inside topic " + topic);
 				SensorMeasurement measurement = dslJson.deserialize(SensorMeasurement.class, message.getPayload(), message.getPayload().length);
-//				influx.saveMeasurement(measurement);
-//				executeRule(measurement.name, measurement.value);
+				influx.saveMeasurement(measurement);
+				executeRule(measurement.name, measurement.value);
 
-
-				//getCategory test
-				QueryResult QR = influx.getMeasurementFields("readTemperature");
-
-				List<List<Object>> fields = QR.getResults().get(0).getSeries().get(0).getValues();
-
-				String category = fields.get(0).get(0).toString();
-
-				System.out.println(category);
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -78,7 +69,12 @@ public class ClimifyMessageHandler extends MessageHandler {
 			}
 			
 		}
-		
+
+		/**
+		 *	Saves the batch data points sent by RaspberryPi in case of lost connection
+		 * @author KacperZyla
+		 */
+
 		if (topic.startsWith(Topic.DIDSYNCHRONIZE.getTopic())) {
 			String id = topic.substring(Topic.SENSORUPDATE.getTopic().length()+1);
 			System.out.println("DIDSYNCHRONIZE ID = " + id);
@@ -109,6 +105,8 @@ public class ClimifyMessageHandler extends MessageHandler {
 		}
 	}
 
+
+
 	private void executeRule(String SensorID) {
 	    System.out.println("Looking for rules on sensor: " + SensorID);
 		List<List<String>> results = new ArrayList<List<String>>();
@@ -132,6 +130,12 @@ public class ClimifyMessageHandler extends MessageHandler {
 			}
 		}
 	}
+
+
+	/**
+	 *	For every new measurement fetches the corresponding rules from MariaDB and executes them if necessary
+	 * @author cenh and KacperZyla
+	 */
 
 	private void executeRule(String SensorID, String SensorValue) throws java.io.IOException,
             org.eclipse.paho.client.mqttv3.MqttPersistenceException, org.eclipse.paho.client.mqttv3.MqttException{
@@ -182,16 +186,3 @@ public class ClimifyMessageHandler extends MessageHandler {
 
 		}
 }
-
-
-//	URL url = new URL("http://localhost:80/rules/skoleklima/api/api-rule-execute.php");
-//				HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-//				httpCon.setDoOutput(true);
-//				httpCon.setRequestMethod("POST");
-//				PrintStream ps = new PrintStream(httpCon.getOutputStream());
-//				ps.print("SensorID=" + result.get(0));
-//				ps.print("&Operator=" + result.get(1));
-//				ps.print("&Value=" + result.get(2));
-//				ps.print("&Action=" + result.get(3));
-//				httpCon.getInputStream();
-//				ps.close();

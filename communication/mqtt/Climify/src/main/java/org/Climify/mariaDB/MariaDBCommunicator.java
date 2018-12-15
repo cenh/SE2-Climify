@@ -195,6 +195,13 @@ public class MariaDBCommunicator {
 		}
 	}
 
+
+	/**
+	 * This function is responsible for fetching Rules from MariaDB for sensor specified by sensorID
+	 * @author cenh and KacperZyla
+	 *
+	 **/
+
 	public List<List<String>> getRulesBySensorID(String sensorID) {
         String SensorID = "";
         String Operator = "";
@@ -229,7 +236,19 @@ public class MariaDBCommunicator {
         return results;
 	}
 
-	public  List<String> getRaspberryPis(){
+
+	/**
+	 * This part is responsible for MariaDB part of data synchronization in case of lost connection
+	 * @author KacperZyla
+	 *
+	 **/
+
+
+	/**
+	 * Get the list of RaspberryPies in MariaDB
+	 */
+
+	public  List<String> getRaspberryPies(){
 		String sql1 = "SELECT RaspberryPis.UID FROM RaspberryPis";
 		List<String> RPis = new ArrayList<String>();
 		try {
@@ -247,6 +266,9 @@ public class MariaDBCommunicator {
 
 	}
 
+	/**
+	 * Get all the sensor assigned to RaspberryPi specified by RPi
+	 */
 
 	public List<String> getSensorsByRaspberryPi(String RPi) {
 
@@ -278,12 +300,17 @@ public class MariaDBCommunicator {
 		return RPiSensors;
 	}
 
+	/**
+	 * Uses getRaspberryPies and getSensorsByRaspberryPi functions
+	 * to create a list of lists of sensors for all RaspberryPies
+	 */
+
 	public List<List<String	>> getSensorsForRaspberryPis(){
 
 		List<List<String>> sensors = new ArrayList<List<String>>();
 
 		System.out.println("Getting the list of RPis");
-		List<String> RPis = getRaspberryPis();
+		List<String> RPis = getRaspberryPies();
 		for(int i = 0; i < RPis.size(); i++){
 			System.out.println("Adding sensors to the list for RPi no " + i);
 			sensors.add(getSensorsByRaspberryPi(RPis.get(i)));
