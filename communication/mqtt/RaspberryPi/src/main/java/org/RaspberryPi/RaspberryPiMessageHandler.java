@@ -1,8 +1,8 @@
 package org.RaspberryPi;
 
 import java.io.IOException;
-
-import com.dslplatform.json.DslJson;
+import java.util.List;
+import java.util.Map;
 
 import org.MqttLib.mqtt.MessageCallback;
 import org.MqttLib.mqtt.MessageHandler;
@@ -25,6 +25,7 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 	public RaspberryPiMessageHandler(String topic, MqttMessage message, MessageCallback messageCallback, InfluxCommunicator influxCommunicator) {
 		super(topic, message);
 		this.messageCallback = messageCallback;
+		this.influx = influxCommunicator;
 	}
 	
 	@Override
@@ -45,8 +46,9 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 				System.out.println("Inside topic " + topic);
 			try {
 				Synchronize synchronize = dslJson.deserialize(Synchronize.class, message.getPayload(), message.getPayload().length);
-				DidSynchronize didSynchronize = new DidSynchronize(influx.getMeasurementsSince(synchronize.timeOfLastMeasurement));
-				System.out.println(didSynchronize.measurements.toString());
+				Map<String, List<List<String>>> map = influx.getMeasurementsSince(synchronize.timeOfLastMeasurement);
+				System.out.println("Map count = " + map.size() + " map item toString = " + map.toString());
+				DidSynchronize didSynchronize = new DidSynchronize(map);
 				dslJson.serialize(writer, didSynchronize);
 				byte[] payload = writer.getByteBuffer();
 				writer.reset();
