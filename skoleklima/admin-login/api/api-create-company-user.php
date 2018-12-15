@@ -57,7 +57,7 @@ if ($conn->connect_error) {
 }
 $q = "SELECT * FROM Person WHERE UserName = ?";
 $stmt = $conn->prepare($q);
-error_log($q, 0);
+error_log("Query: ".$q, 0);
 $stmt->bind_param("s", $phaseUsername);
 if (!$stmt->execute()) {
     echo '{"status":"error"}';
@@ -92,8 +92,6 @@ if ($stmt->execute()) {
     $nul=0;
     $LastLogin=null;
     $Blocked=1;
-
-
 
     $stmt = $conn->prepare("INSERT INTO Person VALUES (?,?,?,?,?,?,?,?,?)");
     $stmt->bind_param("issssisis",$nul,$phaseUsername,$phaseUserFirstName,$phaseUserLastName,$phaseUserEmail,$phaseRole,$encryptedPass,$Blocked,$null);
