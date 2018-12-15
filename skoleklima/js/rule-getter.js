@@ -171,6 +171,8 @@ $("#sensorSelect").change(function () {
         var type = results[0].Category;
         console.log(sensorID);
         console.log(type);
+
+
     if (type === "Temperature") {
         console.log("t");
         $('#unit').text('°C');
@@ -183,6 +185,9 @@ $("#sensorSelect").change(function () {
     }
     else if (type === "Noise") {
         $('#unit').text('dB');
+    }
+    else {
+      alert("Sensors of type " + type + " is not useable for rules");
     }
  });
 });
