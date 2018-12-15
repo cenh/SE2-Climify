@@ -141,7 +141,9 @@ public class InfluxCommunicator {
 		influxDB.enableBatch(measurements.size(), 100, TimeUnit.MILLISECONDS);
 		for(int i = 0; i < measurements.size(); i++){
 			String value = measurements.get(i).get(1);
+			System.out.println("Value no " + i + " is: " + value);
 			String time = measurements.get(i).get(0);
+			System.out.println("Time no " + i + " is: " + time);
 			SensorMeasurement sensorMeasurement = new SensorMeasurement(sensor, category, value, time);
 			saveMeasurement(sensorMeasurement);
 		}
