@@ -158,8 +158,6 @@ $("#modalRule").on("click",function () {
 
 $("#sensorSelect").change(function () {
     var sensorID = $('#sensorSelect').val();
-    console.log(sensorID);
-
     $.ajax({
         type: "GET",
         url: "api/api-get-sensor-type.php",
@@ -172,17 +170,17 @@ $("#sensorSelect").change(function () {
         var type = results[0].Category;
         console.log(sensorID);
         console.log(type);
-    if (sensorID === "readOutdoorTemperature" || sensorID === "readTemperature") {
+    if (type === "Temperature") {
         console.log("t");
         $('#unit').text('°C');
     }
-    else if (sensorID === "readBattery" || sensorID === "readHumidity" ) {
+    else if (type === "Battery" || type === "Humidity" ) {
         $('#unit').text('%');
     }
-    else if (sensorID === "readCO2") {
+    else if (type === "CO2") {
         $('#unit').text('PPM');
     }
-    else if (sensorID === "MainIndoorStation_Noise") {
+    else if (type === "Noise") {
         $('#unit').text('dB');
     }
  });
@@ -235,8 +233,21 @@ $("#submitRule").on("click",function () {
 
 });
 $('#actuatorSelect').change(function () {
+    //actuator type
 
-    if($('#actuatorSelect').val() === "ZWaveNode4LC13LivingConnectZThermostat_SetpointHeating"){
+    var actuatorID = $('#actuatorSelect').val();
+    $.ajax({
+        type: "GET",
+        url: "api/api-get-sensor-type.php",
+        data: {
+            SensorName: actuatorID ,
+            LocationID: rulelocationChosen()
+        }
+      }).done(function (res) {
+        results = JSON.parse(res);
+        var type = results[0].Category;
+
+    if(type === "Temperature")){
         $('#onActionSetTemp').show();
     }
     else {

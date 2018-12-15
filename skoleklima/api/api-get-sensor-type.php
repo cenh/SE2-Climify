@@ -6,7 +6,6 @@ $username = DB_USER;
 $password = DB_PASSWORD;
 $databasename = DB_NAME;
 $SensorName = $_GET['SensorName'];
-
 $LocationID = $_GET['LocationID'];
 
 
