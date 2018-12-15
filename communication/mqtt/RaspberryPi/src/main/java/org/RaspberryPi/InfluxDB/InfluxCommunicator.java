@@ -50,9 +50,17 @@ public class InfluxCommunicator {
 
 			QueryResult values =  influxDB.query(InfluxQuery.getMeasurementsSince(influxName, sensor, timeInMillis));
 
-			List<List<String>> vals =  (List<List<String>>)(List<?>) values.getResults().get(0).getSeries().get(0).getValues();
-
-			measurements.put(sensor, vals);
+			List<List<Object>> vals = values.getResults().get(0).getSeries().get(0).getValues();
+			List<List<String>> strings = new ArrayList<>();
+			for (List<Object> list: vals) {
+				List<String> temp = new ArrayList<>();
+				for (Object object: list) {
+					temp.add(object.toString());
+				}
+				
+				strings.add(temp);
+			}
+			measurements.put(sensor, strings);
 
 		}
 		return measurements;
