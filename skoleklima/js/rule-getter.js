@@ -255,5 +255,6 @@ $('#actuatorSelect').change(function () {
     }
     else {
         $('#onActionSetTemp').hide();
-    }
+      }
+     });
 });
