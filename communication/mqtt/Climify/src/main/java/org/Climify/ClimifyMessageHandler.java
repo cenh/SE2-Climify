@@ -76,7 +76,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 		 */
 
 		if (topic.startsWith(Topic.DIDSYNCHRONIZE.getTopic())) {
-			String id = topic.substring(Topic.SENSORUPDATE.getTopic().length()+1);
+			String id = topic.substring(Topic.DIDSYNCHRONIZE.getTopic().length()+1);
 			System.out.println("DIDSYNCHRONIZE ID = " + id);
 			
 			try {
@@ -90,6 +90,8 @@ public class ClimifyMessageHandler extends MessageHandler {
 					Map.Entry pair = (Map.Entry)it.next();
 
 					QueryResult QR = influx.getMeasurementFields((String)pair.getKey());
+
+					System.out.println("Fields for " + pair.getKey() + " are: " + QR);
 
 					List<List<Object>> fields = QR.getResults().get(0).getSeries().get(0).getValues();
 
