@@ -64,6 +64,7 @@ public class InfluxCommunicator {
 
 			QueryResult measurement = influxDB.query(InfluxQuery.getRecentTime(influxName, sensor));
 			String time = "";
+			String s = "";
 			try {
 				time = (String)measurement.getResults().get(0).getSeries().get(0).getValues().get(0).get(0);
 
@@ -81,7 +82,8 @@ public class InfluxCommunicator {
 		if(times.isEmpty()) return "";
 
 		String maxTime = Collections.max(times);
-		System.out.println("Max time: " + maxTime);
+		String s = sensors.get(times.indexOf(maxTime));
+		System.out.println("Max time: " + maxTime + " for sensor " + s);
 
 		return maxTime;
 	}
@@ -102,7 +104,7 @@ public class InfluxCommunicator {
 				System.out.println("No measurements for RPi no " + i);
 			}
 			else{
-				System.out.println("Max time for RPI no: " + i + " is " + time + " for sensor " + s);
+				System.out.println("Max time for RPI no: " + i + " is " + time);
 			}
 			times.put(RPis.get(i),time);
 
