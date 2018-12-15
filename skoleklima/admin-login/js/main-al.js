@@ -36,6 +36,7 @@ $(document).on("click", ".ico-show-meta", function(){
 });
 
 // Get database information
+/*
 function requestDBInfo(id){
     var companyID = id.parent().parent().attr("data-company-id");
     var sUrl = "api/api-get-db-info.php";
@@ -50,7 +51,7 @@ function requestDBInfo(id){
             id.parent().parent().find(".inp-system-db-meta-pass").val(jData.dbPass);
         }
     });
-}
+}*/
 
 $(document).on("click", ".ico-hide-meta", function () {
     $(this).parent().parent().parent().css('border-width', '0');
