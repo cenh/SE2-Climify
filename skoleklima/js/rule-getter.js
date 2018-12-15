@@ -158,6 +158,7 @@ $("#modalRule").on("click",function () {
 
 $("#sensorSelect").change(function () {
     var sensorID = $('#sensorSelect').val();
+    console.log(sensorID);
     $.ajax({
         type: "GET",
         url: "api/api-get-sensor-type.php",
@@ -233,21 +234,8 @@ $("#submitRule").on("click",function () {
 
 });
 $('#actuatorSelect').change(function () {
-    //actuator type
-
-    var actuatorID = $('#actuatorSelect').val();
-    $.ajax({
-        type: "GET",
-        url: "api/api-get-sensor-type.php",
-        data: {
-            SensorName: actuatorID ,
-            LocationID: rulelocationChosen()
-        }
-      }).done(function (res) {
-        results = JSON.parse(res);
-        var type = results[0].Category;
-
-    if(type === "Temperature")){
+    //actuator 
+    if($('#actuatorSelect').val() === "ZWaveNode4LC13LivingConnectZThermostat_SetpointHeating"){
         $('#onActionSetTemp').show();
     }
     else {
