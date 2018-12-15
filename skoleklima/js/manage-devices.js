@@ -34,9 +34,10 @@ $(document).ready(function () {
             row.child(format_channels(row.data())).show();
             tr.addClass('shown');
 
-
-            fill_category_and_type();
             chosen_channel = channels[row.index()];
+            if(chosen_channel.ItemName === null)
+                fill_category_and_type();
+
         }
     });
 });
