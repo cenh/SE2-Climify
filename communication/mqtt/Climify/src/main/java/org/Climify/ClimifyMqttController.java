@@ -53,28 +53,28 @@ public class ClimifyMqttController extends AsyncMqttController {
 	public void connectComplete(boolean reconnect, String serverURI){
 		super.connectComplete(reconnect,serverURI);
 
-		List<String> RPis = mariaDB.getRaspberryPies();
-		List<List<String>> RPiSensors = mariaDB.getSensorsForRaspberryPis();
-		Map<String, String> RPisTimes =  influx.getTimesForRPis(RPis, RPiSensors);
-
-		Iterator it = RPisTimes.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry pair = (Map.Entry)it.next();
-			System.out.println(pair.getKey() + " = " + pair.getValue());
-
-			Synchronize sync = new Synchronize((String)pair.getValue());
-			byte[] payload;
-			try {
-				dslJson.serialize(writer, sync);
-				payload = writer.getByteBuffer();
-				writer.reset();
-				super.publish(Topic.SYNCHRONIZE.getTopic()+"/"+pair.getKey(),2,payload);
-
-				it.remove(); // avoids a ConcurrentModificationException
-
-			}catch (Exception e){
-				e.printStackTrace();
-			}
-		}
+//		List<String> RPis = mariaDB.getRaspberryPies();
+//		List<List<String>> RPiSensors = mariaDB.getSensorsForRaspberryPis();
+//		Map<String, String> RPisTimes =  influx.getTimesForRPis(RPis, RPiSensors);
+//
+//		Iterator it = RPisTimes.entrySet().iterator();
+//		while (it.hasNext()) {
+//			Map.Entry pair = (Map.Entry)it.next();
+//			System.out.println(pair.getKey() + " = " + pair.getValue());
+//
+//			Synchronize sync = new Synchronize((String)pair.getValue());
+//			byte[] payload;
+//			try {
+//				dslJson.serialize(writer, sync);
+//				payload = writer.getByteBuffer();
+//				writer.reset();
+//				super.publish(Topic.SYNCHRONIZE.getTopic()+"/"+pair.getKey(),2,payload);
+//
+//				it.remove(); // avoids a ConcurrentModificationException
+//
+//			}catch (Exception e){
+//				e.printStackTrace();
+//			}
+		//}
 	}
 }
