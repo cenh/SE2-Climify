@@ -241,7 +241,6 @@ $("#submitRule").on("click",function () {
 $('#actuatorSelect').change(function () {
     //actuator
     var actuatorID = $('#actuatorSelect').val();
-    console.log(sensorID);
     $.ajax({
         type: "GET",
         url: "api/api-get-actuator-type.php",
