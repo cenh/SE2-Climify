@@ -1,4 +1,7 @@
-<?php 
+<?php
+/*
+ *	Author: Christian Hansen & Kacper Zyla
+ */
     require_once "session.php";
 	require_once "admin-meta.php";
 ?>
@@ -25,7 +28,7 @@
         <input id="session-token" type="hidden" value="<?php echo $adminSessionToken ?>">
     </div>
 
-    <?php 
+    <?php
         if (!$systemAccess) {
             require_once "ink/view-login.php";
         } else {
@@ -60,7 +63,7 @@
             document.head.appendChild(script);
         });
     </script>
-			
+
 	<?php include_once("../analyticstracking.php") ?>
 
 </body>
