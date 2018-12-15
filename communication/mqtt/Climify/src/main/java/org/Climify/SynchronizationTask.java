@@ -11,6 +11,12 @@ import org.MqttLib.mqtt.MessageCallback;
 import org.MqttLib.mqtt.Topic;
 import org.MqttLib.openhab.Synchronize;
 
+
+/**
+ *  Class handling asynchronous creating and sending synchronization request message
+ *  @author nch and KacperZyla
+ */
+
 public class SynchronizationTask extends BaseHandler implements Runnable {
 	private MessageCallback messageCallback;
 	private MariaDBCommunicator mariaDB;

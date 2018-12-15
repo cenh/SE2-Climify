@@ -2,6 +2,12 @@ package org.RaspberryPi.InfluxDB;
 
 import org.influxdb.dto.Query;
 
+
+/**
+ * Class holding influxDB queries for RaspberryPi
+ * @author nch and KacperZyla
+ */
+
 public abstract class InfluxQuery {
 	
 	public static String createRetentionPolicy(String name, String db, String duration) {

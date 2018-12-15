@@ -164,6 +164,11 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 		}
 
 
+		/**
+		 *  Handles synchronization request message
+		 * @autor KacperZyla
+		 */
+
 
 		if (topic.startsWith(Topic.SYNCHRONIZE.getTopic())) {
 				System.out.println("Inside topic " + topic);

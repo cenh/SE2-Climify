@@ -46,6 +46,13 @@ public class InfluxCommunicator {
 		influxDB.query(query);
 	}
 
+
+	/**
+	 *  Creates map of  sensors and their measurements since date specified by time
+	 * @author KacperZyla
+	 */
+
+
 	public Map<String, List<List<String>>> getMeasurementsSince(String time) {
 		Map<String, List<List<String>>> measurements = new HashMap<>();
 		
