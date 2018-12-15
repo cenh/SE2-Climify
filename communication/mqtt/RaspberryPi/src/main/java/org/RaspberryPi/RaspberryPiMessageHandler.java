@@ -42,10 +42,11 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 		}
 		
 		if (topic.startsWith(Topic.SYNCHRONIZE.getTopic())) {
-
+				System.out.println("Inside topic " + topic);
 			try {
 				Synchronize synchronize = dslJson.deserialize(Synchronize.class, message.getPayload(), message.getPayload().length);
 				DidSynchronize didSynchronize = new DidSynchronize(influx.getMeasurementsSince(synchronize.timeOfLastMeasurement));
+				System.out.println(didSynchronize.measurements.toString());
 				dslJson.serialize(writer, didSynchronize);
 				byte[] payload = writer.getByteBuffer();
 				writer.reset();
