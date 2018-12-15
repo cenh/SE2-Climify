@@ -24,9 +24,10 @@ public class ClimifyMqttController extends AsyncMqttController {
 
 	private DslJson<Object> dslJson = new DslJson<>(Settings.withRuntime().allowArrayFormat(true).includeServiceLoader());
 	private JsonWriter writer = dslJson.newWriter();
-	
+
 	@Override
 	public void start() {
+		super.start();
 		
 		influx.connect();
 		try {
@@ -41,6 +42,9 @@ public class ClimifyMqttController extends AsyncMqttController {
 	protected void subscribeToTopics() throws MqttException {
 		super.subscribe(Topic.SENSORDATA.getTopic()+"/#", 2);
 		super.subscribe(Topic.SENSORUPDATE.getTopic()+"/#", 2);
+		super.subscribe(Topic.INBOX.getTopic()+"/#", 2);
+		super.subscribe(Topic.DIDCONTROLITEM.getTopic()+"/#", 2);
+		super.subscribe(Topic.DIDCONTROLTHING.getTopic()+"/#", 2);
 		super.subscribe(Topic.DIDSYNCHRONIZE.getTopic()+"/#", 2);
 	}
 	

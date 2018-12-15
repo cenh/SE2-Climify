@@ -3,6 +3,7 @@ package org.Climify.influxDB;
 import org.MqttLib.openhab.Link;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.Point;
+import org.influxdb.dto.Query;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,7 +33,15 @@ public class InfluxCommunicator {
 		Point point = Point.measurement(measurement.name)
 				.time(fdate(measurement.time), TimeUnit.MILLISECONDS)
 				.addField(measurement.category, measurement.value).build();
-		influxDB.write("scadb", "defaultPolicy", point);
+		influxDB.write(influxName, "defaultPolicy", point);
+	}
+
+	public void removeSensor(String sensorID) {
+		executeQuery(InfluxQuery.removeSensor(sensorID, influxName));
+	}
+
+	private void executeQuery(Query query) {
+		influxDB.query(query);
 	}
 
 	public void connect() {
@@ -139,7 +148,7 @@ public class InfluxCommunicator {
 		influxDB.flush();
 	}
 
-	//Taken from the Msc. Project 
+	//Taken from the Msc. Project
 	private Long fdate(String time)
 	{
 		SimpleDateFormat format = new SimpleDateFormat(

@@ -6,8 +6,17 @@ public enum Topic {
 	SENSORDATA("sensorData"),
 	COMMAND("commandse2"),
 	SENSORUPDATE("sensorUpdate"),
-	SYNCHRONIZE("sync"),
-	DIDSYNCHRONIZE("didSync");
+	CONTROLTHING("deviceControl/Thing"),
+	CONTROLITEM("deviceControl/Item"),
+	INBOX("inbox"),
+	DEVICEDISCOVERY("deviceDiscovery"),
+
+	//Confirmation topics
+	DIDCONTROLTHING("didDeviceControl/Thing"),
+	DIDCONTROLITEM("didDeviceControl/Item"),
+
+    SYNCHRONIZE("sync"),
+    DIDSYNCHRONIZE("didSync");
 	
 	private final String topic;
 	
