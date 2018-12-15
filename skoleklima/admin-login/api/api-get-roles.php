@@ -1,6 +1,7 @@
 <?php
-
-
+/*
+ *	Author: Christian Hansen & Kacper Zyla
+ */
 require_once "../admin-meta.php";
 require_once "../session.php";
 

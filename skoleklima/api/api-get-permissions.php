@@ -1,5 +1,7 @@
 <?php
-
+/*
+ *	Author: Christian Hansen & Kacper Zyla
+ */
 //************************************************
 //	Get users from school
 //************************************************
@@ -18,7 +20,7 @@
 	if( $apiPassword !== $phase_api_key){
 	  	echo '{"status":"error"}';
 		exit;
-	} 
+	}
 
 	$servername = DB_HOST;
 	$username = DB_USER;
@@ -39,13 +41,13 @@
 	        }
 
 	//fetch table rows from mysql db
-    $sql = "SELECT PermID, PermName, PermDescription, RoleID FROM Permission NATURAL JOIN RolePermission WHERE InstID = 1 ORDER BY PermID"; 
+    $sql = "SELECT PermID, PermName, PermDescription, RoleID FROM Permission NATURAL JOIN RolePermission WHERE InstID = 1 ORDER BY PermID";
 
     $result = mysqli_query($conn, $sql) or die("Error in Selecting " . mysqli_error($conn));
-        
+
     $emparray = array();
     while($row = mysqli_fetch_assoc($result))
-    {	
+    {
 		//echo 'just user id '. $row["UserID"];
     	$temparray = [];
 		array_push($temparray[PermID] =  $row["PermID"]);

@@ -1,4 +1,7 @@
 <!-- Navigation -->
+<!--
+ Author: Christian Hansen
+-->
 <div class="element" id="side-navigation">
 	<?php
 		if(	$currentUserRole == 1 ) {

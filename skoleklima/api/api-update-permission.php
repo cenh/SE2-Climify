@@ -1,9 +1,10 @@
 <?php
-
+/*
+ *	Author: Christian Hansen & Kacper Zyla
+ */
 //************************************************
-//	Update other user 
+//	Update other user
 //************************************************
-
 	require_once "../meta.php";
 
 	if( $currentUserID == ""){
@@ -18,22 +19,22 @@
 	if( $apiPassword !== $phase_api_key){
 	  	echo '{"status":"error"}';
 		exit;
-	} 
+	}
 
 	$servername = DB_HOST;
 	$username = DB_USER;
 	$password = DB_PASSWORD;
 	$databasename = DB_NAME;
 
-	$phasePermID = $_GET['permID']; 
+	$phasePermID = $_GET['permID'];
 
-	$phasePermRole2 = clean($_GET['permRole2']); 
+	$phasePermRole2 = clean($_GET['permRole2']);
 	$phasePermRole3 = clean($_GET['permRole3']);
-	$phasePermRole4 = clean($_GET['permRole4']); 
-	$phaseSchool = clean($_GET['user-school']); 
+	$phasePermRole4 = clean($_GET['permRole4']);
+	$phaseSchool = clean($_GET['user-school']);
 	//echo '{"status": "ok"}';
 
-	
+
 	if(!$phasePermID) {
 	  	echo '{"status":"error"}';
 		exit;
@@ -44,7 +45,7 @@
 	    exit;
 	}
 
-	
+
 	if(  strlen($phasePermRole2) == "" ){
 	    echo '{"status":"error"}';
 	    exit;
@@ -60,8 +61,8 @@
 	    exit;
 	}
 
-	
-	
+
+
 	$conn = new mysqli($servername, $username, $password, $databasename);
 	        if ($conn->connect_error) {
 	            die("Connection error: " . $conn->connect_error);
@@ -75,50 +76,50 @@
 	$one = 1;
 	$two = 2;
 	$three = 3;
-	$four = 4;	
+	$four = 4;
 
 	if ($stmt = $conn->prepare("INSERT INTO RolePermission VALUES (?,?,?)")) {
-		
+
 		$stmt->bind_param("iii",$one,$phasePermID,$phaseSchool);
-		
+
 		$stmt->execute();
 
 		$stmt->close();
-			
+
 		$ok = 1;
-	
+
 	}else{
 		$ok = 0;
 		echo '{"status":"error"}';
 	}
 	if($phasePermRole2 == "true"){
 		if ($stmt = $conn->prepare("INSERT INTO RolePermission VALUES (?,?,?)")) {
-		
+
 			$stmt->bind_param("iii",$two,$phasePermID,$phaseSchool);
-			
+
 			$stmt->execute();
-	
+
 			$stmt->close();
-				
+
 			$ok = 1;
-		
+
 		}else{
 			$ok = 0;
 			echo '{"status":"error"}';
 		}
 	}
-	
+
 	if($phasePermRole3 == "true"){
 		if ($stmt = $conn->prepare("INSERT INTO RolePermission VALUES (?,?,?)")) {
-			
+
 			$stmt->bind_param("iii",$three,$phasePermID,$phaseSchool);
-			
+
 			$stmt->execute();
 
 			$stmt->close();
-				
+
 			$ok = 1;
-		
+
 		}else{
 			$ok = 0;
 			echo '{"status":"error"}';
@@ -127,15 +128,15 @@
 
 	if($phasePermRole4 == "true"){
 		if ($stmt = $conn->prepare("INSERT INTO RolePermission VALUES (?,?,?)")) {
-			
+
 			$stmt->bind_param("iii",$four,$phasePermID,$phaseSchool);
-			
+
 			$stmt->execute();
 
 			$stmt->close();
-				
+
 			$ok = 1;
-		
+
 		}else{
 			$ok = 0;
 			echo '{"status":"error"}';
@@ -144,84 +145,15 @@
 
 
 
-	if($ok == 1){	
+	if($ok == 1){
 		echo '{"status":"ok"}';
 	}else{
 		echo '{"status":"error"}';
 	}
-			
+
 
 
 $conn->close();
-	
+
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

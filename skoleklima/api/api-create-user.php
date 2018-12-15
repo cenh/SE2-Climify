@@ -1,7 +1,9 @@
 <?php
-
+/*
+ *	Author: Christian Hansen & Kacper Zyla
+ */
 //************************************************
-//	Create user 
+//	Create user
 //************************************************
 
 require_once "../meta.php";
@@ -16,12 +18,12 @@ $rand_pass_num = array("A","B","C","D","E","F","G","H","I","J");
 $rand_pass_sym = array("!","@");
 $pass = bin2hex(openssl_random_pseudo_bytes(3)).$rand_pass_sym[array_rand($rand_pass_sym)].$rand_pass_num[array_rand($rand_pass_num)];
 
-//$phaseCurrentUserName = $_GET['currentUserName']; 
+//$phaseCurrentUserName = $_GET['currentUserName'];
 $CurrentUserRole;
 
-$phaseUserName = clean(strtolower($_GET['userName'])); 
-$phasePassword = $pass; 
-$phaseFirstName = clean($_GET['firstName']); 
+$phaseUserName = clean(strtolower($_GET['userName']));
+$phasePassword = $pass;
+$phaseFirstName = clean($_GET['firstName']);
 $phaseLastName = clean($_GET['lastName']);
 $phaseEmail = clean(strtolower($_GET['email']));
 $phaseRole = clean($_GET['role']);
@@ -41,7 +43,7 @@ $phase_api_key = clean($_GET['fAY2YfpdKvR']);
 if( $apiPassword !== $phase_api_key){
     echo '{"status":"error"}';
     exit;
-} 
+}
 
 
 if ($currentUserRole!=1){
@@ -54,7 +56,7 @@ if ($currentUserRole!=1){
 
 else{
 
-    $sql = "SELECT MunID FROM Institution WHERE InstID = '$phaseSchool' ";  
+    $sql = "SELECT MunID FROM Institution WHERE InstID = '$phaseSchool' ";
 
     $result = $conn->query($sql);
     if(!$result) {
@@ -63,7 +65,7 @@ else{
 
 
 
-    if ($result->num_rows==1){	
+    if ($result->num_rows==1){
         $row = $result->fetch_assoc();
         $MunIDForSchool = $row["MunID"];
     }
@@ -107,7 +109,7 @@ if ( $phaseEmail !== "") {
     if( !preg_match('/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/', $phaseEmail) ) {
         echo '{"status":"error"}';
         exit;
-    } 
+    }
 }
 
 
@@ -147,18 +149,18 @@ if ($conn->connect_error) {
 
 
 
-$sql = " SELECT * FROM Person WHERE UserName = '$phaseUserName' ";  
+$sql = " SELECT * FROM Person WHERE UserName = '$phaseUserName' ";
 
 $result = $conn->query($sql);
 if(!$result) {
     die("Error: " . $conn->error);
 }
 
-if ($result->num_rows==1){	
+if ($result->num_rows==1){
     echo '{"status":"error", "message": "userOccupied" }';
     $conn->close();
     exit;
-} 
+}
 
 $encryptedPass = encrypt($phasePassword, ENCRYPTION_KEY);
 
@@ -191,7 +193,7 @@ if ($stmt = $conn->prepare("INSERT INTO Person VALUES (?,?,?,?,?,?,?,?,?)")) {
 if($ok == 1){
     if ($stmt = $conn->prepare("INSERT INTO InstUser VALUES (?,?)")) {
 
-        $sql1 = "SELECT UserID FROM Person WHERE UserName = '$phaseUserName'"; 
+        $sql1 = "SELECT UserID FROM Person WHERE UserName = '$phaseUserName'";
         $result1 = mysqli_query($conn, $sql1);
         $person = mysqli_fetch_assoc($result1);
 
@@ -213,7 +215,7 @@ if($ok == 1){
 
         echo '{"status":"error"}';
     }
-}	
+}
 
 
 
@@ -222,4 +224,3 @@ if($ok == 1){
 $conn->close();
 
 ?>
-

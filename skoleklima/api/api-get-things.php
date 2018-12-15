@@ -1,4 +1,7 @@
 <?php
+/*
+ *	Author: Christian Hansen & Kacper Zyla
+ */
 require_once "../meta.php";
 
 $servername = DB_HOST;

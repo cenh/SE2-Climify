@@ -1,4 +1,7 @@
 <!-- Dashboard -->
+<!--
+ Author: Christian Hansen
+-->
 <div class="view view-dashboard">
 	<?php
 	require_once "view-control-map.php";

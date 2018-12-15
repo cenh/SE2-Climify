@@ -1,5 +1,7 @@
 <?php
-
+/*
+ *	Author: Christian Hansen & Kacper Zyla
+ */
 // ** Conpany meta info ** //
 $software_Name = "Climate monitoring";
 $company_Name = "DTU Compute";
