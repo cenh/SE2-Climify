@@ -7,7 +7,7 @@ $password = DB_PASSWORD;
 $databasename = DB_NAME;
 $SensorName = $_GET['SensorName'];
 
-$roomID = clean($_POST[roomID]);
+$LocationID = $_GET['LocationID'];
 
 
 $conn = new mysqli($servername, $username, $password, $databasename);
@@ -21,7 +21,7 @@ INNER JOIN Things as t
 INNER JOIN Channels
 INNER JOIN ThingsChannels as tc
 INNER JOIN Links as links
-WHERE rp.LocationID = $roomID
+WHERE rp.LocationID = $LocationID
 AND t.RaspberryPiUID = rp.UID
 AND tc.ThingUID = t.UID
 AND links.ChannelUID = tc.ChannelUID
