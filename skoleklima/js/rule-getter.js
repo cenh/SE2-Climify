@@ -75,6 +75,10 @@ var rulelocationChosen = function() {
     return $("#sel_location").val();
 };
 
+var getType = function() {
+  return $('#sensorSelect').val();
+};
+
 var getrules = function(){
     $.get('api/api-get-rules.php', {LocationID: rulelocationChosen()})
         .done(function(res) {
@@ -159,7 +163,7 @@ $("#modalRule").on("click",function () {
 $("#sensorSelect").change(function () {
     var sensorID = $('#sensorSelect').val();
     console.log(sensorID);
-    $.get('api/api-get-sensor-type.php', {SensorName: "readCO2"})
+    $.get('api/api-get-sensor-type.php', {SensorName: getType()})
       .done(function (res) {
         results = JSON.parse(res);
         var type = results[0].Category;
