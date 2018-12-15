@@ -5,7 +5,7 @@ $servername = DB_HOST;
 $username = DB_USER;
 $password = DB_PASSWORD;
 $databasename = DB_NAME;
-$sensorName = $_GET['SensorName'];
+$SensorName = $_GET['SensorName'];
 
 $roomID = clean($_POST[roomID]);
 
@@ -26,7 +26,7 @@ AND t.RaspberryPiUID = rp.UID
 AND tc.ThingUID = t.UID
 AND links.ChannelUID = tc.ChannelUID
 AND Channels.UID = links.ChannelUID
-AND items.Name = links.ItemName AND Name = $sensorName";
+AND items.Name = links.ItemName AND Name = $SensorName";
 
 $stmt = $conn->prepare($query);
 
