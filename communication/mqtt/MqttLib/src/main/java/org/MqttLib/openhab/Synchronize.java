@@ -7,7 +7,7 @@ import com.dslplatform.json.CompiledJson;
 public class Synchronize {
 	public String timeOfLastMeasurement;
 
-	public Synchronize(String time){
-		this.timeOfLastMeasurement = time;
+	public Synchronize(String timeOfLastMeasurement){
+		this.timeOfLastMeasurement = timeOfLastMeasurement;
 	}
 }
