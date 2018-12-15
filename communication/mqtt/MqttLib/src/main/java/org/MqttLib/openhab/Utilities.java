@@ -31,9 +31,17 @@ public class Utilities {
 	public static String createJSON(Map<String, String> strings) {
 		String json = "{";
 		Set<String> keys = strings.keySet();
+		
+		int i = 0;
 		for (String key: keys) {
 			json = json + '"' + key + "\":\"" + strings.get(key) + '"';
+			
+			if (++i < keys.size()) {
+				json = json + ',';
+			}
 		}
+		
+		json = json + '}';
 		
 		return json;
 	}

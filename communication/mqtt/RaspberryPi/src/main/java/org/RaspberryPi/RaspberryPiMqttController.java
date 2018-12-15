@@ -48,7 +48,6 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 		try {
 			sendDeviceUpdate();
 			influx.connect();
-			influx.getMeasurementsSince("2018-14-10T13:21:22.851Z");
 		} catch (MqttPersistenceException e) {
 			e.printStackTrace();
 		} catch (MqttException e) {
@@ -76,37 +75,6 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	/**
-	 * When requesting e.g. all items from openHAB using rest/items the returned JSON will be on the format [{object}, {object}]
-	 * dsl-json does not like this format, as it is basically an array of objects and not typical JSON-structure.
-	 * dsl-json only supports arrays where you know the exact amount of properties that will be in the array which obviously is not good enough here.
-	 * 
-	 * This function is used as a work-around where the array [{},{}] is transformed to: {"objectName":[{}, {}]} which can then be parsed using dsl-json.
-	 * @param json
-	 * @param objectName
-	 * @return The modified json in the format {"objectName":json}
-	 */
-	private String modifyJSON(String json, String objectName) {
-		StringBuilder jsonBuilder = new StringBuilder(json);
-		jsonBuilder.insert(0, "{\"" + objectName + "\":");
-		jsonBuilder.append('}');
-		System.out.println(jsonBuilder);
-		return jsonBuilder.toString();
-	}
-	
-	private String createJSONArray(String ... jsons) {
-		String jsonArray = "[";
-		for(int i = 0; i < jsons.length; i++) {
-			jsonArray += jsons[i];
-			if (i+1 < jsons.length) {
-				jsonArray += ",";
-			}
-		}
-		jsonArray += "]";
-		
-		return jsonArray;
 	}
 
 	@Override

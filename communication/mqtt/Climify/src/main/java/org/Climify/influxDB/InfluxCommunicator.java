@@ -1,6 +1,5 @@
 package org.Climify.influxDB;
 
-import org.MqttLib.openhab.Link;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.Point;
 import org.influxdb.dto.Query;
@@ -8,15 +7,12 @@ import org.influxdb.dto.Query;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import org.MqttLib.openhab.SensorMeasurement;
 import org.influxdb.InfluxDB;
 import org.influxdb.dto.QueryResult;
-
-import javax.management.QueryEval;
 
 /**
  * Responsible for communicating with the Influx Database on the VM
@@ -73,7 +69,6 @@ public class InfluxCommunicator {
 
 			QueryResult measurement = influxDB.query(InfluxQuery.getRecentTime(influxName, sensor));
 			String time = "";
-			String s = "";
 			try {
 				time = (String)measurement.getResults().get(0).getSeries().get(0).getValues().get(0).get(0);
 
