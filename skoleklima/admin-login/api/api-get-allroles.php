@@ -17,11 +17,6 @@ if( $phaseSessionToken != $adminSessionToken ){
     exit;
 }
 
-$phaseStatus=clean($_POST["status"]); //Blocked
-$phaseSearch=clean($_POST["search"]);
-
-
-
 $servername = DB_HOST;
 $username = DB_USER;
 $password = DB_PASSWORD;
@@ -33,11 +28,8 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-//$query = "SELECT RoleName, PermDescription FROM Role r JOIN RolePermission rp ON r.RoleID = rp.RoleID
-//        JOIN Permission p ON p.PermID = rp.PermID";
 $query = "SELECT * FROM Role";
-//RolePermission;
-//Permission;
+
 
 $stmt = $conn->prepare($query);
 
@@ -48,7 +40,11 @@ $result = $stmt->get_result();
 $emparray = array();
 while($row = mysqli_fetch_assoc($result))
 {
-    $emparray[] = $row;
+    $temparray = [];
+    array_push($temparray[RoleID] = $row["RoleID"]);
+    array_push($temparray[RoleName] = $row["RoleName"]);
+    array_push($temparray[isProtected] = $row["protected"]);
+    array_push($emparray, $temparray);
 }
 
 $messages = json_encode( $emparray , JSON_UNESCAPED_UNICODE );

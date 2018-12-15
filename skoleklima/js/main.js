@@ -7,10 +7,6 @@ siteOnline = false;
 //Source for municipality API - https://dawa.aws.dk/dok/api/kommune#s%C3%B8gning
 
 $(document).ready(function () {
-    //TODO:
-    //loadRoomDetails();
-    loadRoomDetails();
-
 
     $("#search").on("input", function (e) {
         var val = $(this).val();

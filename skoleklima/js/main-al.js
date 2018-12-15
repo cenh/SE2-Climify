@@ -335,21 +335,20 @@ if (currentUserRole == "1") {
     }, function (sData) {
         var jData = JSON.parse(sData);
         if (jData.status == "ok") {
-            var temp = '<div class="company-info-wrapper-left">\
-    		<h4>Contact information</h4>\
-    		<p>' + jData.firstName + ' ' + jData.lastName + '</p>\
-    		<p>' + jData.email + '</p>\
-    		<p>' + jData.phone1 + '</p>\
-    		<p>' + jData.phone2 + '</p>\
-    		</div >\
-    		<div class="company-info-wrapper-right">\
-    		<h4>Address</h4>\
-    		<p>' + jData.company + '</p>\
-    		<p>' + jData.address1 + '</p>\
-    		<p>' + jData.address2 + '</p>\
-    		<p>' + jData.zip + ' ' + jData.city + '</p>\
-    		</div>\
-    		';
+            var temp = '<div class="company-info-wrapper-left">' +
+            '<h4>Contact information</h4>' +
+    		'<p>' + jData.firstName + ' ' + jData.lastName + '</p>' +
+    		'<p>' + jData.email + '</p>' +
+    		'<p>' + jData.phone1 + '</p>' +
+    		'<p>' + jData.phone2 + '</p>' +
+    		'</div >' +
+    		'<div class="company-info-wrapper-right">' +
+    		'<h4>Address</h4>' +
+    		'<p>' + jData.company + '</p>' +
+    		'<p>' + jData.address1 + '</p>' +
+    		'<p>' + jData.address2 + '</p>' +
+    		'<p>' + jData.zip + ' ' + jData.city + '</p>' +
+    		'</div>';
             $(".company-contant-info-wrapper").append(temp);
         }
     });

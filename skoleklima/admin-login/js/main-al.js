@@ -5,7 +5,7 @@ var reE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-
 MunIDs = [];
 phoneNumbers = [];
 phoneIDs = []; //ID is to check which number is the primary number and which is the secondary...
-streets = []; 
+streets = [];
 streetIDs = [];
 
 // Show company meta
@@ -57,7 +57,7 @@ $(document).on("click", ".ico-hide-meta", function () {
 
     if ($(this).parent().parent().attr("id")=="outerDiv"){
         $(this).parent().css("border","1px solid #000000");
- 
+
         $(".DTUManager-list").css("width","500px");
     }
 
@@ -135,11 +135,13 @@ $(document).on("change", ".inp-system", function(){
 // Create company user button
 $(document).on("click", ".btn-create-user-company", function () {
     var companyID = $(this).parent().parent().parent().parent().parent().attr("data-company-id");
-
-    var username = $(this).parent().find(".inp-system-create-user-username").val();
+    var username = $('#NewUsername').val();
     var firstName = $(this).parent().find(".inp-system-create-user-firstname").val();
     var lastName = $(this).parent().find(".inp-system-create-user-lastname").val();
     var email = $(this).parent().find(".inp-system-create-user-email").val();
+    var role = $(this).parent().find("#roleSelect").val();
+    console.log(username);
+    console.log(role);
     if (username.length < 4 || username.length > 8) {
         $(this).parent().find(".inp-system-create-user-username").addClass("wrong-input");
         setTimeout(() => {
@@ -147,7 +149,6 @@ $(document).on("click", ".btn-create-user-company", function () {
         }, 2000);
     } else {
         var thisInput = $(this).parent().find(".inp-system-create-user");
-        var role; // assign role here
         requestCreateUser(thisInput, companyID, username, firstName, lastName, email, role);
     }
 });
@@ -171,7 +172,7 @@ $(document).on("click", "#btn-create-manager", function () {
             text: 'Username should be between 4 and 8 characters',
             type: 'error'
         });
-    } 
+    }
 
     else{
 
@@ -317,21 +318,26 @@ function updateCompanyList(search) {
 <div class="user-meta-subusers">\
 <h4>Associated Project Managers</h4>\
 <div class="create-subuser-wrapper">\
+<button class="btn-create-user-company" data-toggle="modal" id="isValidForm" data-target="#roleDropdown">Select Role</button>\
 <p>New users will automatically be assigned to the administrator role</p>\
 <span>\
-<input type="text" class="inp-system-create-user inp-system-create-user-username" placeholder="Username (4-8 character)">\
-<input type="text" class="inp-system-create-user inp-system-create-user-firstname" placeholder="First Name">\
-<input type="text" class="inp-system-create-user inp-system-create-user-lastname" placeholder="Last Name">\
-<input type="email" class="inp-system-create-user inp-system-create-user-email" placeholder="E-mail">\
-<button class="btn-create-user-company" data-toggle="modal" data-target="#roleDropdown">Select Role</button>\
+<input id="NewUsername" type="text" class="inp-system-create-user inp-system-create-user-username" placeholder="Username (4-8 character)">\
+<input id="NewFName" type="text" class="inp-system-create-user inp-system-create-user-firstname" placeholder="First Name">\
+<input id="NewLName" type="text" class="inp-system-create-user inp-system-create-user-lastname" placeholder="Last Name">\
+<input id="NewEmail" type="email" class="inp-system-create-user inp-system-create-user-email" placeholder="E-mail">\
+<select id="roleSelect">\
+<option value="" disabled selected>Select role</option>\
+</select>\
 </span>\
-</div>\
 <div class="user-meta-subusers-userlist">\
 </div>\
 </div>\
 </div>\
-</div >\
+</div>\
 ';
+
+
+
 
     /*
 var manTemp =  '<div class="user-meta-man">\
@@ -403,7 +409,7 @@ var manTemp =  '<div class="user-meta-man">\
                     streetIDs.push(jData[i].AddressID);
                 }
 
-          
+
 
 
                 if (!phoneNumbers.includes(jData[i].PhoneNumber)) {
@@ -430,7 +436,7 @@ var manTemp =  '<div class="user-meta-man">\
 
 
                 if (!streets.includes(jData[i].Street)){
-                
+
                     var toGetIndexOf = $(".inp-system-contact-address1").val();
                     var index = streets.indexOf(toGetIndexOf);
                     var currentPrimeID = streetIDs[index];
@@ -463,10 +469,10 @@ var manTemp =  '<div class="user-meta-man">\
 
 
                     //Handling if phone2 and address2 were not present
-               
-                    
+
+
                     if (replaceTemp.includes("{{street2}}")){
-           
+
                         // break the textblock into an array of lines
                         replaceTemp = replaceTemp.split('\n');
                         // remove one line, starting at the first position
@@ -474,11 +480,11 @@ var manTemp =  '<div class="user-meta-man">\
                         // join the array back into a single string
                         replaceTemp = replaceTemp.join('\n')
 
-                  
+
                     }
 
                     if (replaceTemp.includes("{{phone2}}")){
-                    
+
                          // break the textblock into an array of lines
                         replaceTemp = replaceTemp.split('\n');
                         // remove one line, starting at the first position
@@ -511,7 +517,7 @@ var manTemp =  '<div class="user-meta-man">\
 
     });
 
- 
+
 
 
 
@@ -525,6 +531,21 @@ var manTemp =  '<div class="user-meta-man">\
     $("#outerDiv").load("ink/managers.php");
 
 
+    // Get roles for dropdown
+
+    $.post('api/api-get-allroles.php',{
+        sessionToken: sessionToken
+        }, function (data) {
+        var jData = JSON.parse(data);
+        console.log(jData)
+        if (jData.length > 0) {
+            for (i = 0; i < jData.length; i++){
+                $("#roleSelect").append("<option value="+jData[i].roleID+">"+jData[i].RoleName+"</option>");
+
+            }
+        }
+    });
+
 }
 
 // Update company
@@ -534,7 +555,7 @@ $(document).on("click", ".btn-save-sel-company", function () {
     if (!selCompany.hasClass("button-disabled")) {
         selCompany.addClass(("button-disabled"));
         requestUpdateCompany(selCompany);
-    } 
+    }
 });
 
 function requestUpdateCompany(selCompany) {
@@ -552,7 +573,7 @@ function requestUpdateCompany(selCompany) {
 
     if (!thisCompanyContantFirstName) {
         selCompany.parent().parent().parent().find(".inp-system-contact-firstname").addClass("wrong-input");
-    } 
+    }
     if (!thisCompanyContantLastName) {
         selCompany.parent().parent().parent().find(".inp-system-contact-lastname").addClass("wrong-input");
     }
@@ -561,16 +582,16 @@ function requestUpdateCompany(selCompany) {
     }
     if (!thisCompanyContantPhone1) {
         selCompany.parent().parent().parent().find(".inp-system-contact-phone1").addClass("wrong-input");
-    } 
+    }
     if (!thisCompanyContantAddress1) {
         selCompany.parent().parent().parent().find(".inp-system-contact-address1").addClass("wrong-input");
-    } 
+    }
     if (!thisCompanyContantZipcode) {
         selCompany.parent().parent().parent().find(".inp-system-contact-zipcode").addClass("wrong-input");
-    } 
+    }
     if (!thisCompanyContantCity) {
         selCompany.parent().parent().parent().find(".inp-system-contact-city").addClass("wrong-input");
-    } 
+    }
 
     var sUrl = "api/api-update-companyes.php";
     $.post(sUrl, {
@@ -627,7 +648,7 @@ function requestCompanyUserList(companyID){
         var jData = JSON.parse(data);
         if (jData.length > 0) {
             for (var i = 0; i < jData.length; i++) {
-        
+
                 var replaceTemp = temp;
 
 
@@ -739,6 +760,9 @@ function requestCompanyDTUManager(){
 
 
 
+
+
+
 // Create company user
 
 function requestCreateUser(thisInput, companyID, username, firstName, lastName, email, role) {
@@ -768,6 +792,7 @@ function requestCreateUser(thisInput, companyID, username, firstName, lastName, 
         role: role,
     }, function (data) {
         var jData = JSON.parse(data);
+        console.log(jData);
         if (jData.status == "ok") {
             var pass = jData.pass;
             var replaceTemp = temp;
@@ -799,6 +824,11 @@ function requestCreateUser(thisInput, companyID, username, firstName, lastName, 
         }
     });
 };
+
+
+// Enable submit button
+
+
 
 // Delete company
 
@@ -902,7 +932,7 @@ $(document).on("change", ".inp-system-user-status-select", function(){
         else if (jData.status=="blocked"){
             swal("", "Project manager is now blocked", "success");
             $("#"+thisID).css("color","red");
-        } 
+        }
 
         else{
             swal({
@@ -952,7 +982,7 @@ function requestResetUserPass(id) {
                     text: "Password has now been changed to  <strong>" + jData.pass + "</strong><br><br>When you click OK for this info box, the password will no longer be visible.",
                     type: "success",
                     html: true
-                }); 
+                });
             }, 1000);
         } else {
             swal({
@@ -963,3 +993,17 @@ function requestResetUserPass(id) {
         }
     });
 }
+// Button disable or enable depending on input
+$(document).on("change", "#NewUsername, #NewFName, #NewLName, #NewEmail, #roleSelect", function () {
+
+    if($('#NewUsername').val() != "" && $('#NewFName').val() != "" && $('#NewLName').val() != "" && $('#NewEmail').val() != "" && $('#roleSelect').val!= ""){
+        document.getElementById("isValidForm").disabled = false;
+        console.log("False");
+
+    }
+    else {
+        document.getElementById("isValidForm").disabled = true;
+        console.log("true");
+
+    }
+});

@@ -31,6 +31,7 @@
         <select id="select_room" onchange="refreshTableSensorsAndActuators(value)">
             <option value="" disabled selected>Choose Your Room</option>
         </select>
+        <button onclick="refreshTableSensorsAndActuatorsWithButton()">Refresh</button>
     </div>
 
     <div style="overflow: auto">
@@ -42,7 +43,6 @@
                 <table id="table_id1" class="display" style="width: 100%">
                     <thead>
                     <tr>
-                        <th></th>
                         <th>Sensors</th>
                     </tr>
                     </thead>
@@ -57,7 +57,6 @@
                 <table id="table_id2" class="display" style="width: 100%">
                     <thead>
                     <tr>
-                        <th></th>
                         <th>Actuators</th>
                     </tr>
                     </thead>
@@ -70,12 +69,7 @@
 
         <style>
             td.details-control {
-                background: url('img/right.png') no-repeat center center;
                 cursor: pointer;
-            }
-
-            tr.shown td.details-control {
-                background: url('img/down.png') no-repeat center center;
             }
         </style>
 
