@@ -157,9 +157,13 @@ $("#modalRule").on("click",function () {
 });
 
 $("#sensorSelect").change(function () {
-
     var sensorID = $('#sensorSelect').val();
-    console.log(sensorID);
+    $.get('api/api-get-sensor-type.php', {SensorName: sensorID})
+      .done(function (res)) {
+        results = JSON.parse(res);
+        var type = results[0].Category;
+        console.log(sensorID);
+        console.log(type);
     if (sensorID === "readOutdoorTemperature" || sensorID === "readTemperature") {
         console.log("t");
         $('#unit').text('°C');
@@ -173,7 +177,7 @@ $("#sensorSelect").change(function () {
     else if (sensorID === "MainIndoorStation_Noise") {
         $('#unit').text('dB');
     }
-
+ }
 });
 
 $("#submitRule").on("click",function () {
@@ -223,6 +227,7 @@ $("#submitRule").on("click",function () {
 
 });
 $('#actuatorSelect').change(function () {
+
     if($('#actuatorSelect').val() === "ZWaveNode4LC13LivingConnectZThermostat_SetpointHeating"){
         $('#onActionSetTemp').show();
     }
