@@ -26,7 +26,7 @@ AND t.RaspberryPiUID = rp.UID
 AND tc.ThingUID = t.UID
 AND links.ChannelUID = tc.ChannelUID
 AND Channels.UID = links.ChannelUID
-AND items.Name = links.ItemName AND Name = "readCO2"";
+AND items.Name = links.ItemName AND Name = $SensorName";
 
 $stmt = $conn->prepare($query);
 
