@@ -319,5 +319,25 @@ public class MariaDBCommunicator {
 		return sensors;
 	}
 
+	/**
+	 *	Gets Sensor value category (e.g. Temperature, Humidity etc.)
+	 */
+
+	public String getSensorCategory(String sensor){
+
+		String sql = "SELECT Items.Category FROM Items WHERE Items.Name = ?";
+		String category = "";
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, sensor);
+			ResultSet result = ps.executeQuery();
+			category = result.getString(1);
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return category;
+
+	}
 
 }

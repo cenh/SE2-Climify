@@ -89,13 +89,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 				while (it.hasNext()) {
 					Map.Entry pair = (Map.Entry)it.next();
 
-					QueryResult QR = influx.getMeasurementFields((String)pair.getKey());
-
-					System.out.println("Fields for " + pair.getKey() + " are: " + QR);
-
-					List<List<Object>> fields = QR.getResults().get(0).getSeries().get(0).getValues();
-
-					String category = fields.get(0).get(0).toString();
+					String category = mariaDB.getSensorCategory((String)pair.getKey());
 
 					System.out.println("Saving Measurements for " + pair.getKey());
 
