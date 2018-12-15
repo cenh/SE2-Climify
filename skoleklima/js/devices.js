@@ -14,14 +14,8 @@ $(document).ready(function () {
         "info": false,
         "columns": [
             {
-                "className": 'details-control',
-                "orderable": false,
-                "data": null,
-                "defaultContent": '',
-            },
-            null
-        ],
-        "order": [[1, 'asc']]
+                "className": 'details-control'
+            }]
     });
 
     // Add event listener for opening and closing details
@@ -50,14 +44,8 @@ $(document).ready(function () {
         "info": false,
         "columns": [
             {
-                "className": 'details-control',
-                "orderable": false,
-                "data": null,
-                "defaultContent": '',
-            },
-            null
-        ],
-        "order": [[1, 'asc']]
+                "className": 'details-control'
+            }]
     });
 
     // Add event listener for opening and closing details
@@ -200,11 +188,11 @@ function refreshTableSensorsAndActuators(roomID) {
         actuator_data = [];
         for (var i = 0; i < jData.length; i++) {
             if (jData[i].ReadOnly === 1) {
-                table_sensors.row.add(['', jData[i].Name]).draw(false);
+                table_sensors.row.add([jData[i].Name]).draw(false);
                 sensors.push(jData[i]);
             }
             else {
-                table_actuators.row.add(['', jData[i].Name]).draw(false);
+                table_actuators.row.add([jData[i].Name]).draw(false);
                 actuators.push(jData[i]);
             }
         }
