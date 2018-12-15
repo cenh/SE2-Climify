@@ -26,7 +26,7 @@ AND t.RaspberryPiUID = rp.UID
 AND tc.ThingUID = t.UID
 AND links.ChannelUID = tc.ChannelUID
 AND Channels.UID = links.ChannelUID
-AND items.Name = links.ItemName AND Name = $SensorName";
+AND items.Name = links.ItemName AND Name =\"$SensorName\"";
 
 $stmt = $conn->prepare($query);
 
@@ -34,8 +34,13 @@ $stmt->execute();
 
 $result = $stmt->get_result();
 
+$emparray = array();
+while($row = mysqli_fetch_assoc($result))
+{
+    $emparray[] = $row;
+}
 
-$messages = json_encode( $result , JSON_UNESCAPED_UNICODE );
+$messages = json_encode( $emparray , JSON_UNESCAPED_UNICODE );
 echo $messages;
 
 $stmt->close();
