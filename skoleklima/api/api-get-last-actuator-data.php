@@ -1,7 +1,7 @@
-<!--@author ciok-->
-<!--get last measurements for a list of actuators from influx-->
-
 <?php
+//@author ciok
+//get last measurements for a list of actuators from influx
+
 $names = $_POST['actuators_names'];
 
 $results = array();

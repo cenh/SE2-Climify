@@ -1,7 +1,7 @@
-<!--@author ciok-->
-<!--get raspberry pi id for a room-->
-
 <?php
+//@author ciok
+//get raspberry pi id for a room
+
 require_once "../meta.php";
 
 $servername = DB_HOST;

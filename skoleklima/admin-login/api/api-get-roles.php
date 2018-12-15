@@ -1,8 +1,6 @@
-<!--@author ciok-->
-<!--get all roles-->
-
 <?php
-
+//@author ciok
+//get all roles
 
 require_once "../admin-meta.php";
 require_once "../session.php";
@@ -20,11 +18,6 @@ if( $phaseSessionToken != $adminSessionToken ){
     exit;
 }
 
-$phaseStatus=clean($_POST["status"]); //Blocked
-$phaseSearch=clean($_POST["search"]);
-
-
-
 $servername = DB_HOST;
 $username = DB_USER;
 $password = DB_PASSWORD;
@@ -36,11 +29,8 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-//$query = "SELECT RoleName, PermDescription FROM Role r JOIN RolePermission rp ON r.RoleID = rp.RoleID
-//        JOIN Permission p ON p.PermID = rp.PermID";
 $query = "SELECT * FROM Role";
-//RolePermission;
-//Permission;
+
 
 $stmt = $conn->prepare($query);
 

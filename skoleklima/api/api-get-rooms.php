@@ -1,7 +1,7 @@
-<!--@author ciok-->
-<!--get all rooms-->
-
 <?php
+//@author ciok
+//get all rooms
+
 require_once "../meta.php";
 
 $servername = DB_HOST;

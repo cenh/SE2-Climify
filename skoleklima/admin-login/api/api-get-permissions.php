@@ -1,8 +1,6 @@
-<!--@author ciok-->
-<!--get permission for a role-->
-
 <?php
-
+//@author ciok
+//get permission for a role
 
 require_once "../admin-meta.php";
 require_once "../session.php";

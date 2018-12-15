@@ -1,7 +1,7 @@
-<!--@author ciok-->
-<!--get pending things from inbox for a room-->
-
 <?php
+//@author ciok
+//get pending things from inbox for a room
+
 require_once "../meta.php";
 
 $servername = DB_HOST;

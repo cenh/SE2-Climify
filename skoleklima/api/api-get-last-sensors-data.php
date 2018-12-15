@@ -1,8 +1,7 @@
-<!--@author ciok-->
-<!--get last measurements for a list of sensors from inlux-->
-
-
 <?php
+//@author ciok
+//get last measurements for a list of sensors from inlux
+
 $names = $_POST['sensors_names'];
 
 $results = array();
