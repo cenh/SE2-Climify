@@ -124,7 +124,9 @@ public class ClimifyMessageHandler extends MessageHandler {
 
 						System.out.println("Saving Measurements for " + pair.getKey());
 
-
+						System.out.println("Sensor: " + (String) pair.getKey());
+						System.out.println("Category: " + category);
+						System.out.println("Values: " + (List<List<String>>) pair.getValue());
 
 						influx.saveBatchMeasurements((String) pair.getKey(), category, (List<List<String>>) pair.getValue());
 
