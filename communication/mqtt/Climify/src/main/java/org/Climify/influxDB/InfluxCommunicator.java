@@ -136,12 +136,12 @@ public class InfluxCommunicator {
 	 * Saves measurement into influxDB in batches
 	 */
 
-	public void saveBatchMeasurements(String sensor,String category, List<List<Object>> measurements){
+	public void saveBatchMeasurements(String sensor,String category, List<List<String>> measurements){
 
 		influxDB.enableBatch(measurements.size(), 100, TimeUnit.MILLISECONDS);
 		for(int i = 0; i < measurements.size(); i++){
-			String value = (String)measurements.get(i).get(1);
-			String time = (String)measurements.get(i).get(0);
+			String value = measurements.get(i).get(1);
+			String time = measurements.get(i).get(0);
 			SensorMeasurement sensorMeasurement = new SensorMeasurement(sensor, category, value, time);
 			saveMeasurement(sensorMeasurement);
 		}
