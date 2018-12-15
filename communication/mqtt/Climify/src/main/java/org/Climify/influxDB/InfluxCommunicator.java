@@ -81,7 +81,7 @@ public class InfluxCommunicator {
 		if(times.isEmpty()) return "";
 
 		String maxTime = Collections.max(times);
-		System.out.println("Max time :" + maxTime);
+		System.out.println("Max time: " + maxTime);
 
 		return maxTime;
 	}
@@ -102,7 +102,6 @@ public class InfluxCommunicator {
 				System.out.println("No measurements for RPi no " + i);
 			}
 			else{
-				System.out.println("Sensor: " + s);
 				System.out.println("Max time for RPI no: " + i + " is " + time + " for sensor " + s);
 			}
 			times.put(RPis.get(i),time);
