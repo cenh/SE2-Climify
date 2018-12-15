@@ -158,7 +158,7 @@ $("#modalRule").on("click",function () {
 
 $("#sensorSelect").change(function () {
     var sensorID = $('#sensorSelect').val();
-    $.get('api/api-get-sensor-type.php', {SensorName: sensorID})
+    $.get('api/api-get-sensor-type.php', {SensorName: "readCO2})
       .done(function (res) {
         results = JSON.parse(res);
         var type = results[0].Category;
