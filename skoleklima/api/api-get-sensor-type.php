@@ -28,6 +28,7 @@ AND links.ChannelUID = tc.ChannelUID
 AND Channels.UID = links.ChannelUID
 AND items.Name = links.ItemName AND Name =\"$SensorName\"";
 
+error_log($query, 0);
 $stmt = $conn->prepare($query);
 
 $stmt->execute();
