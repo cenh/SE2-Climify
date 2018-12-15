@@ -177,7 +177,7 @@ $("#sensorSelect").change(function () {
     else if (sensorID === "MainIndoorStation_Noise") {
         $('#unit').text('dB');
     }
- }
+ });
 });
 
 $("#submitRule").on("click",function () {
