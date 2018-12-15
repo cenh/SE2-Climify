@@ -168,26 +168,26 @@ $("#sensorSelect").change(function () {
         }
       }).done(function (res) {
         results = JSON.parse(res);
-        var type = results[0].Category;
+        var category= results[0].Category;
         console.log(sensorID);
         console.log(type);
 
 
-    if (type === "Temperature") {
+    if (category=== "Temperature") {
         console.log("t");
         $('#unit').text('°C');
     }
-    else if (type === "Battery" || type === "Humidity" ) {
+    else if (category=== "Battery" || category=== "Humidity" ) {
         $('#unit').text('%');
     }
-    else if (type === "CO2") {
+    else if (category=== "CO2") {
         $('#unit').text('PPM');
     }
-    else if (type === "Noise") {
+    else if (category=== "Noise") {
         $('#unit').text('dB');
     }
     else {
-      alert("Sensors of type " + type + " is not useable for rules");
+      alert("Sensors of category" + category+ " is not useable for rules");
     }
  });
 });
@@ -250,11 +250,11 @@ $('#actuatorSelect').change(function () {
         }
       }).done(function (res) {
         results = JSON.parse(res);
-        var type = results[0].Category;
+        var category= results[0].Category;
         console.log(actuatorID);
         console.log(type);
 
-    if($('#actuatorSelect').val() === "ZWaveNode4LC13LivingConnectZThermostat_SetpointHeating"){
+    if(category=== "Temperature"){
         $('#onActionSetTemp').show();
     }
     else {
