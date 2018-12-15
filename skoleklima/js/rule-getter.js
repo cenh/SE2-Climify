@@ -165,7 +165,7 @@ $("#sensorSelect").change(function () {
         url: "api/api-get-sensor-type.php",
         data: {
             SensorName: sensorID ,
-            LocationID: rulelocationChosen()
+            roomID: rulelocationChosen()
         }
       }).done(function (res) {
         results = JSON.parse(res);
