@@ -114,6 +114,7 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 					System.out.println("Did Approve Thing = " + approveThingResult);
 					
 					//Get the approved Thing in openHAB
+					Thread.sleep(5000);
 					byte[] thingJSONBytes = rest.getThing(controlThing.uid).getBytes("UTF-8");
 					Thing thing = dslJson.deserialize(Thing.class, thingJSONBytes, thingJSONBytes.length);
 					System.out.println("Found thing : " + thing.UID);
@@ -147,6 +148,8 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 			} catch (MqttPersistenceException e) {
 				e.printStackTrace();
 			} catch (MqttException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}

@@ -74,7 +74,9 @@ public class RestCommunicator {
             .build();
         
 		Response response = client.newCall(request).execute();
-		return response.body().string();
+		String responseMessage = response.body().string();
+		System.out.println(responseMessage);
+		return responseMessage;//response.body().string();
 	}
 	
 	public String getAllItems() throws IOException {
@@ -232,10 +234,12 @@ public class RestCommunicator {
 		
         Headers headers = Utilities.getHeaders(HeaderType.JSON);
 
+        RequestBody body = RequestBody.create(null, "");
+        
         Request request = new Request.Builder()
             .url(linkUrl)
             .headers(headers)
-            .put(null)
+            .put(body)
             .build();
 
         Response response = client.newCall(request).execute();
