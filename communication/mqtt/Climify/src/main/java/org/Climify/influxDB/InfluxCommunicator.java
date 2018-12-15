@@ -102,7 +102,7 @@ public class InfluxCommunicator {
 				System.out.println("No measurements for RPi no " + i);
 			}
 			else{
-
+				System.out.println("Sensor: " + s);
 				System.out.println("Max time for RPI no: " + i + " is " + time + " for sensor " + s);
 			}
 			times.put(RPis.get(i),time);
