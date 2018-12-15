@@ -480,6 +480,7 @@ public class MariaDBCommunicator {
 		String sql = "SELECT Items.Category FROM Items WHERE Items.Name = ?";
 		String category = "";
 		try {
+			System.out.println("Getting the Category for " + sensor);
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, sensor);
 			ResultSet result = ps.executeQuery();
