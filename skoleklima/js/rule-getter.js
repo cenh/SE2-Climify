@@ -234,7 +234,22 @@ $("#submitRule").on("click",function () {
 
 });
 $('#actuatorSelect').change(function () {
-    //actuator 
+    //actuator
+    var actuatorID = $('#actuatorSelect').val();
+    console.log(sensorID);
+    $.ajax({
+        type: "GET",
+        url: "api/api-get-actuator-type.php",
+        data: {
+            ActuatorName: actuatorID ,
+            LocationID: rulelocationChosen()
+        }
+      }).done(function (res) {
+        results = JSON.parse(res);
+        var type = results[0].Category;
+        console.log(actuatorID);
+        console.log(type);
+
     if($('#actuatorSelect').val() === "ZWaveNode4LC13LivingConnectZThermostat_SetpointHeating"){
         $('#onActionSetTemp').show();
     }
