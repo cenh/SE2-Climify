@@ -1,5 +1,12 @@
 var isEdit = false;
 var ruleID = -1;
+/**
+ * @author Ben, and others
+ */
+
+//************************************************
+//	Manage rules
+//************************************************
 
 function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID,actuator){
     var message = "if " +sensor+" is "+operator + " than " +value + " then set " + actuator + " to: " + action;

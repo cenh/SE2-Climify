@@ -1,4 +1,14 @@
 <?php
+
+/**
+ * @author Ben 
+ */
+
+//************************************************
+//	Get type for actuator
+//************************************************
+
+
 require_once "../meta.php";
 
 $servername = DB_HOST;
