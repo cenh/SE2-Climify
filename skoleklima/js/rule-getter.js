@@ -165,7 +165,6 @@ $("#modalRule").on("click",function () {
 
 $("#sensorSelect").change(function () {
     var sensorID = $('#sensorSelect').val();
-    console.log(sensorID);
     $.ajax({
         type: "GET",
         url: "api/api-get-sensor-type.php",
@@ -176,10 +175,6 @@ $("#sensorSelect").change(function () {
       }).done(function (res) {
         results = JSON.parse(res);
         var category= results[0].Category;
-        console.log(sensorID);
-        console.log(type);
-
-
     if (category=== "Temperature") {
         console.log("t");
         $('#unit').text('°C');
@@ -258,8 +253,6 @@ $('#actuatorSelect').change(function () {
       }).done(function (res) {
         results = JSON.parse(res);
         var category= results[0].Category;
-        console.log(actuatorID);
-        console.log(type);
 
     if(category=== "Temperature"){
         $('#onActionSetTemp').show();
