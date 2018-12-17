@@ -243,6 +243,7 @@ $("#submitRule").on("click",function () {
 $('#actuatorSelect').change(function () {
     //actuator
     var actuatorID = $('#actuatorSelect').val();
+    console.log(actuatorID);
     $.ajax({
         type: "GET",
         url: "api/api-get-actuator-type.php",
@@ -252,7 +253,8 @@ $('#actuatorSelect').change(function () {
         }
       }).done(function (res) {
         results = JSON.parse(res);
-        var category= results[0].Category;
+        console.log(results);
+        var category = results[0].Category;
 
     if(category=== "Temperature"){
         $('#onActionSetTemp').show();
