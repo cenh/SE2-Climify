@@ -1,5 +1,10 @@
 <?php
 
+/**
+* API called to save created role into the mariaDB
+* @author KacperZyla
+*/
+
 require_once "../admin-meta.php";
 
 if($currentUserID == ""){

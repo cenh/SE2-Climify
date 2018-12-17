@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * API called to update existing rule
+ * @author cenh and KacperZyla
+ */
+
+
 require_once "../meta.php";
 
 if($currentUserID == ""){
