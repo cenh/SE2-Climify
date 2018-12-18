@@ -1,5 +1,7 @@
-<?php 
-
+<?php
+/*
+ *	Author: Christian Hansen & KacperZyla
+ */
 //************************************************
 //	Get influx DB information
 //************************************************
@@ -39,9 +41,9 @@ if ($conn->connect_error) {
 }
 
 $stmt = $conn->prepare("SELECT * FROM icm_users_company WHERE companyID = ? ORDER BY companyID DESC LIMIT 1");
-        $stmt->bind_param("s", $phaseCompanyID); 
+        $stmt->bind_param("s", $phaseCompanyID);
 
-if (!$stmt->execute()) { 
+if (!$stmt->execute()) {
     echo '{"status":"error"}';
     $stmt->close();
     $conn->close();
@@ -70,7 +72,7 @@ $returnFromIfx = json_decode($returnFromIfx, true);
 if ($returnFromIfx[results][0][series][0][name] != "measurements") {
     echo '{"status":"error"}';
     exit;
-} 
+}
 
 echo '{"status":"ok","dbName":"'.$DBIfxName.'", "dbUser":"'.$DBIfxUser.'", "dbPass":"'.$DBIfxPass.'"}';
 

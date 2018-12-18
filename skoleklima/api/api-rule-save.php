@@ -2,10 +2,8 @@
 
 /**
  * API called to save enw rule in the mariaDB
- * @author cenh and KacperZyla
+ * @author Christian Hansen and KacperZyla
  */
-
-
 require_once "../meta.php";
 
 if($currentUserID == ""){

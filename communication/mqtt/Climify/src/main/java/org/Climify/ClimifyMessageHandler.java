@@ -22,7 +22,7 @@ import org.MqttLib.openhab.SensorMeasurement;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class ClimifyMessageHandler extends MessageHandler {
-	
+
 	private InfluxCommunicator influx;
 	private MariaDBCommunicator mariaDB;
 	private MessageCallback messageCallback;
@@ -34,7 +34,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 		this.mariaDB = mariaDB;
 		this.messageCallback = messageCallback;
 	}
-	
+
 	@Override
 	public void run() {
 		super.run();
@@ -153,7 +153,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 
 	/**
 	 *	For every new measurement fetches the corresponding rules from MariaDB and executes them if necessary
-	 * @author cenh and KacperZyla
+	 * @author Christian Hansen and KacperZyla
 	 */
 
 	private void executeRule(String SensorID, String SensorValue) throws java.io.IOException,

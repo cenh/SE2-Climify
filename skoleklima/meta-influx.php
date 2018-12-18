@@ -1,4 +1,7 @@
-<?php 
+<?php
+/*
+ *	Author: Christian Hansen
+ */
 //session_start();
 require 'vendor/autoload.php';
 // ** Conpany meta info ** //

@@ -350,7 +350,7 @@ public class MariaDBCommunicator {
 
 	/**
 	 * This function is responsible for fetching Rules from MariaDB for sensor specified by sensorID
-	 * @author cenh and KacperZyla
+	 * @author Christian Hansen and KacperZyla
 	 *
 	 **/
 

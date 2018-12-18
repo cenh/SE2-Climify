@@ -1,4 +1,7 @@
 <?php
+/*
+ *	Author: Christian Hansen & KacperZyla
+ */
 $body = $_POST["sensor"];
 switch ($body) {
     case "readOutdoorTemperature":

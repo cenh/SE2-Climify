@@ -1,5 +1,7 @@
 <?php
-
+/*
+ *	Author: Christian Hansen & KacperZyla
+ */
 require_once "../meta.php";
 
 if( $currentUserID == ""){

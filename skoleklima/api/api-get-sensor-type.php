@@ -1,15 +1,12 @@
 <?php
-/*
- *	Author: Christian Hansen & Kacper Zyla
- */
 require_once "../meta.php";
 
 $servername = DB_HOST;
 $username = DB_USER;
 $password = DB_PASSWORD;
 $databasename = DB_NAME;
-
-$roomID = clean($_POST[roomID]);
+$SensorName = $_GET['SensorName'];
+$LocationID = $_GET['LocationID'];
 
 
 $conn = new mysqli($servername, $username, $password, $databasename);
@@ -17,24 +14,20 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-//$query = "SELECT * FROM RaspberryPis JOIN Things WHERE LocationID = $roomID";
-
-//$query = "SELECT * FROM I";
-
-
-$query = "SELECT items.* FROM Items as items
+$query = "SELECT items.*, Channels.ItemType FROM Items as items
 INNER JOIN RaspberryPis as rp
 INNER JOIN Things as t
+INNER JOIN Channels
 INNER JOIN ThingsChannels as tc
 INNER JOIN Links as links
-WHERE rp.LocationID = $roomID
+WHERE rp.LocationID = $LocationID
 AND t.RaspberryPiUID = rp.UID
 AND tc.ThingUID = t.UID
 AND links.ChannelUID = tc.ChannelUID
-AND items.Name = links.ItemName";
+AND Channels.UID = links.ChannelUID
+AND items.Name = links.ItemName AND Name =\"$SensorName\"";
 
-
-
+error_log($query, 0);
 $stmt = $conn->prepare($query);
 
 $stmt->execute();
@@ -53,3 +46,5 @@ echo $messages;
 $stmt->close();
 
 $conn->close();
+
+?>

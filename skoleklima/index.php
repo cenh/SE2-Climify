@@ -1,4 +1,7 @@
     <?php
+    /*
+     *	Author: Christian Hansen
+     */
     require_once "meta.php";
     ?>
 
@@ -89,8 +92,6 @@
     <script type="text/javascript" src="lib/daterangepicker/daterangepicker.js"></script>
     <script type="text/javascript" src="lib/cropbox/cropbox-min.js"></script>
     <script src="js/main.js?v=<?php echo $system_version ?>"></script>
-    <script type="text/javascript" src="js/api-getter.js"></script>
-    <script type="text/javascript" src="js/rule-getter.js"></script>
     <script src="croppie/croppie.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCH3z0AYLLOwg0HhYvfXVWVVG1isTjyMUU&libraries=geometry"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
@@ -104,11 +105,13 @@
 
     <script type="text/javascript" src="js/devices.js"></script>
     <script type="text/javascript" src="js/manage-devices.js"></script>
+    <script type="text/javascript" src="js/mqtt-commands.js"></script>
+    <script type="text/javascript" src="js/rule-getter.js"></script>
 
 
-    <?php
-    if ($currentUserID) { ?>
 
+	<?php
+		if ( $currentUserID ) { ?>
         <script>
             [
                 'js/main-al.js?v=<?php echo $system_version ?>',
@@ -121,7 +124,6 @@
                 document.head.appendChild(script);
             });
         </script>
-
     <?php } else { ?>
         <script>
             ga('set', 'page', '/Login/');
@@ -129,5 +131,5 @@
         </script>
     <?php } ?>
 
-    </body>
-    </html>
+</body>
+</html>

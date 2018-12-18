@@ -1,11 +1,9 @@
 <?php
 
 /**
- * API called to execute an existing rule 
- * @author cenh and KacperZyla
+ * API called to execute an existing rule
+ * @author Christian Hansen and KacperZyla
  */
-
-
 require_once "../meta-influx.php";
 
 $sensor = $_POST['SensorID'];

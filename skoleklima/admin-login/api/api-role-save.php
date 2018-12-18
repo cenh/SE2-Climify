@@ -2,7 +2,7 @@
 
 /**
 * API called to save created role into the mariaDB
-* @author KacperZyla
+* @author KacperZyla & Christian Hansen
 */
 
 require_once "../admin-meta.php";

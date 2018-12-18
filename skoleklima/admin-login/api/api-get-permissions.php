@@ -1,11 +1,11 @@
 <?php
-/*
- *	Author: Christian Hansen & KacperZyla
- */
+
+
 require_once "../admin-meta.php";
 require_once "../session.php";
 
 $phaseSessionToken = clean($_POST[sessionToken]);
+$roleID = clean($_POST[roleID]);
 
 if (!$systemAccess) {
     echo '{"status":"systemAccess error"}';
@@ -17,9 +17,6 @@ if( $phaseSessionToken != $adminSessionToken ){
     echo '{"status":"phaseSessionToken error"}';
     exit;
 }
-
-$phaseStatus=clean($_POST["status"]); //Blocked
-$phaseSearch=clean($_POST["search"]);
 
 
 
@@ -36,9 +33,8 @@ if ($conn->connect_error) {
 
 //$query = "SELECT RoleName, PermDescription FROM Role r JOIN RolePermission rp ON r.RoleID = rp.RoleID
 //        JOIN Permission p ON p.PermID = rp.PermID";
-$query = "SELECT * FROM Role";
-//RolePermission;
-//Permission;
+$query = "SELECT Permission.PermID, Permission.PermDescription, RolePermission.RoleID FROM 
+Permission LEFT JOIN RolePermission ON RolePermission.PermID = Permission.PermID AND RolePermission.RoleID = $roleID";
 
 $stmt = $conn->prepare($query);
 

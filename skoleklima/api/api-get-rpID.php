@@ -1,7 +1,4 @@
 <?php
-/*
- *	Author: Christian Hansen & Kacper Zyla
- */
 require_once "../meta.php";
 
 $servername = DB_HOST;
@@ -17,8 +14,7 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM RaspberryPis INNER JOIN Things WHERE RaspberryPis.LocationID = $roomID AND RaspberryPis.UID = Things.RaspberryPiUID";
-
+$query = "SELECT RaspberryPis.UID FROM RaspberryPis WHERE RaspberryPis.LocationID = $roomID";
 
 $stmt = $conn->prepare($query);
 
@@ -27,11 +23,12 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 $emparray = array();
-while ($row = mysqli_fetch_assoc($result)) {
+while($row = mysqli_fetch_assoc($result))
+{
     $emparray[] = $row;
 }
 
-$messages = json_encode($emparray, JSON_UNESCAPED_UNICODE);
+$messages = json_encode( $emparray , JSON_UNESCAPED_UNICODE );
 echo $messages;
 
 $stmt->close();

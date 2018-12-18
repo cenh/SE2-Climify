@@ -17,6 +17,8 @@
   display: -webkit-flex;
   display: flex; }
 
+
+
 /*
     Flex direction
  */
@@ -111,6 +113,8 @@ header .header-content, .DTUManager-list .user-list-single-wrapper .user-list-si
   font-family: "Arimo", sans-serif;
   font-size: 16px; }
 
+
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   margin: 0; }
@@ -141,6 +145,7 @@ h6 {
 
 p {
   font-size: 1em;
+  margin-bottom: 0;
   font-family: "Arimo", sans-serif; }
 
 a:link, a:visited, a:hover, a:focus, a:active {
@@ -170,6 +175,16 @@ textarea {
 
 .viewport {
   width: 100vw; }
+
+
+.modal-footer button {
+  padding:0 ;
+}
+
+button.close:hover {
+  background-color:transparent;
+
+}
 
 button {
   border-radius: 2px !important;
@@ -204,6 +219,12 @@ button {
 
 .wrong-input {
   border: 1px solid #DD6B55 !important; }
+
+button#isValidForm {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
 
 /**********************************/
 /**********************************/

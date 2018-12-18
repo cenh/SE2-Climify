@@ -2,9 +2,8 @@
 
 /**
  * API called to delete existing rule
- * @author  cenh and KacperZyla
+ * @author  Christian Hansen and KacperZyla
  */
-
 require_once "../meta.php";
 
 if($currentUserID == ""){

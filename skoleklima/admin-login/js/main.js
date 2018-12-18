@@ -61,39 +61,3 @@ function signOut() {
         }
     });
 }
-
-
-//roles table
-
-$(document).ready(function () {
-    $('#roles_table').DataTable();
-    getTableData();
-    refreshTable();
-});
-
-function refreshTable() {
-    setInterval(function () {
-        getTableData();
-    }, 3000);
-}
-
-function getTableData() {
-    var sUrl = "api/api-get-roles.php";
-    // Do AJAX and phase link to api
-    $.post(sUrl, {
-        sessionToken: sessionToken,
-    }, function (data) {
-        var jData = JSON.parse(data);
-        var table = $('#roles_table').DataTable();
-        table.clear();
-
-        for (var i = 0; i < jData.length; i++) {
-            table.row.add([jData[i].RoleName, jData[i].PermDescription]).draw(false);
-        }
-    });
-
-
-
-
-
-}
