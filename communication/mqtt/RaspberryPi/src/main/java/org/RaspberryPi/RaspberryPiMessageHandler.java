@@ -1,12 +1,17 @@
 package org.RaspberryPi;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import org.MqttLib.mqtt.MessageCallback;
 import org.MqttLib.mqtt.MessageHandler;
 import org.MqttLib.mqtt.Topic;
 import org.MqttLib.openhab.Channel;
 import org.MqttLib.openhab.Command;
+import org.MqttLib.openhab.DidSynchronize;
+import org.MqttLib.openhab.Synchronize;
+import org.RaspberryPi.InfluxDB.InfluxCommunicator;
 import org.MqttLib.openhab.ControlItem;
 import org.MqttLib.openhab.ControlThing;
 import org.MqttLib.openhab.ControlType;
@@ -23,17 +28,19 @@ import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 public class RaspberryPiMessageHandler extends MessageHandler {
 
 	private RestCommunicator rest = new RestCommunicator();
+	private InfluxCommunicator influx;
 	private MessageCallback messageCallback;
 
-	public RaspberryPiMessageHandler(String topic, MqttMessage message, MessageCallback messageCallback) {
+	public RaspberryPiMessageHandler(String topic, MqttMessage message, MessageCallback messageCallback, InfluxCommunicator influxCommunicator) {
 		super(topic, message);
 		this.messageCallback = messageCallback;
+		this.influx = influxCommunicator;
 	}
-
+	
 	@Override
 	public void run() {
 		super.run();
-
+	
 		if (topic.startsWith(Topic.COMMAND.getTopic())) {
 			try {
 				System.out.println("Inside topic " + topic); 
@@ -83,7 +90,8 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 				else {
 					rest.removeLink(controlItem.uid, controlItem.channelUID);
 					rest.removeItem(controlItem.uid);
-
+					influx.removeSensor(controlItem.uid);
+					
 					//Prepare the message
 					didControlItem = new DidControlItem(controlItem.controlType, controlItem.uid, controlItem.channelUID, null);
 				}
@@ -112,7 +120,7 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 					System.out.println("ControlThing.UID = " + controlThing.uid);
 					String approveThingResult = rest.approveThing(controlThing.uid);
 					System.out.println("Did Approve Thing = " + approveThingResult);
-					
+
 					//Get the approved Thing in openHAB
 					Thread.sleep(5000);
 					byte[] thingJSONBytes = rest.getThing(controlThing.uid).getBytes("UTF-8");
@@ -129,6 +137,7 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 						for (String item: channel.linkedItems) {
 							System.out.println("Deleting link: " + rest.removeLink(item, channel.uid));
 							System.out.println("Deleting item: " + rest.removeItem(item));
+							influx.removeSensor(item);
 						}
 					}
 
@@ -137,7 +146,7 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 					//Prepare the message
 					didControlThing = new DidControlThing(controlThing.controlType, controlThing.uid, null);
 				}
-				
+
 				//Retrieve the payload and reset the writer prior to publishing to avoid non-resetted writer if exceptions are thrown.
 				dslJson.serialize(writer, didControlThing);
 				byte[] payload = writer.getByteBuffer();
@@ -155,5 +164,30 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 		}
 
 
+		/**
+		 *  Handles synchronization request message
+		 * @autor KacperZyla
+		 */
+
+
+		if (topic.startsWith(Topic.SYNCHRONIZE.getTopic())) {
+				System.out.println("Inside topic " + topic);
+			try {
+				Synchronize synchronize = dslJson.deserialize(Synchronize.class, message.getPayload(), message.getPayload().length);
+				Map<String, List<List<String>>> map = influx.getMeasurementsSince(synchronize.timeOfLastMeasurement);
+				System.out.println("Map count = " + map.size() + " map item toString = " + map.toString());
+				DidSynchronize didSynchronize = new DidSynchronize(map);
+				dslJson.serialize(writer, didSynchronize);
+				byte[] payload = writer.getByteBuffer();
+				writer.reset();
+				messageCallback.publish(Topic.DIDSYNCHRONIZE.getTopic()+"/testID", 2, payload);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (MqttPersistenceException e) {
+				e.printStackTrace();
+			} catch (MqttException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
