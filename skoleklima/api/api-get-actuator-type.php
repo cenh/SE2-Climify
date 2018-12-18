@@ -1,11 +1,21 @@
 <?php
+
+/**
+ * @author Ben 
+ */
+
+//************************************************
+//	Get type for actuator
+//************************************************
+
+
 require_once "../meta.php";
 
 $servername = DB_HOST;
 $username = DB_USER;
 $password = DB_PASSWORD;
 $databasename = DB_NAME;
-$SensorName = $_GET['ActuatorName'];
+$ActuatorName = $_GET['ActuatorName'];
 $LocationID = $_GET['LocationID'];
 
 

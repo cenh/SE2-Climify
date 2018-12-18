@@ -1,5 +1,12 @@
 var isEdit = false;
 var ruleID = -1;
+/**
+ * @author Ben, and others
+ */
+
+//************************************************
+//	Manage rules
+//************************************************
 
 function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID,actuator){
     var message = "if " +sensor+" is "+operator + " than " +value + " then set " + actuator + " to: " + action;
@@ -158,7 +165,6 @@ $("#modalRule").on("click",function () {
 
 $("#sensorSelect").change(function () {
     var sensorID = $('#sensorSelect').val();
-    console.log(sensorID);
     $.ajax({
         type: "GET",
         url: "api/api-get-sensor-type.php",
@@ -169,10 +175,6 @@ $("#sensorSelect").change(function () {
       }).done(function (res) {
         results = JSON.parse(res);
         var category= results[0].Category;
-        console.log(sensorID);
-        console.log(type);
-
-
     if (category=== "Temperature") {
         console.log("t");
         $('#unit').text('°C');
@@ -250,9 +252,7 @@ $('#actuatorSelect').change(function () {
         }
       }).done(function (res) {
         results = JSON.parse(res);
-        var category= results[0].Category;
-        console.log(actuatorID);
-        console.log(type);
+        var category = results[0].Category;
 
     if(category=== "Temperature"){
         $('#onActionSetTemp').show();
