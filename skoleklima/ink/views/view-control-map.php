@@ -42,6 +42,11 @@
 
                 </tbody>
             </table>
+            <style>
+                td.details-ctrl {
+                    cursor: pointer;
+                }
+            </style>
         </div>
     </div>
     <hr>
@@ -118,7 +123,6 @@
                 td.approve {
                     background-color: #00b700;
                     cursor: pointer;
-
                 }
             </style>
         </div>

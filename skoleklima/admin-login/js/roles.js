@@ -12,6 +12,10 @@ $(document).ready(function () {
         "searching": false,
         "paging": false,
         "info": false,
+        "columns": [
+            {
+                "className": 'details-ctrl'
+            }]
     });
 
     getTableData();
