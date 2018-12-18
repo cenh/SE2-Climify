@@ -1,6 +1,6 @@
 <?php
 /*
- *	Author: Christian Hansen & Kacper Zyla
+ *	Author: Christian Hansen
  */
 //session_start();
 require 'vendor/autoload.php';

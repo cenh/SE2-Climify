@@ -1058,7 +1058,7 @@ var dataExportFileName = 'Data_Export';
 
 
 /*
- * Author: Christian Hansen & Kacper Zyla
+ * Author: Christian Hansen & KacperZyla
  */
  function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHumidity, ListOfDataCO2, ListOfDataNoiseAvg, ListOfDataXData) {
 

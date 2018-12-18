@@ -1,6 +1,8 @@
 <?php
-/*
- *	Author: Christian Hansen & Kacper Zyla
+
+/**
+ * API called to save enw rule in the mariaDB
+ * @author Christian Hansen and KacperZyla
  */
 require_once "../meta.php";
 

@@ -14,7 +14,7 @@ public class ClimifyMqttController extends AsyncMqttController {
 	
 	private InfluxCommunicator influx = new InfluxCommunicator();
 	private MariaDBCommunicator mariaDB = new MariaDBCommunicator();
-	
+
 	@Override
 	public void start() {
 		super.start();
@@ -25,6 +25,7 @@ public class ClimifyMqttController extends AsyncMqttController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		super.start();
 	}
 	
 	@Override
@@ -33,11 +34,19 @@ public class ClimifyMqttController extends AsyncMqttController {
 		super.subscribe(Topic.SENSORUPDATE.getTopic()+"/#", 2);
 		super.subscribe(Topic.INBOX.getTopic()+"/#", 2);
 		super.subscribe(Topic.DIDCONTROLITEM.getTopic()+"/#", 2);
-		super.subscribe(Topic.DIDCONTROLTHING.getTopic()+"/#", 2);	
+		super.subscribe(Topic.DIDCONTROLTHING.getTopic()+"/#", 2);
+		super.subscribe(Topic.DIDSYNCHRONIZE.getTopic()+"/#", 2);
 	}
 	
 	@Override
 	protected MessageHandler getMessageHandler(String topic, MqttMessage message) {
 		return new ClimifyMessageHandler(topic, message, influx, mariaDB, this);
+	}
+
+	@Override
+	public void connectComplete(boolean reconnect, String serverURI){
+		super.connectComplete(reconnect,serverURI);
+
+		executeTask(new SynchronizationTask(this, mariaDB, influx));
 	}
 }

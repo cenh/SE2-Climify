@@ -1,6 +1,6 @@
 <?php
 /*
- *	Author: Christian Hansen & Kacper Zyla
+ *	Author: Christian Hansen & KacperZyla
  */
 $body = $_POST["sensor"];
 switch ($body) {

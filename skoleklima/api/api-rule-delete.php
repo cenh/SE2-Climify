@@ -1,6 +1,8 @@
 <?php
-/*
- *	Author: Christian Hansen & Kacper Zyla
+
+/**
+ * API called to delete existing rule
+ * @author  Christian Hansen and KacperZyla
  */
 require_once "../meta.php";
 

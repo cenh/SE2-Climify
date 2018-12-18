@@ -1,11 +1,9 @@
 <?php
-/*
- *	Author: Christian Hansen & Kacper Zyla
- */
-//************************************************
-//	Rule execution
-//************************************************
 
+/**
+ * API called to execute an existing rule
+ * @author Christian Hansen and KacperZyla
+ */
 require_once "../meta-influx.php";
 
 $sensor = $_POST['SensorID'];

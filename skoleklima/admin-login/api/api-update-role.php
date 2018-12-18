@@ -1,7 +1,11 @@
 <?php
-/*
- *	Author: Christian Hansen & Kacper Zyla
+
+/**
+ * API called to update existing role
+ * @author KacperZyla & Christian Hansen
  */
+
+
 require_once "../admin-meta.php";
 
 //if($currentUserID == ""){

@@ -1,6 +1,6 @@
 <?php
 /*
- *	Author: Christian Hansen & Kacper Zyla
+ *	Author: Christian Hansen & KacperZyla
  */
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);

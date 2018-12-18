@@ -1,7 +1,10 @@
 <?php
-/*
- *	Author: Christian Hansen & Kacper Zyla
- */
+
+/**
+* API called to save created role into the mariaDB
+* @author KacperZyla & Christian Hansen
+*/
+
 require_once "../admin-meta.php";
 
 if($currentUserID == ""){

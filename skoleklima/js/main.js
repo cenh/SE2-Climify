@@ -249,7 +249,9 @@ if (browserIsIE == false) {
 
         $.get(sUrl, function (sData) {
             var jData = JSON.parse(sData);
+            console.log(jData);
             if (jData.status == "ok") {
+                
                 var passEncrypt = jData.encrypt;
                 // Store link to api and phase userinput
                 var sUrl = "api/api-user-login.php?fAY2YfpdKvR=" + sender_first + "&username=" + typedUserName + "&password=" + passEncrypt;

@@ -1,6 +1,6 @@
 <?php
 /*
- *	Author: Christian Hansen & Kacper Zyla
+ *	Author: Christian Hansen & KacperZyla
  */
 // ** Conpany meta info ** //
 $software_Name = "Klimaovervågning";
