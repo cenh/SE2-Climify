@@ -10,6 +10,7 @@ import org.MqttLib.openhab.DeviceUpdate;
 import org.MqttLib.openhab.Item;
 import org.MqttLib.openhab.Link;
 import org.MqttLib.openhab.Thing;
+import org.RaspberryPi.InfluxDB.InfluxCommunicator;
 import org.RaspberryPi.openhab.RestCommunicator;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -24,15 +25,20 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 	RestCommunicator rest = new RestCommunicator();
 	DslJson<Object> dslJson = new DslJson<>(Settings.withRuntime().allowArrayFormat(true).includeServiceLoader());
 	JsonWriter writer = dslJson.newWriter();
-	
+	InfluxCommunicator influx = new InfluxCommunicator();
 	@Override
 	protected void subscribeToTopics() throws MqttException {
+		super.subscribe(Topic.COMMAND.getTopic()+"/testID", 2);
+		super.subscribe(Topic.SYNCHRONIZE.getTopic()+"/testID", 2);
 		super.subscribe(Topic.COMMAND.getTopic()+"/#", 2);
+		super.subscribe(Topic.CONTROLTHING.getTopic()+"/#", 2);
+		super.subscribe(Topic.CONTROLITEM.getTopic()+"/#", 2);
+		super.subscribe(Topic.DEVICEDISCOVERY.getTopic()+"/#", 2);
 	}
 	
 	@Override
 	protected MessageHandler getMessageHandler(String topic, MqttMessage message) {
-		return new RaspberryPiMessageHandler(topic, message);
+		return new RaspberryPiMessageHandler(topic, message, this, influx);
 	}
 	
 	@Override
@@ -41,6 +47,7 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 
 		try {
 			sendDeviceUpdate();
+			influx.connect();
 		} catch (MqttPersistenceException e) {
 			e.printStackTrace();
 		} catch (MqttException e) {
@@ -60,6 +67,7 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 			List<Link> links = dslJson.deserializeList(Link.class, linksData, linksData.length);
 			
 			DeviceUpdate deviceUpdate = new DeviceUpdate(things, items, links);
+			deviceUpdate.removeControllers();
 			dslJson.serialize(writer, deviceUpdate);
 			
 			super.publish(Topic.SENSORUPDATE.getTopic()+"/"+"testID", 2, writer.getByteBuffer());
@@ -67,37 +75,6 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	/**
-	 * When requesting e.g. all items from openHAB using rest/items the returned JSON will be on the format [{object}, {object}]
-	 * dsl-json does not like this format, as it is basically an array of objects and not typical JSON-structure.
-	 * dsl-json only supports arrays where you know the exact amount of properties that will be in the array which obviously is not good enough here.
-	 * 
-	 * This function is used as a work-around where the array [{},{}] is transformed to: {"objectName":[{}, {}]} which can then be parsed using dsl-json.
-	 * @param json
-	 * @param objectName
-	 * @return The modified json in the format {"objectName":json}
-	 */
-	private String modifyJSON(String json, String objectName) {
-		StringBuilder jsonBuilder = new StringBuilder(json);
-		jsonBuilder.insert(0, "{\"" + objectName + "\":");
-		jsonBuilder.append('}');
-		System.out.println(jsonBuilder);
-		return jsonBuilder.toString();
-	}
-	
-	private String createJSONArray(String ... jsons) {
-		String jsonArray = "[";
-		for(int i = 0; i < jsons.length; i++) {
-			jsonArray += jsons[i];
-			if (i+1 < jsons.length) {
-				jsonArray += ",";
-			}
-		}
-		jsonArray += "]";
-		
-		return jsonArray;
 	}
 
 	@Override

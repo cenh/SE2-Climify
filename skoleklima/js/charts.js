@@ -4,15 +4,11 @@
 
 
 $(document).ready(function () {
-
-
     $("#retrunNoSchoolData").html("Choose the following to get data:<br/>" + "<br/><br/>" + "1) institution" + "<br/><br/>" + "2) floorplan" + "<br/><br/>" + "3) location");
-
     $("#retrunNoSchoolGraph2").html("Choose the following to compare locations on a floorplan:<br/>" + "<br/><br/>");
     $("#retrunNoSchoolGraph2Part2").html("1) institution" + "<br/><br/>" + "2) floorplan");
     $("#retrunNoSchoolGraph2").show();
     $("#retrunNoSchoolGraph2").attr('attr', 'visibility:visible');
-
     compareData = {
         dataDates: [],
         dataTemperature: [],
@@ -24,15 +20,11 @@ $(document).ready(function () {
     };
     dateRangePicker2();
     dateRangePicker1();
-
-
 })
-
 
 $("#btn-get-compare-data").click(function () {
     startCompareCharset();
 });
-
 
 $('#check-chart-data-temperature').prop('checked', true);
 $('#check-chart-data-temperature').change(function () {
@@ -48,7 +40,6 @@ $('#check-chart-data-temperature').change(function () {
         }
     }
 });
-
 
 $('#check-chart-data-noiseAvg').change(function () {
     if (enableDataSettings == true) {
@@ -121,18 +112,14 @@ $('#check-chart-data-co2').change(function () {
     }
 });
 
-
 function howToDraw() {
-
     if (numberOfChecked == 1) {
         drawGraphSingle();
     }
     else if (numberOfChecked == 2) {
         drawGraphDouble();
     }
-
 }
-
 
 var graph = {
     icMeterQR: false,
@@ -257,10 +244,8 @@ function showWarningNoSchoolGraph2() {
     } else {
         $("#retrunNoSchoolGraph2").hide();
         $("#retrunNoSchoolGraph2Part2").hide();
-
     }
 }
-
 
 function clearGraphMetaInfo() {
     $(".view-data-control .currentDeciveText h4").text("");
@@ -269,27 +254,17 @@ function clearGraphMetaInfo() {
 
 // Daterangepicker
 function dateRangePicker1() {
-
-
     var start = moment().subtract(1, 'days');
     var end = moment();
 
     function cb(start, end) {
-
-
         $('#reportrange1 span').html(start.format('D. MMMM YYYY') + ' - ' + end.format('D. MMMM YYYY'));
-
-
         startDateReplacement = start.format('YYYY-MM-DD');
         endDateReplacement = end.format('YYYY-MM-DD');
-
-
         if (fetchingDataGraph == false) {
             fetchingDataGraph = true;
             disableGraphSettingsSelections();
         }
-
-
     }
 
     $('#reportrange1').daterangepicker({
@@ -333,19 +308,13 @@ function dateRangePicker1() {
 }
 
 function dateRangePicker2() {
-
-
     var start = moment().subtract(1, 'days');
     var end = moment();
 
     function cb(start, end) {
         $('#reportrange2 span').html(start.format('D. MMMM YYYY') + ' - ' + end.format('D. MMMM YYYY'));
-
-
         startDateReplacement = start.format('YYYY-MM-DD');
         endDateReplacement = end.format('YYYY-MM-DD');
-
-
     }
 
     $('#reportrange2').daterangepicker({
@@ -391,7 +360,6 @@ function GTMtimeRound(time) {
     var coeff = 1000 * 60 * 5;
     var GTMtime = new Date(time);
     var GTMtime = new Date(Math.round(GTMtime.getTime() / coeff) * coeff)
-
     var month;
     switch (GTMtime.getMonth()) {
         case 0:
@@ -430,22 +398,18 @@ function GTMtimeRound(time) {
         case 11:
             month = "December";
     }
-
     var realtime = GTMtime.getDate() + ". " + month + " " + GTMtime.toTimeString().split(' ')[0].slice(0, -3);
     return realtime;
 }
 
-
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getGraphData() {
-
-
     //hide user "directions/manual"
     $("#retrunNoSchoolData").hide();
-
-
     $("#retrunNoSchoolGraph2").hide();
     $("#retrunNoSchoolGraph2Part2").hide();
-
 
     LocationID = $(".chart-select-location").find('option:selected').attr('id');
     LocationName = $(".chart-select-location").find('option:selected').attr('value');
@@ -463,7 +427,6 @@ function getGraphData() {
     }
 
     graph.autoUpdate = false;
-
     xDataTypeSettings = $('.chart-select-device option:selected').attr('data-xData');
     var templateChekXData = '<span class="canvas-settings-check inline-checkbox xDataCheckbox">\
 <input id="check-chart-data-xData" class="canvas-settings regular-checkbox" type="checkbox" value="false">\
@@ -472,21 +435,17 @@ function getGraphData() {
 </span>';
 
     var sUrl = "api/api-get-graph-data.php";
-
     clearChartData();
     $.post(sUrl, {
         fAY2YfpdKvR: sender,
         LocationID: LocationID,
         from: startDateReplacement + "T00:00:00Z",
         to: endDateReplacement + "T23:59:59Z"
-
     }, function (sData) {
         var jData = JSON.parse(sData);
         //console.log(jData);
         if (jData.status != "nodata" && jData.status != "no sensors retrived") {
-
             var counter = 0;
-
             sensorIDs = [];
             sensorAlias = [];
             dataDates = [];
@@ -496,14 +455,15 @@ function getGraphData() {
             dataCO2 = [];
             dataNoise = [];
             dataNoisePeak = [];
-
             xDataExist = false;
 
             $("btn-download-graph-data").removeClass("button-disabled");
-            console.log(jData);
+            var idx = 0;
+            for(var k = 0; k<jData.length; k++){
+                if(jData[idx].length < jData[k].length) idx = k;
+            }
             for (var j = 0; j < jData.length; j++) {
                 for (var i = 0; i < jData[j].length; i++) {
-
                     sensorIDs[i] = jData[j][i].SensorID;
                     sensorAlias[i] = jData[j][i].SensorAlias;
                     if ((parseFloat(jData[j][i].Humidity) != null))
@@ -520,7 +480,8 @@ function getGraphData() {
                         if (!isNaN(parseFloat(jData[j][i].CO2)))
                             dataCO2[i] = parseFloat(jData[j][i].CO2);
 
-                    var time = jData[0][i].time
+                    //dataTemperature[i]=parseFloat(jData[0][i].value);
+                    var time = jData[idx][i].time
 
                     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -535,13 +496,16 @@ function getGraphData() {
                     }
 
                     month = months[parseInt(time.substring(5, 7)) - 1];
-
                     date = time.substring(8, 10);
-
                     dataDates[i] = date + ". " + month + " " + h + ":" + m;
                 }
             }
-            console.log(getStats(dataTemperature));
+            // Calculate stats!
+            statsTemperature = getStats(dataTemperature);
+            statsHumidity = getStats(dataHumidity);
+            statsCO2 = getStats(dataCO2);
+            statsNoise = getStats(dataNoise);
+
             enableDataSettings = true;
             $('.canvas-settings').attr('disabled', false);
             $('#chart-fill').attr('disabled', false);
@@ -554,23 +518,15 @@ function getGraphData() {
 
             chart1TryUpdateData = 0;
         }
-
         else {
-
             $('#canvas1').remove();
             $('.chartjs-hidden-iframe').remove();
-
-
             $("#gettingDataWait").hide();
             $("#retrunNoSchoolData").text("There are no data for the chosen location at the specified time interval");
             $("#retrunNoSchoolData").show();
             enableGraphSettingsSelections();
-
-
         }
     });
-
-
 }
 
 function disableGraphSettingsSelections() {
@@ -596,8 +552,25 @@ function enableGraphSettingsSelections() {
     disableCompareBtn = false;
 }
 
-function drawGraphDouble() {
+function fill_double_table(left, right, data, bool) {
+    if(!bool) {
+        fill_stat_table(left, data);
+        return true;
+    } else {
+        fill_stat_table(right, data);
+    }
+}
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
+function drawGraphDouble() {
+    document.getElementById("stat_single_table").innerHTML = "";
+    var table_left = document.getElementById("stat_double_table1");
+    var table_right = document.getElementById("stat_double_table2");
+    var left_filled = false;
+    table_left.innerHTML = "";
+    table_right.innerHTML = "";
 
     //choosing yaxes:
     var numAttributes = 0;
@@ -608,8 +581,9 @@ function drawGraphDouble() {
     yAxisIDnoiseAvg = 'left-y-axis';
     yAxisIDnoisePeak = 'left-y-axis';
 
-
     if (!graph.dataSetHidden.temperature) {
+        console.log(statsTemperature);
+        left_filled = fill_double_table(table_left, table_right, statsTemperature, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDTemp = 'left-y-axis';
@@ -619,8 +593,9 @@ function drawGraphDouble() {
         }
     }
 
-
     if (!graph.dataSetHidden.humidity) {
+        console.log(statsHumidity);
+        left_filled = fill_double_table(table_left, table_right, statsHumidity, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDHum = 'left-y-axis';
@@ -630,8 +605,9 @@ function drawGraphDouble() {
         }
     }
 
-
     if (!graph.dataSetHidden.co2) {
+        console.log(statsCO2);
+        left_filled = fill_double_table(table_left, table_right, statsCO2, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDco2 = 'left-y-axis';
@@ -641,8 +617,9 @@ function drawGraphDouble() {
         }
     }
 
-
     if (!graph.dataSetHidden.noiseAvg) {
+        console.log(statsNoise);
+        left_filled = fill_double_table(table_left, table_right, statsNoise, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDnoiseAvg = 'left-y-axis';
@@ -652,8 +629,9 @@ function drawGraphDouble() {
         }
     }
 
-
     if (!graph.dataSetHidden.noisePeak) {
+        console.log(statsNoise);
+        left_filled = fill_double_table(table_left, table_right, statsNoise, left_filled);
         numAttributes++;
         if (numAttributes == 1) {
             yAxisIDnoisePeak = 'left-y-axis';
@@ -662,7 +640,6 @@ function drawGraphDouble() {
             yAxisIDnoisePeak = 'right-y-axis';
         }
     }
-
 
     if (numAttributes == 2) {
         if (graph.dataSetHidden.temperature) {
@@ -682,15 +659,11 @@ function drawGraphDouble() {
         }
     }
 
-
     if (dataDates.length !== 0) {
-
         $('#canvas1').remove();
         $('.chartjs-hidden-iframe').remove();
         $('.canvas1').append('<canvas id="canvas1" width="2" height="1"></canvas>');
-
         //updateLiveData();
-
         $("#gettingDataWait").hide();
         $("#canvas1").show();
 
@@ -719,8 +692,6 @@ function drawGraphDouble() {
                 labels: dataDates,
                 datasets: [
                     {
-
-
                         label: "Temperature (°C)",
                         fill: graph.chartFill,
                         backgroundColor: graph.dataSetColer2.temperature,
@@ -808,7 +779,6 @@ function drawGraphDouble() {
                 ]
             },
             options: {
-
                 animation: {
                     duration: graph.animationDuration,
                 },
@@ -838,17 +808,54 @@ function drawGraphDouble() {
                         }
                     }]
                 }
-
             }
-
         });
-
         graph.animationDuration = 500;
     }
 }
 
+function fill_stat_table(table, stats) {
+    var row1 = table.insertRow(0);
+    var cell1 = row1.insertCell(0);
+    var cell2 = row1.insertCell(1);
+    cell1.innerHTML = "Mean";
+    cell2.innerHTML = stats.mean;
 
+    var row2 = table.insertRow(1);
+    var cell3 = row2.insertCell(0);
+    var cell4 = row2.insertCell(1);
+    cell3.innerHTML = "Median";
+    cell4.innerHTML = stats.median;
+
+    var row3 = table.insertRow(2);
+    var cell5 = row3.insertCell(0);
+    var cell6 = row3.insertCell(1);
+    cell5.innerHTML = "Minimum";
+    cell6.innerHTML = stats.min;
+
+    var row4 = table.insertRow(3);
+    var cell7 = row4.insertCell(0);
+    var cell8 = row4.insertCell(1);
+    cell7.innerHTML = "Maximum";
+    cell8.innerHTML = stats.max;
+
+    var row5 = table.insertRow(4);
+    var cell9 = row5.insertCell(0);
+    var cell10 = row5.insertCell(1);
+    cell9.innerHTML = "Variance";
+    cell10.innerHTML = stats.variance;
+
+}
+
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function drawGraphSingle() {
+    var table = document.getElementById("stat_single_table");
+    document.getElementById("stat_double_table1").innerHTML = "";
+    document.getElementById("stat_double_table2").innerHTML = "";
+    table.innerHTML = "";
+
 
     $("#check-chart-data-temperature").removeAttr('disabled');
     $("#check-chart-data-humidity").removeAttr('disabled');
@@ -856,16 +863,35 @@ function drawGraphSingle() {
     $("#check-chart-data-noiseAvg").removeAttr('disabled');
     $("#check-chart-data-noisePeak").removeAttr('disabled');
 
+    if (!graph.dataSetHidden.temperature) {
+        fill_stat_table(table, statsTemperature);
+    }
+
+    if (!graph.dataSetHidden.humidity) {
+        console.log(statsHumidity);
+        fill_stat_table(table, statsHumidity);
+    }
+
+    if (!graph.dataSetHidden.co2) {
+        console.log(statsCO2);
+        fill_stat_table(table, statsCO2);
+    }
+
+    if (!graph.dataSetHidden.noiseAvg) {
+        console.log(statsNoise);
+        fill_stat_table(table, statsNoise);
+    }
+
+    if (!graph.dataSetHidden.noisePeak) {
+        console.log(statsNoise);
+        fill_stat_table(table, statsNoise);
+    }
 
     if (dataDates.length !== 0) {
-
-
         $('#canvas1').remove();
         $('.chartjs-hidden-iframe').remove();
         $('.canvas1').append('<canvas id="canvas1" width="2" height="1"></canvas>');
-
         //updateLiveData();
-
         $("#gettingDataWait").hide();
         $("#canvas1").show();
 
@@ -888,7 +914,6 @@ function drawGraphSingle() {
         Chart.defaults.global.elements.point.radius = 1;
 
         chart1 = new Chart(context, {
-
             type: graph.chartType,
             data: {
                 labels: dataDates,
@@ -976,7 +1001,6 @@ function drawGraphSingle() {
                 ]
             },
             options: {
-
                 animation: {
                     duration: graph.animationDuration,
                 },
@@ -1005,12 +1029,9 @@ function drawGraphSingle() {
     }
 }
 
-
 // Select chart content
-
 $('.canvas-settings').attr('disabled', false);
 $('#chart-select-type').attr('disabled', false);
-
 
 // Checkbox compare settings
 $(document).on("click", ".canvas-settings-2-input", function () {
@@ -1058,27 +1079,24 @@ function startCompareCharset() {
     clearCompareGraph();
     getCompareCharsetData();
     disableGraphSettingsSelections();
-
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getCompareCharsetData() {
-
     //Possible old warning should be hidden
     $("#retrunNoDeviceGraph2").hide();
 
-
     var noDataAlert = false;
     var callGraphTimes = 0;
-
 
     LocationIDs = [];
     numberOfLocations = 0;
 
     $(".chart-select-location option").each(function () {
         // Add $(this).val() to your list
-
         //locStand is the standard location option "Choose Location"...
-
         LocID = $(this).attr('id');
         if (!LocationIDs.includes(LocID)) {
             if ($(this).val() != "locStand") {
@@ -1101,12 +1119,9 @@ function getCompareCharsetData() {
         LocationIDs: LocationIDs,
         from: startDateReplacement + "T00:00:00Z",
         to: endDateReplacement + "T23:59:59Z"
-
     }, function (sData) {
-
         clearCompareData();
         clearCompareGraph();
-
         //potential old warning should should disapear
         $("#retrunNoSchoolGraph2").hide();
         $("#retrunNoSchoolGraph2Part2").hide();
@@ -1129,7 +1144,6 @@ function getCompareCharsetData() {
 
             for (var i = 0; i < jData.length; i++) {
                 for (var j = 0; j < jData[i].length; j++) {
-
                     var time = jData[i][j].time;
 
                     if (typeof time != "undefined") {
@@ -1138,7 +1152,6 @@ function getCompareCharsetData() {
                         h = time.substring(11, 13);
                         if (String(h).length == 1) {
                             h = "0" + h;
-
                         }
                         m = time.substring(14, 16);
                         if (String(m).length == 1) {
@@ -1156,18 +1169,13 @@ function getCompareCharsetData() {
                         CO2.push(jData[i][j].CO2);
                         noiseAvg.push(jData[i][j].NoiseAvg);
 
-
                         if (j == 0) {
                             LocID = jData[i][j].LocationID;
                         }
-
                     }
                     else {
-
-
                         $("#retrunNoDeviceGraph2").html("OBS! Some locations didn't have any data for this period.");
                         $("#retrunNoDeviceGraph2").show();
-
                     }
                 }
                 compareData.dataDates = dates;
@@ -1183,24 +1191,14 @@ function getCompareCharsetData() {
                 humidity = [];
                 CO2 = [];
                 noiseAvg = [];
-
-
             }
-
-
             callDrawCompareGraph();
-
-
             if (jData.length != numberOfLocations) {
-
                 $("#retrunNoDeviceGraph2").html("OBS! Some locations didn't have any data for this period.");
                 $("#retrunNoDeviceGraph2").show();
             }
-
         }
-
         else {
-
             $("#gettingCompareDataWait").hide();
             $("#retrunNoSchoolGraph2").text("There are no data for the chosen location at the specified time interval");
             $("#retrunNoSchoolGraph2").show();
@@ -1210,7 +1208,6 @@ function getCompareCharsetData() {
 }
 
 function callDrawCompareGraph() {
-
     drawCompareGraph();
 }
 
@@ -1231,7 +1228,6 @@ function clearCompareGraph() {
 }
 
 function drawCompareGraph() {
-
     $("#gettingCompareDataWait").hide();
     $('.canvas-wrapper-2').append('<div class="canvas-2-3-4-5-type"><i class="fa fa-thermometer-full" aria-hidden="true"></i>Temperatur</div><canvas id="canvas2" width="3" height="1"></canvas>');
     $('.canvas-wrapper-2').append('<div class="canvas-2-3-4-5-type"><i class="fa fa-tint" aria-hidden="true"></i>Luftfugtighed</div><canvas id="canvas3" width="3" height="1"></canvas>');
@@ -1596,7 +1592,6 @@ function drawCompareGraph() {
 }
 
 // Map chart
-
 var dataMapTemp;
 var dataMapHum;
 var dataMapCo2;
@@ -1873,7 +1868,6 @@ function drawMapChart(DiveseSel) {
 }
 
 // Map chart Live
-
 var dataMapLiveTemp;
 var dataMapLiveHum;
 var dataMapLiveCo2;
@@ -2166,7 +2160,6 @@ function drawMapChartDay(DiveseSel) {
                 if (mapShow.monitor.noiseAvg) {
                     dataMapLiveNoi.lineAtIndex = dataLenght.noise;
                     ChartNoiLive.update();
-
                 }
             }
         }
@@ -2221,20 +2214,29 @@ function updateMapChartLine() {
     }
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getStats(numbers) {
-  var mean = getMean(numbers);
-  var median = getMedian(numbers);
-  var max = getMax(numbers);
-  var min = getMin(numbers);
-  var variance = getVariance(numbers);
-  var json = { "mean" : mean,
-                "median" : median,
-                "max" : max,
-                "min" : min,
-                "variance" : variance};
-  return json;
+    var mean = getMean(numbers);
+    var median = getMedian(numbers);
+    var max = getMax(numbers);
+    var min = getMin(numbers);
+    var variance = getVariance(numbers);
+    var json = {
+        "mean": mean,
+        "median": median,
+        "max": max,
+        "min": min,
+        "variance": variance
+    };
+    return json;
 }
 
+
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getMean(numbers) {
     // mean of [3, 5, 4, 4, 1, 1, 2, 3] is 2.875
     var total = 0;
@@ -2244,6 +2246,9 @@ function getMean(numbers) {
     return total / numbers.length;
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getMedian(numbers) {
     // median of [3, 5, 4, 4, 1, 1, 2, 3] = 3
     var median = 0;
@@ -2259,19 +2264,28 @@ function getMedian(numbers) {
     return median;
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getMax(numbers) {
-  return Math.max.apply(null, numbers);
+    return Math.max.apply(null, numbers);
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getMin(numbers) {
-  return Math.min.apply(null, numbers);
+    return Math.min.apply(null, numbers);
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getVariance(numbers) {
-  var mean = getMean(numbers);
-  var v = 0;
-  for (var i = 0; i < numbers.length; i++) {
-      v += Math.pow(numbers[i]-mean, 2);
-  }
-  return v / numbers.length;
+    var mean = getMean(numbers);
+    var v = 0;
+    for (var i = 0; i < numbers.length; i++) {
+        v += Math.pow(numbers[i] - mean, 2);
+    }
+    return v / numbers.length;
 }

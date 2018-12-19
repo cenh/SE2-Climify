@@ -1,4 +1,7 @@
 <?php
+/*
+ *	Author: Christian Hansen & KacperZyla
+ */
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
@@ -22,7 +25,7 @@ if( $currentUserID == ""){
       echo '{"status":"error"}';
     exit;
   }
-  
+
 
 // Validate API key
 $apiPassword = API_PASSWORD;
@@ -57,7 +60,7 @@ foreach ($LocationIDs as &$value) {
 
 
 
-    $result = $conn->query("SELECT SensorID,LocationID FROM SensorInstance WHERE LocationID='$value'"); 
+    $result = $conn->query("SELECT SensorID,LocationID FROM SensorInstance WHERE LocationID='$value'");
 
     //echo "value " . $value;
 
@@ -126,7 +129,7 @@ for ($x = 0; $x < count($sensors); $x++) {
         $isEmpty=0;
     }
 
-} 
+}
 
 
 
@@ -134,7 +137,7 @@ $sensorData = json_encode( $sensors , JSON_UNESCAPED_UNICODE );
 
 if ( $isEmpty==1){
     echo '{"status":"nodata"}';
-    exit; 
+    exit;
 }
 
 

@@ -1,7 +1,9 @@
 <?php
-
+/*
+ *	Author: Christian Hansen & KacperZyla
+ */
 //************************************************
-//	Create Companye Users
+//	Create Company Users
 //************************************************
 
 require_once "../admin-meta.php";
@@ -23,9 +25,11 @@ $phaseUsername = clean(strtolower($_POST["username"]));
 $phaseUserFirstName = clean($_POST["firstname"]);
 $phaseUserLastName = clean($_POST["lastname"]);
 $phaseUserEmail = clean($_POST["email"]);
+$phaseRole = clean($_POST['role']);
 $setUserSchool = "";
 $setUserRole = "1";
 $setUserBlock = "1";
+
 
 if ($phaseCompanyID == "") {
     echo '{"status":"error"}';
@@ -53,8 +57,9 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
     exit;
 }
-
-$stmt = $conn->prepare("SELECT * FROM Person WHERE UserName = ?");
+$q = "SELECT * FROM Person WHERE UserName = ?";
+$stmt = $conn->prepare($q);
+error_log("Query: ".$q, 0);
 $stmt->bind_param("s", $phaseUsername);
 if (!$stmt->execute()) {
     echo '{"status":"error"}';
@@ -64,7 +69,6 @@ if (!$stmt->execute()) {
 }
 
 //echo "username " . $phaseUsername . " EncryptedPass " . $encryptedPass;
-
 
 $result = $stmt->get_result();
 if ($result->num_rows!=0){
@@ -88,14 +92,11 @@ if ($stmt->execute()) {
     */
 
     $nul=0;
-    $RoleName = 1; //Project Manager
     $LastLogin=null;
     $Blocked=1;
 
-
-
     $stmt = $conn->prepare("INSERT INTO Person VALUES (?,?,?,?,?,?,?,?,?)");
-    $stmt->bind_param("issssisis",$nul,$phaseUsername,$phaseUserFirstName,$phaseUserLastName,$phaseUserEmail,$RoleName,$encryptedPass,$Blocked,$null);
+    $stmt->bind_param("issssisis",$nul,$phaseUsername,$phaseUserFirstName,$phaseUserLastName,$phaseUserEmail,$phaseRole,$encryptedPass,$Blocked,$null);
     if ($stmt->execute()) {
         echo '{"status":"ok","userID":"'.$userId.'", "pass":"'.$setUserPass.'"}';
         $UserID = $conn->insert_id;
@@ -106,13 +107,18 @@ if ($stmt->execute()) {
 
 $stmt->close();
 
+$stmt = $conn->prepare("INSERT INTO InstUser VALUES (?,?)");
+$stmt->bind_param("ii", $UserID, $phaseCompanyID);
+$stmt->execute();
+$stmt->close();
 
-$stmt = $conn->prepare("INSERT INTO ProjectManager VALUES (?,?)");
+
+
+if($phaseRole == 1 || $phaseRole == 15){
+    $stmt = $conn->prepare("INSERT INTO ProjectManager VALUES (?,?)");
     $stmt->bind_param("ii",$UserID,$phaseCompanyID);
     $stmt->execute();
-
-
-
+}
 
 $conn->close();
 ?>

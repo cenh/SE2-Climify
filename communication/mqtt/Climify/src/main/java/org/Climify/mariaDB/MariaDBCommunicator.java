@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.MqttLib.openhab.Channel;
+import org.MqttLib.openhab.ControlType;
 import org.MqttLib.openhab.DeviceUpdate;
+import org.MqttLib.openhab.DidControlItem;
+import org.MqttLib.openhab.DidControlThing;
+import org.MqttLib.openhab.InboxDevice;
 import org.MqttLib.openhab.Item;
 import org.MqttLib.openhab.Link;
 import org.MqttLib.openhab.Option;
@@ -55,6 +59,62 @@ public class MariaDBCommunicator {
 		}
 
 
+	}
+
+	public void saveInbox(List<InboxDevice> inboxDevices, String raspberryPiUID) {
+		for (InboxDevice inboxDevice: inboxDevices) {
+			insertInboxDevice(inboxDevice, raspberryPiUID);
+		}
+	}
+
+	public void clearInbox(String raspberryPiUID) {
+		removeInbox(raspberryPiUID);
+	}
+
+	public void handleControlItem(DidControlItem didControlItem, String raspberryPiUID) {
+		if (didControlItem.controlType == ControlType.ADD) {
+			insertItem(didControlItem.item);
+			insertLink(new Link(didControlItem.uid, didControlItem.channelUID));
+		}
+		else {
+			removeItem(didControlItem.uid);
+		}
+	}
+
+	public void handleControlThing(DidControlThing didControlThing, String raspberryPiUID) {
+		if (didControlThing.controlType == ControlType.ADD) {
+			insertThing(didControlThing.thing, raspberryPiUID);
+			removeThingFromInbox(raspberryPiUID, didControlThing.uid);
+		}
+		else {
+			//Order is important.
+			removeItemsFromThing(didControlThing.uid);
+			removeChannelsFromThing(didControlThing.uid);
+			removeThing(didControlThing.uid);
+		}
+	}
+
+	public List<String> getItemNamesFromThing(String thingUID) {
+		String sql = "SELECT items.Name FROM Items as items  INNER JOIN Things as t  INNER JOIN ThingsChannels as tc  INNER JOIN Links as links  WHERE t.UID = ? AND tc.ThingUID = t.UID  AND links.ChannelUID = tc.ChannelUID  AND items.Name = links.ItemName";
+
+		List<String> itemNames = new ArrayList<String>();
+
+		try {
+		    PreparedStatement ps = connection.prepareStatement(sql);
+		    ps.setString(1, thingUID);
+            ResultSet result = ps.executeQuery();
+            while(result.next())
+            {
+            	System.out.println("Found getItemNames: " + result.getString(1));
+
+            	String itemName = result.getString("Name");
+            	itemNames.add(itemName);
+            }
+        } catch (SQLException e) {
+		    e.printStackTrace();
+        }
+
+		return itemNames;
 	}
 
 	private void insertRaspberryPi(String raspberryPiUID, Integer locationID) {
@@ -195,6 +255,105 @@ public class MariaDBCommunicator {
 		}
 	}
 
+	private void insertInboxDevice(InboxDevice inboxDevice, String raspberryPiUID) {
+		String sql = "INSERT IGNORE INTO Inbox(BridgeUID, Flag, Label, ThingUID, ThingTypeUID, RaspberryPiUID)"
+				+ " VALUES(?, ?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, inboxDevice.bridgeUID);
+			ps.setString(2, inboxDevice.flag);
+			ps.setString(3, inboxDevice.label);
+			ps.setString(4, inboxDevice.thingUID);
+			ps.setString(5, inboxDevice.thingTypeUID);
+			ps.setString(6, raspberryPiUID);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void removeInbox(String raspberryPiUID) {
+		String sql = "DELETE FROM Inbox WHERE RaspberryPiUID = ?";
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, raspberryPiUID);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void removeThingFromInbox(String raspberryPiUID, String thingUID) {
+		String sql = "DELETE FROM Inbox WHERE Inbox.ThingUID = ? AND Inbox.RaspberryPiUID = ?";
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, thingUID);
+			ps.setString(2, raspberryPiUID);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void removeThing(String uid) {
+		String sql = "DELETE FROM Things WHERE Things.UID = ?";
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, uid);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void removeChannelsFromThing(String thingUID) {
+		String sql = "DELETE Channels FROM Channels INNER JOIN ThingsChannels WHERE ThingsChannels.ThingUID = ? AND Channels.UID = ThingsChannels.ChannelUID";
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, thingUID);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void removeItemsFromThing(String thingUID) {
+		String sql = "DELETE items FROM Items as items INNER JOIN Things as t INNER JOIN ThingsChannels as tc INNER JOIN Links as links WHERE t.UID = ? AND tc.ThingUID = t.UID AND links.ChannelUID = tc.ChannelUID AND items.Name = links.ItemName";
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, thingUID);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void removeItem(String itemName) {
+		String sql = "DELETE Items from Items WHERE Items.Name = ?";
+
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, itemName);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+
+
+	/**
+	 * This function is responsible for fetching Rules from MariaDB for sensor specified by sensorID
+	 * @author Christian Hansen and KacperZyla
+	 *
+	 **/
+
 	public List<List<String>> getRulesBySensorID(String sensorID) {
         String SensorID = "";
         String Operator = "";
@@ -228,4 +387,112 @@ public class MariaDBCommunicator {
         }
         return results;
 	}
+
+
+	/**
+	 * This part is responsible for MariaDB part of data synchronization in case of lost connection
+	 * @author KacperZyla
+	 *
+	 **/
+
+
+	/**
+	 * Get the list of RaspberryPies in MariaDB
+	 */
+
+	public  List<String> getRaspberryPies(){
+		String sql1 = "SELECT RaspberryPis.UID FROM RaspberryPis";
+		List<String> RPis = new ArrayList<String>();
+		try {
+			PreparedStatement ps1 = connection.prepareStatement(sql1);
+			ResultSet result1 = ps1.executeQuery();
+
+			while(result1.next()) {
+				String RPiID = result1.getString(1);
+				RPis.add(RPiID);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return RPis;
+
+	}
+
+	/**
+	 * Get all the sensor assigned to RaspberryPi specified by RPi
+	 */
+
+	public List<String> getSensorsByRaspberryPi(String RPi) {
+
+		List<String> RPiSensors = new ArrayList<String>();
+
+		try {
+		String sql2 = "SELECT items.Name FROM Items as items " +
+				"INNER JOIN RaspberryPis as rp " +
+				"INNER JOIN Things as t " +
+				"INNER JOIN ThingsChannels as tc " +
+				"INNER JOIN Links as links " +
+				"WHERE " +
+				"t.RaspberryPiUID = rp.UID " +
+				"AND tc.ThingUID = t.UID " +
+				"AND links.ChannelUID = tc.ChannelUID " +
+				"AND items.Name = links.ItemName " +
+				"AND t.RaspberryPiUID = ?";
+
+		PreparedStatement ps2 = connection.prepareStatement(sql2);
+		ps2.setString(1, RPi);
+		ResultSet result2 = ps2.executeQuery();
+
+		while(result2.next()) RPiSensors.add(result2.getString(1));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return RPiSensors;
+	}
+
+	/**
+	 * Uses getRaspberryPies and getSensorsByRaspberryPi functions
+	 * to create a list of lists of sensors for all RaspberryPies
+	 */
+
+	public List<List<String	>> getSensorsForRaspberryPis(){
+
+		List<List<String>> sensors = new ArrayList<List<String>>();
+
+		System.out.println("Getting the list of RPis");
+		List<String> RPis = getRaspberryPies();
+		for(int i = 0; i < RPis.size(); i++){
+			System.out.println("Adding sensors to the list for RPi no " + i);
+			sensors.add(getSensorsByRaspberryPi(RPis.get(i)));
+		}
+
+		return sensors;
+	}
+
+	/**
+	 *	Gets Sensor value category (e.g. Temperature, Humidity etc.)
+	 */
+
+	public String getSensorCategory(String sensor){
+
+		String sql = "SELECT Items.Category FROM Items WHERE Items.Name = ?";
+		String category = "";
+		try {
+			System.out.println("Getting the Category for " + sensor);
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, sensor);
+			ResultSet result = ps.executeQuery();
+			result.next();
+			category = result.getString(1);
+			System.out.println("Fetched Category " + category);
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return category;
+
+	}
+
 }

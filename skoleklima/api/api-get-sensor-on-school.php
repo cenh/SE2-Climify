@@ -1,4 +1,7 @@
-<?php 
+<?php
+/*
+ *	Author: Christian Hansen & Kacper Zyla
+ */
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
@@ -37,7 +40,7 @@ $phase_api_key = clean($_GET['fAY2YfpdKvR']);
 if( $apiPassword !== $phase_api_key){
     echo '{"status":"error"}';
     exit;
-} 
+}
 
 
 
@@ -46,7 +49,7 @@ $LocationID = $_GET["LocationID"];
 
 
 
-$sql = " SELECT * FROM Location NATURAL JOIN Map NATURAL JOIN Institution WHERE LocationID = '$LocationID' ";  
+$sql = " SELECT * FROM Location NATURAL JOIN Map NATURAL JOIN Institution WHERE LocationID = '$LocationID' ";
 
 $result = $conn->query($sql);
 if(!$result) {
@@ -81,7 +84,7 @@ else{
 
 
 //When you have a map you can get all the areas -> locations --> sensors tied to the map
-//$result = $conn->query("SELECT SensorID,SensorAlias,XAxis,YAxis FROM Area NATURAL JOIN Location NATURAL JOIN SensorInstance WHERE MapID = '$MapID'"); 
+//$result = $conn->query("SELECT SensorID,SensorAlias,XAxis,YAxis FROM Area NATURAL JOIN Location NATURAL JOIN SensorInstance WHERE MapID = '$MapID'");
 $result = $conn->query("SELECT SensorID FROM Location NATURAL JOIN SensorInstance WHERE LocationID='$LocationID'");
 
 //^^ TODO, right now the retrievel of sensor attributes doesen't consider SensorType, and one SensorType might have other attributes than another.

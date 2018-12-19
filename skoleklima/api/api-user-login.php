@@ -1,5 +1,7 @@
 <?php
-
+/*
+ *	Author: Christian Hansen & KacperZyla
+ */
 //************************************************
 //	Login
 //************************************************
@@ -42,7 +44,6 @@ if ($stmt = $conn->prepare("SELECT * FROM Person WHERE UserName = ?")) {
     $stmt->fetch();
     $stmt->close();
 }
-
 if ($RoleName == 1 || $RoleName == 15) {
     if ($stmt = $conn->prepare("SELECT * FROM ProjectManager WHERE UserID = ?")) {
         $stmt->bind_param("i", $UserID);
@@ -51,18 +52,6 @@ if ($RoleName == 1 || $RoleName == 15) {
         $stmt->fetch();
         $stmt->close();
     }
-    $q = "SELECT Permission.PermName FROM Permission INNER JOIN RolePermission ON Permission.PermID = RolePermission.PermID WHERE RolePermission.RoleID = $RoleName";
-    error_log("Query: $q", 0);
-    $result = $conn->query($q);
-    if($result->num_rows > 0) {
-      $permissions=array();
-      while($row = mysqli_fetch_assoc($result))
-      {
-        error_log("Pushed permission: ". $row['PermName'], 0);
-        array_push($permissions, $row['PermName']);
-      }
-    }
-    $permLogBook = 1;
 } else {
     if ($stmt = $conn->prepare("SELECT * FROM InstUser WHERE UserID = ?")) {
         $stmt->bind_param("i", $UserID);
@@ -71,7 +60,6 @@ if ($RoleName == 1 || $RoleName == 15) {
         $stmt->fetch();
         $stmt->close();
     }
-
     if ($stmt = $conn->prepare("SELECT MunID, InstName FROM Institution WHERE InstID = ?")) {
         $stmt->bind_param("i", $InstID);
         $stmt->execute();
@@ -79,22 +67,18 @@ if ($RoleName == 1 || $RoleName == 15) {
         $stmt->fetch();
         $stmt->close();
     }
+}
 
-    //Get logbook permission
-    $logbookPermID = 2;
-
-    $sql = "SELECT RoleID, PermID FROM RolePermission WHERE RoleID = $RoleName && PermID = $logbookPermID && InstID = $InstID";
-
-    $result = $conn->query($sql);
-    if (!$result) {
-        die("Error: " . $conn->error);
-    }
-
-    if ($result->num_rows==1) {
-        $permLogBook = 1;
-    } else {
-        $permLogBook = 0;
-    }
+$q = "SELECT Permission.PermName FROM Permission INNER JOIN RolePermission ON Permission.PermID = RolePermission.PermID WHERE RolePermission.RoleID = $RoleName";
+error_log("Query: $q", 0);
+$result = $conn->query($q);
+if($result->num_rows > 0) {
+  $permissions=array();
+  while($row = mysqli_fetch_assoc($result))
+  {
+    error_log("Pushed permission: ". $row['PermName'], 0);
+    array_push($permissions, $row['PermName']);
+  }
 }
 
 $sPasswordDBDecrypted = decrypt($UserPassword, ENCRYPTION_KEY);

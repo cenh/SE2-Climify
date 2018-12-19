@@ -26,6 +26,13 @@ public class SensorMeasurement {
 		this.value = value;
 		this.time = getTime();
 	}
+
+	public SensorMeasurement(String name, String type, String value, String time){
+		this.name = name;
+		this.type = type;
+		this.value = value;
+		this.time = time;
+	}
 	
 	public void setCategory(String category) {
 		this.category = category;

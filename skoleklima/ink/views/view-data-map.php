@@ -5,19 +5,21 @@
 		<h3>Devices</h3>
 		<p>An overview of installed devices</p>
 	</span>
-        <span>
-		<span>
-			<?php if ($currentUserRole == 1 || $currentUserRole == 15) { ?>
-                <select class="list-schools-other-users" name="option" id="dataViewSelect">
-					<option value="" selected>Choose Institution</option>
-                    <!-- Content goes here -->
-				</select>
-            <?php } ?>
-		</span>
-		<span>
-			<button class="btn-show-view-map-info">Show info</button>
-		</span>
-	</span>
+
+<!--        <span>-->
+<!--		<span>-->
+<!--			--><?php //if ($currentUserRole == 1 || $currentUserRole == 15) { ?>
+<!--                <select class="list-schools-other-users" name="option" id="dataViewSelect">-->
+<!--					<option value="" selected>Choose Institution</option>-->
+<!--                    <!-- Content goes here -->
+<!--				</select>-->
+<!--            --><?php //} ?>
+<!--		</span>-->
+<!--		<span>-->
+<!--			<button class="btn-show-view-map-info">Show info</button>-->
+<!--		</span>-->
+<!--	</span>-->
+
     </div>
     <hr>
 
@@ -26,11 +28,10 @@
     </div>
 
     <div style="height: auto">
-        <div class="input-field col s12">
-            <select id="select_room" onchange="refreshTableSensorsAndActuators(value)">
-                <option value="" disabled selected>Choose Your Room</option>
-            </select>
-        </div>
+        <select id="select_room" onchange="refreshTableSensorsAndActuators(value)">
+            <option value="" disabled selected>Choose Your Room</option>
+        </select>
+        <button onclick="refreshTableSensorsAndActuatorsWithButton()">Refresh</button>
     </div>
 
     <div style="overflow: auto">
@@ -39,7 +40,7 @@
             <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
     padding: 8px; float:left;">
-                <table id="table_id1" class="display">
+                <table id="table_id1" class="display" style="width: 100%">
                     <thead>
                     <tr>
                         <th>Sensors</th>
@@ -53,7 +54,7 @@
             <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
     padding: 8px; float:left;">
-                <table id="table_id2" class="display">
+                <table id="table_id2" class="display" style="width: 100%">
                     <thead>
                     <tr>
                         <th>Actuators</th>
@@ -65,35 +66,13 @@
                 </table>
             </div>
         </div>
-    </div>
 
-    <hr>
+        <style>
+            td.details-control {
+                cursor: pointer;
+            }
+        </style>
 
-    <div style="text-align: center">
-        <h2>Manage Devices</h2>
-    </div>
-
-    <div style="height: auto">
-        <div class="input-field col s12">
-            <select id="select_room_devices" onchange="refreshTableDevices(value)">
-                <option value="" disabled selected>Choose Your Room</option>
-            </select>
-        </div>
-    </div>
-
-    <div style="width: 100%; height: auto; border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px; float:left;">
-        <table id="table_id3" class="display">
-            <thead>
-            <tr>
-                <th>Devices</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
     </div>
 
 
