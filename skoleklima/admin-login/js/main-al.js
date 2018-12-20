@@ -308,14 +308,14 @@ function updateCompanyList(search) {
 <h4>Associated Project Managers</h4>\
 <div class="create-subuser-wrapper">\
 <button class="btn-create-user-company" data-toggle="modal" id="isValidForm" data-target="#roleDropdown">Select Role</button>\
-<p>New users will automatically be assigned to the administrator role</p>\
+<p>Create a new user with an assigned role</p>\
 <span>\
 <input id="NewUsername" type="text" class="inp-system-create-user inp-system-create-user-username" placeholder="Username (4-8 character)">\
 <input id="NewFName" type="text" class="inp-system-create-user inp-system-create-user-firstname" placeholder="First Name">\
 <input id="NewLName" type="text" class="inp-system-create-user inp-system-create-user-lastname" placeholder="Last Name">\
 <input id="NewEmail" type="email" class="inp-system-create-user inp-system-create-user-email" placeholder="E-mail">\
 <select id="roleSelect">\
-<option value="" disabled selected>Select role</option>\
+<option value="" disabled selected>Create user</option>\
 </select>\
 </span>\
 <div class="user-meta-subusers-userlist">\
@@ -620,12 +620,8 @@ function requestCompanyUserList(companyID){
 <p>{{firstName}} {{lastName}}</p>\
 <p>{{email}}</p>\
 <p>{{lastLogin}}</p>\
-<select class="inp-system-user-status-select">\
-<option value="1" {{selected1}}>Active</option>\
-<option value="0" {{selected0}}>Blocked</option>\
-</select>\
+
 <span>\
-<i class="ico-reset-pass-user-company link fa fa-key" aria-hidden="true"></i>\
 <i class="ico-delete-user-company link fa fa-trash" aria-hidden="true"></i>\
 </span>\
 </div >\
@@ -688,7 +684,6 @@ function requestCompanyUserList(companyID){
 
 
 };
-
 
 function requestCompanyDTUManager(){
 
