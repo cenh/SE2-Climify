@@ -30,6 +30,7 @@ public class ClimifyMqttController extends AsyncMqttController {
 	
 	@Override
 	protected void subscribeToTopics() throws MqttException {
+		super.subscribe(Topic.NEWCLIENT.getTopic()+"/#", 2);
 		super.subscribe(Topic.SENSORDATA.getTopic()+"/#", 2);
 		super.subscribe(Topic.SENSORUPDATE.getTopic()+"/#", 2);
 		super.subscribe(Topic.INBOX.getTopic()+"/#", 2);
