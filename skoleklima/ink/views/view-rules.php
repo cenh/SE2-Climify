@@ -1,3 +1,5 @@
+<!-- Author: Christian P -->
+
 <?php
 
 $query = "SELECT LocationID, LocationName FROM Location";
