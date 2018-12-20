@@ -1,9 +1,7 @@
 <?php
-
 //************************************************
-//	Delete user 
+//	Delete user
 //************************************************
-
 	require_once "../meta.php";
 
 	//echo "INSIDE ACTIVATE USER";
@@ -27,8 +25,8 @@
 	$password = DB_PASSWORD;
 	$databasename = DB_NAME;
 
-	$phaseCurrentUserID = clean($_GET['current-userID']); 
-	$phaseDeleteUserName = clean($_GET['delete-username']); 
+	$phaseCurrentUserID = clean($_GET['current-userID']);
+	$phaseDeleteUserName = clean($_GET['delete-username']);
 	$CurrentUserRole;
 
 	if ( $phaseCurrentUserID == "" ) {
@@ -47,14 +45,14 @@
 	            exit;
 	        }
 
-    $sql = " SELECT RoleName FROM Person WHERE UserID = '$phaseCurrentUserID' ";  
+    $sql = " SELECT RoleName FROM Person WHERE UserID = '$phaseCurrentUserID' ";
 
     $result = $conn->query($sql);
         if(!$result) {
             die("Error: " . $conn->error);
         }
 
-    if ($result->num_rows==1){	
+    if ($result->num_rows==1){
 		while($row = $result->fetch_assoc()) {
 	        $CurrentUserRole = $row["RoleName"];
 		}
@@ -64,7 +62,7 @@
 		exit;
 	}
 
-	if ( $CurrentUserRole == 1 || $CurrentUserRole == 2 || $CurrentUserRole == 3) {		
+	if ( $CurrentUserRole == 1 || $CurrentUserRole == 2 || $CurrentUserRole == 3) {
 	} else {
 		echo '{"status":"error"}';
 		$conn->close();
@@ -73,15 +71,15 @@
 
 	//echo "delete user name ";
 	//echo $phaseDeleteUserName;
-	
-	$sql = " SELECT UserID FROM Person WHERE UserName = '$phaseDeleteUserName' ";  
+
+	$sql = " SELECT UserID FROM Person WHERE UserName = '$phaseDeleteUserName' ";
 
     $result = $conn->query($sql);
         if(!$result) {
             die("Error: " . $conn->error);
         }
 
-    if ($result->num_rows==1){	
+    if ($result->num_rows==1){
 		while($row = $result->fetch_assoc()) {
 			$DeleteUserID = $row["UserID"];
 		}
@@ -99,7 +97,7 @@
 	$sql = " DELETE FROM UserActivate WHERE NewUserID = '$DeleteUserID' ";
 
 	$result = $conn->query($sql);
-    
+
 
     $conn->close();
 

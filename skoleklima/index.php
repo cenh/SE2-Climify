@@ -1,4 +1,7 @@
     <?php
+    /*
+     *	Author: Christian Hansen
+     */
     require_once "meta.php";
     ?>
 
@@ -108,9 +111,7 @@
 
 
 	<?php
-		error_log("currentUser:".$currentUserID,0);
 		if ( $currentUserID ) { ?>
-
         <script>
             [
                 'js/main-al.js?v=<?php echo $system_version ?>',
@@ -123,7 +124,6 @@
                 document.head.appendChild(script);
             });
         </script>
-
     <?php } else { ?>
         <script>
             ga('set', 'page', '/Login/');

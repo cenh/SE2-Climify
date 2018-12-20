@@ -5,7 +5,7 @@ var reE = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-
 MunIDs = [];
 phoneNumbers = [];
 phoneIDs = []; //ID is to check which number is the primary number and which is the secondary...
-streets = []; 
+streets = [];
 streetIDs = [];
 
 // Show company meta
@@ -36,20 +36,9 @@ $(document).on("click", ".ico-show-meta", function(){
 });
 
 // Get database information
+
 function requestDBInfo(id){
     var companyID = id.parent().parent().attr("data-company-id");
-    var sUrl = "api/api-get-db-info.php";
-    $.post(sUrl, {
-        sessionToken: sessionToken,
-        id: companyID
-    }, function (data) {
-        var jData = JSON.parse(data);
-        if (jData.status == "ok") {
-            id.parent().parent().find(".inp-system-db-meta-name").val(jData.dbName);
-            id.parent().parent().find(".inp-system-db-meta-user").val(jData.dbUser);
-            id.parent().parent().find(".inp-system-db-meta-pass").val(jData.dbPass);
-        }
-    });
 }
 
 $(document).on("click", ".ico-hide-meta", function () {
@@ -57,7 +46,7 @@ $(document).on("click", ".ico-hide-meta", function () {
 
     if ($(this).parent().parent().attr("id")=="outerDiv"){
         $(this).parent().css("border","1px solid #000000");
- 
+
         $(".DTUManager-list").css("width","500px");
     }
 
@@ -134,7 +123,7 @@ $(document).on("change", ".inp-system", function(){
 
 // Create company user button
 $(document).on("click", ".btn-create-user-company", function () {
-    var companyID = $(this).parent().parent().parent().parent().parent().attr("data-company-id");
+    var companyID = 1;
     var username = $('#NewUsername').val();
     var firstName = $(this).parent().find(".inp-system-create-user-firstname").val();
     var lastName = $(this).parent().find(".inp-system-create-user-lastname").val();
@@ -172,7 +161,7 @@ $(document).on("click", "#btn-create-manager", function () {
             text: 'Username should be between 4 and 8 characters',
             type: 'error'
         });
-    } 
+    }
 
     else{
 
@@ -239,7 +228,7 @@ $("#imp-search-company").keyup(function (event) {
 
 
 function updateCompanyList(search) {
-    var userBlock = $("#inp-serch-block").val();
+    var userBlock = 2;
     $(".header-text-wrapper h4").text("");
     $(".user-list").empty();
     $(".user-list").html("<p><i class='update-spinner fa fa-spinner fa-spin fa-1x fa-fw'></i> Fetching data...</p>");
@@ -318,8 +307,8 @@ function updateCompanyList(search) {
 <div class="user-meta-subusers">\
 <h4>Associated Project Managers</h4>\
 <div class="create-subuser-wrapper">\
-<button class="btn-create-user-company" data-toggle="modal" id="isValidForm" data-target="#roleDropdown">Select Role</button>\
-<p>New users will automatically be assigned to the administrator role</p>\
+<button class="btn-create-user-company" data-toggle="modal" id="isValidForm" data-target="#roleDropdown">Create User</button>\
+<p>Create a new user with an assigned role</p>\
 <span>\
 <input id="NewUsername" type="text" class="inp-system-create-user inp-system-create-user-username" placeholder="Username (4-8 character)">\
 <input id="NewFName" type="text" class="inp-system-create-user inp-system-create-user-firstname" placeholder="First Name">\
@@ -409,7 +398,7 @@ var manTemp =  '<div class="user-meta-man">\
                     streetIDs.push(jData[i].AddressID);
                 }
 
-          
+
 
 
                 if (!phoneNumbers.includes(jData[i].PhoneNumber)) {
@@ -436,7 +425,7 @@ var manTemp =  '<div class="user-meta-man">\
 
 
                 if (!streets.includes(jData[i].Street)){
-                
+
                     var toGetIndexOf = $(".inp-system-contact-address1").val();
                     var index = streets.indexOf(toGetIndexOf);
                     var currentPrimeID = streetIDs[index];
@@ -469,10 +458,10 @@ var manTemp =  '<div class="user-meta-man">\
 
 
                     //Handling if phone2 and address2 were not present
-               
-                    
+
+
                     if (replaceTemp.includes("{{street2}}")){
-           
+
                         // break the textblock into an array of lines
                         replaceTemp = replaceTemp.split('\n');
                         // remove one line, starting at the first position
@@ -480,11 +469,11 @@ var manTemp =  '<div class="user-meta-man">\
                         // join the array back into a single string
                         replaceTemp = replaceTemp.join('\n')
 
-                  
+
                     }
 
                     if (replaceTemp.includes("{{phone2}}")){
-                    
+
                          // break the textblock into an array of lines
                         replaceTemp = replaceTemp.split('\n');
                         // remove one line, starting at the first position
@@ -517,7 +506,7 @@ var manTemp =  '<div class="user-meta-man">\
 
     });
 
- 
+
 
 
 
@@ -540,7 +529,7 @@ var manTemp =  '<div class="user-meta-man">\
         console.log(jData)
         if (jData.length > 0) {
             for (i = 0; i < jData.length; i++){
-                $("#roleSelect").append("<option value="+jData[i].roleID+">"+jData[i].RoleName+"</option>");
+                $("#roleSelect").append("<option value="+jData[i].RoleID+">"+jData[i].RoleName+"</option>");
 
             }
         }
@@ -555,7 +544,7 @@ $(document).on("click", ".btn-save-sel-company", function () {
     if (!selCompany.hasClass("button-disabled")) {
         selCompany.addClass(("button-disabled"));
         requestUpdateCompany(selCompany);
-    } 
+    }
 });
 
 function requestUpdateCompany(selCompany) {
@@ -573,7 +562,7 @@ function requestUpdateCompany(selCompany) {
 
     if (!thisCompanyContantFirstName) {
         selCompany.parent().parent().parent().find(".inp-system-contact-firstname").addClass("wrong-input");
-    } 
+    }
     if (!thisCompanyContantLastName) {
         selCompany.parent().parent().parent().find(".inp-system-contact-lastname").addClass("wrong-input");
     }
@@ -582,16 +571,16 @@ function requestUpdateCompany(selCompany) {
     }
     if (!thisCompanyContantPhone1) {
         selCompany.parent().parent().parent().find(".inp-system-contact-phone1").addClass("wrong-input");
-    } 
+    }
     if (!thisCompanyContantAddress1) {
         selCompany.parent().parent().parent().find(".inp-system-contact-address1").addClass("wrong-input");
-    } 
+    }
     if (!thisCompanyContantZipcode) {
         selCompany.parent().parent().parent().find(".inp-system-contact-zipcode").addClass("wrong-input");
-    } 
+    }
     if (!thisCompanyContantCity) {
         selCompany.parent().parent().parent().find(".inp-system-contact-city").addClass("wrong-input");
-    } 
+    }
 
     var sUrl = "api/api-update-companyes.php";
     $.post(sUrl, {
@@ -631,12 +620,7 @@ function requestCompanyUserList(companyID){
 <p>{{firstName}} {{lastName}}</p>\
 <p>{{email}}</p>\
 <p>{{lastLogin}}</p>\
-<select class="inp-system-user-status-select">\
-<option value="1" {{selected1}}>Active</option>\
-<option value="0" {{selected0}}>Blocked</option>\
-</select>\
 <span>\
-<i class="ico-reset-pass-user-company link fa fa-key" aria-hidden="true"></i>\
 <i class="ico-delete-user-company link fa fa-trash" aria-hidden="true"></i>\
 </span>\
 </div >\
@@ -648,7 +632,7 @@ function requestCompanyUserList(companyID){
         var jData = JSON.parse(data);
         if (jData.length > 0) {
             for (var i = 0; i < jData.length; i++) {
-        
+
                 var replaceTemp = temp;
 
 
@@ -699,7 +683,6 @@ function requestCompanyUserList(companyID){
 
 
 };
-
 
 function requestCompanyDTUManager(){
 
@@ -772,12 +755,7 @@ function requestCreateUser(thisInput, companyID, username, firstName, lastName, 
 <p>'+ firstName + ' ' + lastName +'</p>\
 <p>'+ email + '</p>\
 <p></p>\
-<select class="inp-system-user-status-select">\
-<option value="1" selected>Aktiv</option>\
-<option value="0">Blokeret</option>\
-</select>\
 <span>\
-<i class="ico-reset-pass-user-company link fa fa-key" aria-hidden="true"></i>\
 <i class="ico-delete-user-company link fa fa-trash" aria-hidden="true"></i>\
 </span>\
 </div >\
@@ -932,7 +910,7 @@ $(document).on("change", ".inp-system-user-status-select", function(){
         else if (jData.status=="blocked"){
             swal("", "Project manager is now blocked", "success");
             $("#"+thisID).css("color","red");
-        } 
+        }
 
         else{
             swal({
@@ -982,7 +960,7 @@ function requestResetUserPass(id) {
                     text: "Password has now been changed to  <strong>" + jData.pass + "</strong><br><br>When you click OK for this info box, the password will no longer be visible.",
                     type: "success",
                     html: true
-                }); 
+                });
             }, 1000);
         } else {
             swal({

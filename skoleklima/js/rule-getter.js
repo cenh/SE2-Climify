@@ -1,12 +1,7 @@
+// Author: Christian P
+
 var isEdit = false;
 var ruleID = -1;
-/**
- * @author Ben, and others
- */
-
-//************************************************
-//	Manage rules
-//************************************************
 
 function generateDivs(sensor, operator, value, action, ruleNo, ruleCount,ruleID,actuator){
     var message = "if " +sensor+" is "+operator + " than " +value + " then set " + actuator + " to: " + action;
@@ -165,6 +160,7 @@ $("#modalRule").on("click",function () {
 
 $("#sensorSelect").change(function () {
     var sensorID = $('#sensorSelect').val();
+    console.log(sensorID);
     $.ajax({
         type: "GET",
         url: "api/api-get-sensor-type.php",
@@ -174,22 +170,21 @@ $("#sensorSelect").change(function () {
         }
       }).done(function (res) {
         results = JSON.parse(res);
-        var category= results[0].Category;
-    if (category=== "Temperature") {
+        var type = results[0].Category;
+        console.log(sensorID);
+        console.log(type);
+    if (type === "Temperature") {
         console.log("t");
         $('#unit').text('°C');
     }
-    else if (category=== "Battery" || category=== "Humidity" ) {
+    else if (type === "Battery" || type === "Humidity" ) {
         $('#unit').text('%');
     }
-    else if (category=== "CO2") {
+    else if (type === "CO2") {
         $('#unit').text('PPM');
     }
-    else if (category=== "Noise") {
+    else if (type === "Noise") {
         $('#unit').text('dB');
-    }
-    else {
-      alert("Sensors of category" + category+ " is not useable for rules");
     }
  });
 });
@@ -241,24 +236,11 @@ $("#submitRule").on("click",function () {
 
 });
 $('#actuatorSelect').change(function () {
-    //actuator
-    var actuatorID = $('#actuatorSelect').val();
-    $.ajax({
-        type: "GET",
-        url: "api/api-get-actuator-type.php",
-        data: {
-            ActuatorName: actuatorID ,
-            LocationID: rulelocationChosen()
-        }
-      }).done(function (res) {
-        results = JSON.parse(res);
-        var category = results[0].Category;
-
-    if(category=== "Temperature"){
+    //actuator 
+    if($('#actuatorSelect').val() === "ZWaveNode4LC13LivingConnectZThermostat_SetpointHeating"){
         $('#onActionSetTemp').show();
     }
     else {
         $('#onActionSetTemp').hide();
-      }
-     });
+    }
 });

@@ -402,6 +402,9 @@ function GTMtimeRound(time) {
     return realtime;
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getGraphData() {
     //hide user "directions/manual"
     $("#retrunNoSchoolData").hide();
@@ -558,6 +561,9 @@ function fill_double_table(left, right, data, bool) {
     }
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function drawGraphDouble() {
     document.getElementById("stat_single_table").innerHTML = "";
     var table_left = document.getElementById("stat_double_table1");
@@ -841,6 +847,9 @@ function fill_stat_table(table, stats) {
 
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function drawGraphSingle() {
     var table = document.getElementById("stat_single_table");
     document.getElementById("stat_double_table1").innerHTML = "";
@@ -1072,6 +1081,9 @@ function startCompareCharset() {
     disableGraphSettingsSelections();
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getCompareCharsetData() {
     //Possible old warning should be hidden
     $("#retrunNoDeviceGraph2").hide();
@@ -2202,6 +2214,9 @@ function updateMapChartLine() {
     }
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getStats(numbers) {
     var mean = getMean(numbers);
     var median = getMedian(numbers);
@@ -2218,6 +2233,10 @@ function getStats(numbers) {
     return json;
 }
 
+
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getMean(numbers) {
     // mean of [3, 5, 4, 4, 1, 1, 2, 3] is 2.875
     var total = 0;
@@ -2227,6 +2246,9 @@ function getMean(numbers) {
     return total / numbers.length;
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getMedian(numbers) {
     // median of [3, 5, 4, 4, 1, 1, 2, 3] = 3
     var median = 0;
@@ -2242,14 +2264,23 @@ function getMedian(numbers) {
     return median;
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getMax(numbers) {
     return Math.max.apply(null, numbers);
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getMin(numbers) {
     return Math.min.apply(null, numbers);
 }
 
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
 function getVariance(numbers) {
     var mean = getMean(numbers);
     var v = 0;

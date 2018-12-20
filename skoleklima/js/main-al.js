@@ -1056,7 +1056,11 @@ var tab_text;
 var data_type = 'data:application/vnd.ms-excel';
 var dataExportFileName = 'Data_Export';
 
-function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHumidity, ListOfDataCO2, ListOfDataNoiseAvg, ListOfDataXData) {
+
+/*
+ * Author: Christian Hansen & KacperZyla
+ */
+ function CreateHiddenTable(ListOfDataDates, ListOfDataTemperature, ListOfDataHumidity, ListOfDataCO2, ListOfDataNoiseAvg, ListOfDataXData) {
 
     LocationID = $(".chart-select-location").find('option:selected').attr('value');
     dataExportFileName = 'Data_Export_' + showSchool + '_' + currentDate;

@@ -1,5 +1,7 @@
 <?php
-
+/*
+ *	Author: Christian Hansen & KacperZyla
+ */
 //************************************************
 //	Login
 //************************************************
@@ -42,7 +44,6 @@ if ($stmt = $conn->prepare("SELECT * FROM Person WHERE UserName = ?")) {
     $stmt->fetch();
     $stmt->close();
 }
-error_log("UserID1:".$UserID, 0);
 if ($RoleName == 1 || $RoleName == 15) {
     if ($stmt = $conn->prepare("SELECT * FROM ProjectManager WHERE UserID = ?")) {
         $stmt->bind_param("i", $UserID);
@@ -51,7 +52,6 @@ if ($RoleName == 1 || $RoleName == 15) {
         $stmt->fetch();
         $stmt->close();
     }
-    error_log("UserID2:".$UserID, 0);
 } else {
     if ($stmt = $conn->prepare("SELECT * FROM InstUser WHERE UserID = ?")) {
         $stmt->bind_param("i", $UserID);
@@ -60,7 +60,6 @@ if ($RoleName == 1 || $RoleName == 15) {
         $stmt->fetch();
         $stmt->close();
     }
-    error_log("UserID3:".$UserID, 0);
     if ($stmt = $conn->prepare("SELECT MunID, InstName FROM Institution WHERE InstID = ?")) {
         $stmt->bind_param("i", $InstID);
         $stmt->execute();
@@ -83,13 +82,8 @@ if($result->num_rows > 0) {
 }
 
 $sPasswordDBDecrypted = decrypt($UserPassword, ENCRYPTION_KEY);
-error_log("DecryptedDB:".$sPasswordDBDecrypted, 0);
-error_log("phaseDecrypted:".$phasePasswordDecrypt, 0);
 if ($sPasswordDBDecrypted === $phasePasswordDecrypt) {
-    error_log("Passwords are equal", 0);
     if ($Blocked == 1) {
-        error_log("UserID4:".$UserID, 0);
-        error_log("User is not blocked", 0);
         // Store user-info from variables in sessions
         $_SESSION['userID'] = $UserID;
         $_SESSION['userName'] = $phaseUsername;

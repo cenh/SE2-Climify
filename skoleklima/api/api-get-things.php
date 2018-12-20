@@ -1,7 +1,7 @@
 <?php
-//@author ciok
-//get all things from a given room
-
+/*
+ *	Author: Christian Hansen & Kacper Zyla
+ */
 require_once "../meta.php";
 
 $servername = DB_HOST;

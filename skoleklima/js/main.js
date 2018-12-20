@@ -251,13 +251,13 @@ if (browserIsIE == false) {
             var jData = JSON.parse(sData);
             console.log(jData);
             if (jData.status == "ok") {
+                
                 var passEncrypt = jData.encrypt;
                 // Store link to api and phase userinput
                 var sUrl = "api/api-user-login.php?fAY2YfpdKvR=" + sender_first + "&username=" + typedUserName + "&password=" + passEncrypt;
                 // Do AJAX and pahse
                 $.get(sUrl, function (sData) {
                     var jData = JSON.parse(sData);
-                    console.log(jData);
                     if (jData.status == "approve") {
                         console.log("Approved");
                         $.cookie("username", typedUserName, {
