@@ -39,7 +39,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 	@Override
 	public void run() {
 		super.run();
-
+		System.out.println("Processing message on topic: " + topic);
 		if (topic.startsWith(Topic.SENSORDATA.getTopic())) {
 			try {
 				System.out.println("Inside topic " + topic);
