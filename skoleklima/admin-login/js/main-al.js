@@ -850,7 +850,8 @@ function requestDeleteCompany(id) {
 // Delete company user
 
 $(document).on("click", ".ico-delete-user-company", function () {
-    var thisID = $(this).parent().parent().attr("data-company-user-id");;
+    var thisID = $(this).parent().parent().attr("data-company-user-id");
+    console.log(thisID);
     swal({
         title: "",
         text: 'Are you sure you want to delete this user permanently?',
