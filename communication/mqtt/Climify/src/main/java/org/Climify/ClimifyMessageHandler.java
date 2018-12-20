@@ -18,6 +18,7 @@ import org.MqttLib.openhab.DidSynchronize;
 import org.MqttLib.openhab.DidControlItem;
 import org.MqttLib.openhab.DidControlThing;
 import org.MqttLib.openhab.InboxDevice;
+import org.MqttLib.openhab.NewClient;
 import org.MqttLib.openhab.SensorMeasurement;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
@@ -41,11 +42,20 @@ public class ClimifyMessageHandler extends MessageHandler {
 
 		if (topic.startsWith(Topic.SENSORDATA.getTopic())) {
 			try {
-				//TODO: Get the RaspberryPiUID
 				System.out.println("Inside topic " + topic);
 				SensorMeasurement measurement = dslJson.deserialize(SensorMeasurement.class, message.getPayload(), message.getPayload().length);
 				influx.saveMeasurement(measurement);
 				executeRule(measurement.name, measurement.value);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if (topic.startsWith(Topic.NEWCLIENT.getTopic())) {
+			try {
+				System.out.println("Inside topic " + topic);
+				NewClient newClient = dslJson.deserialize(NewClient.class, message.getPayload(), message.getPayload().length);
+				mariaDB.saveRaspberryPi(newClient.uid, newClient.locationID);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

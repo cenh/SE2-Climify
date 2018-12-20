@@ -30,6 +30,7 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 	private RestCommunicator rest = new RestCommunicator();
 	private InfluxCommunicator influx;
 	private MessageCallback messageCallback;
+	private String uid = RaspberryPiSetup.getInstance().getUID();
 
 	public RaspberryPiMessageHandler(String topic, MqttMessage message, MessageCallback messageCallback, InfluxCommunicator influxCommunicator) {
 		super(topic, message);
@@ -58,14 +59,12 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 				rest.startDiscovery(deviceDiscovery.binding.getBinding());
 				Thread.sleep(10000); //TODO: Make it a Semophore and handle it better to avoid race conditions.
 				String inboxJSON = rest.getInbox();
-				messageCallback.publish(Topic.INBOX.getTopic()+"/testID", 2, inboxJSON.getBytes("UTF-8"));
+				messageCallback.publish(Topic.INBOX.getTopic()+"/"+uid, 2, inboxJSON.getBytes("UTF-8"));
 			} catch (IOException | InterruptedException e ) {
 				e.printStackTrace();
 			} catch (MqttPersistenceException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (MqttException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -100,7 +99,7 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 				dslJson.serialize(writer, didControlItem);
 				byte[] payload = writer.getByteBuffer();
 				writer.reset();
-				messageCallback.publish(Topic.DIDCONTROLITEM.getTopic()+"/testID", 2, payload);
+				messageCallback.publish(Topic.DIDCONTROLITEM.getTopic()+"/"+uid, 2, payload);
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (MqttPersistenceException e) {
@@ -151,7 +150,7 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 				dslJson.serialize(writer, didControlThing);
 				byte[] payload = writer.getByteBuffer();
 				writer.reset();
-				messageCallback.publish(Topic.DIDCONTROLTHING.getTopic()+"/testID", 2, payload);
+				messageCallback.publish(Topic.DIDCONTROLTHING.getTopic()+"/"+uid, 2, payload);
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (MqttPersistenceException e) {
@@ -180,7 +179,7 @@ public class RaspberryPiMessageHandler extends MessageHandler {
 				dslJson.serialize(writer, didSynchronize);
 				byte[] payload = writer.getByteBuffer();
 				writer.reset();
-				messageCallback.publish(Topic.DIDSYNCHRONIZE.getTopic()+"/testID", 2, payload);
+				messageCallback.publish(Topic.DIDSYNCHRONIZE.getTopic()+"/"+uid, 2, payload);
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (MqttPersistenceException e) {
