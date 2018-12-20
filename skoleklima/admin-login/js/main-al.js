@@ -620,7 +620,6 @@ function requestCompanyUserList(companyID){
 <p>{{firstName}} {{lastName}}</p>\
 <p>{{email}}</p>\
 <p>{{lastLogin}}</p>\
-
 <span>\
 <i class="ico-delete-user-company link fa fa-trash" aria-hidden="true"></i>\
 </span>\
