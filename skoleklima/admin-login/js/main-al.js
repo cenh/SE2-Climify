@@ -879,15 +879,8 @@ function requestDeleteUser(id) {
         }
     }).done( function (data) {
         var jData = JSON.parse(data);
-        if (jData.status == "ok") {
-            $(".user-meta-subusers-userlist").find("[data-company-user-id='" + id + "']").empty();
-        } else {
-            swal({
-                title: "Error",
-                text: 'Something went wrong. Try again later',
-                type: "error"
-            });
-        }
+        $(".user-meta-subusers-userlist").find("[data-company-user-id='" + id + "']").empty();
+
     });
 }
 
