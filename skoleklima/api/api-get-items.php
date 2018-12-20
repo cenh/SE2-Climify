@@ -23,11 +23,9 @@ INNER JOIN Links as links
 WHERE rp.LocationID = $roomID
 AND t.RaspberryPiUID = rp.UID
 AND tc.ThingUID = t.UID
-AND links.ChannelUID = tc.ChannelUID 
-AND Channels.UID = links.ChannelUID 
+AND links.ChannelUID = tc.ChannelUID
+AND Channels.UID = links.ChannelUID
 AND items.Name = links.ItemName";
-
-
 
 $stmt = $conn->prepare($query);
 
@@ -47,3 +45,4 @@ echo $messages;
 $stmt->close();
 
 $conn->close();
+?>

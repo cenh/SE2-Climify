@@ -1,4 +1,7 @@
 <?php
+/*
+ *	Author: Christian Hansen & Kacper Zyla
+ */
 $names = $_POST['sensors_names'];
 //$names = array_unique(json_decode($_POST['sensors_names']));
 

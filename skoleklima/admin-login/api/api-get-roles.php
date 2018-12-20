@@ -1,6 +1,7 @@
 <?php
-
-
+/*
+ *	Author: Christian Hansen & KacperZyla
+ */
 require_once "../admin-meta.php";
 require_once "../session.php";
 
@@ -33,8 +34,9 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT RoleName, PermDescription FROM Role r JOIN RolePermission rp ON r.RoleID = rp.RoleID JOIN Permission p ON p.PermID = rp.PermID";
-
+//$query = "SELECT RoleName, PermDescription FROM Role r JOIN RolePermission rp ON r.RoleID = rp.RoleID
+//        JOIN Permission p ON p.PermID = rp.PermID";
+$query = "SELECT * FROM Role";
 //RolePermission;
 //Permission;
 

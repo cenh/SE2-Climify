@@ -19,6 +19,7 @@
 <!--			<button class="btn-show-view-map-info">Show info</button>-->
 <!--		</span>-->
 <!--	</span>-->
+
     </div>
     <hr>
 
@@ -30,6 +31,7 @@
         <select id="select_room" onchange="refreshTableSensorsAndActuators(value)">
             <option value="" disabled selected>Choose Your Room</option>
         </select>
+        <button onclick="refreshTableSensorsAndActuatorsWithButton()">Refresh</button>
     </div>
 
     <div style="overflow: auto">
@@ -41,7 +43,6 @@
                 <table id="table_id1" class="display" style="width: 100%">
                     <thead>
                     <tr>
-                        <th></th>
                         <th>Sensors</th>
                     </tr>
                     </thead>
@@ -56,7 +57,6 @@
                 <table id="table_id2" class="display" style="width: 100%">
                     <thead>
                     <tr>
-                        <th></th>
                         <th>Actuators</th>
                     </tr>
                     </thead>
@@ -69,50 +69,10 @@
 
         <style>
             td.details-control {
-                background: url('img/right.png') no-repeat center center;
-                cursor: pointer;
-            }
-
-            tr.shown td.details-control {
-                background: url('img/down.png') no-repeat center center;
-            }
-        </style>
-
-    </div>
-
-    <hr>
-
-    <div style="text-align: center; padding-top: 30px">
-        <h2>Manage Devices</h2>
-    </div>
-
-    <div style="height: auto">
-        <select id="select_room_devices" onchange="refreshTableDevices(value)">
-            <option value="" disabled selected>Choose Your Room</option>
-        </select>
-        <button id="listen_button" onclick="listen()" disabled>Discover new devices</button>
-    </div>
-
-    <div style="width: 100%; height: auto; border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px; float:left;">
-        <table id="table_id3" class="display" style="width: 100%">
-            <thead>
-            <tr>
-                <th></th>
-                <th>Devices</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
-        <style>
-            td.delete {
-                background-color: #b70404;
                 cursor: pointer;
             }
         </style>
+
     </div>
 
 
