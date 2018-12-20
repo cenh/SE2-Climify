@@ -869,10 +869,10 @@ $(document).on("click", ".ico-delete-user-company", function () {
 });
 
 function requestDeleteUser(id) {
-    var sUrl = "api/api-delete-company-user.php";
+    var sUrl = "api/api-delete-user.php";
     $.post(sUrl, {
         sessionToken: sessionToken,
-        userid: id
+        id: id
     }, function (data) {
         var jData = JSON.parse(data);
         if (jData.status == "ok") {
