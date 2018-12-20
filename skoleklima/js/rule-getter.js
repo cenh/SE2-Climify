@@ -1,3 +1,5 @@
+// Author: Christian P
+
 var isEdit = false;
 var ruleID = -1;
 

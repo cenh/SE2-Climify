@@ -228,7 +228,7 @@ $("#imp-search-company").keyup(function (event) {
 
 
 function updateCompanyList(search) {
-    var userBlock = $("#inp-serch-block").val();
+    var userBlock = 2;
     $(".header-text-wrapper h4").text("");
     $(".user-list").empty();
     $(".user-list").html("<p><i class='update-spinner fa fa-spinner fa-spin fa-1x fa-fw'></i> Fetching data...</p>");
@@ -307,7 +307,7 @@ function updateCompanyList(search) {
 <div class="user-meta-subusers">\
 <h4>Associated Project Managers</h4>\
 <div class="create-subuser-wrapper">\
-<button class="btn-create-user-company" data-toggle="modal" id="isValidForm" data-target="#roleDropdown">Select Role</button>\
+<button class="btn-create-user-company" data-toggle="modal" id="isValidForm" data-target="#roleDropdown">Create User</button>\
 <p>Create a new user with an assigned role</p>\
 <span>\
 <input id="NewUsername" type="text" class="inp-system-create-user inp-system-create-user-username" placeholder="Username (4-8 character)">\
@@ -315,7 +315,7 @@ function updateCompanyList(search) {
 <input id="NewLName" type="text" class="inp-system-create-user inp-system-create-user-lastname" placeholder="Last Name">\
 <input id="NewEmail" type="email" class="inp-system-create-user inp-system-create-user-email" placeholder="E-mail">\
 <select id="roleSelect">\
-<option value="" disabled selected>Create user</option>\
+<option value="" disabled selected>Select role</option>\
 </select>\
 </span>\
 <div class="user-meta-subusers-userlist">\
@@ -620,7 +620,6 @@ function requestCompanyUserList(companyID){
 <p>{{firstName}} {{lastName}}</p>\
 <p>{{email}}</p>\
 <p>{{lastLogin}}</p>\
-
 <span>\
 <i class="ico-delete-user-company link fa fa-trash" aria-hidden="true"></i>\
 </span>\
@@ -756,12 +755,7 @@ function requestCreateUser(thisInput, companyID, username, firstName, lastName, 
 <p>'+ firstName + ' ' + lastName +'</p>\
 <p>'+ email + '</p>\
 <p></p>\
-<select class="inp-system-user-status-select">\
-<option value="1" selected>Aktiv</option>\
-<option value="0">Blokeret</option>\
-</select>\
 <span>\
-<i class="ico-reset-pass-user-company link fa fa-key" aria-hidden="true"></i>\
 <i class="ico-delete-user-company link fa fa-trash" aria-hidden="true"></i>\
 </span>\
 </div >\
