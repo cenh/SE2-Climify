@@ -1,4 +1,8 @@
 <?php
+//@author ciok
+//check if the name is already in the db
+
+
 require_once "../meta.php";
 
 $servername = DB_HOST;

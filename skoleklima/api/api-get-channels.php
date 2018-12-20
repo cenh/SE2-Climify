@@ -1,4 +1,7 @@
 <?php
+//@author ciok
+//get all channels for a given thing
+
 require_once "../meta.php";
 
 $servername = DB_HOST;

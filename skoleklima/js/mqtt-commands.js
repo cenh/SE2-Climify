@@ -1,9 +1,9 @@
 /**
  * @author Ciok
  */
+// here all frontend mqqt messages
 
-
-
+// detete a given thing from a given rpi
 function delete_thing(thing_uid, rp_uid) {
     console.log(thing_uid, rp_uid);
     client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
@@ -49,6 +49,7 @@ function delete_thing(thing_uid, rp_uid) {
     refreshDevicesTableWithButton();
 }
 
+// add a given thing
 function approve_thing(thing_uid, rp_uid) {
     client = new Paho.MQTT.Client("iot.eclipse.org", Number(443), "/wss");
     client.startTrace();
@@ -93,7 +94,7 @@ function approve_thing(thing_uid, rp_uid) {
     refreshDevicesTableListenWithButton();
 }
 
-
+// change value of a numerical actuator
 function set_actuator_number() {
     var x = document.getElementById("set_input_number");
     var text = x.elements[0].value;
@@ -139,6 +140,7 @@ function set_actuator_number() {
     }
 }
 
+// change value of a switch actuator
 function set_actuator_on_off() {
     var x = document.getElementById("set_on_off");
     var on_off = '';
@@ -191,8 +193,6 @@ function set_actuator_on_off() {
 
 
 // listen for new devices in a chosen room
-
-
 function listen() {
     var drop = document.getElementById("select_room_devices_listen");
     var roomID = drop.options[drop.selectedIndex].value;
@@ -246,6 +246,7 @@ function listen() {
 
     });
 
+    // countdown and refresh table after 12 sec
     var i = 12;
     document.getElementById("listen_button").disabled = true;
     document.getElementById("listen_button").style.opacity = "0.3";
@@ -261,8 +262,9 @@ function listen() {
 
 }
 
-function link_channel_with_item(itemName, channelUID, category, type, channelLabel) {
 
+// linking items and channels
+function link_channel_with_item(itemName, channelUID, category, type, channelLabel) {
     var drop = document.getElementById("select_room_manage_devices");
     var roomID = drop.options[drop.selectedIndex].value;
     var sUrl = "api/api-get-rpID.php";
@@ -325,6 +327,8 @@ function link_channel_with_item(itemName, channelUID, category, type, channelLab
 
 }
 
+
+// unlinking items and channels
 function unlink_channel_with_item(itemName, channelUID) {
     var drop = document.getElementById("select_room_manage_devices");
     var roomID = drop.options[drop.selectedIndex].value;

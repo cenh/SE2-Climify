@@ -1,12 +1,21 @@
-//roles table
+// @author ciok
+// managing roles
+
+
 var roles = [];
 var permissions = [];
 
+
+// initialize the table
 $(document).ready(function () {
     var table = $('#roles_table').DataTable({
         "searching": false,
         "paging": false,
         "info": false,
+        "columns": [
+            {
+                "className": 'details-ctrl'
+            }]
     });
 
     getTableData();
@@ -32,6 +41,8 @@ $(document).ready(function () {
     });
 });
 
+
+// get roles and fill the table
 function getTableData() {
     var sUrl = "api/api-get-roles.php";
     // Do AJAX and phase link to api
@@ -50,6 +61,7 @@ function getTableData() {
     });
 }
 
+// format the view which appears after clicking a row
 function format_roles(d, callback) {
     // `d` is the original data object for the row
     var rows = '';
@@ -78,6 +90,8 @@ function format_roles(d, callback) {
     });
 }
 
+
+// gets permissions for a given role and buildes the modal to change them
 function choose_permissions(roleID) {
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
@@ -112,6 +126,7 @@ function choose_permissions(roleID) {
 
 }
 
+// take selected permissions and save changes
 function change_permissions(roleID) {
     var checks = document.getElementsByClassName('perm');
     perms = [];

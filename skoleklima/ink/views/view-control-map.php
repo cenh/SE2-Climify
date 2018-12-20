@@ -1,4 +1,6 @@
-<!-- System data map -->
+<!--@author ciok-->
+<!--view for managing devices-->
+
 <div class="single-view view-control-map">
     <div class="view-control-top">
         <span>
@@ -40,6 +42,11 @@
 
                 </tbody>
             </table>
+            <style>
+                td.details-ctrl {
+                    cursor: pointer;
+                }
+            </style>
         </div>
     </div>
     <hr>
@@ -59,6 +66,7 @@
         <button id="refresh_things_table_button" onclick="refreshDevicesTableWithButton()">Refresh</button>
     </div>
 
+<!--    devices delete table-->
     <div style="overflow: auto">
         <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
@@ -84,6 +92,7 @@
         </div>
     </div>
 
+<!--    devices add table-->
     <div style="overflow: auto">
         <div style="text-align: center; padding-top: 30px;">
             <h4>Connect New Things</h4>
@@ -114,7 +123,6 @@
                 td.approve {
                     background-color: #00b700;
                     cursor: pointer;
-
                 }
             </style>
         </div>
