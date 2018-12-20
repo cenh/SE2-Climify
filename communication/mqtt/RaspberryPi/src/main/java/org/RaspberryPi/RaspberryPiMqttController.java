@@ -69,7 +69,7 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 			dslJson.serialize(writer, newClient);
 			byte[] payload = writer.getByteBuffer();
 			writer.reset();
-			super.publish(Topic.NEWCLIENT.getTopic()+""+uid, 2, payload);
+			super.publish(Topic.NEWCLIENT.getTopic()+"/"+uid, 2, payload);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
