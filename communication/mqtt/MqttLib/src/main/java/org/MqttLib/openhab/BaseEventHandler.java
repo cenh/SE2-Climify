@@ -2,6 +2,11 @@ package org.MqttLib.openhab;
 
 import com.launchdarkly.eventsource.EventHandler;
 
+/**
+ * Custom Event Handler for ServerSentEvents.
+ * @author nch
+ *
+ */
 public interface BaseEventHandler extends EventHandler {
 	
 	@Override

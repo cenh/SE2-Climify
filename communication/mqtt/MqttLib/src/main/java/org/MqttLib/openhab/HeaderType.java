@@ -1,5 +1,10 @@
 package org.MqttLib.openhab;
 
+/**
+ * Headers used when communicating with the openHAB REST-API.
+ * @author nch
+ *
+ */
 public enum HeaderType {
 	JSON ("Accept", "application/json"), 
 	XML ("Accept", "application/xml"), 

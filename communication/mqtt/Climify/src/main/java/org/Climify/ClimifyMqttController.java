@@ -10,6 +10,11 @@ import org.MqttLib.mqtt.Topic;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
+/**
+ * The MQTT Controller for Climify.
+ * @author nch
+ *
+ */
 public class ClimifyMqttController extends AsyncMqttController {
 	
 	private InfluxCommunicator influx = new InfluxCommunicator();

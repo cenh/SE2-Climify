@@ -22,6 +22,11 @@ import org.MqttLib.openhab.NewClient;
 import org.MqttLib.openhab.SensorMeasurement;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
+/**
+ * Handles the MQTT Messages received on Climify.
+ * @author nch
+ *
+ */
 public class ClimifyMessageHandler extends MessageHandler {
 
 	private InfluxCommunicator influx;
@@ -39,7 +44,7 @@ public class ClimifyMessageHandler extends MessageHandler {
 	@Override
 	public void run() {
 		super.run();
-		System.out.println("Processing message on topic: " + topic);
+		
 		if (topic.startsWith(Topic.SENSORDATA.getTopic())) {
 			try {
 				System.out.println("Inside topic " + topic);

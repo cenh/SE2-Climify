@@ -25,6 +25,11 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 
+/**
+ * Custom MessageHandler for the Raspberry Pi's received MQTT messages.
+ * @author nch
+ *
+ */
 public class RaspberryPiMessageHandler extends MessageHandler {
 
 	private RestCommunicator rest = new RestCommunicator();

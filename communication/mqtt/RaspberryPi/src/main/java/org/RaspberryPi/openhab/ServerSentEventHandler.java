@@ -9,6 +9,12 @@ import org.RaspberryPi.ServerSentEventCallback;
 
 import com.launchdarkly.eventsource.MessageEvent;
 
+/**
+ * Handles the messages on the openHAB Event Bus. 
+ * If the message is an Item state change/update the measurement is published for Climify to receive.
+ * @author nch
+ *
+ */
 public class ServerSentEventHandler extends BaseHandler implements BaseEventHandler {
 	
 	private RestCommunicator rest = new RestCommunicator();

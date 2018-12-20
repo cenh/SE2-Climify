@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.dslplatform.json.CompiledJson;
 
+/**
+ * Message to update Climify with all approved devices on a Raspberry Pi and everything connected to them.
+ * @author nch
+ *
+ */
 @CompiledJson(onUnknown = CompiledJson.Behavior.DEFAULT)
 public class DeviceUpdate {
 	private List<Thing> things;

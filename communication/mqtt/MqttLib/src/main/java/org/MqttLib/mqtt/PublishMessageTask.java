@@ -6,6 +6,11 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 
+/**
+ * Task used to publish messages in the ThreadPool.
+ * @author nch
+ *
+ */
 public class PublishMessageTask implements Runnable {
 	
 	private MqttAsyncClient client;

@@ -11,8 +11,8 @@ import java.util.UUID;
 
 /**
  * Singleton handling retrieving the Raspberry Pi's unique identifier & locationID from file.
- * The file setup.txt is expected to be there already with the format = locationID:
- * If it is the first time the Raspberry Pi is being run an unique identifier is created and written to the end of the file.
+ * The file setup.txt is expected to be there already with the format = locationID:uid
+ * If it is the first time the Raspberry Pi is being run the unique identifier should be empty and it will be created and written to the end of the file.
  * @author nch
  *
  */
@@ -102,7 +102,5 @@ public class RaspberryPiSetup {
 	private Boolean fileExist() {
 		return Files.exists(Paths.get(filePath), LinkOption.NOFOLLOW_LINKS);
 	}
-	
-	
 	
 }

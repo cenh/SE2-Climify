@@ -21,6 +21,12 @@ import com.dslplatform.json.DslJson;
 import com.dslplatform.json.JsonWriter;
 import com.dslplatform.json.runtime.Settings;
 
+/**
+ * The MQTT Controller for the Raspberry Pi.
+ * Defines the topics to subscribe to, the message handler to use & the logic needed when connecting to the broker has been established.
+ * @author nch
+ *
+ */
 public class RaspberryPiMqttController extends AsyncMqttController implements ServerSentEventCallback {
 	
 	private RestCommunicator rest = new RestCommunicator();
