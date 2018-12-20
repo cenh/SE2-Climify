@@ -305,7 +305,7 @@ function updateCompanyList(search) {
 </div>\
 </div>\
 <div class="user-meta-subusers">\
-<h4>Associated  Users</h4>\
+<h4>Associated Project Managers</h4>\
 <div class="create-subuser-wrapper">\
 <button class="btn-create-user-company" data-toggle="modal" id="isValidForm" data-target="#roleDropdown">Create User</button>\
 <p>Create a new user with an assigned role</p>\
@@ -850,8 +850,7 @@ function requestDeleteCompany(id) {
 // Delete company user
 
 $(document).on("click", ".ico-delete-user-company", function () {
-    var thisID = $(this).parent().parent().attr("data-company-user-id");
-    console.log(thisID);
+    var thisID = $(this).parent().parent().attr("data-company-user-id");;
     swal({
         title: "",
         text: 'Are you sure you want to delete this user permanently?',
@@ -869,18 +868,21 @@ $(document).on("click", ".ico-delete-user-company", function () {
 });
 
 function requestDeleteUser(id) {
-    var sUrl = "api/api-delete-user.php";
-    $.ajax({
-        type: "POST",
-        url: sUrl,
-        data: {
-            id: id,
-            token: sessionToken
-        }
-    }).done( function (data) {
+    var sUrl = "api/api-delete-company-user.php";
+    $.post(sUrl, {
+        sessionToken: sessionToken,
+        userid: id
+    }, function (data) {
         var jData = JSON.parse(data);
-        $(".user-meta-subusers-userlist").find("[data-company-user-id='" + id + "']").empty();
-
+        if (jData.status == "ok") {
+            $(".user-meta-subusers-userlist").find("[data-company-user-id='" + id + "']").empty();
+        } else {
+            swal({
+                title: "Error",
+                text: 'Something went wrong. Try again later',
+                type: "error"
+            });
+        }
     });
 }
 
