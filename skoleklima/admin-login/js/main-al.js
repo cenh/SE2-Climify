@@ -228,7 +228,7 @@ $("#imp-search-company").keyup(function (event) {
 
 
 function updateCompanyList(search) {
-    var userBlock = $("#inp-serch-block").val();
+    var userBlock = 2;
     $(".header-text-wrapper h4").text("");
     $(".user-list").empty();
     $(".user-list").html("<p><i class='update-spinner fa fa-spinner fa-spin fa-1x fa-fw'></i> Fetching data...</p>");
