@@ -870,10 +870,14 @@ $(document).on("click", ".ico-delete-user-company", function () {
 
 function requestDeleteUser(id) {
     var sUrl = "api/api-delete-user.php";
-    $.post(sUrl, {
-        sessionToken: sessionToken,
-        id: id
-    }, function (data) {
+    $.ajax({
+        type: "POST",
+        url: sUrl,
+        data: {
+            id: id,
+            token: sessionToken
+        }
+    }).done( function (data) {
         var jData = JSON.parse(data);
         if (jData.status == "ok") {
             $(".user-meta-subusers-userlist").find("[data-company-user-id='" + id + "']").empty();
