@@ -41,11 +41,11 @@ $result = $stmt->get_result();
 $id = mysqli_fetch_assoc($result);
 $id = $id+1;
 
-$query = "INSERT INTO Role($id, $role_name, 0)";
-
-$stmt = $conn->prepare($query);
-
-$stmt->execute();
+//$query = "INSERT INTO Role($id, $role_name, 0)";
+//
+//$stmt = $conn->prepare($query);
+//
+//$stmt->execute();
 
 $stmt->close();
 
