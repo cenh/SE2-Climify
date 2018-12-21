@@ -21,7 +21,7 @@ public class RaspberryPiSetup {
 	private static volatile RaspberryPiSetup instance;
 	private String uid;
 	private int locationID;
-	private String filePath = "/home/pi/files/setup.txt";
+	private String filePath = "/home/pi/setup.txt";
 	private Boolean isNew = false;
 	
 	private RaspberryPiSetup() {
