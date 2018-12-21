@@ -45,7 +45,7 @@
     <div style="width: 100%; text-align: center;
          font-weight: bold; font-size: 150%;"> Roles
     </div>
-    <button>Add New Role</button>
+    <button style="padding-left: 20px" onclick="">Add New Role</button>
     <button>Refresh</button>
     <div style="width: 100%; height: auto; border: 1px solid #dddddd;
     text-align: left;
@@ -60,6 +60,11 @@
 
             </tbody>
         </table>
+        <style>
+            td.details-ctrl {
+                cursor: pointer;
+            }
+        </style>
     </div>
 </div>
 

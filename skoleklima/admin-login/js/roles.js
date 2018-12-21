@@ -157,3 +157,12 @@ function change_permissions(roleID) {
 
     alert('Changes Saved');
 }
+
+// add new role with button
+function add_role() {
+    console.log("add new role");
+}
+
+function refreshRolesTableWithButton() {
+    console.log("refresh roles table");
+}
