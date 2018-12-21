@@ -31,7 +31,7 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM Role WHERE Role.RoleID = '$role_id'";
+$query = "SELECT * FROM Role WHERE Role.RoleID = $role_id";
 
 
 $stmt = $conn->prepare($query);
