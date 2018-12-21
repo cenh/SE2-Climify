@@ -183,7 +183,12 @@ function createRole() {
             alert("A role with this name already exists!");
             return;
         }
-        console.log("create new role");
+
+        $.post("api/api-create-role.php", {
+            role_name: name,
+            sessionToken: sessionToken
+        });
+
     });
 }
 
