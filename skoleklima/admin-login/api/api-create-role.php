@@ -38,7 +38,7 @@ $stmt->execute();
 
 $result = $stmt->get_result();
 
-$id = (int)mysql_result($result, 0);
+$id = mysqli_fetch_assoc($result)[0].RoleID;
 
 $messages = json_encode($id, JSON_UNESCAPED_UNICODE);
 echo $messages;
