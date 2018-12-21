@@ -14,7 +14,7 @@ if (!$systemAccess) {
 }
 
 
-if( $phaseSessionToken != $adminSessionToken ){
+if ($phaseSessionToken != $adminSessionToken) {
     echo '{"status":"phaseSessionToken error"}';
     exit;
 }
@@ -39,12 +39,14 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 $emparray = array();
-while($row = mysqli_fetch_assoc($result))
-{
+while ($row = mysqli_fetch_assoc($result)) {
     $emparray[] = $row;
 }
 
-$messages = json_encode( $emparray , JSON_UNESCAPED_UNICODE );
+$id = $emparray[0] + 1;
+$emparray[0] = $id;
+
+$messages = json_encode($emparray, JSON_UNESCAPED_UNICODE);
 echo $messages;
 
 $stmt->close();
