@@ -40,8 +40,8 @@ $result = $stmt->get_result();
 
 $id = mysqli_fetch_array($result)[0];
 $id = $id+1;
-
 $stmt->close();
+
 
 $stmt2 = $conn->prepare("INSERT INTO Role values (?, ?, ?)");
 
