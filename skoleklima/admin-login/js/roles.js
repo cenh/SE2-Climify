@@ -168,6 +168,7 @@ function add_role() {
 }
 
 function createRole() {
+    var modal = document.getElementById('myModal2');
     var name = document.getElementById("new_role_name").value;
     if(name === "") {
         alert("Name cannot be empty!");
