@@ -41,9 +41,10 @@ $result = $stmt->get_result();
 $id = mysqli_fetch_array($result)[0];
 $id = $id+1;
 
-$messages = json_encode($id, JSON_UNESCAPED_UNICODE);
-echo $messages;
+$stmt = $conn->prepare("INSERT INTO Role values ($id, $role_name, 0)");
+
+$stmt->execute();
 
 $stmt->close();
 
-
+$conn->close();
