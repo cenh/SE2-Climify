@@ -5,43 +5,13 @@
 <div class="view view-dashboard">
 	<?php
 	require_once "view-control-map.php";
-	if ($currentUserRole == 1) {
-				require_once "view-devices.php";
-				require_once "view-data.php";
-				require_once "view-data-map.php";
-				require_once "view-other-users.php";
-				require_once "view-own-user.php";
-				require_once "view-system-settings.php";
-				require_once "view-rules.php";
-				require_once "view-control-map.php";
-			} elseif ($currentUserRole == 15) {
-				require_once "view-data.php";
-				require_once "view-data-map.php";
-				require_once "view-own-user.php";
-				require_once "view-control-map.php";
-			} elseif ($currentUserRole == 2) {
-				require_once "view-devices.php";
-				require_once "view-data.php";
-				require_once "view-data-map.php";
-				require_once "view-other-users.php";
-				require_once "view-own-user.php";
-	            require_once "view-rules.php";
-				require_once "view-control-map.php";
-	    } elseif ($currentUserRole == 3) {
-				require_once "view-data.php";
-				require_once "view-data-map.php";
-				require_once "view-other-users.php";
-				require_once "view-own-user.php";
-				require_once "view-control-map.php";
-			} elseif ($currentUserRole == 4) {
-				require_once "view-data.php";
-				require_once "view-data-map.php";
-				require_once "view-control-map.php";
-			}
-			if($currentPermLogbook == 1 ){
-				require_once "view-communication.php";
-			}
-			?>
+	foreach ($permissions as $permission){
+	    require_once "view-".$permission.".php";
+    }
+    if($currentPermLogbook == 1 ){
+        require_once "view-communication.php";
+    }
+    ?>
 	<div class="go-to-top">
 		<a href="<?php echo $company_Website ?>#top-header" target="_self"><i class="ico-go-to-top fa fa-arrow-up link" aria-hidden="true"></i></a>
 	</div>
