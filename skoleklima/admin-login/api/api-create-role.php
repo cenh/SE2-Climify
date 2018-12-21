@@ -41,10 +41,14 @@ $result = $stmt->get_result();
 $id = mysqli_fetch_array($result)[0];
 $id = $id+1;
 
-$stmt = $conn->prepare("INSERT INTO Role values ($id, $role_name, 0)");
-
-$stmt->execute();
-
 $stmt->close();
+
+$stmt2 = $conn->prepare("INSERT INTO Role values (?, ?, ?)");
+
+$stmt2->bind_param("isi", $id, $role_name, 0);
+
+$stmt2->execute();
+
+$stmt2->close();
 
 $conn->close();
