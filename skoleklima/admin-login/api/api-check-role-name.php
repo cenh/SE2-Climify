@@ -1,16 +1,30 @@
 <?php
 //@author ciok
-//check if the name is already in the db
+//check if the name already exists
+
+require_once "../admin-meta.php";
+require_once "../session.php";
+
+$phaseSessionToken = clean($_POST[sessionToken]);
+$role_name = clean($_POST[role_name]);
+
+if (!$systemAccess) {
+    echo '{"status":"systemAccess error"}';
+    exit;
+}
 
 
-require_once "../meta.php";
+if( $phaseSessionToken != $adminSessionToken ){
+    echo '{"status":"phaseSessionToken error"}';
+    exit;
+}
+
 
 $servername = DB_HOST;
 $username = DB_USER;
 $password = DB_PASSWORD;
 $databasename = DB_NAME;
-
-$role_name = clean($_POST[role_name]);
+$pepper = HASH_PEPPER;
 
 $conn = new mysqli($servername, $username, $password, $databasename);
 if ($conn->connect_error) {
@@ -18,6 +32,7 @@ if ($conn->connect_error) {
 }
 
 $query = "SELECT * FROM Role WHERE Role.RoleName = '$role_name'";
+
 
 $stmt = $conn->prepare($query);
 
@@ -37,3 +52,4 @@ echo $messages;
 $stmt->close();
 
 $conn->close();
+
