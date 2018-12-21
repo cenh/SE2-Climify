@@ -81,10 +81,15 @@ function format_roles(d, callback) {
             if (jData[i].RoleID === roleID)
                 rows += '<tr><td>' + jData[i].PermDescription + '</td></tr>';
         }
+        var del = '<button>delete</button>';
+        if(roles[index].isProtected === 1) {
+            del = '';
+        }
         if (rows === '')
             rows = '<tr><td>There is no permissions for this role</td></tr>';
         var table = '<table cellspacing="0" border="0" style="padding-left:10px; width: 100%;">' +
-            rows + '<tr><td><button onclick="choose_permissions('+roleID+')">Edit</button></td></tr>' +
+            rows + '<tr><td><button onclick="choose_permissions('+roleID+')">Edit</button>' + del +
+            '</td></tr>' +
             '</table>';
         callback(table);
     });
