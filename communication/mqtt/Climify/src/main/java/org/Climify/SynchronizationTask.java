@@ -13,7 +13,7 @@ import org.MqttLib.openhab.Synchronize;
 
 
 /**
- *  Class handling asynchronous creating and sending synchronization request message
+ *  Class handling asynchronous creation and sending of synchronization request messages
  *  @author nch and KacperZyla
  */
 

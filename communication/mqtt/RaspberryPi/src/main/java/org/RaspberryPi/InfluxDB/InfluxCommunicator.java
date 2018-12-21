@@ -12,7 +12,7 @@ import org.influxdb.dto.QueryResult;
 
 
 /**
- * Responsible for communicating with the Influx Database on the VM
+ * Responsible for communicating with the Influx Database on the Raspberry Pi
  * @author nch
  *
  */

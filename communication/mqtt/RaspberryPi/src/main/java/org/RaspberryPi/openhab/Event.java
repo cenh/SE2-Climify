@@ -79,6 +79,11 @@ public abstract class Event {
 		};
 	}
 	
+	/**
+	 * Custom converter to make the payload from the event response into an object.
+	 * @author nch
+	 *
+	 */
 	public static class EventResponsePayload implements JsonObject {
 		public String type;
 		public String value;

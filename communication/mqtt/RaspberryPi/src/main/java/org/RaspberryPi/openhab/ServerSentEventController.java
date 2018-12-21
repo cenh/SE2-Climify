@@ -10,6 +10,11 @@ import com.launchdarkly.eventsource.EventSource;
 
 import okhttp3.Headers;
 
+/**
+ * Establishes a streaming connection to the openHAB Event Bus by utilising their ServerSentEvents.
+ * @author nch
+ *
+ */
 public class ServerSentEventController {
 	
 	ServerSentEventCallback callback;
