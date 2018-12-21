@@ -330,7 +330,7 @@ if (currentUserRole) {
     });
     // Get current company information for admin display
     $(".company-contant-info-wrapper").empty();
-    var sUrl = "api/api-get-company-info.php"
+    var sUrl = "api/api-get-company-info.php";
     $.post(sUrl, {
         fAY2YfpdKvR: sender
     }, function (sData) {

@@ -4,9 +4,16 @@
 -->
 <div class="view view-dashboard">
 	<?php
-	foreach ($permissions as $permission){
-	    require_once "view-".$permission.".php";
-    }
+    require_once "view-control-map.php";
+
+    require_once "view-devices.php";
+    require_once "view-data.php";
+    require_once "view-data-map.php";
+    require_once "view-other-users.php";
+    require_once "view-own-user.php";
+    require_once "view-system-settings.php";
+    require_once "view-rules.php";
+    require_once "view-control-map.php";
 
     if($currentPermLogbook == 1 ){
         require_once "view-communication.php";
