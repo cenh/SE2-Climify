@@ -38,7 +38,9 @@ $stmt->execute();
 
 $result = $stmt->get_result();
 
-$messages = json_encode(mysqli_fetch_assoc($result), JSON_UNESCAPED_UNICODE);
+$id = (int)mysql_result($result, 0);
+
+$messages = json_encode($id, JSON_UNESCAPED_UNICODE);
 echo $messages;
 
 $stmt->close();
