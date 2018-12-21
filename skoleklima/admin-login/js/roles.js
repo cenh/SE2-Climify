@@ -165,8 +165,10 @@ function add_role() {
     span.onclick = function() {
         modal.style.display = "none";
     };
+}
 
-
+function createRole() {
+    console.log("call create api");
 }
 
 // refresh the roles table

@@ -91,9 +91,9 @@
             <div id="wrapper_new_role">
                 Name of the new role:<br>
                 <form>
-                    <input type="text">
+                    <input id="new_role_name" type="text">
                 </form>
-                <button>Create</button>
+                <button style="margin-top: 10px" onclick="createRole()">Create</button>
             </div>
         </div>
 
