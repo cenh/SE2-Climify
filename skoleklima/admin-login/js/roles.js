@@ -96,7 +96,26 @@ function format_roles(d, callback) {
 }
 
 function delete_role(roleID) {
-    console.log("delete " + roleID);
+    $.post("api/api-check-users-have-role.php", {
+        role_id: roleID,
+        sessionToken: sessionToken
+    }, function (data) {
+        var jData = JSON.parse(data);
+        if(jData.length > 0) {
+            alert("You can't delete this role. Some users have it!");
+            return;
+        }
+        console.log("delete " + roleID);
+
+        // $.post("api/api-delete-role.php", {
+        //     role_name: name,
+        //     sessionToken: sessionToken
+        // }, function () {
+        //     modal.style.display = "none";
+        //     getTableData();
+        // });
+
+    });
 }
 
 
