@@ -187,6 +187,9 @@ function createRole() {
         $.post("api/api-create-role.php", {
             role_name: name,
             sessionToken: sessionToken
+        }, function (data2) {
+            var jData2 = JSON.parse(data2);
+            console.log(jData2);
         });
 
     });
