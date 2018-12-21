@@ -123,7 +123,7 @@ public class MariaDBCommunicator {
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, raspberryPiUID);
-			ps.setObject(2, 1, java.sql.Types.INTEGER);
+			ps.setObject(2, locationID, java.sql.Types.INTEGER);
 			ps.execute();
 		} catch(SQLException e) {
 			e.printStackTrace();

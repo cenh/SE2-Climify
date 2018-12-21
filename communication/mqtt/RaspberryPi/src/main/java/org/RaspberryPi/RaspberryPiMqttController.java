@@ -9,6 +9,7 @@ import org.MqttLib.mqtt.Topic;
 import org.MqttLib.openhab.DeviceUpdate;
 import org.MqttLib.openhab.Item;
 import org.MqttLib.openhab.Link;
+import org.MqttLib.openhab.NewClient;
 import org.MqttLib.openhab.Thing;
 import org.RaspberryPi.InfluxDB.InfluxCommunicator;
 import org.RaspberryPi.openhab.RestCommunicator;
@@ -20,20 +21,29 @@ import com.dslplatform.json.DslJson;
 import com.dslplatform.json.JsonWriter;
 import com.dslplatform.json.runtime.Settings;
 
+/**
+ * The MQTT Controller for the Raspberry Pi.
+ * Defines the topics to subscribe to, the message handler to use & the logic needed when connecting to the broker has been established.
+ * @author nch
+ *
+ */
 public class RaspberryPiMqttController extends AsyncMqttController implements ServerSentEventCallback {
 	
-	RestCommunicator rest = new RestCommunicator();
-	DslJson<Object> dslJson = new DslJson<>(Settings.withRuntime().allowArrayFormat(true).includeServiceLoader());
-	JsonWriter writer = dslJson.newWriter();
-	InfluxCommunicator influx = new InfluxCommunicator();
+	private RestCommunicator rest = new RestCommunicator();
+	private DslJson<Object> dslJson = new DslJson<>(Settings.withRuntime().allowArrayFormat(true).includeServiceLoader());
+	private JsonWriter writer = dslJson.newWriter();
+	private InfluxCommunicator influx = new InfluxCommunicator();
+	private String uid = RaspberryPiSetup.getInstance().getUID();
+	private int locationID = RaspberryPiSetup.getInstance().getLocationID();
+	
 	@Override
 	protected void subscribeToTopics() throws MqttException {
-		super.subscribe(Topic.COMMAND.getTopic()+"/testID", 2);
-		super.subscribe(Topic.SYNCHRONIZE.getTopic()+"/testID", 2);
-		super.subscribe(Topic.COMMAND.getTopic()+"/#", 2);
-		super.subscribe(Topic.CONTROLTHING.getTopic()+"/#", 2);
-		super.subscribe(Topic.CONTROLITEM.getTopic()+"/#", 2);
-		super.subscribe(Topic.DEVICEDISCOVERY.getTopic()+"/#", 2);
+		super.subscribe(Topic.COMMAND.getTopic()+"/"+uid, 2);
+		super.subscribe(Topic.SYNCHRONIZE.getTopic()+"/"+uid, 2);
+		super.subscribe(Topic.COMMAND.getTopic()+"/"+uid, 2);
+		super.subscribe(Topic.CONTROLTHING.getTopic()+"/"+uid, 2);
+		super.subscribe(Topic.CONTROLITEM.getTopic()+"/"+uid, 2);
+		super.subscribe(Topic.DEVICEDISCOVERY.getTopic()+"/"+uid, 2);
 	}
 	
 	@Override
@@ -46,7 +56,9 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 		super.connectComplete(reconnect, serverURI);
 
 		try {
-			sendDeviceUpdate();
+			if (RaspberryPiSetup.getInstance().isNew()) {
+				sendNewClientUpdate();
+			}
 			influx.connect();
 		} catch (MqttPersistenceException e) {
 			e.printStackTrace();
@@ -55,9 +67,23 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 		}
 	}
 	
+	private void sendNewClientUpdate() throws MqttPersistenceException, MqttException {
+		try {
+			NewClient newClient = new NewClient(uid, locationID);
+			System.out.println("Preparing to send new client update");
+			System.out.println("UID = " + uid + " locationID = " + locationID);
+			dslJson.serialize(writer, newClient);
+			byte[] payload = writer.getByteBuffer();
+			writer.reset();
+			super.publish(Topic.NEWCLIENT.getTopic()+"/"+uid, 2, payload);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("unused")
 	private void sendDeviceUpdate() throws MqttPersistenceException, MqttException {
 		try {
-			//TODO: Could be parallelized
 			byte[] itemsData = rest.getAllItems().getBytes("UTF-8");
 			byte[] thingsData = rest.getAllThings().getBytes("UTF-8");
 			byte[] linksData = rest.getAllLinks().getBytes("UTF-8");
@@ -69,8 +95,9 @@ public class RaspberryPiMqttController extends AsyncMqttController implements Se
 			DeviceUpdate deviceUpdate = new DeviceUpdate(things, items, links);
 			deviceUpdate.removeControllers();
 			dslJson.serialize(writer, deviceUpdate);
-			
-			super.publish(Topic.SENSORUPDATE.getTopic()+"/"+"testID", 2, writer.getByteBuffer());
+			byte[] payload = writer.getByteBuffer();
+			writer.reset();
+			super.publish(Topic.SENSORUPDATE.getTopic()+"/"+uid, 2, payload);
 			
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -1,5 +1,10 @@
 package org.MqttLib.mqtt;
 
+/**
+ * Topics used for the MQTT communication.
+ * @author nch
+ *
+ */
 public enum Topic {
 	NEWCLIENT("newClient"), 
 	NEWSENSOR("newSensor"), 

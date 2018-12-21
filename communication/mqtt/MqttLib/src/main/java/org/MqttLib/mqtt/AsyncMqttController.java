@@ -79,7 +79,7 @@ public class AsyncMqttController implements MqttCallbackExtended, MessageCallbac
 
 			@Override
 			public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-				//Reconnect?....
+				//The client has been set to automatic reconnect so we do not do that here
 			}
 		};
 

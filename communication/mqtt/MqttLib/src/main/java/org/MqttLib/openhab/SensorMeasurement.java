@@ -8,6 +8,11 @@ import java.util.TimeZone;
 
 import com.dslplatform.json.CompiledJson;
 
+/**
+ * Represents a measurement from a Sensor/Actuator.
+ * @author nch
+ *
+ */
 @CompiledJson(onUnknown = CompiledJson.Behavior.IGNORE)
 public class SensorMeasurement {
 	public String name;

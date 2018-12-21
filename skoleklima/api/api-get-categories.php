@@ -1,4 +1,7 @@
 <?php
+//@author ciok
+//get all categories
+
 require_once "../meta.php";
 
 $servername = DB_HOST;

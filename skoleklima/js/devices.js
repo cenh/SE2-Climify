@@ -1,7 +1,7 @@
 /**
  * @author Ciok
  */
-
+// here mainly actuators and sensors behaviour
 
 
 // arrays for displayed items
@@ -12,7 +12,7 @@ var actuator_data = [];
 var chosen_actuator;
 var things = [];
 
-// initialize the tables
+// initialize sensors table
 $(document).ready(function () {
     var table = $('#table_id1').DataTable({
         "searching": false,
@@ -43,6 +43,7 @@ $(document).ready(function () {
     });
 });
 
+// initialize actuators table
 $(document).ready(function () {
     var table = $('#table_id2').DataTable({
         "searching": false,
@@ -80,7 +81,7 @@ $(document).ready(function () {
 });
 
 
-// functions for collapsing
+// functions for collapsing and formating (when clicking rows)
 function format_sensors(d) {
     // `d` is the original data object for the row
     var index = sensors.findIndex(function (row) {
@@ -137,7 +138,7 @@ function format_actuators(d) {
 }
 
 
-// dropdown with rooms
+// fill all dropdowns with rooms
 $(document).ready(function () {
     var sUrl = "api/api-get-rooms.php";
     $.post(sUrl, function (data) {
@@ -167,6 +168,7 @@ $(document).ready(function () {
     });
 });
 
+// button for refreshing tables
 function refreshTableSensorsAndActuatorsWithButton() {
     var e = document.getElementById('select_room');
     var value = e.options[e.selectedIndex].value;

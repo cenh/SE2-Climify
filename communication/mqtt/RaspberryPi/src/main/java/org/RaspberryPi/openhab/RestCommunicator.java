@@ -150,8 +150,6 @@ public class RestCommunicator {
 	public String removeThing(String thingUID) throws IOException {
 		String thingUrl = restBaseUrl + "things/" + thingUID;
         Headers headers = Utilities.getHeaders(HeaderType.JSON);
-
-        //RequestBody body = RequestBody.create(null, thingUID);
         
         Request request = new Request.Builder()
             .url(thingUrl)

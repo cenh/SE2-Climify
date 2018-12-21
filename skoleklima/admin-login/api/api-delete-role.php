@@ -1,11 +1,12 @@
 <?php
 //@author ciok
-//get all roles
+//delete a role with a given id
 
 require_once "../admin-meta.php";
 require_once "../session.php";
 
 $phaseSessionToken = clean($_POST[sessionToken]);
+$role_id = clean($_POST[role_id]);
 
 if (!$systemAccess) {
     echo '{"status":"systemAccess error"}';
@@ -13,7 +14,7 @@ if (!$systemAccess) {
 }
 
 
-if( $phaseSessionToken != $adminSessionToken ){
+if ($phaseSessionToken != $adminSessionToken) {
     echo '{"status":"phaseSessionToken error"}';
     exit;
 }
@@ -29,24 +30,7 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM Role";
-
-
-$stmt = $conn->prepare($query);
-
-$stmt->execute();
-
-$result = $stmt->get_result();
-
-$emparray = array();
-while($row = mysqli_fetch_assoc($result))
-{
-    $emparray[] = $row;
-}
-
-$messages = json_encode( $emparray , JSON_UNESCAPED_UNICODE );
-echo $messages;
-
-$stmt->close();
+$q = "DELETE FROM Role WHERE Role.RoleID = $role_id";
+mysqli_query($conn, $q) or die("Error in Inserting " . mysqli_error($conn));
 
 $conn->close();

@@ -4,6 +4,12 @@ import java.util.List;
 
 import com.dslplatform.json.CompiledJson;
 
+/**
+ * Represents a Channel in openHAB. 
+ * Describes a functionality that a Thing exposes.
+ * @author nch
+ *
+ */
 @CompiledJson(onUnknown = CompiledJson.Behavior.DEFAULT)
 public class Channel {
 	public String uid;

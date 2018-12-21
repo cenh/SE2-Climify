@@ -1,11 +1,12 @@
 <?php
 //@author ciok
-//get all roles
+//create a role with a given name
 
 require_once "../admin-meta.php";
 require_once "../session.php";
 
 $phaseSessionToken = clean($_POST[sessionToken]);
+$role_name = clean($_POST[role_name]);
 
 if (!$systemAccess) {
     echo '{"status":"systemAccess error"}';
@@ -13,7 +14,7 @@ if (!$systemAccess) {
 }
 
 
-if( $phaseSessionToken != $adminSessionToken ){
+if ($phaseSessionToken != $adminSessionToken) {
     echo '{"status":"phaseSessionToken error"}';
     exit;
 }
@@ -29,8 +30,7 @@ if ($conn->connect_error) {
     die("Connection error: " . $conn->connect_error);
 }
 
-$query = "SELECT * FROM Role";
-
+$query = "SELECT MAX(RoleID) FROM Role";
 
 $stmt = $conn->prepare($query);
 
@@ -38,15 +38,12 @@ $stmt->execute();
 
 $result = $stmt->get_result();
 
-$emparray = array();
-while($row = mysqli_fetch_assoc($result))
-{
-    $emparray[] = $row;
-}
+$id = mysqli_fetch_array($result)[0];
+$id = $id+1;
 
-$messages = json_encode( $emparray , JSON_UNESCAPED_UNICODE );
-echo $messages;
+$q = "INSERT INTO Role(RoleID, RoleName, protected) VALUES ($id, '$role_name', 0)";
+mysqli_query($conn, $q) or die("Error in Inserting " . mysqli_error($conn));
+
 
 $stmt->close();
-
 $conn->close();

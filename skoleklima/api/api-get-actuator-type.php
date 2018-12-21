@@ -1,6 +1,13 @@
 <?php
-//@author ciok
-//get all items for a specific room
+
+/**
+ * @author Ben 
+ */
+
+//************************************************
+//	Get type for actuator
+//************************************************
+
 
 require_once "../meta.php";
 
@@ -8,8 +15,8 @@ $servername = DB_HOST;
 $username = DB_USER;
 $password = DB_PASSWORD;
 $databasename = DB_NAME;
-
-$roomID = clean($_POST[roomID]);
+$ActuatorName = $_GET['ActuatorName'];
+$LocationID = $_GET['LocationID'];
 
 
 $conn = new mysqli($servername, $username, $password, $databasename);
@@ -23,13 +30,14 @@ INNER JOIN Things as t
 INNER JOIN Channels
 INNER JOIN ThingsChannels as tc
 INNER JOIN Links as links
-WHERE rp.LocationID = $roomID
+WHERE rp.LocationID = $LocationID
 AND t.RaspberryPiUID = rp.UID
 AND tc.ThingUID = t.UID
 AND links.ChannelUID = tc.ChannelUID
 AND Channels.UID = links.ChannelUID
-AND items.Name = links.ItemName";
+AND items.Name = links.ItemName AND items.ReadOnly = 0 AND Name =\"$ActuatorName\"";
 
+error_log($query, 0);
 $stmt = $conn->prepare($query);
 
 $stmt->execute();
@@ -48,4 +56,5 @@ echo $messages;
 $stmt->close();
 
 $conn->close();
+
 ?>

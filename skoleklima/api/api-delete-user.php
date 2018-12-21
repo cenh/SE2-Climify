@@ -7,7 +7,7 @@
 require_once "../meta.php";
 
 if( $currentUserID == ""){
-    echo '{"status":"error"}';
+    echo '{"status":"error1"}';
     exit;
 }
 
@@ -16,7 +16,7 @@ $apiPassword = API_PASSWORD;
 $phase_api_key = clean($_GET['fAY2YfpdKvR']);
 
 if( $apiPassword !== $phase_api_key){
-    echo '{"status":"error"}';
+    echo '{"status":"error2"}';
     exit;
 }
 
@@ -30,12 +30,12 @@ $phaseDeleteUserName = clean($_GET['delete-username']);
 
 
 if ( $phaseCurrentUserName == "" ) {
-    echo '{"status":"error"}';
+    echo '{"status":"error3"}';
     exit;
 }
 
 if ( $phaseDeleteUserName == "" ) {
-    echo '{"status":"error"}';
+    echo '{"status":"error4"}';
     exit;
 }
 
@@ -70,7 +70,7 @@ if ($result->num_rows==1){
         $tryingToDeleteMunID = $row["MunID"];
     }
 } else {
-    echo '{"status":"error"}';
+    echo '{"status":"error5"}';
     $conn->close();
     exit;
 }
@@ -82,7 +82,7 @@ echo "tryingToDeleteRole " . $tryingToDeleteRole;
 echo "currentUserRole " . $currentUserRole;
 */
 if ($tryingToDeleteRole <= $currentUserRole){
-    echo '{"status":"error"}';
+    echo '{"status":"error6"}';
     $conn->close();
     exit; 
 
@@ -97,7 +97,7 @@ echo " currentUserCompanyID " .$currentUserCompanyID;
 */
 if ($currentUserRole==1){
     if( $tryingToDeleteMunID != $currentUserCompanyID){
-        echo '{"status":"error"}';
+        echo '{"status":"error7"}';
         $conn->close();
         exit;  
     }
@@ -107,7 +107,7 @@ if ($currentUserRole==1){
 else{
 
     if ($tryingToDeleteInstID != $InstID){
-        echo '{"status":"error"}';
+        echo '{"status":"error8"}';
         $conn->close();
         exit;
     }

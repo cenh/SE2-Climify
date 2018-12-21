@@ -1,12 +1,21 @@
-//roles table
+// @author ciok
+// managing roles
+
+
 var roles = [];
 var permissions = [];
 
+
+// initialize the table
 $(document).ready(function () {
     var table = $('#roles_table').DataTable({
         "searching": false,
         "paging": false,
         "info": false,
+        "columns": [
+            {
+                "className": 'details-ctrl'
+            }]
     });
 
     getTableData();
@@ -32,6 +41,8 @@ $(document).ready(function () {
     });
 });
 
+
+// get roles and fill the table
 function getTableData() {
     var sUrl = "api/api-get-roles.php";
     // Do AJAX and phase link to api
@@ -50,6 +61,7 @@ function getTableData() {
     });
 }
 
+// format the view which appears after clicking a row
 function format_roles(d, callback) {
     // `d` is the original data object for the row
     var rows = '';
@@ -69,15 +81,42 @@ function format_roles(d, callback) {
             if (jData[i].RoleID === roleID)
                 rows += '<tr><td>' + jData[i].PermDescription + '</td></tr>';
         }
+        var del = '<button onclick="delete_role('+roleID+')">delete</button>';
+        if(roles[index].protected === 1) {
+            del = '';
+        }
         if (rows === '')
             rows = '<tr><td>There is no permissions for this role</td></tr>';
         var table = '<table cellspacing="0" border="0" style="padding-left:10px; width: 100%;">' +
-            rows + '<tr><td><button onclick="choose_permissions('+roleID+')">Edit</button></td></tr>' +
+            rows + '<tr><td><button onclick="choose_permissions('+roleID+')">Edit</button>' + del +
+            '</td></tr>' +
             '</table>';
         callback(table);
     });
 }
 
+function delete_role(roleID) {
+    $.post("api/api-check-users-have-role.php", {
+        role_id: roleID,
+        sessionToken: sessionToken
+    }, function (data) {
+        var jData = JSON.parse(data);
+        if(jData.length > 0) {
+            alert("You can't delete this role. Some users have it!");
+            return;
+        }
+        $.post("api/api-delete-role.php", {
+            role_id: roleID,
+            sessionToken: sessionToken
+        }, function () {
+            getTableData();
+        });
+
+    });
+}
+
+
+// gets permissions for a given role and buildes the modal to change them
 function choose_permissions(roleID) {
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
@@ -112,6 +151,7 @@ function choose_permissions(roleID) {
 
 }
 
+// take selected permissions and save changes
 function change_permissions(roleID) {
     var checks = document.getElementsByClassName('perm');
     perms = [];
@@ -124,8 +164,6 @@ function change_permissions(roleID) {
        RoleID: roleID,
        Permissions: perms
     });
-
-    //here call api
 
     var modal = document.getElementById('myModal');
     modal.style.display = "none";
@@ -141,4 +179,49 @@ function change_permissions(roleID) {
     });
 
     alert('Changes Saved');
+}
+
+// add new role with button
+function add_role() {
+    var modal = document.getElementById('myModal2');
+    var span = document.getElementsByClassName("close")[1];
+
+    modal.style.display = "block";
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
+}
+
+function createRole() {
+    var modal = document.getElementById('myModal2');
+    var name = document.getElementById("new_role_name").value;
+    if(name === "") {
+        alert("Name cannot be empty!");
+        return;
+    }
+
+    $.post("api/api-check-role-name.php", {
+        role_name: name,
+        sessionToken: sessionToken
+    }, function (data) {
+        var jData = JSON.parse(data);
+        if(jData.length > 0) {
+            alert("A role with this name already exists!");
+            return;
+        }
+
+        $.post("api/api-create-role.php", {
+            role_name: name,
+            sessionToken: sessionToken
+        }, function () {
+            modal.style.display = "none";
+            getTableData();
+        });
+
+    });
+}
+
+// refresh the roles table
+function refreshRolesTableWithButton() {
+    getTableData();
 }

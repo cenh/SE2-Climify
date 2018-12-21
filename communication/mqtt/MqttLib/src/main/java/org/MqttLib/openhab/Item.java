@@ -2,6 +2,12 @@ package org.MqttLib.openhab;
 
 import com.dslplatform.json.CompiledJson;
 
+/**
+ * Represents an Item in openHAB.
+ * Describes a Sensor/Actuator.
+ * @author nch
+ *
+ */
 @CompiledJson(onUnknown = CompiledJson.Behavior.DEFAULT)
 public class Item {
 	public String name;

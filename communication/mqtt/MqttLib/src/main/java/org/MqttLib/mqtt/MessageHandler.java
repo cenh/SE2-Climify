@@ -2,7 +2,11 @@ package org.MqttLib.mqtt;
 
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-
+/**
+ * Default MessageHandler for processing MQTT Messages.
+ * @author nch
+ *
+ */
 public class MessageHandler extends BaseHandler implements Runnable {
 
 	protected String topic;

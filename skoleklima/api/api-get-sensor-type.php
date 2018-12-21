@@ -1,4 +1,14 @@
 <?php
+
+/**
+ * @author Ben 
+ */
+
+//************************************************
+//	Get type for sensor
+//************************************************
+
+
 require_once "../meta.php";
 
 $servername = DB_HOST;
@@ -25,7 +35,7 @@ AND t.RaspberryPiUID = rp.UID
 AND tc.ThingUID = t.UID
 AND links.ChannelUID = tc.ChannelUID
 AND Channels.UID = links.ChannelUID
-AND items.Name = links.ItemName AND Name =\"$SensorName\"";
+AND items.Name = links.ItemName AND items.ReadOnly = 1 AND Name =\"$SensorName\"";
 
 error_log($query, 0);
 $stmt = $conn->prepare($query);
