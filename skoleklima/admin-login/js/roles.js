@@ -187,8 +187,11 @@ function createRole() {
         $.post("api/api-create-role.php", {
             role_name: name,
             sessionToken: sessionToken
+        }, function () {
+            modal.style.display = "none";
+            getTableData();
         });
-        modal.style.display = "none";
+
     });
 }
 
