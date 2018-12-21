@@ -188,7 +188,7 @@ function createRole() {
             role_name: name,
             sessionToken: sessionToken
         });
-
+        modal.style.display = "none";
     });
 }
 
