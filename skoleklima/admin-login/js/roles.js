@@ -168,7 +168,9 @@ function add_role() {
 }
 
 function createRole() {
-    console.log("call create api");
+    var name = document.getElementById("new_role_name").value;
+    console.log("call create api " + name);
+
 }
 
 // refresh the roles table
