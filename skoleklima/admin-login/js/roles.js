@@ -158,9 +158,8 @@ function change_permissions(roleID) {
 
 // add new role with button
 function add_role() {
-    console.log("add new role");
     var modal = document.getElementById('myModal2');
-    var span = document.getElementsByClassName("close2")[0];
+    var span = document.getElementsByClassName("close")[0];
     var wrap = document.getElementById("wrapper_new_role");
     wrap.innerHTML = "";
 
@@ -168,6 +167,8 @@ function add_role() {
     span.onclick = function() {
         modal.style.display = "none";
     };
+
+
 }
 
 // refresh the roles table

@@ -87,8 +87,14 @@
 
         <!-- Modal content -->
         <div class="modal-content">
-            <span class="close2">&times;</span>
-            <div id="wrapper_new_role"></div>
+            <span class="close">&times;</span>
+            <div id="wrapper_new_role">
+                Name of the new role:<br>
+                <form>
+                    <input type="text">
+                </form>
+                <button>Create</button>
+            </div>
         </div>
 
     </div>
