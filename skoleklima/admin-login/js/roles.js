@@ -179,7 +179,11 @@ function createRole() {
         sessionToken: sessionToken
     }, function (data) {
         var jData = JSON.parse(data);
-        console.log(jData);
+        if(jData.length > 0) {
+            alert("A role with this name already exists!");
+            return;
+        }
+        console.log("create new role");
     });
 }
 
