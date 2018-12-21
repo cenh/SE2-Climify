@@ -314,12 +314,13 @@ if (window.matchMedia('(max-width: 800px)').matches) {
 }
 
 // Administate locations / buildings
-if (currentUserRole == "1") {
+if (currentUserRole) {
     // Test influx connection
-    var sUrl = "api/api-get-influx-info.php"
+    var sUrl = "api/api-get-influx-info.php";
     $.post(sUrl, {
         fAY2YfpdKvR: sender
     }, function (sData) {
+        console.log("Data :" + sData);
         var jData = JSON.parse(sData);
         if (jData.status == "ok") {
             $(".status-ok").show();

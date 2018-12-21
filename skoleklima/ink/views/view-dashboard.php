@@ -5,7 +5,7 @@
 <div class="view view-dashboard">
 	<?php
 	foreach ($permissions as $permission){
-	    require "view-".$permission.".php";
+	    require_once "view-".$permission.".php";
     }
 
     if($currentPermLogbook == 1 ){

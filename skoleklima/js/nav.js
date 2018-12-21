@@ -70,7 +70,7 @@ function getHumanURL(nav) {
             nav = "Settings";
             break;
         default:
-            nav = "Climate Overview"
+            nav = "Climate Overview";
             break;
     }
     return nav;
