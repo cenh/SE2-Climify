@@ -10,6 +10,11 @@ import org.MqttLib.mqtt.Topic;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
+/**
+ * The MQTT Controller for Climify.
+ * @author nch
+ *
+ */
 public class ClimifyMqttController extends AsyncMqttController {
 	
 	private InfluxCommunicator influx = new InfluxCommunicator();
@@ -17,7 +22,6 @@ public class ClimifyMqttController extends AsyncMqttController {
 
 	@Override
 	public void start() {
-		super.start();
 		
 		influx.connect();
 		try {
@@ -25,11 +29,13 @@ public class ClimifyMqttController extends AsyncMqttController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		super.start();
 	}
 	
 	@Override
 	protected void subscribeToTopics() throws MqttException {
+		super.subscribe(Topic.NEWCLIENT.getTopic()+"/#", 2);
 		super.subscribe(Topic.SENSORDATA.getTopic()+"/#", 2);
 		super.subscribe(Topic.SENSORUPDATE.getTopic()+"/#", 2);
 		super.subscribe(Topic.INBOX.getTopic()+"/#", 2);

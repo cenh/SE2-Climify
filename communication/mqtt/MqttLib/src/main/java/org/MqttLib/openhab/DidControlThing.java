@@ -4,7 +4,7 @@ import com.dslplatform.json.CompiledJson;
 import com.dslplatform.json.CompiledJson.Behavior;
 
 /**
- * Confirmation message when a thing has been removed/approved
+ * Confirmation message when a Thing has been removed/approved
  * @author nch
  *
  */

@@ -6,6 +6,11 @@ import java.util.Set;
 
 import okhttp3.Headers;
 
+/**
+ * Useful utility functions.
+ * @author nch
+ *
+ */
 public class Utilities {
 	
 	/**
