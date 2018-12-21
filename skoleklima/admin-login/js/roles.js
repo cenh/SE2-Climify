@@ -106,15 +106,12 @@ function delete_role(roleID) {
             alert("You can't delete this role. Some users have it!");
             return;
         }
-        console.log("delete " + roleID);
-
-        // $.post("api/api-delete-role.php", {
-        //     role_name: name,
-        //     sessionToken: sessionToken
-        // }, function () {
-        //     modal.style.display = "none";
-        //     getTableData();
-        // });
+        $.post("api/api-delete-role.php", {
+            role_id: roleID,
+            sessionToken: sessionToken
+        }, function () {
+            getTableData();
+        });
 
     });
 }
