@@ -38,16 +38,15 @@ $stmt->execute();
 
 $result = $stmt->get_result();
 
-$id = mysqli_fetch_assoc($result);
-$id = $id+1;
+$emparray = array();
+while($row = mysqli_fetch_assoc($result))
+{
+    $emparray[] = $row;
+}
 
-//$query = "INSERT INTO Role($id, $role_name, 0)";
-//
-//$stmt = $conn->prepare($query);
-//
-//$stmt->execute();
+$messages = json_encode( $emparray , JSON_UNESCAPED_UNICODE );
+echo $messages;
 
 $stmt->close();
 
-$conn->close();
 
