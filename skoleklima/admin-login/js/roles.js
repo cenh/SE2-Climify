@@ -101,7 +101,6 @@ function delete_role(roleID) {
         sessionToken: sessionToken
     }, function (data) {
         var jData = JSON.parse(data);
-        console.log(jData);
         if(jData.length > 0) {
             alert("You can't delete this role. Some users have it!");
             return;
