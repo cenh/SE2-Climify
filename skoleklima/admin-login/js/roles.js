@@ -169,8 +169,17 @@ function add_role() {
 
 function createRole() {
     var name = document.getElementById("new_role_name").value;
-    console.log("call create api " + name);
+    if(name === "") {
+        alert("Name cannot be empty!");
+        return;
+    }
 
+    $.post("api/api-check-role-name.php", {
+        role_name: name,
+    }, function (data) {
+        var jData = JSON.parse(data);
+        console.log(jData);
+    });
 }
 
 // refresh the roles table
