@@ -86,7 +86,6 @@ if (siteOnline) {
                 hideSingleView();
                 $(".view-" + userStartPage).show();
                 window.location = "/#/" + getHumanURL(userStartPage).toLowerCase();
-
             }
             this.get('#/maalere', function () {
                 hideSingleView();

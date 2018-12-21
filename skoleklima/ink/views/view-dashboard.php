@@ -4,10 +4,11 @@
 -->
 <div class="view view-dashboard">
 	<?php
-    require_once "view-control-map.php";
 	foreach ($permissions as $permission){
 	    require_once "view-".$permission.".php";
     }
+    require_once "view-control-map.php";
+
     if($currentPermLogbook == 1 ){
         require_once "view-communication.php";
     }
