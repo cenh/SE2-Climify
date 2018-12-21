@@ -140,8 +140,6 @@ function change_permissions(roleID) {
        Permissions: perms
     });
 
-    //here call api
-
     var modal = document.getElementById('myModal');
     modal.style.display = "none";
     table = $('#roles_table').DataTable().draw();
@@ -161,8 +159,18 @@ function change_permissions(roleID) {
 // add new role with button
 function add_role() {
     console.log("add new role");
+    var modal = document.getElementById('myModal2');
+    var span = document.getElementsByClassName("close2")[0];
+    var wrap = document.getElementById("wrapper_new_role");
+    wrap.innerHTML = "";
+
+    modal.style.display = "block";
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
 }
 
+// refresh the roles table
 function refreshRolesTableWithButton() {
-    console.log("refresh roles table");
+    getTableData();
 }

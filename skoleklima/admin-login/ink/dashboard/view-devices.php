@@ -34,48 +34,62 @@
                         </div>
                         <div class="user-meta-subusers-userlist">
                         </div>
+                    </div>
                 </div>
             </div>
+
+        </div>
+    </div>
+
+    <!--    @author Ciok-->
+
+    <div style="height: auto">
+        <div style="width: 100%; text-align: center;
+         font-weight: bold; font-size: 150%;"> Roles
+        </div>
+        <button style="margin-left: 20px" onclick="add_role()">Add New Role</button>
+        <button onclick="refreshRolesTableWithButton()">Refresh</button>
+        <div style="width: 100%; height: auto; border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px; float:left;">
+            <table id="roles_table" class="display">
+                <thead>
+                <tr>
+                    <th>Role Name</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <style>
+                td.details-ctrl {
+                    cursor: pointer;
+                }
+            </style>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="form_wrapper"></div>
+
+
         </div>
 
     </div>
-</div>
 
-<div style="height: auto">
-    <div style="width: 100%; text-align: center;
-         font-weight: bold; font-size: 150%;"> Roles
-    </div>
-    <button style="margin-left: 20px" onclick="add_role()">Add New Role</button>
-    <button onclick="refreshRolesTableWithButton()">Refresh</button>
-    <div style="width: 100%; height: auto; border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px; float:left;">
-        <table id="roles_table" class="display">
-            <thead>
-            <tr>
-                <th>Role Name</th>
-            </tr>
-            </thead>
-            <tbody>
+    <div id="myModal2" class="modal">
 
-            </tbody>
-        </table>
-        <style>
-            td.details-ctrl {
-                cursor: pointer;
-            }
-        </style>
-    </div>
-</div>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div id="form_wrapper"></div>
-
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close2">&times;</span>
+            <div id="wrapper_new_role"></div>
+        </div>
 
     </div>
 
