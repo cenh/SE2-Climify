@@ -1,10 +1,9 @@
 <!-- Dashboard -->
 <!--
- Author: Christian Hansen
+ Author: Christian Hansen & Christian Petersen
 -->
 <div class="view view-dashboard">
 	<?php
-	require_once "view-control-map.php";
 	foreach ($permissions as $permission){
 	    require_once "view-".$permission.".php";
     }
