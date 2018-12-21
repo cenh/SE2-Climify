@@ -43,9 +43,9 @@ $id = $id+1;
 $stmt->close();
 
 
-$stmt2 = $conn->prepare("INSERT INTO Role values (?, ?, ?)");
+$stmt2 = $conn->prepare("INSERT INTO Role values ($id, $role_name, 0)");
 
-$stmt2->bind_param("isi", $id, $role_name, 0);
+//$stmt2->bind_param("isi", $id, $role_name, 0);
 
 $stmt2->execute();
 
