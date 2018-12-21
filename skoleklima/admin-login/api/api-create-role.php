@@ -42,13 +42,7 @@ $id = mysqli_fetch_array($result)[0];
 $id = $id+1;
 $stmt->close();
 
-
-$stmt2 = $conn->prepare("INSERT INTO Role values ($id, $role_name, 0)");
-
-//$stmt2->bind_param("isi", $id, $role_name, 0);
-
-$stmt2->execute();
-
-$stmt2->close();
+$q = "INSERT INTO Role($id, $nole_name, 0)";
+mysqli_query($conn, $q) or die("Error in Inserting " . mysqli_error($conn));
 
 $conn->close();
