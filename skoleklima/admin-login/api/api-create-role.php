@@ -38,15 +38,7 @@ $stmt->execute();
 
 $result = $stmt->get_result();
 
-$emparray = array();
-while ($row = mysqli_fetch_assoc($result)) {
-    $emparray[] = $row;
-}
-
-$id = $emparray[0] + 1;
-$emparray[0] = $id;
-
-$messages = json_encode($emparray, JSON_UNESCAPED_UNICODE);
+$messages = json_encode($result, JSON_UNESCAPED_UNICODE);
 echo $messages;
 
 $stmt->close();
