@@ -41,7 +41,7 @@ $result = $stmt->get_result();
 $id = mysqli_fetch_array($result)[0];
 $id = $id+1;
 
-$q = "INSERT INTO Role(RoleID, RoleName, isProtected) VALUES ($id, '$role_name', 0)";
+$q = "INSERT INTO Role(RoleID, RoleName, protected) VALUES ($id, '$role_name', 0)";
 mysqli_query($conn, $q) or die("Error in Inserting " . mysqli_error($conn));
 
 

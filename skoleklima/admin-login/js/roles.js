@@ -82,7 +82,7 @@ function format_roles(d, callback) {
                 rows += '<tr><td>' + jData[i].PermDescription + '</td></tr>';
         }
         var del = '<button onclick="delete_role('+roleID+')">delete</button>';
-        if(roles[index].isProtected === 1) {
+        if(roles[index].protected === 1) {
             del = '';
         }
         if (rows === '')
@@ -101,6 +101,7 @@ function delete_role(roleID) {
         sessionToken: sessionToken
     }, function (data) {
         var jData = JSON.parse(data);
+        console.log(jData);
         if(jData.length > 0) {
             alert("You can't delete this role. Some users have it!");
             return;
