@@ -81,7 +81,7 @@ function format_roles(d, callback) {
             if (jData[i].RoleID === roleID)
                 rows += '<tr><td>' + jData[i].PermDescription + '</td></tr>';
         }
-        var del = '<button>delete</button>';
+        var del = '<button onclick="delete_role('+roleID+')">delete</button>';
         if(roles[index].isProtected === 1) {
             del = '';
         }
@@ -93,6 +93,10 @@ function format_roles(d, callback) {
             '</table>';
         callback(table);
     });
+}
+
+function delete_role(roleID) {
+    console.log("delete " + roleID);
 }
 
 
