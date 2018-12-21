@@ -33,6 +33,4 @@ if ($conn->connect_error) {
 $q = "DELETE FROM Role WHERE Role.RoleID = $role_id";
 mysqli_query($conn, $q) or die("Error in Inserting " . mysqli_error($conn));
 
-
-$stmt->close();
 $conn->close();
